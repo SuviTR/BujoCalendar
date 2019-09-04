@@ -10,6 +10,7 @@ public class App
     {
         System.out.println( "Hello World!" );
         System.out.println("Commit toimi");
+	System.out.println("Java koodi onnistui päivittää");
 
     }
 }

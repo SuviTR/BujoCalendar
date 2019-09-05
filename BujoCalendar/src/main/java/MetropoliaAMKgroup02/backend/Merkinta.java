@@ -4,10 +4,11 @@ package MetropoliaAMKgroup02.BujoCalendar;
  * Vladimir 
  *
  */
-public class Merkinta 
+public class Merkinta interface TimeSpace 
 {
 	public enum prioriteetti {small, middle, high};
-
+	public String sisalto;
+	
 	public void Add(){
 			
 	}

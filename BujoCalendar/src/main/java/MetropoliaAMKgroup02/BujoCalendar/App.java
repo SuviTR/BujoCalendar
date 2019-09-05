@@ -9,7 +9,8 @@ public class App
     public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
-        System.out.println("Hei maailma");
-        System.out.println("Hej V�rlden")
+        System.out.println("Commit toimi");
+	System.out.println("Java koodi onnistui päivittää");
+
     }
 }

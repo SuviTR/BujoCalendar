@@ -1,4 +1,4 @@
-package MetropoliaAMKgroup02.BujoCalendar;
+package MetropoliaAMKgroup02.BujoCalendar.backend;
 
 /**
  * Vladimir 
@@ -6,10 +6,9 @@ package MetropoliaAMKgroup02.BujoCalendar;
  */
 public interface TimeSpace 
 {
-	abstract void Add();
-	abstract void Delete();
-	abstract void Edit();
-	abstract void SetPriority();	
-	abstract void Opiration();
+	abstract void snooze();
+	abstract void toogle();
+	abstract void getDay();
+	abstract void getTime();
 	
 }

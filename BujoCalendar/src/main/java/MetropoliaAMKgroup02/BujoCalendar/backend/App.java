@@ -7,12 +7,7 @@ package MetropoliaAMKgroup02.BujoCalendar.backend;
 public class App 
 {
 	private Merkintä merkintä;
-	private Database database;
 	
-	
-	//Mietin että pitää olla joku "DataAccessObject"
-	database = new Database();
-
 	public void addMerkintä(){
 		merkintä = new Merkintä();
 		merkintä.add();

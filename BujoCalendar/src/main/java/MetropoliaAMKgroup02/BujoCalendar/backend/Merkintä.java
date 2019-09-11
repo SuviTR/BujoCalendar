@@ -4,13 +4,16 @@ package MetropoliaAMKgroup02.BujoCalendar.backend;
  * Vladimir 
  *
  */
-public class Merkintä 
+public class Merkintä implements ITimeSpace
 {
 	public enum prioriteetti {small, middle, high};
 	private int merkintäID;
 	
-	private String nimi, paikka, sisalto;
+	private String nimi, paikka, sisaltö;
+	LocalDate date;
+	LocalTime time;
 	
+
 	public Merkintä(String nimi) {
 		this.nimi = nimi;	
 	}
@@ -33,6 +36,10 @@ public class Merkintä
 		prioriteetti = viewLuokka.getPrioriteetti();
 
 	}
-
+	
+	public void snooze(int snoozer){
+		snoozeTime = time.now() + snoozer;		
+	}
 
 }
+

@@ -6,15 +6,13 @@ import java.time.LocalDate;
  * Vladimir 
  *
  */
-public class Hälytys interface TimeSpace
+public class Hälytys interface ITimeSpace
 {
 	public enum ääni {huomautus, valmis, pulssi };
 	private boolean status = true;
 
-	LocalTime time;
-	LocalDate date;
-
-	private String nimi, paikka, sisalto;
+	LocalTime localTime;
+	LocalDate localDate;
 	
 	public Hälytys (enum ääni, boolean status) {
 		this.ääni = ääni;

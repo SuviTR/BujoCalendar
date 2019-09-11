@@ -1,12 +1,23 @@
 package MetropoliaAMKgroup02.BujoCalendar;
-
+import java.until.ArrayList;
 /**
  * Vladimir 
  *
  */
-public interface IKalenterimerkintä  
+public class Kalenterimerkintä implements IKalenteriMerkintä
 {
-	public abstract String getPaikka();
-	public abstract Henkilö getOsalistuja();
-	public abstract Hälytys getHälytys();
+	private ArrayList<Henkilo> osalistujat = new ArrayList<Henkilo>();
+	private ArrayList<Halytys> halytykset = new ArrayList<Halytys>();
+	
+	public void addHenkilo(Henkilo henkilo){
+		osalistujat.add(henkilo);				
+	}
+	public void showOsalistujat(){
+		System.out.println(osalistujat);		
+	} 
+	
+	public void addHalytys(Halytys halytys){
+		halytykset.add(halytys)
+	}
+
 }

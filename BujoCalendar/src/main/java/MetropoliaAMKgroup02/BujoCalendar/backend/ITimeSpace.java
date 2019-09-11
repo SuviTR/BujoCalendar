@@ -1,4 +1,5 @@
-package MetropoliaAMKgroup02.BujoCalendar.backend;
+package backend;
+
 
 /**
  * Vladimir 
@@ -6,9 +7,7 @@ package MetropoliaAMKgroup02.BujoCalendar.backend;
  */
 public interface ITimeSpace 
 {
-	public void snooze();
+	public void snooze(int aika);
 	public void toogle();
-	public void getDay();
-	public void getTime();
 	
 }

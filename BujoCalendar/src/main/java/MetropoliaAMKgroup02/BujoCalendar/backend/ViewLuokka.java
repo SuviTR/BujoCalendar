@@ -1,4 +1,5 @@
-package MetropoliaAMKgroup02.BujoCalendar.backend;
+package backend;
+
 
 /**
  * View Luokka on tehty testauksen varten
@@ -6,32 +7,32 @@ package MetropoliaAMKgroup02.BujoCalendar.backend;
  */
 public class ViewLuokka
 {
-	public enum prioriteetti {small, middle, high};
-	private int merkintäID;
+	public String prioriteetti;
+	private int merkintaID;
 	
 	private String nimi, paikka, sisalto;
 	
-	public ViewLuokka(int merkintäID, string nimi, string paikka, string sisältö, enum prioriteetti){
-		this.merkintäID = merkintäID;
+	public ViewLuokka(int merkintaID, String nimi, String paikka, String sisalto, String prioriteetti){
+		this.merkintaID = merkintaID;
 		this.nimi = nimi;	
 		this.paikka = paikka;
-		this.sisältö = sisältö;
+		this.sisalto = sisalto;
 		this.prioriteetti = prioriteetti;
 	}
 
-	public string getNimi(){
+	public String getNimi(){
 		return nimi;	
 	}
 
-	public string getPaikka(){
+	public String getPaikka(){
 		return paikka;	
 	}
 	
-	public string getSisältö(){
-		return sisältö;	
+	public String getSisalto(){
+		return sisalto;
 	}
 
-	public enum getPrioriteetti(){
+	public String getPrioriteetti(){
 		return prioriteetti;
 	}
 

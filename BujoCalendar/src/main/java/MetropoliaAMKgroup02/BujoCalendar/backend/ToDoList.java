@@ -1,15 +1,16 @@
-package MetropoliaAMKgroup02.BujoCalendar.backend;
+package backend;
+
 
 /**
  * Vladimir 
  *
  */
-public class ToDoList extends Merkintä
+public class ToDoList extends Merkinta
 {
-	public enum status {inprog, pending, ready, done, def};
-	public string projekti;
+	public String status;
+	public String projekti;
 	
-	public ToDoList(enum status, string projekti) {
+	public ToDoList(String status, String projekti) {
 		this.status = status;
 		this.projekti = projekti;	
 	}

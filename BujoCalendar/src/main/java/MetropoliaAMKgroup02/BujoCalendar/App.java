@@ -63,11 +63,12 @@ public class App
 	kalenteri.addHenkilo(henkilo4);
 	
 		//Hälytys luokka
-	
-	ITimeSpace halytys = new Halytys();
-	
+	Date date = new Date(119, 11, 10, 10, 15);	
+	ITimeSpace halytys = new Halytys(huomautus);
+	halytys.setDate(date);	
 	kalenteri.addHalytys(halytys);
-	//halytys.snooze(15);
+	halytys.deleteDate();	
+	
 	
 	System.out.println("*****NÄYTTÄÄ OSALISTUJAT*****");
 	kalenteri.showOsalistujat();
@@ -77,9 +78,12 @@ public class App
 	
 	
 		//ToDoList luokka
-	ToDoList toDoList = new ToDoList("ready", "Projekti nimi");
-	//toDoList.add(viewluokka);
-	//toDoList.edit();	
-				
-    }
+	ViewLuokka toDoData = new ViewLuokka(2, "Uusi tehtävä", "Helsinki", "Tehtävä sisältö", Merkinta.Prior.SMALL);
+	ToDoList toDoList = new ToDoList("Ready", "Projekti nimi");
+	toDoData.add(toDoList);
+	System.out.println("*****LISÄÄ TEHTÄVÄ*****");
+	System.out.println("Tehtävä nimi: " + toDoList.getNimi());
+	System.out.println("Tehtävä paikka: " + toDoList.getPaikka());
+	System.out.println("Tehtävä sisältö: " + toDoList.getSisalto());
+	System.out.println("Tehtävä prioriteetti: " +  toDoList.getPrior());
 }

@@ -7,17 +7,17 @@ package backend;
  */
 public class ViewLuokka
 {
-	public String prioriteetti;
 	private int merkintaID;
 	
 	private String nimi, paikka, sisalto;
+	Merkinta.Prior prior;
 	
-	public ViewLuokka(int merkintaID, String nimi, String paikka, String sisalto, String prioriteetti){
+	public ViewLuokka(int merkintaID, String nimi, String paikka, String sisalto, Merkinta.Prior prioriteetti ){
 		this.merkintaID = merkintaID;
 		this.nimi = nimi;	
 		this.paikka = paikka;
 		this.sisalto = sisalto;
-		this.prioriteetti = prioriteetti;
+		this.prior = prioriteetti;
 	}
 
 	public String getNimi(){
@@ -32,8 +32,8 @@ public class ViewLuokka
 		return sisalto;
 	}
 
-	public String getPrioriteetti(){
-		return prioriteetti;
+	public Merkinta.Prior getPrioriteetti(){
+		return prior;
 	}
 
 }

@@ -8,7 +8,8 @@ import java.util.Date;
  */
 public abstract class Merkinta
 {
-	public String prioriteetti;
+	public enum Prior {SMALL, MIDDLE, HIGH};
+	public Prior prior;
 
 	private String nimi, paikka, sisalto;
 	Date date;
@@ -20,7 +21,7 @@ public abstract class Merkinta
 		nimi = viewLuokka.getNimi();
 		paikka = viewLuokka.getPaikka();
 		sisalto = viewLuokka.getSisalto();
-		prioriteetti = viewLuokka.getPrioriteetti();
+		prior = viewLuokka.getPrioriteetti();
 	}
 
 	public void edit(ViewLuokka viewLuokka){
@@ -28,7 +29,7 @@ public abstract class Merkinta
 		nimi = viewLuokka.getNimi();
 		paikka = viewLuokka.getPaikka();
 		sisalto = viewLuokka.getSisalto();
-		prioriteetti = viewLuokka.getPrioriteetti();
+		prior = viewLuokka.getPrioriteetti();
 
 	}
 	
@@ -44,8 +45,8 @@ public abstract class Merkinta
 		return sisalto;
 	}
 	
-	public String getPrior() {
-		return prioriteetti;
+	public Prior getPrior() {
+		return prior;
 	}
 	
 	public void setDate(Date date){

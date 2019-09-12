@@ -18,7 +18,7 @@ public class App
 	
     	//Merkintä luokka
 	Merkinta merkinta = new Merkinta();
-	ViewLuokka viewluokka = new ViewLuokka(1, "Uusi merkintä", "Vantaa", "Tärkeä tapaaminen", "vahva");
+	ViewLuokka viewluokka = new ViewLuokka(1, "Uusi merkintä", "Vantaa", "Tärkeä tapaaminen", Merkinta.Prior.HIGH);
 	merkinta.add(viewluokka);
 	System.out.println("*****LISÄÄ MERKINTÄ*****");
 	System.out.println("Merkintä nimi: " + merkinta.getNimi());

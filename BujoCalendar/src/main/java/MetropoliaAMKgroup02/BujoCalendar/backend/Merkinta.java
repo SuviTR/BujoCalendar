@@ -1,20 +1,17 @@
 package backend;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.Date;
 
 /**
  * Vladimir 
  *
  */
-public class Merkinta
+public abstract class Merkinta
 {
 	public String prioriteetti;
 
 	private String nimi, paikka, sisalto;
-	LocalDate date;
-	LocalTime time;
-	
+	Date date;
 
 	public Merkinta() {}
 
@@ -51,8 +48,20 @@ public class Merkinta
 		return prioriteetti;
 	}
 	
-	public void snooze(int snoozer){
-		snoozeTime = time.now() + snoozer;		
+	public void setDate(Date date){
+		this.date = date;
+	}
+	
+	public String getDate(Date date){
+		return "%tF" , date;
+	}
+
+	public String getTime(Date date){
+		return "%tR", date;
+	}
+
+	public void deleteDate(){
+		return null;
 	}
 
 }

@@ -7,7 +7,6 @@ package backend;
  */
 public interface ITimeSpace 
 {
-	public void snooze(int aika);
-	public void toogle();
-	
+	public void setDate(Date date);
+	public void deleteDate();
 }

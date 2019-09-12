@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Vladimir 
  *
  */
-public class Kalenterimerkinta
+public class Kalenterimerkinta extends Merkinta
 {
 	List<Henkilo> osalistujat = new ArrayList<>();
 	List<ITimeSpace> halytykset = new ArrayList<>();
@@ -29,7 +29,7 @@ public class Kalenterimerkinta
 	
 	public void showHalytykset() {
 		for (ITimeSpace h : halytykset) {
-			System.out.println(h);
+			System.out.println(h.getDate() +", " + h.getTime());
 		}
 		
 	}

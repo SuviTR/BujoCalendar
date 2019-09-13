@@ -1,6 +1,7 @@
-package backend;
+package BujoCalendar.src.main.java.MetropoliaAMKgroup02.BujoCalendar.backend;
 
 import java.util.List;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 /**
  * Vladimir 
@@ -10,6 +11,8 @@ public class Kalenterimerkinta extends Merkinta
 {
 	List<Henkilo> osalistujat = new ArrayList<>();
 	List<ITimeSpace> halytykset = new ArrayList<>();
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 	
 	public void addHenkilo(Henkilo henkilo){
 		osalistujat.add(henkilo);				
@@ -29,7 +32,7 @@ public class Kalenterimerkinta extends Merkinta
 	
 	public void showHalytykset() {
 		for (ITimeSpace h : halytykset) {
-			System.out.println(h.getDate() +", " + h.getTime());
+			System.out.println(dateFormat.format(h.date().getTime()) +", " + timeFormat.format(h.time().getTime()));
 		}
 		
 	}

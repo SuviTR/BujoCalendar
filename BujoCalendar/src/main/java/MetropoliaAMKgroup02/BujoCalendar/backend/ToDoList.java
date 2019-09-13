@@ -1,4 +1,4 @@
-package backend;
+package BujoCalendar.src.main.java.MetropoliaAMKgroup02.BujoCalendar.backend;
 
 
 /**

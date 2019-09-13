@@ -1,6 +1,6 @@
-package backend;
+package BujoCalendar.src.main.java.MetropoliaAMKgroup02.BujoCalendar.backend;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  * Vladimir 
@@ -12,7 +12,7 @@ public abstract class Merkinta
 	public Prior prior;
 
 	private String nimi, paikka, sisalto;
-	Date date;
+	Calendar date;
 
 	public Merkinta() {}
 
@@ -49,20 +49,20 @@ public abstract class Merkinta
 		return prior;
 	}
 	
-	public void setDate(Date date){
+	public void setDate(Calendar date){
 		this.date = date;
 	}
 	
-	public String getDate(Date date){
-		return "%tF" , date;
+	public String getDate(){
+		return String.format("%tF" , date);
 	}
 
-	public String getTime(Date date){
-		return "%tR", date;
+	public String getTime(){
+		return String.format("%tR" , date);
 	}
 
 	public void deleteDate(){
-		return null;
+		//return null;
 	}
 
 }

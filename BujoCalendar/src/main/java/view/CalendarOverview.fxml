@@ -18,72 +18,72 @@
             <Image url="file:/C:/Users/Käyttäjä/git/BujoCalendar/BujoCalendar/img/Plants2.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="monday" layoutX="75.0" layoutY="104.0" onMouseClicked="#handleWeekdayFont" text="Maanantai">
+      <Label fx:id="monday" layoutX="75.0" layoutY="104.0" onMouseClicked="#handleWeekdayFonts" text="Maanantai">
          <font>
             <Font name="Ink Free" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="tuesday" layoutX="200.0" layoutY="104.0" text="Tiistai">
+      <Label fx:id="tuesday" layoutX="200.0" layoutY="104.0" onMouseClicked="#handleWeekdayFonts" text="Tiistai">
          <font>
             <Font name="Ink Free" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="wednesday" layoutX="313.0" layoutY="104.0" text="Keskiviikko">
+      <Label fx:id="wednesday" layoutX="313.0" layoutY="104.0" onMouseClicked="#handleWeekdayFonts" text="Keskiviikko">
          <font>
             <Font name="Ink Free" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="thursday" layoutX="487.0" layoutY="104.0" text="Torstai">
+      <Label fx:id="thursday" layoutX="487.0" layoutY="104.0" onMouseClicked="#handleWeekdayFonts" text="Torstai">
          <font>
             <Font name="Ink Free" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="friday" layoutX="603.0" layoutY="104.0" text="Perjantai">
+      <Label fx:id="friday" layoutX="603.0" layoutY="104.0" onMouseClicked="#handleWeekdayFonts" text="Perjantai">
          <font>
             <Font name="Ink Free" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="saturday" layoutX="722.0" layoutY="104.0" text="Lauantai">
+      <Label fx:id="saturday" layoutX="722.0" layoutY="104.0" onMouseClicked="#handleWeekdayFonts" text="Lauantai">
          <font>
             <Font name="Ink Free" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="sunday" layoutX="721.0" layoutY="288.0" text="Sunnuntai">
+      <Label fx:id="sunday" layoutX="721.0" layoutY="288.0" onMouseClicked="#handleWeekdayFonts" text="Sunnuntai">
          <font>
             <Font name="Ink Free" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="mondayDate" layoutX="54.0" layoutY="116.0" text="2" textFill="#868383">
+      <Label fx:id="mondayDate" layoutX="54.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" text="2" textFill="#868383">
          <font>
             <Font name="Britannic Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="fridayDate" layoutX="576.0" layoutY="116.0" text="6" textFill="#868383">
+      <Label fx:id="fridayDate" layoutX="576.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" text="6" textFill="#868383">
          <font>
             <Font name="Britannic Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="thursdayDate" layoutX="460.0" layoutY="116.0" text="5" textFill="#868383">
+      <Label fx:id="thursdayDate" layoutX="460.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" text="5" textFill="#868383">
          <font>
             <Font name="Britannic Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="wednesdayDate" layoutX="291.0" layoutY="116.0" text="4" textFill="#868383">
+      <Label fx:id="wednesdayDate" layoutX="291.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" text="4" textFill="#868383">
          <font>
             <Font name="Britannic Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="tuesdayDate" layoutX="171.0" layoutY="116.0" text="3" textFill="#868383">
+      <Label fx:id="tuesdayDate" layoutX="171.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" text="3" textFill="#868383">
          <font>
             <Font name="Britannic Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="sundayDate" layoutX="696.0" layoutY="300.0" text="8" textFill="#868383">
+      <Label fx:id="sundayDate" layoutX="696.0" layoutY="300.0" onMouseClicked="#handleWeekdayDateFonts" text="8" textFill="#868383">
          <font>
             <Font name="Britannic Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="saturdayDate" layoutX="696.0" layoutY="116.0" text="7" textFill="#868383">
+      <Label fx:id="saturdayDate" layoutX="696.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" text="7" textFill="#868383">
          <font>
             <Font name="Britannic Bold" size="13.0" />
          </font>
@@ -93,12 +93,12 @@
             <Image url="file:/C:/Users/Käyttäjä/git/BujoCalendar/BujoCalendar/img/Plants2.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="month" layoutX="57.0" layoutY="70.0" text="Syyskuu 2019" textFill="#112a43">
+      <Label fx:id="month" layoutX="57.0" layoutY="70.0" onMouseClicked="#handleHeaderFonts" text="Syyskuu 2019" textFill="#112a43">
          <font>
             <Font name="Britannic Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="week" layoutX="768.0" layoutY="70.0" text="35" textFill="#112a43">
+      <Label fx:id="week" layoutX="768.0" layoutY="70.0" onMouseClicked="#handleHeaderFonts" text="35" textFill="#112a43">
          <font>
             <Font name="Britannic Bold" size="24.0" />
          </font>

@@ -15,7 +15,7 @@ public class FontOverviewController {
 	private Stage dialogStage;
 	private CalendarOverviewController calController;
 	private String newFont;
-	private Menu menu;
+	private int fontValue;
 	
 	@FXML
 	private MenuButton chooseFont;
@@ -27,6 +27,8 @@ public class FontOverviewController {
 		
 		ObservableList<MenuItem> items = menu.getFontList();
 		chooseFont.getItems().addAll(items);
+		fontValue = fontValue(fontValue);
+		System.out.println("ini " + fontValue);
 		
 	}
 
@@ -40,13 +42,26 @@ public class FontOverviewController {
 
 	@FXML
 	private void handleOk() {
-		String font = newFont;
-		calController.setNewFont(newFont);
+		System.out.println("ok " + fontValue);
+		if (fontValue == 1) {
+			calController.setNewWeekdayFont(newFont);
+		}
+		else if (fontValue == 2) {
+			calController.setNewWeekdayDateFont(newFont);
+		}
+		else if (fontValue == 3) {
+			calController.setNewHeaderFont(newFont);
+		}
 		okClicked = true;
 		dialogStage.close();
 	}
 	
-	public void sendNewFont(String font) {
+	public int fontValue(int value) {
+		fontValue = value;
+		System.out.println("font " + fontValue);
+		return fontValue = value;
+	}
+	public void sendNewWeekdayFont(String font) {
 		newFont = font;
 	}
 
@@ -55,7 +70,7 @@ public class FontOverviewController {
 		dialogStage.close();
 	}
 	
-	public void setCalendarOverviewController(CalendarOverviewController controller) {
-		this.calController = controller;
+	public void setCalendarOverviewController(CalendarOverviewController calController) {
+		this.calController = calController;
 	}
 }

@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 import java.text.DateFormat;
@@ -68,8 +67,8 @@ public class CalendarOverviewController {
 	private MenuButton fonts;
 
 	private MainApp mainApp;
-	private Menu menu;
-	//private String newFont;
+	private FontOverviewController fontController;
+	private int fontValue;
 
 	public CalendarOverviewController() {
 	}
@@ -100,17 +99,61 @@ public class CalendarOverviewController {
 	}
 	
 	@FXML
-	private void handleWeekdayFont() {
+	private void handleWeekdayFonts() {
+		fontValue = 1;
 		boolean okClicked = mainApp.showFontOverview();
 	}
 	
-	public void setNewFont(String font) {
+	public void setNewWeekdayFont(String font) {
 		String newFont = font;
 		System.out.println("New font style is " + newFont);
-		thursday.setFont(new Font(newFont, 30));
+		
+		Label[] list = {monday, tuesday, wednesday, thursday, friday, saturday, sunday};
+		for (Label day : list) {
+			day.setFont(new Font(newFont,18));
+		}
 	}
-
+	
+	@FXML
+	private void handleWeekdayDateFonts() {
+		fontValue = 2;
+		boolean okClicked = mainApp.showFontOverview();
+	}
+	
+	public void setNewWeekdayDateFont(String font) {
+		String newFont = font;
+		System.out.println("New font style is " + newFont);
+		
+		Label[] list = {mondayDate, tuesdayDate, wednesdayDate, thursdayDate, fridayDate, saturdayDate, sundayDate};
+		for (Label day : list) {
+			day.setFont(new Font(newFont,13));
+		}
+	}
+	
+	@FXML
+	private void handleHeaderFonts() {
+		fontValue = 3;
+		boolean okClicked = mainApp.showFontOverview();
+	}
+	
+	public void setNewHeaderFont(String font) {
+		String newFont = font;
+		System.out.println("New font style is " + newFont);
+		
+		Label[] list = {month, week};
+		for (Label day : list) {
+			day.setFont(new Font(newFont,24));
+		}
+	}
+	
+	public void callFontValue() {
+		int value = mainApp.fontValue(fontValue);
+		System.out.println("handle " + value);
+	}
+	
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}	
+	
+	
 }

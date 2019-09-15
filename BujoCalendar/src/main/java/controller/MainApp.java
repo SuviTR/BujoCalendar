@@ -18,7 +18,6 @@ public class MainApp extends Application {
 
 	private Stage primaryStage;
     private BorderPane rootLayout;
-    private Menu menu;
     private CalendarOverviewController calController;
     private FontOverviewController fontController;
     
@@ -26,10 +25,9 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
         this.primaryStage.setTitle("My Bullet Journal Calendar");
-        this.primaryStage.getIcons().add(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVbn-ai60RDWdSSz89ZGkqRrLqTh4tRRIWe-zGYGi1NyV-0b59"));
+        this.primaryStage.getIcons().add(new Image("https://stickershop.line-scdn.net/stickershop/v1/product/3238751/LINEStorePC/main.png;compress=true"));
         
         initRootLayout();
-
         showCalendarOverview();
 	}
 	
@@ -78,18 +76,28 @@ public class MainApp extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            this.fontController = loader.getController();
+            fontController = loader.getController();
+            
+            calController.callFontValue();
+            
             fontController.setCalendarOverviewController(calController); 
             fontController.setDialogStage(dialogStage);
         
             dialogStage.showAndWait();
-
+            
             return fontController.isOkClicked();
             
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
+    }
+  
+    
+    public int fontValue(int value) {
+    	fontController.fontValue(value);
+    	System.out.println("main " + value);
+    	return value;
     }
 
     public Stage getPrimaryStage() {

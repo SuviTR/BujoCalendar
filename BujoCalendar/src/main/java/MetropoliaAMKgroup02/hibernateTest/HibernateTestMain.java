@@ -42,9 +42,12 @@ public class HibernateTestMain {
 			transaktio = istunto.beginTransaction();
 			Event tapahtuma1 = new Event("Lounas", "Torstai");
 			Event tapahtuma2 = new Event("Olviretki", "Perjantai");
+			Event tapahtuma3 = new Event("Hamaslääkäri", "Maanantai");
 			
 			istunto.saveOrUpdate(tapahtuma1);
 			istunto.saveOrUpdate(tapahtuma2);
+			istunto.saveOrUpdate(tapahtuma3);
+
 			transaktio.commit();
 			istunto.close();
 		}

@@ -1,10 +1,6 @@
-import backend.Halytys;
-import backend.Henkilo;
-import backend.ITimeSpace;
-import backend.Merkinta;
-import backend.ToDoList;
-import backend.ViewLuokka;
-import backend.Kalenterimerkinta;
+import java.util.Calendar;
+
+import MetropoliaAMKgroup02.backend.*;
 /**
  *Backend sovelus
  *
@@ -17,7 +13,7 @@ public class App
     {
 	
     	//Merkintä luokka
-	Merkinta merkinta = new Merkinta();
+	/*Merkinta merkinta = new Merkinta();
 	ViewLuokka viewluokka = new ViewLuokka(1, "Uusi merkintä", "Vantaa", "Tärkeä tapaaminen", Merkinta.Prior.HIGH);
 	merkinta.add(viewluokka);
 	System.out.println("*****LISÄÄ MERKINTÄ*****");
@@ -25,7 +21,7 @@ public class App
 	System.out.println("Merkintä paikka: " + merkinta.getPaikka());
 	System.out.println("Merkintä sisältö: " + merkinta.getSisalto());
 	System.out.println("Merkintä prioriteetti: " + merkinta.getPrior());
-
+	*/
 		//Henkilö luokka
 	Henkilo henkilo = new Henkilo();
 	
@@ -63,8 +59,11 @@ public class App
 	kalenteri.addHenkilo(henkilo4);
 	
 		//Hälytys luokka
-	Date date = new Date(119, 11, 10, 10, 15);	
-	ITimeSpace halytys = new Halytys(huomautus);
+	ITimeSpace halytys = new Halytys("huomautus");
+	
+	Calendar date = Calendar.getInstance();
+	date.set(2019, 11, 10, 10, 15);
+	
 	halytys.setDate(date);	
 	kalenteri.addHalytys(halytys);
 	halytys.deleteDate();	
@@ -72,7 +71,7 @@ public class App
 	
 	System.out.println("*****NÄYTTÄÄ OSALISTUJAT*****");
 	kalenteri.showOsalistujat();
-	
+	System.out.println(kalenteri.osalistujat.get(0).getEtunimi());
 	System.out.println("*****NÄYTTÄÄ HÄLYTYKSET*****");
 	kalenteri.showHalytykset();
 	
@@ -80,10 +79,11 @@ public class App
 		//ToDoList luokka
 	ViewLuokka toDoData = new ViewLuokka(2, "Uusi tehtävä", "Helsinki", "Tehtävä sisältö", Merkinta.Prior.SMALL);
 	ToDoList toDoList = new ToDoList("Ready", "Projekti nimi");
-	toDoData.add(toDoList);
+	toDoList.add(toDoData);
 	System.out.println("*****LISÄÄ TEHTÄVÄ*****");
 	System.out.println("Tehtävä nimi: " + toDoList.getNimi());
 	System.out.println("Tehtävä paikka: " + toDoList.getPaikka());
 	System.out.println("Tehtävä sisältö: " + toDoList.getSisalto());
 	System.out.println("Tehtävä prioriteetti: " +  toDoList.getPrior());
+}
 }

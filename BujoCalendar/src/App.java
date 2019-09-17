@@ -79,7 +79,7 @@ public class App
 		//ToDoList luokka
 	ViewLuokka toDoData = new ViewLuokka(2, "Uusi tehtävä", "Helsinki", "Tehtävä sisältö", Merkinta.Prior.SMALL);
 	ToDoList toDoList = new ToDoList("Ready", "Projekti nimi");
-	toDoList.add(toDoData);
+	//toDoList.add(toDoData);
 	System.out.println("*****LISÄÄ TEHTÄVÄ*****");
 	System.out.println("Tehtävä nimi: " + toDoList.getNimi());
 	System.out.println("Tehtävä paikka: " + toDoList.getPaikka());

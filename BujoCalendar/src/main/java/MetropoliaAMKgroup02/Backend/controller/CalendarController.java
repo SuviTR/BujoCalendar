@@ -5,24 +5,27 @@
  */
 package MetropoliaAMKgroup02.Backend.controller;
 
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import MetropoliaAMKgroup02.Backend.model.TestModel;
+import java.net.URI;
 
 /**
  *
  * @author heikki
  */
-public class CalendarController implements HttpHandler {
-	public void handle(HttpExchange HttpServer) throws IOException {
-           InputStream is = HttpServer.getRequestBody();
-           //read(is); // .. read the request body
-           String response = "This is the response";
-           HttpServer.sendResponseHeaders(200, response.length());
-           OutputStream os = HttpServer.getResponseBody();
-           os.write(response.getBytes());
-           os.close();
-       }
+public class CalendarController extends AbstractController {
+	
+	/**
+	 *
+	 * @param body
+	 * @return
+	 */
+	@Override
+	protected Object sendResponse(URI uri, String body) {
+
+		TestModel test = new TestModel("Teppo Testaaja", 
+			"53", 
+			"Kissa kirnauskis");
+
+		return test;
+	}
 }

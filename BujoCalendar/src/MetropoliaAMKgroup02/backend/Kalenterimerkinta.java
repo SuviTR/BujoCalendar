@@ -9,8 +9,8 @@ import java.util.ArrayList;
  */
 public class Kalenterimerkinta extends Merkinta
 {
-	List<Henkilo> osalistujat = new ArrayList<>();
-	List<ITimeSpace> halytykset = new ArrayList<>();
+	public List<Henkilo> osalistujat = new ArrayList<>();
+	public List<ITimeSpace> halytykset = new ArrayList<>();
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 	

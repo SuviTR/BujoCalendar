@@ -95,6 +95,7 @@ public class CalendarOverviewController {
 		
 	}
 
+	
 	@FXML
 	private void handleLeftHeader() {
         leftHeader.setPickOnBounds(true); // allows click on transparent areas

@@ -1,4 +1,4 @@
-package view;
+package MetropoliaAMKgroup02.BujoCalendar.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,9 +14,9 @@ import java.time.*;
 import java.time.DayOfWeek; 
 import java.time.temporal.Temporal; 
 
-import controller.MainApp;
-import model.Menu;
-import view.FontOverviewController;
+import MetropoliaAMKgroup02.BujoCalendar.controller.MainApp;
+import MetropoliaAMKgroup02.BujoCalendar.model.Menu;
+import MetropoliaAMKgroup02.BujoCalendar.view.FontOverviewController;
 
 public class CalendarOverviewController {
 
@@ -74,19 +74,25 @@ public class CalendarOverviewController {
 	}
 
 	private void getCurrentDate() {
-		DateFormat dateFormat = new SimpleDateFormat("dd");
-		Date date = new Date();
-		System.out.println(dateFormat.format(date)); 
+		
 	}
-
-	private void getTheRightWeekday() {
-		//modeliin
-		LocalDate localDate1 = LocalDate.of(2019, Month.OCTOBER, 2); // Set a Local Date whose day is found 
-		DayOfWeek dayOfWeek1 = DayOfWeek.from(localDate1); 		 	 // Find the day from the Local Date 
-		System.out.println(localDate1 + " which is " + dayOfWeek1.name()); //is Wednesday
-		Temporal localDate2 = DayOfWeek.MONDAY.adjustInto(localDate1);  // Adjusting the Date to Monday 
-		DayOfWeek dayOfWeek2 = DayOfWeek.from(localDate2); 			 // Find the day from the new Local date 
-		System.out.println(localDate2 + " which is " + dayOfWeek2.name());  //is Monday
+	/*
+	public void getTheRightWeek() {
+		Label[] list = {mondayDate, tuesdayDate, wednesdayDate, thursdayDate, fridayDate, saturdayDate, sundayDate};
+		for (Label day : list) {
+			day.setText(päivämäärälista);
+		}
+		
+	}*/
+	
+	@FXML
+	private void handleWeekBack() {
+		
+	}
+	
+	@FXML
+	private void handleWeekForward() {
+		
 	}
 
 	@FXML
@@ -98,6 +104,7 @@ public class CalendarOverviewController {
         });
 	}
 	
+	//======= Editing calendar fonts ======= 
 	@FXML
 	private void handleWeekdayFonts() {
 		fontValue = 1;
@@ -106,7 +113,7 @@ public class CalendarOverviewController {
 	
 	public void setNewWeekdayFont(String font) {
 		String newFont = font;
-		System.out.println("New font style is " + newFont);
+		System.out.println("New weekday font style is " + newFont);
 		
 		Label[] list = {monday, tuesday, wednesday, thursday, friday, saturday, sunday};
 		for (Label day : list) {
@@ -122,7 +129,7 @@ public class CalendarOverviewController {
 	
 	public void setNewWeekdayDateFont(String font) {
 		String newFont = font;
-		System.out.println("New font style is " + newFont);
+		System.out.println("New date font style is " + newFont);
 		
 		Label[] list = {mondayDate, tuesdayDate, wednesdayDate, thursdayDate, fridayDate, saturdayDate, sundayDate};
 		for (Label day : list) {
@@ -138,7 +145,7 @@ public class CalendarOverviewController {
 	
 	public void setNewHeaderFont(String font) {
 		String newFont = font;
-		System.out.println("New font style is " + newFont);
+		System.out.println("New month and week font style is " + newFont);
 		
 		Label[] list = {month, week};
 		for (Label day : list) {
@@ -151,9 +158,12 @@ public class CalendarOverviewController {
 		System.out.println("handle " + value);
 	}
 	
+	//======= Mood Module =======
+	public void setMoodModule() {
+		
+	}
+	
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}	
-	
-	
 }

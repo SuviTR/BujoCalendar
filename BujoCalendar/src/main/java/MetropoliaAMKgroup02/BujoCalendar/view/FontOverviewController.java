@@ -1,8 +1,8 @@
-package view;
+package MetropoliaAMKgroup02.BujoCalendar.view;
 
-import model.Menu;
-import view.CalendarOverviewController;
-import controller.MainApp;
+import MetropoliaAMKgroup02.BujoCalendar.model.Menu;
+import MetropoliaAMKgroup02.BujoCalendar.view.CalendarOverviewController;
+import MetropoliaAMKgroup02.BujoCalendar.controller.MainApp;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;

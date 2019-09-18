@@ -1,11 +1,11 @@
-package model;
+package MetropoliaAMKgroup02.BujoCalendar.model;
 
 import java.awt.GraphicsEnvironment;
 import javafx.scene.control.*; 
 import javafx.event.ActionEvent; 
 import javafx.event.EventHandler; 
 import javafx.collections.*;
-import view.FontOverviewController;
+import MetropoliaAMKgroup02.BujoCalendar.view.FontOverviewController;
 
 public class Menu {
 	
@@ -46,7 +46,7 @@ public class Menu {
 			public void handle(ActionEvent event) {
 				menuItem = (MenuItem) event.getSource();
 				newFont = menuItem.getText();
-				fontController.sendNewFont(newFont);
+				fontController.sendNewWeekdayFont(newFont);
 			}
 		};
 	}

@@ -1,4 +1,4 @@
-package controller;
+package MetropoliaAMKgroup02.BujoCalendar.controller;
 
 import java.io.IOException;
 import javafx.application.Application;
@@ -10,9 +10,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Menu;
-import view.CalendarOverviewController;
-import view.FontOverviewController;
+import MetropoliaAMKgroup02.BujoCalendar.model.Menu;
+import MetropoliaAMKgroup02.BujoCalendar.view.CalendarOverviewController;
+import MetropoliaAMKgroup02.BujoCalendar.view.FontOverviewController;
 
 public class MainApp extends Application {
 
@@ -34,7 +34,7 @@ public class MainApp extends Application {
     public void initRootLayout() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("/view/RootLayout.fxml"));
+            loader.setLocation(MainApp.class.getResource("/fxml/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
             
             Scene scene = new Scene(rootLayout);
@@ -50,13 +50,15 @@ public class MainApp extends Application {
     public void showCalendarOverview() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("/view/CalendarOverview.fxml"));
+            loader.setLocation(MainApp.class.getResource("/fxml/CalendarOverview.fxml"));
             AnchorPane calendarOverview = (AnchorPane) loader.load();
             
             rootLayout.setCenter(calendarOverview);
             
             calController = loader.getController();
             calController.setMainApp(this);
+            
+            //calController.getTheRightWeek();
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,7 +68,7 @@ public class MainApp extends Application {
     public boolean showFontOverview() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("/view/FontOverview.fxml"));
+            loader.setLocation(MainApp.class.getResource("/fxml/FontOverview.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
 
             Stage dialogStage = new Stage();

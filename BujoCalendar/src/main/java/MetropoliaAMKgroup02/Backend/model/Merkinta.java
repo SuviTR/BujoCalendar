@@ -1,4 +1,4 @@
-package MetropoliaAMKgroup02.hibernateTest;
+package MetropoliaAMKgroup02.Backend.model;
 
 import java.util.Calendar;
 import javax.persistence.*;

@@ -23,7 +23,7 @@ public class Backend {
 		} catch (Exception e) {
 			System.out.println("Http-palvelimen luonti ei onnistunut");
 		}
-		server.createContext("/test", new CalendarController());
+		server.createContext("/test", new TestMerkintaController());
 		server.setExecutor(null); // creates a default executor
 		System.out.println("Starting server:");
 		server.start();

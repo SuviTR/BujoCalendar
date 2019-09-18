@@ -16,7 +16,7 @@ import java.time.temporal.Temporal;
 
 import MetropoliaAMKgroup02.BujoCalendar.controller.MainApp;
 import MetropoliaAMKgroup02.BujoCalendar.model.Menu;
-import MetropoliaAMKgroup02.BujoCalendar.view.FontOverviewController;
+import MetropoliaAMKgroup02.BujoCalendar.model.TimeandDates;
 
 public class CalendarOverviewController {
 
@@ -67,14 +67,41 @@ public class CalendarOverviewController {
 	private MenuButton fonts;
 
 	private MainApp mainApp;
-	private FontOverviewController fontController;
+	private TimeandDates dates;
 	private int fontValue;
 
 	public CalendarOverviewController() {
 	}
 
-	private void getCurrentDate() {
+	public void getCurrentDate() {		//LOOPPI!!!!
+		dates = new TimeandDates();
+		dates.getCurrentDate();
+		dates.getCurrentMonth();
+		dates.getWeekdayName();
 		
+		int mondayInt = dates.updateDate(2);
+		int tuesdayInt = dates.updateDate(3);
+		int wednesdayInt = dates.updateDate(4);
+		int thursdayInt = dates.updateDate(5);
+		int fridayInt = dates.updateDate(6);
+		int saturdayInt = dates.updateDate(7);
+		int sundayInt = dates.updateDate(1);
+		
+		String mondayString = Integer.toString(mondayInt);
+		String tuesdayString = Integer.toString(tuesdayInt);
+		String wednesdayString = Integer.toString(wednesdayInt);
+		String thursdayString = Integer.toString(thursdayInt);
+		String fridayString = Integer.toString(fridayInt);
+		String saturdayString = Integer.toString(saturdayInt);
+		String sundayString = Integer.toString(sundayInt);
+		
+		mondayDate.setText(mondayString);
+		tuesdayDate.setText(tuesdayString);
+		wednesdayDate.setText(wednesdayString);
+		thursdayDate.setText(thursdayString);
+		fridayDate.setText(fridayString);
+		saturdayDate.setText(saturdayString);
+		sundayDate.setText(sundayString);
 	}
 	/*
 	public void getTheRightWeek() {
@@ -92,6 +119,7 @@ public class CalendarOverviewController {
 	
 	@FXML
 	private void handleWeekForward() {
+		
 		
 	}
 

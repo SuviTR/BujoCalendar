@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-package MetropoliaAMKgroup02.backend;
+package MetropoliaAMKgroup02.hibernateTest;
 
-import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,8 +15,6 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-
-import MetropoliaAMKgroup02.backend.Merkinta;
 
 /**
  *
@@ -41,12 +40,13 @@ public class HibernateTestMain {
 		Transaction transaktio = null;
 		try(Session istunto = istuntotehdas.openSession()) {
 			transaktio = istunto.beginTransaction();
-			Merkinta merk = new Merkinta("Uusi merkintä");
-			merk.setPaikka("Helsinki");
-			merk.setSisalto("Tosi tärkeä tapahtuma");
-			Calendar date = Calendar.getInstance();
-			date.set(2018, 10, 11);
-			merk.setDate(Calendar date);
+			Event tapahtuma1 = new Event("Lounas", "Torstai");
+			Event tapahtuma2 = new Event("Olviretki", "Perjantai");
+			Event tapahtuma3 = new Event("Hamaslääkäri", "Maanantai");
+			
+			istunto.saveOrUpdate(tapahtuma1);
+			istunto.saveOrUpdate(tapahtuma2);
+			istunto.saveOrUpdate(tapahtuma3);
 
 			transaktio.commit();
 			istunto.close();

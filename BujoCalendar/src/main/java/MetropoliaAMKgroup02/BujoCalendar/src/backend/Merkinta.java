@@ -1,21 +1,13 @@
-package MetropoliaAMKgroup02.backend;
+package backend;
 
 import java.util.Calendar;
-import java.persistence.*;
 
 /**
  * Vladimir 
  *
  */
-@Entity
-@Table(name="Merkintoja")
-public class Merkinta
+public abstract class Merkinta
 {
-	@Id
-	@GeneratedValue
-
-	private Long id;
-
 	public enum Prior {SMALL, MIDDLE, HIGH};
 	public Prior prior;
 
@@ -24,46 +16,35 @@ public class Merkinta
 
 	public Merkinta() {}
 
-	public Merkinta(String name){
-		this.nimi = nimi;
+	public void add(ViewLuokka viewLuokka){
+		
+		nimi = viewLuokka.getNimi();
+		paikka = viewLuokka.getPaikka();
+		sisalto = viewLuokka.getSisalto();
+		prior = viewLuokka.getPrioriteetti();
 	}
 
-	public Long getId(){
-		return id;
-	}
+	public void edit(ViewLuokka viewLuokka){
+		
+		nimi = viewLuokka.getNimi();
+		paikka = viewLuokka.getPaikka();
+		sisalto = viewLuokka.getSisalto();
+		prior = viewLuokka.getPrioriteetti();
 
-	public void setId(Long id){
-		this.id = id;
 	}
 	
-	public void setNimi(String nimi){
-		this.nimi = nimi;
-	}
-
 	public String getNimi() {
 		return nimi;
 	}
-
-	public void setPaikka(String paikka){
-		this.paikka = paikka;
-	}
-
+	
 	public String getPaikka() {
 		return paikka;
 	}
 	
-	public void setSisalto(String sisalto){
-		this.sisalto = sisalto;
-	}
-
 	public String getSisalto() {
 		return sisalto;
 	}
 	
-	public void setPrior(Prior prior){
-		this.prior = prior;
-	}
-
 	public Prior getPrior() {
 		return prior;
 	}

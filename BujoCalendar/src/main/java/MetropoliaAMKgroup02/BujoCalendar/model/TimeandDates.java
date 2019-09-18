@@ -37,10 +37,8 @@ public class TimeandDates {
 		*/
 	}  
 	
-	//======= Getting date of today =======
+	//======= Get date of today =======
 	public int getCurrentDate() {
-		
-		String[] dateList = new String[2];
 		
 		Date date = Calendar.getInstance().getTime();
 		
@@ -52,10 +50,8 @@ public class TimeandDates {
 		return today;
 	}
 	
-	//======= Getting month of today =======
+	//======= Get month of today =======
 	public int getCurrentMonth() {
-		
-		String[] dateList = new String[2];
 		
 		Date date = Calendar.getInstance().getTime();
 		
@@ -67,7 +63,7 @@ public class TimeandDates {
 		return month;
 	}
 	
-	//======= Getting Weekday =======
+	//======= Get Weekday =======
 	//1=sunday, 2=monday, 3=tuesday, 4=wednesday, 5=thursday, 6=friday, 7=saturday 
 	public int getWeekdayName() {
 		
@@ -78,24 +74,120 @@ public class TimeandDates {
 		return dayOfWeek;
 	}
 	
+	//======= Correct date =======
 	public int updateDate(int dayOfWeek2) {
 		
-		int rightDay;
+		Calendar cal = Calendar.getInstance();
+	    int lastDayOfCurrentMonth = cal.getActualMaximum(Calendar.DATE);
+	    
+	    cal.add(Calendar.MONTH, -1);
+	    cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+	    //System.out.println(cal.get(Calendar.MONTH));
+	    int lastDayOfLastMonth = cal.get(Calendar.DAY_OF_MONTH);
 		
-		int day = dayOfWeek - dayOfWeek2;
-		rightDay = today - day;
+		int rightDate;
+		
+		int day = dayOfWeek - dayOfWeek2; //today and days forward
+		rightDate = today - day;
 		
 		if (dayOfWeek2 == 1) {  //sunday
-			rightDay = today - day + 7;	
+			rightDate = today - day + 7;	
 		}
-		else if (day < 0) {
+		else if (day < 0) {		//past days
 			day = day * -1;
-			rightDay = today + day;
+			rightDate = today + day;
+			
 		}
 		
-		return rightDay;
+		if (rightDate > lastDayOfCurrentMonth) {
+			if (rightDate - lastDayOfCurrentMonth == 1) {
+				rightDate = 1;
+			}
+			else if (rightDate - lastDayOfCurrentMonth == 2) {
+				rightDate = 2;
+			}
+			else if (rightDate - lastDayOfCurrentMonth == 3) {
+				rightDate = 3;
+			}
+			else if (rightDate - lastDayOfCurrentMonth == 4) {
+				rightDate = 4;
+			}
+			else if (rightDate - lastDayOfCurrentMonth == 5) {
+				rightDate = 5;
+			}
+			else if (rightDate - lastDayOfCurrentMonth == 6) {
+				rightDate = 6;
+			}
+		}
+		return rightDate;
 	}
 	
+	//======= Get month name =======
+	public String updateMonth() {
+		String monthString = "";
+		
+		switch (month) {
+		  case 1:
+		    monthString = "Tammikuu";
+		    break;
+		  case 2:
+			monthString = "Helmikuu";
+		    break;
+		  case 3:
+			monthString = "Maaliskuu";
+		    break;
+		  case 4:
+			monthString = "Huhtikuu";
+		    break;
+		  case 5:
+			monthString = "Toukokuu";
+		    break;
+		  case 6:
+			monthString = "Kesäkuu";
+		    break;
+		  case 7:
+			monthString = "Heinäkuu";
+			break;
+		  case 8:
+			monthString = "Elokuu";
+			break;
+		  case 9:
+			monthString = "Syyskuu";
+			break;
+		  case 10:
+			monthString = "Lokakuu";
+			break;
+		  case 11:
+			monthString = "Marraskuu";
+			break;
+		  case 12:
+			monthString = "Joulukuu";
+		    break;
+		}
+		return monthString;
+	}
+	
+	//======= Get year number =======
+	public String updateYear() {
+		int year = 0;
+		
+		Date date = Calendar.getInstance().getTime();
+
+		DateFormat yearDate = new SimpleDateFormat("yyyy");
+		String yearString = yearDate.format(date);
+		System.out.println("Year " + yearString);
+
+		return yearString;
+	}
+	
+	//======= Get week number =======
+	public int updateWeekNumber() { 
+		Calendar calendar = Calendar.getInstance();  
+		int weekNumber = calendar.get(Calendar.WEEK_OF_YEAR);
+		System.out.println("Weeknumber" + weekNumber); 
+		
+		return weekNumber;
+	}
 	
 		//Date date = new Date();
 		//System.out.println(dateFormat.format(date));

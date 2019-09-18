@@ -58,6 +58,8 @@ public class MainApp extends Application {
             calController = loader.getController();
             calController.setMainApp(this);
             
+            calController.getCurrentDate();
+            
             //calController.getTheRightWeek();
             
         } catch (IOException e) {

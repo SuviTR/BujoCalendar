@@ -11,31 +11,8 @@ import java.util.Date;
 
 public class TimeandDates {
 	
-	private int today;
 	private int month;
 	private int dayOfWeek;
-	
-	public static void main(String[] args) {
-
-		Calendar calendar = Calendar.getInstance();  
-		
-		
-		System.out.println("The current date is : " + calendar.getTime());  
-		calendar.add(calendar.DATE, -15);  
-		System.out.println("15 days ago: " + calendar.getTime());  
-		calendar.add(calendar.MONTH, 4);  
-		System.out.println("4 months later: " + calendar.getTime());  
-		calendar.add(calendar.YEAR, 2);  
-		System.out.println("2 years later: " + calendar.getTime());  
-		/*
-		LocalDate localDate1 = LocalDate.of(2019, Month.OCTOBER, 2); // Set a Local Date whose day is found 
-		DayOfWeek dayOfWeek1 = DayOfWeek.from(localDate1); 		 	 // Find the day from the Local Date 
-		System.out.println(localDate1 + " which is " + dayOfWeek1.name()); //is Wednesday
-		Temporal localDate2 = DayOfWeek.MONDAY.adjustInto(localDate1);  // Adjusting the Date to Monday 
-		DayOfWeek dayOfWeek2 = DayOfWeek.from(localDate2); 			 // Find the day from the new Local date 
-		System.out.println(localDate2 + " which is " + dayOfWeek2.name());  //is Monday
-		*/
-	}  
 	
 	//======= Get date of today =======
 	public int getCurrentDate() {
@@ -44,7 +21,7 @@ public class TimeandDates {
 		
 		DateFormat dayDate = new SimpleDateFormat("dd");
 		String dayString = dayDate.format(date);
-		today = Integer.parseInt(dayString);
+		int today = Integer.parseInt(dayString);
 		System.out.println("Day " + dayString);
 		
 		return today;
@@ -75,49 +52,31 @@ public class TimeandDates {
 	}
 	
 	//======= Correct date =======
-	public int updateDate(int dayOfWeek2) {
-		
-		Calendar cal = Calendar.getInstance();
-	    int lastDayOfCurrentMonth = cal.getActualMaximum(Calendar.DATE);
-	    
-	    cal.add(Calendar.MONTH, -1);
-	    cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-	    //System.out.println(cal.get(Calendar.MONTH));
-	    int lastDayOfLastMonth = cal.get(Calendar.DAY_OF_MONTH);
+	public int updateDate(int calDayOfWeek) {
 		
 		int rightDate;
 		
-		int day = dayOfWeek - dayOfWeek2; //today and days forward
-		rightDate = today - day;
+	    Calendar calendar = Calendar.getInstance();
 		
-		if (dayOfWeek2 == 1) {  //sunday
-			rightDate = today - day + 7;	
-		}
-		else if (day < 0) {		//past days
-			day = day * -1;
-			rightDate = today + day;
+    	//today, past days and days forward		
+		int dayInt = dayOfWeek - calDayOfWeek; 
+		calendar.add(Calendar.DAY_OF_YEAR, -dayInt);
+		
+		Date date2 = calendar.getTime();
+		DateFormat dateDate2 = new SimpleDateFormat("dd");
+	    String day = dateDate2.format(date2);
+		int today = Integer.parseInt(day);
+		rightDate = today;
+		
+		if (calDayOfWeek == 1) {	//sunday
+			calendar.add(Calendar.DAY_OF_YEAR, 7);
 			
-		}
-		
-		if (rightDate > lastDayOfCurrentMonth) {
-			if (rightDate - lastDayOfCurrentMonth == 1) {
-				rightDate = 1;
-			}
-			else if (rightDate - lastDayOfCurrentMonth == 2) {
-				rightDate = 2;
-			}
-			else if (rightDate - lastDayOfCurrentMonth == 3) {
-				rightDate = 3;
-			}
-			else if (rightDate - lastDayOfCurrentMonth == 4) {
-				rightDate = 4;
-			}
-			else if (rightDate - lastDayOfCurrentMonth == 5) {
-				rightDate = 5;
-			}
-			else if (rightDate - lastDayOfCurrentMonth == 6) {
-				rightDate = 6;
-			}
+			date2 = calendar.getTime();
+			dateDate2 = new SimpleDateFormat("dd");
+		    day = dateDate2.format(date2);
+			today = Integer.parseInt(day);
+			rightDate = today;
+			return rightDate;
 		}
 		return rightDate;
 	}

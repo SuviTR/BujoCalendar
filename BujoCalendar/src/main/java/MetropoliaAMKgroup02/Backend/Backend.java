@@ -18,12 +18,18 @@ public class Backend {
 	
 	public static void main(String[] args) {
 		HttpServer server = null;
+		Database data = new Database();
+		data.yhdistaa();
+		data.getIstuntotehdas();
+		
 		try {
 			server = HttpServer.create(new InetSocketAddress(8000), 0);
 		} catch (Exception e) {
 			System.out.println("Http-palvelimen luonti ei onnistunut");
 		}
-		server.createContext("/test", new TestMerkintaController());
+		server.createContext("/test", new TestMerkintaController(data));
+		server.createContext("/calendar", new CalendarController(data));
+
 		server.setExecutor(null); // creates a default executor
 		System.out.println("Starting server:");
 		server.start();

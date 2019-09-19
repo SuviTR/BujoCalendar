@@ -9,6 +9,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+
+import MetropoliaAMKgroup02.Backend.Database;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -21,7 +24,10 @@ import java.util.logging.Logger;
  * @author heikki
  */
 public abstract class AbstractController implements HttpHandler {
-	
+	protected Database data;
+	public AbstractController(Database data) {
+		this.data = data;
+	}
 	public void handle(HttpExchange HttpServer) throws IOException {
 
            InputStream is = HttpServer.getRequestBody();

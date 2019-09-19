@@ -14,11 +14,11 @@ import java.net.URI;
 
 /**
  *
- * @author heikki
+ * @author vladimir
  */
-public class TestMerkintaController extends AbstractController {
+public class CalendarController extends AbstractController {
 	
-	public TestMerkintaController(Database data) {
+	public CalendarController(Database data) {
 		super(data);
 	}
 
@@ -29,17 +29,12 @@ public class TestMerkintaController extends AbstractController {
 	 */
 	@Override
 	protected Object sendResponse(URI uri, String body) {
-
-		Merkinta merkinta = new Merkinta("Uusi merkinta");
+		CalendarModel merkintoja = new CalendarModel(this.data);
+		merkintoja.addMerkinta();
+		Object object = merkintoja.getAll();
 		
-		merkinta.setPaikka("Viipuri");
-		merkinta.setSisalto("matka Venäjälle");
-		Calendar date = Calendar.getInstance();
-		date.set(2019, 8, 21, 7, 21);
-		merkinta.setDate(date);
-		merkinta.setPrior(Prior.HIGH);
+			
 		
-		
-		return merkinta;
+		return object;
 	}
 }

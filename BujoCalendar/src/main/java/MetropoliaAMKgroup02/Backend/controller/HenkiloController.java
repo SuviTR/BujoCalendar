@@ -5,27 +5,17 @@
  */
 package MetropoliaAMKgroup02.Backend.controller;
 
-import MetropoliaAMKgroup02.Backend.model.TestModel;
 import java.net.URI;
 
 /**
  *
  * @author heikki
  */
-public class CalendarController extends AbstractController {
-	
-	/**
-	 *
-	 * @param body
-	 * @return
-	 */
+public class HenkiloController extends AbstractController {
+
 	@Override
 	protected Object sendResponse(URI uri, String body) {
-
-		TestModel test = new TestModel("Teppo Testaaja", 
-			"53", 
-			"Kissa kirnauskis");
-
-		return test;
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
+	
 }

@@ -130,6 +130,7 @@ public class CalendarOverviewController {
 		dates.getWeekdayName();
 		
 		int mondayInt = dates.nextWeek(2, totalCounter);
+		
 		int tuesdayInt = dates.nextWeek(3, totalCounter);
 		int wednesdayInt = dates.nextWeek(4, totalCounter);
 		int thursdayInt = dates.nextWeek(5, totalCounter);
@@ -153,6 +154,10 @@ public class CalendarOverviewController {
 		fridayDate.setText(fridayString);
 		saturdayDate.setText(saturdayString);
 		sundayDate.setText(sundayString);
+		
+		int weekInt = dates.getWeekNumber();
+		String weekString = Integer.toString(weekInt);
+		week.setText(weekString);
 	}
 	
 	@FXML	//Ei toimi
@@ -193,6 +198,10 @@ public class CalendarOverviewController {
 		fridayDate.setText(fridayString);
 		saturdayDate.setText(saturdayString);
 		sundayDate.setText(sundayString);
+		
+		int weekInt = dates.getWeekNumber();
+		String weekString = Integer.toString(weekInt);
+		week.setText(weekString);
 	}
 
 	

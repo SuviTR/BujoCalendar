@@ -1,6 +1,7 @@
 package MetropoliaAMKgroup02.BujoCalendar.model;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -15,6 +16,9 @@ public class TimeandDates {
 	private int dayOfWeek;
 	private int dayOfWeek2;
 	private int saturday;
+	private String monday;
+	private String mondayYearMonth;
+	private String weekDate;
 	
 	//======= Get date of today =======
 	public int getCurrentDate() {
@@ -83,11 +87,31 @@ public class TimeandDates {
 		return rightDate;
 	}
 	
-	public void getSaturday(int date) {
-		saturday = date;
+	public void getSaturday(int saturdayDate) {
+		saturday = saturdayDate;
+	}
+
+	public int getWeekNumber() {
+		String input = weekDate;
+		String format = "yyyyMMdd";
+		System.out.println("get" + weekDate);
+
+		SimpleDateFormat df = new SimpleDateFormat(format);
+		Date date = new Date();
+		try {
+			date = df.parse(input);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		int week = cal.get(Calendar.WEEK_OF_YEAR);
+		System.out.println("Week" + week);
+		return week;
 	}
 	
-	public int nextWeek(int calDayOfWeek,int count) {
+	public int nextWeek(int calDayOfWeek,int count) { //Muuta Stringeiksi
 		
 		int nextWeekDay;
 		
@@ -103,6 +127,15 @@ public class TimeandDates {
 		int today = Integer.parseInt(day);
 		nextWeekDay = today;
 		
+		if (calDayOfWeek == 2) {
+			DateFormat dateDate3 = new SimpleDateFormat("yyyyMM");
+			String yearWeekString = dateDate3.format(date2);
+			mondayYearMonth = yearWeekString;
+			monday = day;
+			weekDate = mondayYearMonth+monday;
+			
+			System.out.println("WeekDate" + weekDate);
+		}
 		
 		if (calDayOfWeek == 1) {	//sunday
 
@@ -138,6 +171,15 @@ public class TimeandDates {
 		nextWeekDay = today;
 		System.out.println("lastweek " + nextWeekDay);
 		
+		if (calDayOfWeek == 2) {
+			DateFormat dateDate3 = new SimpleDateFormat("yyyyMM");
+			String yearWeekString = dateDate3.format(date2);
+			mondayYearMonth = yearWeekString;
+			monday = day;
+			weekDate = mondayYearMonth+monday;
+			
+			System.out.println("WeekDate" + weekDate);
+		}
 		
 		if (calDayOfWeek == 1) {	//sunday
 			

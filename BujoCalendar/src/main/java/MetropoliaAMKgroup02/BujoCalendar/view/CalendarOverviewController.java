@@ -69,6 +69,9 @@ public class CalendarOverviewController {
 	private MainApp mainApp;
 	private TimeandDates dates;
 	private int fontValue;
+	private int backCounter = 0;
+	private int forwardCounter = 0;
+	private int totalCounter = 0;
 
 	public CalendarOverviewController() {
 	}
@@ -102,25 +105,94 @@ public class CalendarOverviewController {
 		fridayDate.setText(fridayString);
 		saturdayDate.setText(saturdayString);
 		sundayDate.setText(sundayString);
-	}
-	/*
-	public void getTheRightWeek() {
-		Label[] list = {mondayDate, tuesdayDate, wednesdayDate, thursdayDate, fridayDate, saturdayDate, sundayDate};
-		for (Label day : list) {
-			day.setText(päivämäärälista);
-		}
 		
-	}*/
+		String monthString = dates.updateMonth();
+		String yearString = dates.updateYear();
+		String monthYear = monthString + " " + yearString;
+		month.setText(monthYear);
+		
+		int weekNumberInt = dates.updateWeekNumber();
+		week.setText(String.valueOf(weekNumberInt));
+
+	}
+
 	
 	@FXML
-	private void handleWeekBack() {
+	private void handleWeekForward() {	
+		forwardCounter++;
+		backCounter = backCounter * (-1);
+		totalCounter = backCounter + forwardCounter;
+		System.out.println("total for " + totalCounter);
 		
+		dates = new TimeandDates();
+		dates.getCurrentDate();
+		dates.getCurrentMonth();
+		dates.getWeekdayName();
+		
+		int mondayInt = dates.nextWeek(2, totalCounter);
+		int tuesdayInt = dates.nextWeek(3, totalCounter);
+		int wednesdayInt = dates.nextWeek(4, totalCounter);
+		int thursdayInt = dates.nextWeek(5, totalCounter);
+		int fridayInt = dates.nextWeek(6, totalCounter);
+		int saturdayInt = dates.nextWeek(7, totalCounter);
+		dates.getSaturday(saturdayInt);
+		int sundayInt = dates.nextWeek(1, totalCounter);
+		
+		String mondayString = Integer.toString(mondayInt);
+		String tuesdayString = Integer.toString(tuesdayInt);
+		String wednesdayString = Integer.toString(wednesdayInt);
+		String thursdayString = Integer.toString(thursdayInt);
+		String fridayString = Integer.toString(fridayInt);
+		String saturdayString = Integer.toString(saturdayInt);
+		String sundayString = Integer.toString(sundayInt);
+		
+		mondayDate.setText(mondayString);
+		tuesdayDate.setText(tuesdayString);
+		wednesdayDate.setText(wednesdayString);
+		thursdayDate.setText(thursdayString);
+		fridayDate.setText(fridayString);
+		saturdayDate.setText(saturdayString);
+		sundayDate.setText(sundayString);
 	}
 	
-	@FXML
-	private void handleWeekForward() {
+	@FXML	//Ei toimi
+	private void handleWeekBack() {	//Ei vielä huomioitu viikkojen ja kuukausien vaihtumista
+		backCounter = (backCounter + 1)* (-1);
+		System.out.println("back " + backCounter);
+		totalCounter = backCounter + forwardCounter;	//ei toimi
 		
+		System.out.println("total back " + totalCounter);
+		backCounter = backCounter* (-1);
 		
+		dates = new TimeandDates();
+		dates.getCurrentDate();
+		dates.getCurrentMonth();
+		dates.getWeekdayName();
+		
+		int mondayInt = dates.lastWeek(2, totalCounter);
+		int tuesdayInt = dates.lastWeek(3, totalCounter);
+		int wednesdayInt = dates.lastWeek(4, totalCounter);
+		int thursdayInt = dates.lastWeek(5, totalCounter);
+		int fridayInt = dates.lastWeek(6, totalCounter);
+		int saturdayInt = dates.lastWeek(7, totalCounter);
+		dates.getSaturday(saturdayInt);
+		int sundayInt = dates.lastWeek(1, totalCounter);
+		
+		String mondayString = Integer.toString(mondayInt);
+		String tuesdayString = Integer.toString(tuesdayInt);
+		String wednesdayString = Integer.toString(wednesdayInt);
+		String thursdayString = Integer.toString(thursdayInt);
+		String fridayString = Integer.toString(fridayInt);
+		String saturdayString = Integer.toString(saturdayInt);
+		String sundayString = Integer.toString(sundayInt);
+		
+		mondayDate.setText(mondayString);
+		tuesdayDate.setText(tuesdayString);
+		wednesdayDate.setText(wednesdayString);
+		thursdayDate.setText(thursdayString);
+		fridayDate.setText(fridayString);
+		saturdayDate.setText(saturdayString);
+		sundayDate.setText(sundayString);
 	}
 
 	
@@ -146,7 +218,7 @@ public class CalendarOverviewController {
 		
 		Label[] list = {monday, tuesday, wednesday, thursday, friday, saturday, sunday};
 		for (Label day : list) {
-			day.setFont(new Font(newFont,18));
+			day.setFont(new Font(newFont,16));
 		}
 	}
 	

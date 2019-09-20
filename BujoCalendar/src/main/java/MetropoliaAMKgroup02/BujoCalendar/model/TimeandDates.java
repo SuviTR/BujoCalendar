@@ -13,6 +13,8 @@ public class TimeandDates {
 	
 	private int month;
 	private int dayOfWeek;
+	private int dayOfWeek2;
+	private int saturday;
 	
 	//======= Get date of today =======
 	public int getCurrentDate() {
@@ -53,7 +55,7 @@ public class TimeandDates {
 	
 	//======= Correct date =======
 	public int updateDate(int calDayOfWeek) {
-		
+		dayOfWeek2 = calDayOfWeek;
 		int rightDate;
 		
 	    Calendar calendar = Calendar.getInstance();
@@ -79,6 +81,80 @@ public class TimeandDates {
 			return rightDate;
 		}
 		return rightDate;
+	}
+	
+	public void getSaturday(int date) {
+		saturday = date;
+	}
+	
+	public int nextWeek(int calDayOfWeek,int count) {
+		
+		int nextWeekDay;
+		
+	    Calendar calendar = Calendar.getInstance();
+		
+    	//today, past days and days forward		
+		int dayInt = dayOfWeek - calDayOfWeek - 7*count; 
+		calendar.add(Calendar.DAY_OF_YEAR, -dayInt);
+		
+		Date date2 = calendar.getTime();
+		DateFormat dateDate2 = new SimpleDateFormat("dd");
+	    String day = dateDate2.format(date2);
+		int today = Integer.parseInt(day);
+		nextWeekDay = today;
+		
+		
+		if (calDayOfWeek == 1) {	//sunday
+
+			Calendar calendar2 = Calendar.getInstance();
+			dayInt = saturday + 11;
+			calendar2.add(Calendar.DAY_OF_YEAR, dayInt);
+			
+			date2 = calendar2.getTime();
+			dateDate2 = new SimpleDateFormat("dd");
+		    day = dateDate2.format(date2);
+			today = Integer.parseInt(day);
+			nextWeekDay = today;
+			System.out.println("Sunday");
+			return nextWeekDay;
+		}
+		return nextWeekDay;
+	}
+	
+	public int lastWeek(int calDayOfWeek,int count) {
+		
+		int nextWeekDay;
+		
+	    Calendar calendar = Calendar.getInstance();
+		
+    	//today, past days and days forward		
+		int dayInt = dayOfWeek - calDayOfWeek - 7*count; 
+		calendar.add(Calendar.DAY_OF_YEAR, -dayInt);
+		
+		Date date2 = calendar.getTime();
+		DateFormat dateDate2 = new SimpleDateFormat("dd");
+	    String day = dateDate2.format(date2);
+		int today = Integer.parseInt(day);
+		nextWeekDay = today;
+		System.out.println("lastweek " + nextWeekDay);
+		
+		
+		if (calDayOfWeek == 1) {	//sunday
+			
+			Calendar calendar2 = Calendar.getInstance();
+			dayInt = saturday + 11;
+			calendar2.add(Calendar.DAY_OF_YEAR, dayInt);
+			
+			date2 = calendar2.getTime();
+			dateDate2 = new SimpleDateFormat("dd");
+		    day = dateDate2.format(date2);
+			today = Integer.parseInt(day);
+			nextWeekDay = today;
+			
+			System.out.println("Sunday");
+			return nextWeekDay;
+		}
+		return nextWeekDay;
 	}
 	
 	//======= Get month name =======

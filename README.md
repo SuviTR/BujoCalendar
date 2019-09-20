@@ -1,5 +1,5 @@
 # BujoCalendar
-Metropolia AMK scrum project
+Metropolia AMK scrum project. Ryhmä numero 2.
 
 ## Sovelluksen osat
 Sovellus jakautuu kahteen suoritettavaan Java-ohjelmaan, jotka kommunikoivat HTTP-protokollan välityksellä:

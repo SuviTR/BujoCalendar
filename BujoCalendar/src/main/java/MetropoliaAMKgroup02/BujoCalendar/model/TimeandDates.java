@@ -3,10 +3,6 @@ package MetropoliaAMKgroup02.BujoCalendar.model;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.temporal.Temporal;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -19,6 +15,8 @@ public class TimeandDates {
 	private String monday;
 	private String yearMonth;
 	private String weekDate;
+	private String newMonthMon;
+	private String newMonthSun;
 	
 	//======= Get date of today =======
 	public int getCurrentDate() {
@@ -103,6 +101,36 @@ public class TimeandDates {
 		return week;
 	}
 	
+	public String getNewMonth() { //Ei toimi oikein Syyskyy/syyskuu
+		String newMonth = "";
+
+		String[] list = new String[] {"01","Tammikuu","02","Helmikuu","03","Maaliskuu","04","Huhtikuu", 
+									  "05","Toukokuu","06","Kesäkuu","07","Heinäkuu","08","Elokuu", 
+									  "09","Syyskuu","10","Lokakuu","11","Marraskuu","12","Joulukuu"};
+		
+		for (int i = 0; i < list.length; i++) {
+			if (newMonthMon.equals(list[i])) {
+				newMonth = list[i+1];
+				System.out.println(list[i+1] + newMonth);
+				break;	
+			}
+		}
+		
+		/*
+		if (!newMonthMon.equals(newMonthSun)) {
+			
+			for (int j = 0; j < list.length; j++) {
+				if (newMonthMon.equals(list[j])) {
+					newMonth = newMonth + "/" + list[j+1];
+					System.out.println(list[j+1] + newMonth);
+					break;	
+				}
+			}
+		}*/
+		System.out.println("newMont " + newMonth);
+		return newMonth;
+	}
+	
 	public String nextWeek(int calDayOfWeek,int count) { //Muuta Stringeiksi
 		
 		String nextWeekDay;
@@ -125,6 +153,7 @@ public class TimeandDates {
 			monday = today;
 			weekDate = yearMonth+monday;
 			
+			newMonthMon = yearWeekString.substring(yearWeekString.length() - 2);
 			System.out.println("WeekDate" + weekDate);
 		}
 		
@@ -164,6 +193,8 @@ public class TimeandDates {
 			yearMonth = yearWeekString;
 			monday = today;
 			weekDate = yearMonth+monday;
+			
+			newMonthMon = yearWeekString.substring(yearWeekString.length() - 2);
 		}
 		
 		if (calDayOfWeek == 1) {	//sunday

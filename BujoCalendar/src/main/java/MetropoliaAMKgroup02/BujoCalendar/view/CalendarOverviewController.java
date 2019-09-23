@@ -136,6 +136,9 @@ public class CalendarOverviewController {
 		saturdayDate.setText(saturdayString);
 		sundayDate.setText(sundayString);
 		
+		String monthString = dates.getNewMonth();
+		month.setText(monthString);
+		
 		int weekInt = dates.getWeekNumber();
 		String weekString = Integer.toString(weekInt);
 		week.setText(weekString);
@@ -168,6 +171,9 @@ public class CalendarOverviewController {
 		fridayDate.setText(fridayString);
 		saturdayDate.setText(saturdayString);
 		sundayDate.setText(sundayString);
+		
+		String monthString = dates.getNewMonth();
+		month.setText(monthString);
 		
 		int weekInt = dates.getWeekNumber();
 		String weekString = Integer.toString(weekInt);

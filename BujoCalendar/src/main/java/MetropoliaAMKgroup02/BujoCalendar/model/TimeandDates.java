@@ -58,9 +58,9 @@ public class TimeandDates {
 	}
 	
 	//======= Correct date =======
-	public int updateDate(int calDayOfWeek) {
+	public String updateDate(int calDayOfWeek) {
 		dayOfWeek2 = calDayOfWeek;
-		int rightDate;
+		String rightDate;
 		
 	    Calendar calendar = Calendar.getInstance();
 		
@@ -70,8 +70,8 @@ public class TimeandDates {
 		
 		Date date2 = calendar.getTime();
 		DateFormat dateDate2 = new SimpleDateFormat("dd");
-	    String day = dateDate2.format(date2);
-		int today = Integer.parseInt(day);
+	    String today = dateDate2.format(date2);
+		//int today = Integer.parseInt(day);
 		rightDate = today;
 		
 		if (calDayOfWeek == 1) {	//sunday
@@ -79,8 +79,8 @@ public class TimeandDates {
 			
 			date2 = calendar.getTime();
 			dateDate2 = new SimpleDateFormat("dd");
-		    day = dateDate2.format(date2);
-			today = Integer.parseInt(day);
+		    today = dateDate2.format(date2);
+			//today = Integer.parseInt(day);
 			rightDate = today;
 			return rightDate;
 		}

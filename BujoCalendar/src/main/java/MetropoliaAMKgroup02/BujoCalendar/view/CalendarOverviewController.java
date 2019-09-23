@@ -76,27 +76,19 @@ public class CalendarOverviewController {
 	public CalendarOverviewController() {
 	}
 
-	public void getCurrentDate() {		//LOOPPI!!!!
+	public void getCurrentDate() {
 		dates = new TimeandDates();
 		dates.getCurrentDate();
 		dates.getCurrentMonth();
 		dates.getWeekdayName();
 		
-		int mondayInt = dates.updateDate(2);
-		int tuesdayInt = dates.updateDate(3);
-		int wednesdayInt = dates.updateDate(4);
-		int thursdayInt = dates.updateDate(5);
-		int fridayInt = dates.updateDate(6);
-		int saturdayInt = dates.updateDate(7);
-		int sundayInt = dates.updateDate(1);
-		
-		String mondayString = Integer.toString(mondayInt);
-		String tuesdayString = Integer.toString(tuesdayInt);
-		String wednesdayString = Integer.toString(wednesdayInt);
-		String thursdayString = Integer.toString(thursdayInt);
-		String fridayString = Integer.toString(fridayInt);
-		String saturdayString = Integer.toString(saturdayInt);
-		String sundayString = Integer.toString(sundayInt);
+		String mondayString = dates.updateDate(2);
+		String tuesdayString = dates.updateDate(3);
+		String wednesdayString = dates.updateDate(4);
+		String thursdayString = dates.updateDate(5);
+		String fridayString = dates.updateDate(6);
+		String saturdayString = dates.updateDate(7);
+		String sundayString = dates.updateDate(1);
 		
 		mondayDate.setText(mondayString);
 		tuesdayDate.setText(tuesdayString);
@@ -114,7 +106,6 @@ public class CalendarOverviewController {
 		int weekNumberInt = dates.updateWeekNumber();
 		week.setText(String.valueOf(weekNumberInt));
 	}
-
 	
 	@FXML
 	private void handleWeekForward() {	

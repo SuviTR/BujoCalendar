@@ -17,18 +17,17 @@ public class TimeandDates {
 	private int dayOfWeek2;
 	private int saturday;
 	private String monday;
-	private String mondayYearMonth;
+	private String yearMonth;
 	private String weekDate;
 	
 	//======= Get date of today =======
 	public int getCurrentDate() {
 		
 		Date date = Calendar.getInstance().getTime();
-		
+
 		DateFormat dayDate = new SimpleDateFormat("dd");
 		String dayString = dayDate.format(date);
 		int today = Integer.parseInt(dayString);
-		System.out.println("Day " + dayString);
 		
 		return today;
 	}
@@ -41,7 +40,6 @@ public class TimeandDates {
 		DateFormat monthDate = new SimpleDateFormat("MM");
 		String monthString = monthDate.format(date);
 		month = Integer.parseInt(monthString);
-		System.out.println("Month " + monthString);
 		
 		return month;
 	}
@@ -49,11 +47,8 @@ public class TimeandDates {
 	//======= Get Weekday =======
 	//1=sunday, 2=monday, 3=tuesday, 4=wednesday, 5=thursday, 6=friday, 7=saturday 
 	public int getWeekdayName() {
-		
 		Calendar calendar = Calendar.getInstance();  
 		dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-		System.out.println("Day of week " + dayOfWeek); 
-		
 		return dayOfWeek;
 	}
 	
@@ -71,7 +66,6 @@ public class TimeandDates {
 		Date date2 = calendar.getTime();
 		DateFormat dateDate2 = new SimpleDateFormat("dd");
 	    String today = dateDate2.format(date2);
-		//int today = Integer.parseInt(day);
 		rightDate = today;
 		
 		if (calDayOfWeek == 1) {	//sunday
@@ -80,7 +74,6 @@ public class TimeandDates {
 			date2 = calendar.getTime();
 			dateDate2 = new SimpleDateFormat("dd");
 		    today = dateDate2.format(date2);
-			//today = Integer.parseInt(day);
 			rightDate = today;
 			return rightDate;
 		}
@@ -95,7 +88,6 @@ public class TimeandDates {
 	public int getWeekNumber() {
 		String input = weekDate;
 		String format = "yyyyMMdd";
-		System.out.println("get" + weekDate);
 
 		SimpleDateFormat df = new SimpleDateFormat(format);
 		Date date = new Date();
@@ -108,7 +100,6 @@ public class TimeandDates {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		int week = cal.get(Calendar.WEEK_OF_YEAR);
-		System.out.println("Week" + week);
 		return week;
 	}
 	
@@ -125,15 +116,14 @@ public class TimeandDates {
 		Date date2 = calendar.getTime();
 		DateFormat dateDate2 = new SimpleDateFormat("dd");
 	    String today = dateDate2.format(date2);
-		//int today = Integer.parseInt(day);
 		nextWeekDay = today;
 		
-		if (calDayOfWeek == 2) {
+		if (calDayOfWeek == 2) {	//getting a weeknumber
 			DateFormat dateDate3 = new SimpleDateFormat("yyyyMM");
 			String yearWeekString = dateDate3.format(date2);
-			mondayYearMonth = yearWeekString;
+			yearMonth = yearWeekString;
 			monday = today;
-			weekDate = mondayYearMonth+monday;
+			weekDate = yearMonth+monday;
 			
 			System.out.println("WeekDate" + weekDate);
 		}
@@ -147,9 +137,7 @@ public class TimeandDates {
 			date2 = calendar2.getTime();
 			dateDate2 = new SimpleDateFormat("dd");
 		    today = dateDate2.format(date2);
-			//today = Integer.parseInt(day);
 			nextWeekDay = today;
-			System.out.println("Sunday");
 			return nextWeekDay;
 		}
 		return nextWeekDay;
@@ -168,18 +156,14 @@ public class TimeandDates {
 		Date date2 = calendar.getTime();
 		DateFormat dateDate2 = new SimpleDateFormat("dd");
 	    String today = dateDate2.format(date2);
-		//int today = Integer.parseInt(day);
 		nextWeekDay = today;
-		System.out.println("lastweek " + nextWeekDay);
 		
-		if (calDayOfWeek == 2) {
+		if (calDayOfWeek == 2) {	//getting a weeknumber
 			DateFormat dateDate3 = new SimpleDateFormat("yyyyMM");
 			String yearWeekString = dateDate3.format(date2);
-			mondayYearMonth = yearWeekString;
+			yearMonth = yearWeekString;
 			monday = today;
-			weekDate = mondayYearMonth+monday;
-			
-			System.out.println("WeekDate" + weekDate);
+			weekDate = yearMonth+monday;
 		}
 		
 		if (calDayOfWeek == 1) {	//sunday
@@ -191,10 +175,8 @@ public class TimeandDates {
 			date2 = calendar2.getTime();
 			dateDate2 = new SimpleDateFormat("dd");
 		    today = dateDate2.format(date2);
-			//today = Integer.parseInt(day);
 			nextWeekDay = today;
-			
-			System.out.println("Sunday");
+
 			return nextWeekDay;
 		}
 		return nextWeekDay;
@@ -253,7 +235,6 @@ public class TimeandDates {
 
 		DateFormat yearDate = new SimpleDateFormat("yyyy");
 		String yearString = yearDate.format(date);
-		System.out.println("Year " + yearString);
 
 		return yearString;
 	}
@@ -262,17 +243,6 @@ public class TimeandDates {
 	public int updateWeekNumber() { 
 		Calendar calendar = Calendar.getInstance();  
 		int weekNumber = calendar.get(Calendar.WEEK_OF_YEAR);
-		System.out.println("Weeknumber" + weekNumber); 
-		
 		return weekNumber;
 	}
-	
-		//Date date = new Date();
-		//System.out.println(dateFormat.format(date));
-		
-		/*
-		Date date = Calendar.getInstance().getTime();  
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
-		String strDate = dateFormat.format(date);  
-		*/
 }

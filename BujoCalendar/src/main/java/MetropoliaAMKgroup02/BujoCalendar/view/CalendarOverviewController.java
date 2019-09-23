@@ -113,7 +113,6 @@ public class CalendarOverviewController {
 		backCounter = backCounter * (-1);
 		totalCounter = backCounter + forwardCounter;
 		backCounter = backCounter * (-1);
-		System.out.println("total for " + totalCounter);
 		
 		dates = new TimeandDates();
 		dates.getCurrentDate();
@@ -142,13 +141,10 @@ public class CalendarOverviewController {
 		week.setText(weekString);
 	}
 	
-	@FXML	//Ei toimi
-	private void handleWeekBack() {	//Ei vielä huomioitu viikkojen ja kuukausien vaihtumista
+	@FXML
+	private void handleWeekBack() {	//Ei vielä huomioitu kuukausien vaihtumista
 		backCounter = (backCounter + 1)* (-1);
-		System.out.println("back " + backCounter);
-		totalCounter = backCounter + forwardCounter;	//ei toimi
-		
-		System.out.println("total back " + totalCounter);
+		totalCounter = backCounter + forwardCounter;
 		backCounter = backCounter* (-1);
 		
 		dates = new TimeandDates();

@@ -100,12 +100,17 @@
             <Font name="Britannic Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="month" layoutX="57.0" layoutY="70.0" onMouseClicked="#handleHeaderFonts" text="Syyskuu 2019" textFill="#112a43">
+      <Label fx:id="month" layoutX="57.0" layoutY="70.0" onMouseClicked="#handleHeaderFonts" text="Syyskuu " textFill="#112a43">
          <font>
             <Font name="Britannic Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="week" layoutX="768.0" layoutY="70.0" onMouseClicked="#handleHeaderFonts" text="35" textFill="#112a43">
+      <Label fx:id="year" layoutX="151.0" layoutY="70.0" onMouseClicked="#handleHeaderFonts" text="2019" textFill="#112a43">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="week" layoutX="762.0" layoutY="70.0" onMouseClicked="#handleHeaderFonts" prefHeight="24.0" prefWidth="36.0" text="35" textAlignment="RIGHT" textFill="#112a43">
          <font>
             <Font name="Britannic Bold" size="24.0" />
          </font>

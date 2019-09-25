@@ -153,7 +153,7 @@ public class TimeandDates {
 			monday = today;
 			weekDate = yearMonth+monday;
 			
-			newMonthMon = yearWeekString.substring(yearWeekString.length() - 2);
+			newMonthMon = yearWeekString.substring(yearWeekString.length() - 2); //getting the right month
 			System.out.println("WeekDate" + weekDate);
 		}
 		
@@ -194,7 +194,7 @@ public class TimeandDates {
 			monday = today;
 			weekDate = yearMonth+monday;
 			
-			newMonthMon = yearWeekString.substring(yearWeekString.length() - 2);
+			newMonthMon = yearWeekString.substring(yearWeekString.length() - 2);	//getting the right month
 		}
 		
 		if (calDayOfWeek == 1) {	//sunday

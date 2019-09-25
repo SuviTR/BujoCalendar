@@ -17,7 +17,7 @@ public class CalendarModel {
 	private SessionFactory istuntotehdas = null;
 	
 	public CalendarModel(Database data){
-		this.istuntotehdas = data.getIstuntotehdas();
+		this.istuntotehdas = data.getIstuntoTehdas();
 	}
 	public void addMerkinta() {
 		Transaction transaktio = null;

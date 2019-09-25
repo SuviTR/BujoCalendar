@@ -30,23 +30,29 @@ public abstract class AbstractController implements HttpHandler {
 	public AbstractController(Database data) {
 		this.data = data;
 	}
-	public void handle(HttpExchange HttpServer) throws IOException {
+	public void handle(HttpExchange HttpObject) throws IOException {
 
-		System.out.println(new Date().toString() + " Got request from: " + httpObject.getRequestURI().toString());
-		InputStream is = httpObject.getRequestBody();
+		System.out.println(new Date().toString() + " Got request from: " + HttpObject.getRequestURI().toString());
+		InputStream is = HttpObject.getRequestBody();
 		byte requestBody[] = new byte[1024];
 		is.read(requestBody);
 		
-		String response = this.json(this.sendResponse(httpObject.getRequestURI(),
+		String response = this.json(this.sendResponse(HttpObject.getRequestURI(),
 			new String(requestBody)
 		));
 		
-		httpObject.getResponseHeaders().add("Content-type", "text/json");
-		httpObject.sendResponseHeaders(200, response.length());
-		OutputStream os = httpObject.getResponseBody();
 		byte[] bytes = response.getBytes();
-		os.write(bytes);
-		os.close();
+
+		HttpObject.getResponseHeaders().add("Content-type", "text/json");
+		HttpObject.sendResponseHeaders(200, bytes.length);
+		OutputStream os = HttpObject.getResponseBody();
+		try {
+			os.write(bytes);
+			os.close();
+		} catch(Exception e) {
+			System.out.println("Outputstream kirjoitus epäonnistui:");
+			e.printStackTrace();
+		}
 	}
 	
 	protected String json(Object obj) {

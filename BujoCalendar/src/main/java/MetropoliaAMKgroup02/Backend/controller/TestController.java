@@ -16,7 +16,7 @@ import java.net.URI;
  *
  * @author vladimir
  */
-public class CalendarController extends AbstractController {
+public class TestController extends AbstractController {
 	
 	public CalendarController(Database data) {
 		super(data);

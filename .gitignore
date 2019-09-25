@@ -1,4 +1,9 @@
+/.metadata/
+
+BujoCalendar/.settings/
+
+BujoCalendar/.project
 
 BujoCalendar/.classpath
 
-BujoCalendar/.settings/
+BujoCalendar/bin/

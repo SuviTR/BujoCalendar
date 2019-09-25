@@ -15,7 +15,9 @@ import MetropoliaAMKgroup02.Backend.Database;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import static java.lang.Thread.sleep;
 import java.net.URI;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,22 +32,23 @@ public abstract class AbstractController implements HttpHandler {
 	}
 	public void handle(HttpExchange HttpServer) throws IOException {
 
-           InputStream is = HttpServer.getRequestBody();
-	   byte requestBody[] = new byte[1024];
-	   is.read(requestBody);
-
-           String response = this.json(this.sendResponse(
-		   HttpServer.getRequestURI(), 
-		   new String(requestBody)
-	   ));
-
-	   HttpServer.getResponseHeaders().add("Content-type", "text/json");
-           HttpServer.sendResponseHeaders(200, response.length());
-           OutputStream os = HttpServer.getResponseBody();
-           os.write(response.getBytes());
-           os.close();
+		System.out.println(new Date().toString() + " Got request from: " + httpObject.getRequestURI().toString());
+		InputStream is = httpObject.getRequestBody();
+		byte requestBody[] = new byte[1024];
+		is.read(requestBody);
+		
+		String response = this.json(this.sendResponse(httpObject.getRequestURI(),
+			new String(requestBody)
+		));
+		
+		httpObject.getResponseHeaders().add("Content-type", "text/json");
+		httpObject.sendResponseHeaders(200, response.length());
+		OutputStream os = httpObject.getResponseBody();
+		byte[] bytes = response.getBytes();
+		os.write(bytes);
+		os.close();
 	}
-
+	
 	protected String json(Object obj) {
 		ObjectMapper mapper = new ObjectMapper();
 		String json = "";

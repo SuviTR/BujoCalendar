@@ -43,7 +43,7 @@ public abstract class AbstractController implements HttpHandler {
 		
 		byte[] bytes = response.getBytes();
 
-		HttpObject.getResponseHeaders().add("Content-type", "text/json");
+		HttpObject.getResponseHeaders().add("Content-type", "application/json");
 		HttpObject.sendResponseHeaders(200, bytes.length);
 		OutputStream os = HttpObject.getResponseBody();
 		try {

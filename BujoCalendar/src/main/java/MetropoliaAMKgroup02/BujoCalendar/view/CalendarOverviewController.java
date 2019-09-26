@@ -145,7 +145,7 @@ public class CalendarOverviewController {
 	}
 	
 	@FXML
-	private void handleWeekBack() {	//Ei vielä huomioitu kuukausien vaihtumista
+	private void handleWeekBack() {
 		backCounter = (backCounter + 1)* (-1);
 		totalCounter = backCounter + forwardCounter;
 		backCounter = backCounter* (-1);
@@ -179,6 +179,10 @@ public class CalendarOverviewController {
 		String weekString = Integer.toString(weekInt);
 		week.setText(weekString);
 	}
+	
+	public void handleSelectedDateView(String date) {
+		dates.selectedDate(date);
+	}
 
 	
 	@FXML
@@ -203,7 +207,7 @@ public class CalendarOverviewController {
 		
 		Label[] list = {monday, tuesday, wednesday, thursday, friday, saturday, sunday};
 		for (Label day : list) {
-			day.setFont(new Font(newFont,16));
+			day.setFont(new Font(newFont,15));
 		}
 	}
 	

@@ -37,9 +37,31 @@ public abstract class AbstractController implements HttpHandler {
 		byte requestBody[] = new byte[1024];
 		is.read(requestBody);
 		
-		String response = this.json(this.sendResponse(HttpObject.getRequestURI(),
-			new String(requestBody)
-		));
+		String method = HttpObject.getRequestMethod();
+		Object responseObj;
+		
+		switch (method) {
+			case "GET":
+				responseObj = this.handleGet(0, HttpObject.getRequestURI());
+				break;
+			case "PUT":
+				//throw new Exception("PUT-metodia ei vielä toteutettu");
+				responseObj = new Object();
+				break;
+			case "POST":
+				responseObj = this.handlePost(new String(requestBody),
+					HttpObject.getRequestURI());
+				break;
+			case "DELETE":
+				//throw new Exception("DELETE-metodia ei vielä toteutettu");
+				responseObj = new Object();
+				break;
+			default:
+				responseObj = new Object();
+				break;
+		}
+
+		String response = this.json(responseObj);
 		
 		byte[] bytes = response.getBytes();
 

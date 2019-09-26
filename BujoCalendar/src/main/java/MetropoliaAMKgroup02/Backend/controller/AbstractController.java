@@ -68,5 +68,9 @@ public abstract class AbstractController implements HttpHandler {
 	}
 
 	protected abstract Object sendResponse(URI uri, String body);
+	protected abstract Object handleGet(int id, URI uri);
+	protected abstract Object handlePost(String body, URI uri);
+	protected abstract Object handlePut();
+	protected abstract Object handleDelete();
 	
 }

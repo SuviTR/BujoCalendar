@@ -1,16 +1,30 @@
 package MetropoliaAMKgroup02.Backend.model;
 
+import javax.persistence.*;
 
 /**
  * Vladimir 
  *
  */
+@Entity
+@Table(name="Henkilot")
 public class Henkilo 
 {
 
+	@Id
+	@GeneratedValue
+	private Long id;
 	private String etunimi, sukunimi, osoite, puhelinnumero, sahkoposti, osasto;
 	
 	public Henkilo(){}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public void setEtunimi(String etunimi){
 		this.etunimi = etunimi;

@@ -21,6 +21,6 @@ public class Backend {
 		Database database = new Database();
 		System.out.println("Created.");
 		System.out.println("Starting server:");
-		Server server = new Server();
+		Server server = new Server(database);
 	}
 }

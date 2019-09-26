@@ -5,6 +5,7 @@
  */
 package MetropoliaAMKgroup02.Backend.controller;
 
+import MetropoliaAMKgroup02.Backend.Database;
 import java.net.URI;
 
 /**
@@ -12,6 +13,10 @@ import java.net.URI;
  * @author heikki
  */
 public class HenkiloController extends AbstractController {
+
+	public HenkiloController(Database data) {
+		super(data);
+	}
 
 	@Override
 	protected Object sendResponse(URI uri, String body) {

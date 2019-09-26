@@ -5,12 +5,12 @@
 <hibernate-configuration>
         <session-factory>
                 <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-                <property name="hibernate.connection.url">jdbc:mysql://10.114.34.17:3306/bujocalendar</property>
-                <property name="hibernate.connection.password">sera43</property>
-                <property name="hibernate.connection.username">appuser</property>
+                <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernatetest</property>
+                <property name="hibernate.connection.password">passwrd</property>
+                <property name="hibernate.connection.username">root</property>
                 <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
                 <property name="show_sql">true</property>
                 <property name="hbm2ddl.auto">create</property>
-                <mapping class="MetropoliaAMKgroup02.Backend.model.Merkinta"></mapping>
+                <mapping class="MetropoliaAMKgroup02.hibernateTest.Event"></mapping>
         </session-factory>
 </hibernate-configuration>

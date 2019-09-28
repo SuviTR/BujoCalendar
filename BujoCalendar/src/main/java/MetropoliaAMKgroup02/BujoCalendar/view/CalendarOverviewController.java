@@ -62,6 +62,20 @@ public class CalendarOverviewController {
 
 	public void getCurrentDate() {
 		dates = new TimeandDates();
+		String date = dates.getCurrentDate();
+		int weekNumber = dates.getWeekNumber(date);
+		String[] dayList = dates.getDate(date,weekNumber);
+		
+		mondayDate.setText(dayList[0]);
+		tuesdayDate.setText(dayList[1]);
+		wednesdayDate.setText(dayList[2]);
+		thursdayDate.setText(dayList[3]);
+		fridayDate.setText(dayList[4]);
+		saturdayDate.setText(dayList[5]);
+		sundayDate.setText(dayList[6]);
+		
+		/*
+		dates = new TimeandDates();
 		dates.getCurrentDate();
 		dates.getCurrentMonth();
 		dates.getWeekdayName();
@@ -82,13 +96,14 @@ public class CalendarOverviewController {
 		saturdayDate.setText(saturdayString);
 		sundayDate.setText(sundayString);
 		
+		*/
 		String monthString = dates.updateMonth();
 		String yearString = dates.updateYear();
 		String monthYear = monthString + " " + yearString;
 		month.setText(monthYear);
 		
-		int weekNumberInt = dates.updateWeekNumber();
-		week.setText(String.valueOf(weekNumberInt));
+		//int weekNumberInt = dates.updateWeekNumber();
+		week.setText(String.valueOf(weekNumber));
 	}
 	
 	@FXML

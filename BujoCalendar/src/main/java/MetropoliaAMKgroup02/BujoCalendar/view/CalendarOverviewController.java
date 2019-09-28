@@ -61,10 +61,11 @@ public class CalendarOverviewController {
 	}
 
 	public void getCurrentDate() {
+		
 		dates = new TimeandDates();
 		String date = dates.getCurrentDate();
 		int weekNumber = dates.getWeekNumber(date);
-		String[] dayList = dates.getDate(date,weekNumber);
+		String[] dayList = dates.getDate(weekNumber);
 		
 		mondayDate.setText(dayList[0]);
 		tuesdayDate.setText(dayList[1]);
@@ -74,35 +75,11 @@ public class CalendarOverviewController {
 		saturdayDate.setText(dayList[5]);
 		sundayDate.setText(dayList[6]);
 		
-		/*
-		dates = new TimeandDates();
-		dates.getCurrentDate();
-		dates.getCurrentMonth();
-		dates.getWeekdayName();
-		
-		String mondayString = dates.updateDate(2);
-		String tuesdayString = dates.updateDate(3);
-		String wednesdayString = dates.updateDate(4);
-		String thursdayString = dates.updateDate(5);
-		String fridayString = dates.updateDate(6);
-		String saturdayString = dates.updateDate(7);
-		String sundayString = dates.updateDate(1);
-		
-		mondayDate.setText(mondayString);
-		tuesdayDate.setText(tuesdayString);
-		wednesdayDate.setText(wednesdayString);
-		thursdayDate.setText(thursdayString);
-		fridayDate.setText(fridayString);
-		saturdayDate.setText(saturdayString);
-		sundayDate.setText(sundayString);
-		
-		*/
 		String monthString = dates.updateMonth();
 		String yearString = dates.updateYear();
 		String monthYear = monthString + " " + yearString;
 		month.setText(monthYear);
 		
-		//int weekNumberInt = dates.updateWeekNumber();
 		week.setText(String.valueOf(weekNumber));
 	}
 	
@@ -114,32 +91,25 @@ public class CalendarOverviewController {
 		backCounter = backCounter * (-1);
 		
 		dates = new TimeandDates();
-		dates.getCurrentDate();
-		dates.getCurrentMonth();
-		dates.getWeekdayName();
 		
-		String mondayString = dates.nextWeek(2, totalCounter);
-		String tuesdayString = dates.nextWeek(3, totalCounter);
-		String wednesdayString = dates.nextWeek(4, totalCounter);
-		String thursdayString = dates.nextWeek(5, totalCounter);
-		String fridayString = dates.nextWeek(6, totalCounter);
-		String saturdayString = dates.nextWeek(7, totalCounter);
-		dates.getSaturday(saturdayString);
-		String sundayString = dates.nextWeek(1, totalCounter);
+		String date = dates.getCurrentDate();
+		int weekNumber = dates.getWeekNumber(date);
+		int weekNumberForward = weekNumber + totalCounter; //väärin
+		String[] dayList = dates.getDate(weekNumberForward);
 		
-		mondayDate.setText(mondayString);
-		tuesdayDate.setText(tuesdayString);
-		wednesdayDate.setText(wednesdayString);
-		thursdayDate.setText(thursdayString);
-		fridayDate.setText(fridayString);
-		saturdayDate.setText(saturdayString);
-		sundayDate.setText(sundayString);
+		mondayDate.setText(dayList[0]);
+		tuesdayDate.setText(dayList[1]);
+		wednesdayDate.setText(dayList[2]);
+		thursdayDate.setText(dayList[3]);
+		fridayDate.setText(dayList[4]);
+		saturdayDate.setText(dayList[5]);
+		sundayDate.setText(dayList[6]);
 		
 		String monthString = dates.getNewMonth();
 		month.setText(monthString);
 		
-		int weekInt = dates.getWeekNumber();
-		String weekString = Integer.toString(weekInt);
+		//int weekInt = dates.getWeekNumber();
+		String weekString = Integer.toString(weekNumberForward);
 		week.setText(weekString);
 	}
 	
@@ -150,32 +120,25 @@ public class CalendarOverviewController {
 		backCounter = backCounter* (-1);
 		
 		dates = new TimeandDates();
-		dates.getCurrentDate();
-		dates.getCurrentMonth();
-		dates.getWeekdayName();
 		
-		String mondayString = dates.lastWeek(2, totalCounter);
-		String tuesdayString = dates.lastWeek(3, totalCounter);
-		String wednesdayString = dates.lastWeek(4, totalCounter);
-		String thursdayString = dates.lastWeek(5, totalCounter);
-		String fridayString = dates.lastWeek(6, totalCounter);
-		String saturdayString = dates.lastWeek(7, totalCounter);
-		dates.getSaturday(saturdayString);
-		String sundayString = dates.lastWeek(1, totalCounter);
+		String date = dates.getCurrentDate();
+		int weekNumber = dates.getWeekNumber(date);
+		int weekNumberBack = weekNumber + totalCounter;
+		String[] dayList = dates.getDate(weekNumberBack);
 		
-		mondayDate.setText(mondayString);
-		tuesdayDate.setText(tuesdayString);
-		wednesdayDate.setText(wednesdayString);
-		thursdayDate.setText(thursdayString);
-		fridayDate.setText(fridayString);
-		saturdayDate.setText(saturdayString);
-		sundayDate.setText(sundayString);
+		mondayDate.setText(dayList[0]);
+		tuesdayDate.setText(dayList[1]);
+		wednesdayDate.setText(dayList[2]);
+		thursdayDate.setText(dayList[3]);
+		fridayDate.setText(dayList[4]);
+		saturdayDate.setText(dayList[5]);
+		sundayDate.setText(dayList[6]);
 		
 		String monthString = dates.getNewMonth();
 		month.setText(monthString);
 		
-		int weekInt = dates.getWeekNumber();
-		String weekString = Integer.toString(weekInt);
+		//int weekInt = dates.getWeekNumber();
+		String weekString = Integer.toString(weekNumberBack);
 		week.setText(weekString);
 	}
 	

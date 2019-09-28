@@ -3,6 +3,8 @@ package MetropoliaAMKgroup02.BujoCalendar.model;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -12,11 +14,14 @@ public class TimeandDates {
 	private int dayOfWeek;
 	private int dayOfWeek2;
 	private int saturday;
+
 	private String monday;
 	private String yearMonth;
 	private String weekDate;
 	private String newMonthMon;
 	private String newMonthSun;
+	
+	private MonthView monthView;
 	
 	//======= Get date of today =======
 	public int getCurrentDate() {
@@ -101,7 +106,7 @@ public class TimeandDates {
 		return week;
 	}
 	
-	public String getNewMonth() { //Ei toimi oikein Syyskyy/syyskuu
+	public String getNewMonth() { //Vuosi pitää lisätä kuukauden perään
 		String newMonth = "";
 
 		String[] list = new String[] {"01","Tammikuu","02","Helmikuu","03","Maaliskuu","04","Huhtikuu", 
@@ -117,7 +122,7 @@ public class TimeandDates {
 		}
 		
 		/*
-		if (!newMonthMon.equals(newMonthSun)) {
+		if (!newMonthMon.equals(newMonthSun)) { //Ei toimi oikein Syyskuu/Syyskuu
 			
 			for (int j = 0; j < list.length; j++) {
 				if (newMonthMon.equals(list[j])) {
@@ -131,8 +136,7 @@ public class TimeandDates {
 		return newMonth;
 	}
 	
-	public String nextWeek(int calDayOfWeek,int count) { //Muuta Stringeiksi
-		
+	public String nextWeek(int calDayOfWeek,int count) { 
 		String nextWeekDay;
 		
 	    Calendar calendar = Calendar.getInstance();
@@ -212,6 +216,61 @@ public class TimeandDates {
 		}
 		return nextWeekDay;
 	}
+	
+	//======= Get selected date from datepicker =======
+	public String[] selectedDate(String date) { //date = 20190925 = 25.9.2019
+		
+		String[] dayList = new String[7];
+		String format = "yyyy-MM-dd";
+
+		SimpleDateFormat df = new SimpleDateFormat(format);
+		Date dateParse = new Date();
+		try {
+			dateParse = df.parse(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(dateParse);
+		int week = cal.get(Calendar.WEEK_OF_YEAR);
+		
+		cal.set(Calendar.WEEK_OF_YEAR, week);     
+		
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		String mon = df.format(cal.getTime());
+		String monDay = mon.substring(mon.length() - 2);
+		dayList[0] = monDay;
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
+		String tue = df.format(cal.getTime());
+		String tueDay = tue.substring(tue.length() - 2);
+		dayList[1] = tueDay;
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
+		String wed = df.format(cal.getTime());
+		String wedDay = wed.substring(wed.length() - 2);
+		dayList[2] = wedDay;
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
+		String thu = df.format(cal.getTime());
+		String thuDay = thu.substring(thu.length() - 2);
+		dayList[3] = thuDay;
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
+		String fri = df.format(cal.getTime());
+		String friDay = fri.substring(fri.length() - 2);
+		dayList[4] = friDay;
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+		String sat = df.format(cal.getTime());
+		String satDay = sat.substring(sat.length() - 2);
+		dayList[5] = satDay;
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		String sun = df.format(cal.getTime());
+		String sunDay = sun.substring(sun.length() - 2);
+		dayList[6] = sunDay;
+		
+		System.out.println(dayList);
+		
+		return dayList;
+	}
+	
 	
 	//======= Get month name =======
 	public String updateMonth() {

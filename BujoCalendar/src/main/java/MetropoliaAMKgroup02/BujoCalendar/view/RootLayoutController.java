@@ -25,12 +25,18 @@ public class RootLayoutController {
 		System.out.println("Clicked!");
 
 	}
+	
 	@FXML
 	private void handleSelectDay() {
 		monthView = new MonthView();
 		monthView.setRootLayoutController(this);
 		Stage s = new Stage();
 		monthView.start(s);
+	}
+	
+	public void getSelectedDateView(String date) {
+		System.out.println("Selected" + date);
+		mainApp.getSelectedDateView(date);
 	}
 
 	public void setMainApp(MainApp mainApp) {

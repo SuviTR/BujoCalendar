@@ -94,7 +94,7 @@ public class CalendarOverviewController {
 		
 		String date = dates.getCurrentDate();
 		int weekNumber = dates.getWeekNumber(date);
-		int weekNumberForward = weekNumber + totalCounter; //väärin
+		int weekNumberForward = weekNumber + totalCounter;
 		String[] dayList = dates.getDate(weekNumberForward);
 		
 		mondayDate.setText(dayList[0]);
@@ -105,12 +105,10 @@ public class CalendarOverviewController {
 		saturdayDate.setText(dayList[5]);
 		sundayDate.setText(dayList[6]);
 		
-		String monthString = dates.getNewMonth();
+		String monthString = dates.getMonth();
 		month.setText(monthString);
 		
-		//int weekInt = dates.getWeekNumber();
-		String weekString = Integer.toString(weekNumberForward);
-		week.setText(weekString);
+		week.setText(dates.getNewWeekNumber());
 	}
 	
 	@FXML
@@ -134,12 +132,10 @@ public class CalendarOverviewController {
 		saturdayDate.setText(dayList[5]);
 		sundayDate.setText(dayList[6]);
 		
-		String monthString = dates.getNewMonth();
+		String monthString = dates.getMonth();
 		month.setText(monthString);
 		
-		//int weekInt = dates.getWeekNumber();
-		String weekString = Integer.toString(weekNumberBack);
-		week.setText(weekString);
+		week.setText(dates.getNewWeekNumber());
 	}
 	
 	public void handleSelectedDateView(String date) {
@@ -153,6 +149,8 @@ public class CalendarOverviewController {
 		fridayDate.setText(dayList[4]);
 		saturdayDate.setText(dayList[5]);
 		sundayDate.setText(dayList[6]);
+		
+		week.setText(dates.getNewWeekNumber()); //Ei toimi
 		
 	}
 	//======= Notes =======

@@ -3,23 +3,14 @@ package MetropoliaAMKgroup02.BujoCalendar.model;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
 public class TimeandDates {
 	
 	private String date;
+	private String mon;
 	private int month;
-	private int dayOfWeek;
-	private int dayOfWeek2;
-
-	private String monday;
-	private String yearMonth;
-	private String weekDate;
-	
-	private MonthView monthView;
 	
 	//======= Get date of today =======
 	public String getCurrentDate() {
@@ -31,7 +22,7 @@ public class TimeandDates {
 		return date;
 	}
 	
-	//======= Get week number =======
+	//======= Get week number of current date =======
 	public int getWeekNumber(String date) {
 		
 		String format = "yyyy-MM-dd";
@@ -75,10 +66,11 @@ public class TimeandDates {
 		cal.set(Calendar.WEEK_OF_YEAR, week);     
 
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-		String mon = df.format(cal.getTime());
+		mon = df.format(cal.getTime());
 		String monDay = mon.substring(mon.length() - 2);
+		System.out.println("mon" + mon);
+		getNewWeekNumber();
 		dayList[0] = monDay;
-		System.out.println("mon" + monDay);
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
 		String tue = df.format(cal.getTime());
 		String tueDay = tue.substring(tue.length() - 2);
@@ -112,6 +104,26 @@ public class TimeandDates {
 		
 		return dayList;
 	}
+	
+	public String getNewWeekNumber() {
+		
+		String format = "yyyy-MM-dd";
+		SimpleDateFormat df = new SimpleDateFormat(format);
+		Date dateParse = new Date();
+		try {
+			dateParse = df.parse(mon);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(dateParse);
+		
+		int week = cal.get(Calendar.WEEK_OF_YEAR);
+		String newWeek = Integer.toString(week);
+		
+		return newWeek;
+	}
 
 	//======= Get selected date from datepicker and dates of days of weeks =======
 	public String[] selectedDate(String date) { //date = 20190925 = 25.9.2019 Kuukausi ja vkonro vielä
@@ -135,6 +147,7 @@ public class TimeandDates {
 
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		String mon = df.format(cal.getTime());
+		System.out.println("Mon" + mon);
 		String monDay = mon.substring(mon.length() - 2);
 		dayList[0] = monDay;
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
@@ -167,25 +180,21 @@ public class TimeandDates {
 	//----------------------------------------------------------------------------
 	
 	//======= Get month of today =======
-	public int getCurrentMonth() {
+	public String getMonth() {
 		
-		Date date = Calendar.getInstance().getTime();
-		
-		DateFormat monthDate = new SimpleDateFormat("MM");
-		String monthString = monthDate.format(date);
-		month = Integer.parseInt(monthString);
+		String month = mon.substring(5,6);
 		
 		return month;
 	}
-	
+	/*
 	//======= Get Weekday =======
 	//1=sunday, 2=monday, 3=tuesday, 4=wednesday, 5=thursday, 6=friday, 7=saturday 
 	public int getWeekdayName() {
 		Calendar calendar = Calendar.getInstance();  
 		dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 		return dayOfWeek;
-	}
-
+	}*/
+/*
 	public String getNewMonth() { //Vuosi pitää lisätä kuukauden perään
 		String newMonth = "";
 
@@ -211,11 +220,11 @@ public class TimeandDates {
 					break;	
 				}
 			}
-		}*/
+		}
 		System.out.println("newMont " + newMonth);
 		return newMonth;
 	}
-	
+	*/
 	//======= Get month name =======
 	public String updateMonth() {
 		String monthString = "";

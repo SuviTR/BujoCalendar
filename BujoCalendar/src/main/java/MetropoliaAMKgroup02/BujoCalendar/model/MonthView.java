@@ -1,22 +1,17 @@
 package MetropoliaAMKgroup02.BujoCalendar.model;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-import MetropoliaAMKgroup02.BujoCalendar.controller.MainApp;
 import MetropoliaAMKgroup02.BujoCalendar.view.RootLayoutController;
 import javafx.application.Application;
+import java.time.format.DateTimeFormatter;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
 public class MonthView extends Application { 
 	
 	private RootLayoutController rootController;
-	private TimeandDates dates;
 	private String selectedDate;
 	  
     public void start(Stage s) { 
@@ -38,10 +33,9 @@ public class MonthView extends Application {
         // Action
         d.setOnAction(event -> {
         	selectedDate = d.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            System.out.println("Valitty päivä: " + selectedDate);
+            System.out.println("Valittu päivä: " + selectedDate);
         });
   
-        // add button and label 
         g.getChildren().add(d); 
         
         g.setHgap(10);
@@ -66,7 +60,4 @@ public class MonthView extends Application {
     public void setRootLayoutController(RootLayoutController rootController) {
 		this.rootController = rootController;
 	}
-    public void setTimeandDates(TimeandDates dates) {
-    	this.dates = dates;
-    }
 } 

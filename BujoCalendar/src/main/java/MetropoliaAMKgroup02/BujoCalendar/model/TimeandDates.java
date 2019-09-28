@@ -179,21 +179,55 @@ public class TimeandDates {
 	}
 	//----------------------------------------------------------------------------
 	
-	//======= Get month of today =======
+	//======= Get month =======
 	public String getMonth() {
 		
-		String month = mon.substring(5,6);
+		String month = mon.substring(5,7);
+		int monthInt = Integer.parseInt(month);
 		
-		return month;
+		String monthString = "";
+
+		switch (monthInt) {
+		case 1:
+			monthString = "Tammikuu";
+			break;
+		case 2:
+			monthString = "Helmikuu";
+			break;
+		case 3:
+			monthString = "Maaliskuu";
+			break;
+		case 4:
+			monthString = "Huhtikuu";
+			break;
+		case 5:
+			monthString = "Toukokuu";
+			break;
+		case 6:
+			monthString = "Kesäkuu";
+			break;
+		case 7:
+			monthString = "Heinäkuu";
+			break;
+		case 8:
+			monthString = "Elokuu";
+			break;
+		case 9:
+			monthString = "Syyskuu";
+			break;
+		case 10:
+			monthString = "Lokakuu";
+			break;
+		case 11:
+			monthString = "Marraskuu";
+			break;
+		case 12:
+			monthString = "Joulukuu";
+			break;
+		}
+		return monthString;
 	}
-	/*
-	//======= Get Weekday =======
-	//1=sunday, 2=monday, 3=tuesday, 4=wednesday, 5=thursday, 6=friday, 7=saturday 
-	public int getWeekdayName() {
-		Calendar calendar = Calendar.getInstance();  
-		dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-		return dayOfWeek;
-	}*/
+	
 /*
 	public String getNewMonth() { //Vuosi pitää lisätä kuukauden perään
 		String newMonth = "";
@@ -225,50 +259,7 @@ public class TimeandDates {
 		return newMonth;
 	}
 	*/
-	//======= Get month name =======
-	public String updateMonth() {
-		String monthString = "";
-		
-		switch (month) {
-		  case 1:
-		    monthString = "Tammikuu";
-		    break;
-		  case 2:
-			monthString = "Helmikuu";
-		    break;
-		  case 3:
-			monthString = "Maaliskuu";
-		    break;
-		  case 4:
-			monthString = "Huhtikuu";
-		    break;
-		  case 5:
-			monthString = "Toukokuu";
-		    break;
-		  case 6:
-			monthString = "Kesäkuu";
-		    break;
-		  case 7:
-			monthString = "Heinäkuu";
-			break;
-		  case 8:
-			monthString = "Elokuu";
-			break;
-		  case 9:
-			monthString = "Syyskuu";
-			break;
-		  case 10:
-			monthString = "Lokakuu";
-			break;
-		  case 11:
-			monthString = "Marraskuu";
-			break;
-		  case 12:
-			monthString = "Joulukuu";
-		    break;
-		}
-		return monthString;
-	}
+	
 	
 	//======= Get year number =======
 	public String updateYear() {

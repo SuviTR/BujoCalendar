@@ -75,10 +75,10 @@ public class CalendarOverviewController {
 		saturdayDate.setText(dayList[5]);
 		sundayDate.setText(dayList[6]);
 		
-		String monthString = dates.updateMonth();
-		String yearString = dates.updateYear();
-		String monthYear = monthString + " " + yearString;
-		month.setText(monthYear);
+		//String monthString = dates.getMonth();
+		//String yearString = dates.updateYear();
+		//String monthYear = monthString + " " + yearString;
+		month.setText(dates.getMonth());
 		
 		week.setText(String.valueOf(weekNumber));
 	}
@@ -105,9 +105,7 @@ public class CalendarOverviewController {
 		saturdayDate.setText(dayList[5]);
 		sundayDate.setText(dayList[6]);
 		
-		String monthString = dates.getMonth();
-		month.setText(monthString);
-		
+		month.setText(dates.getMonth());
 		week.setText(dates.getNewWeekNumber());
 	}
 	
@@ -132,9 +130,7 @@ public class CalendarOverviewController {
 		saturdayDate.setText(dayList[5]);
 		sundayDate.setText(dayList[6]);
 		
-		String monthString = dates.getMonth();
-		month.setText(monthString);
-		
+		month.setText(dates.getMonth());
 		week.setText(dates.getNewWeekNumber());
 	}
 	
@@ -150,6 +146,7 @@ public class CalendarOverviewController {
 		saturdayDate.setText(dayList[5]);
 		sundayDate.setText(dayList[6]);
 		
+		month.setText(dates.getMonth());
 		week.setText(dates.getNewWeekNumber()); //Ei toimi
 		
 	}

@@ -6,7 +6,7 @@
 
 package MetropoliaAMKgroup02.hibernateTest;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -40,13 +40,12 @@ public class HibernateTestMain {
 		Transaction transaktio = null;
 		try(Session istunto = istuntotehdas.openSession()) {
 			transaktio = istunto.beginTransaction();
-			Event tapahtuma1 = new Event("Lounas", "Torstai");
-			Event tapahtuma2 = new Event("Olviretki", "Perjantai");
-			Event tapahtuma3 = new Event("Hamaslääkäri", "Maanantai");
-			
-			istunto.saveOrUpdate(tapahtuma1);
-			istunto.saveOrUpdate(tapahtuma2);
-			istunto.saveOrUpdate(tapahtuma3);
+			Merkinta merk = new Merkinta("Uusi merkintä");
+			merk.setPaikka("Helsinki");
+			merk.setSisalto("Tosi tärkeä tapahtuma");
+			Calendar date = Calendar.getInstance();
+			date.set(2018, 10, 11);
+			merk.setDate(date);
 
 			transaktio.commit();
 			istunto.close();

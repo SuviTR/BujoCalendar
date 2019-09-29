@@ -65,7 +65,7 @@ public class CalendarOverviewController {
 		dates = new TimeandDates();
 		String date = dates.getCurrentDate();
 		int weekNumber = dates.getWeekNumber(date);
-		String[] dayList = dates.getDate(weekNumber);
+		String[] dayList = dates.getWeekDates(weekNumber);
 		
 		mondayDate.setText(dayList[0]);
 		tuesdayDate.setText(dayList[1]);
@@ -95,7 +95,7 @@ public class CalendarOverviewController {
 		String date = dates.getCurrentDate();
 		int weekNumber = dates.getWeekNumber(date);
 		int weekNumberForward = weekNumber + totalCounter;
-		String[] dayList = dates.getDate(weekNumberForward);
+		String[] dayList = dates.getWeekDates(weekNumberForward);
 		
 		mondayDate.setText(dayList[0]);
 		tuesdayDate.setText(dayList[1]);
@@ -120,7 +120,7 @@ public class CalendarOverviewController {
 		String date = dates.getCurrentDate();
 		int weekNumber = dates.getWeekNumber(date);
 		int weekNumberBack = weekNumber + totalCounter;
-		String[] dayList = dates.getDate(weekNumberBack);
+		String[] dayList = dates.getWeekDates(weekNumberBack);
 		
 		mondayDate.setText(dayList[0]);
 		tuesdayDate.setText(dayList[1]);
@@ -146,7 +146,7 @@ public class CalendarOverviewController {
 		saturdayDate.setText(dayList[5]);
 		sundayDate.setText(dayList[6]);
 		
-		month.setText(dates.getMonth());
+		month.setText(dates.getMonth());		//Ei toimi
 		week.setText(dates.getNewWeekNumber()); //Ei toimi
 		
 	}

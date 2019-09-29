@@ -10,6 +10,7 @@ public class TimeandDates {
 	
 	private String date;
 	private String mon;
+	private String sun;
 	private int month;
 	
 	//======= Get date of today =======
@@ -43,7 +44,7 @@ public class TimeandDates {
 	}
 	
 	//======= Get dates of days of week =======
-	public String[] getDate(int week) {
+	public String[] getWeekDates(int week) {
 		
 		String[] dayList = new String[7];
 		
@@ -97,10 +98,10 @@ public class TimeandDates {
 		dayList[5] = satDay;
 		System.out.println("mon" + satDay);
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-		String sun = df.format(cal.getTime());
+		sun = df.format(cal.getTime());
 		String sunDay = sun.substring(sun.length() - 2);
 		dayList[6] = sunDay;
-		System.out.println("mon" + sunDay);
+		System.out.println("Sun" + sun);
 		
 		return dayList;
 	}
@@ -171,63 +172,87 @@ public class TimeandDates {
 		String satDay = sat.substring(sat.length() - 2);
 		dayList[5] = satDay;
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-		String sun = df.format(cal.getTime());
+		sun = df.format(cal.getTime());
 		String sunDay = sun.substring(sun.length() - 2);
 		dayList[6] = sunDay;
 
 		return dayList;
 	}
-	//----------------------------------------------------------------------------
 	
 	//======= Get month =======
 	public String getMonth() {
 		
-		String month = mon.substring(5,7);
-		int monthInt = Integer.parseInt(month);
+		String monthMon = mon.substring(5,7);
+		int monthMonInt = Integer.parseInt(monthMon);
+		System.out.println("MonInt" + monthMonInt);
+		
+		String monthSun = sun.substring(5,7);
+		int monthSunInt = Integer.parseInt(monthSun);
+		System.out.println("SunInt" + monthSunInt);
 		
 		String monthString = "";
+		String monthString2 = "";
 
-		switch (monthInt) {
+		switch (monthMonInt) {
 		case 1:
 			monthString = "Tammikuu";
+			monthString2 = "Tammikuu/Helmikuu";
 			break;
 		case 2:
 			monthString = "Helmikuu";
+			monthString2 = "Helmikuu/Maaliskuu";
 			break;
 		case 3:
 			monthString = "Maaliskuu";
+			monthString2 = "Maaliskuu/Huhtikuu";
 			break;
 		case 4:
 			monthString = "Huhtikuu";
+			monthString2 = "Huhtikuu/Toukokuu";
 			break;
 		case 5:
 			monthString = "Toukokuu";
+			monthString2 = "Toukokuu/Kesäkuu";
 			break;
 		case 6:
 			monthString = "Kesäkuu";
+			monthString2 = "Kesäkuu/Heinäkuu";
 			break;
 		case 7:
 			monthString = "Heinäkuu";
+			monthString2 = "Heinäkuu/Elokuu";
 			break;
 		case 8:
 			monthString = "Elokuu";
+			monthString2 = "Elokuu/Syyskuu";
 			break;
 		case 9:
 			monthString = "Syyskuu";
+			monthString2 = "Syyskuu/Lokakuu";
 			break;
 		case 10:
 			monthString = "Lokakuu";
+			monthString2 = "Lokakuu/Marraskuu";
 			break;
 		case 11:
 			monthString = "Marraskuu";
+			monthString2 = "Marraskuu/Joulukuu";
 			break;
 		case 12:
 			monthString = "Joulukuu";
+			monthString2 = "Joulukuu/Tammikuu";
 			break;
 		}
-		return monthString;
+		
+		if (monthMonInt == monthSunInt) {
+			return monthString;
+		}
+		
+		else {
+			return monthString2;
+		}
 	}
-	
+	//----------------------------------------------------------------------------
 /*
 	public String getNewMonth() { //Vuosi pitää lisätä kuukauden perään
 		String newMonth = "";

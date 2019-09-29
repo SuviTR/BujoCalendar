@@ -184,11 +184,9 @@ public class TimeandDates {
 		
 		String monthMon = mon.substring(5,7);
 		int monthMonInt = Integer.parseInt(monthMon);
-		System.out.println("MonInt" + monthMonInt);
 		
 		String monthSun = sun.substring(5,7);
 		int monthSunInt = Integer.parseInt(monthSun);
-		System.out.println("SunInt" + monthSunInt);
 		
 		String monthString = "";
 		String monthString2 = "";
@@ -252,49 +250,22 @@ public class TimeandDates {
 			return monthString2;
 		}
 	}
-	//----------------------------------------------------------------------------
-/*
-	public String getNewMonth() { //Vuosi pitää lisätä kuukauden perään
-		String newMonth = "";
-
-		String[] list = new String[] {"01","Tammikuu","02","Helmikuu","03","Maaliskuu","04","Huhtikuu", 
-									  "05","Toukokuu","06","Kesäkuu","07","Heinäkuu","08","Elokuu", 
-									  "09","Syyskuu","10","Lokakuu","11","Marraskuu","12","Joulukuu"};
-		
-		for (int i = 0; i < list.length; i++) {
-			if (newMonthMon.equals(list[i])) {
-				newMonth = list[i+1];
-				System.out.println(list[i+1] + newMonth);
-				break;	
-			}
-		}
-		
-		/*
-		if (!newMonthMon.equals(newMonthSun)) { //Ei toimi oikein Syyskuu/Syyskuu
-			
-			for (int j = 0; j < list.length; j++) {
-				if (newMonthMon.equals(list[j])) {
-					newMonth = newMonth + "/" + list[j+1];
-					System.out.println(list[j+1] + newMonth);
-					break;	
-				}
-			}
-		}
-		System.out.println("newMont " + newMonth);
-		return newMonth;
-	}
-	*/
-	
 	
 	//======= Get year number =======
-	public String updateYear() {
-		int year = 0;
+	public String getYear() {
 		
-		Date date = Calendar.getInstance().getTime();
-
-		DateFormat yearDate = new SimpleDateFormat("yyyy");
-		String yearString = yearDate.format(date);
-
-		return yearString;
+		String yearMon = mon.substring(0,4);
+		int yearMonInt = Integer.parseInt(yearMon);
+		
+		String yearSun = sun.substring(0,4);
+		int yearSunInt = Integer.parseInt(yearSun);
+		
+		if (yearMonInt == yearSunInt) {
+			return yearMon;
+		}
+		else {
+			String yearString = yearMon + "/" + yearSun;
+			return yearString;
+		}
 	}
 }

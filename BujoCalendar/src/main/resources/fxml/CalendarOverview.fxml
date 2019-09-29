@@ -146,9 +146,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <Label fx:id="month" layoutX="57.0" layoutY="70.0" onMouseClicked="#handleHeaderFonts" prefHeight="24.0" prefWidth="225.0" text="Elokuu 2018" textFill="#112a43">
+      <Label fx:id="month" layoutX="57.0" layoutY="70.0" onMouseClicked="#handleHeaderFonts" prefHeight="24.0" prefWidth="337.0" text="Joulukuu/Tammikuu 2018/2019" textFill="#112a43">
          <font>
-            <Font name="Britannic Bold" size="24.0" />
+            <Font name="Britannic Bold" size="22.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />

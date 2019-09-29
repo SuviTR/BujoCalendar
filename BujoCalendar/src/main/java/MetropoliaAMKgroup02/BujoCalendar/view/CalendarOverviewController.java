@@ -154,11 +154,11 @@ public class CalendarOverviewController {
 		saturdayDate.setText(dayList[5]);
 		sundayDate.setText(dayList[6]);
 		
-		String monthString = dates.getMonth();
-		String yearString = dates.getYear();
-		String monthYear = monthString + " " + yearString;
-		month.setText(monthYear);
-		//month.setText(dates.getMonth());		//Ei toimi
+		//String monthString = dates.getMonth();
+		//String yearString = dates.getYear();
+		//String monthYear = monthString + " " + yearString;
+		//month.setText(monthYear);
+		month.setText(dates.getMonth());		//Ei toimi
 		week.setText(dates.getNewWeekNumber()); //Ei toimi
 		
 	}

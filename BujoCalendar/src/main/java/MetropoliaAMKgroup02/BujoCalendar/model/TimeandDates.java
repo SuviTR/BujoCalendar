@@ -142,12 +142,12 @@ public class TimeandDates {
 
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(dateParse);
-		int week = cal.get(Calendar.WEEK_OF_YEAR);
+		int weekInt = cal.get(Calendar.WEEK_OF_YEAR);
 
-		cal.set(Calendar.WEEK_OF_YEAR, week);     
+		cal.set(Calendar.WEEK_OF_YEAR, weekInt);     
 
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-		String mon = df.format(cal.getTime());
+		mon = df.format(cal.getTime());
 		System.out.println("Mon" + mon);
 		String monDay = mon.substring(mon.length() - 2);
 		dayList[0] = monDay;
@@ -175,7 +175,7 @@ public class TimeandDates {
 		sun = df.format(cal.getTime());
 		String sunDay = sun.substring(sun.length() - 2);
 		dayList[6] = sunDay;
-
+		
 		return dayList;
 	}
 	

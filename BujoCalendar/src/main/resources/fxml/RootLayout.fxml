@@ -11,6 +11,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleSelectDay" text="Valitse päivä" />
               <MenuItem mnemonicParsing="false" text="Sulje kalenteri" />
             </items>
           </Menu>
@@ -18,7 +19,6 @@
             <items>
               <MenuItem mnemonicParsing="false" text="Lisää merkintä" />
                   <MenuItem mnemonicParsing="false" text="Lisää to-do-task" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleSelectDay" text="Valitse päivä" />
                   <Menu mnemonicParsing="false" text="Lisää moduuli">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Päivän mieliala" />

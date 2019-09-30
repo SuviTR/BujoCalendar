@@ -14,7 +14,7 @@ public class Menu {
 	private MenuItem menuItem;
 	private String newFont;
 
-	//======= Getting available fonts ======= 
+	//======= Getting available fonts ======
 	private String[] FontList() {
 		String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 		return fonts;

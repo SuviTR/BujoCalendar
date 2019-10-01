@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,103 +15,152 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane prefHeight="604.0" prefWidth="839.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MetropoliaAMKgroup02.BujoCalendar.view.CalendarOverviewController">
    <children>
       <ImageView fitHeight="622.0" fitWidth="863.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/CalendarReady2.jpg" />
+            <Image url="@../img/BujoCalendarwithTimeSpaces2.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="leftHeader" fitHeight="49.0" fitWidth="349.0" layoutX="50.0" layoutY="50.0" onMouseClicked="#handleLeftHeader" pickOnBounds="true">
+      <ImageView fx:id="leftHeader" fitHeight="49.0" fitWidth="351.0" layoutX="50.0" layoutY="50.0" onMouseClicked="#handleLeftHeader" pickOnBounds="true">
          <image>
             <Image url="@../img/Plants2.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="rightHeader" fitHeight="47.0" fitWidth="348.0" layoutX="457.0" layoutY="51.0" pickOnBounds="true">
+      <ImageView fx:id="rightHeader" fitHeight="47.0" fitWidth="351.0" layoutX="456.0" layoutY="51.0" pickOnBounds="true">
          <image>
             <Image url="@../img/Plants2.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="monday" layoutX="75.0" layoutY="104.0" onMouseClicked="#handleWeekdayFonts" text="Maanantai">
+      <Label fx:id="monday" layoutX="85.0" layoutY="112.0" onMouseClicked="#handleWeekdayFonts" prefHeight="20.0" prefWidth="89.0" text="Maanantai">
          <font>
-            <Font name="Ink Free" size="18.0" />
+            <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <Label fx:id="tuesday" layoutX="200.0" layoutY="104.0" onMouseClicked="#handleWeekdayFonts" text="Tiistai">
+      <Label fx:id="tuesday" layoutX="208.0" layoutY="112.0" onMouseClicked="#handleWeekdayFonts" prefHeight="20.0" prefWidth="80.0" text="Tiistai">
          <font>
-            <Font name="Ink Free" size="18.0" />
+            <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <Label fx:id="wednesday" layoutX="313.0" layoutY="104.0" onMouseClicked="#handleWeekdayFonts" text="Keskiviikko">
+      <Label fx:id="wednesday" layoutX="314.0" layoutY="110.0" onMouseClicked="#handleWeekdayFonts" prefHeight="22.0" prefWidth="91.0" text="Keskiviikko">
          <font>
-            <Font name="Ink Free" size="18.0" />
+            <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <Label fx:id="thursday" layoutX="487.0" layoutY="104.0" onMouseClicked="#handleWeekdayFonts" text="Torstai">
+      <Label fx:id="thursday" layoutX="495.0" layoutY="112.0" onMouseClicked="#handleWeekdayFonts" prefHeight="20.0" prefWidth="80.0" text="Torstai">
          <font>
-            <Font name="Ink Free" size="18.0" />
+            <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <Label fx:id="friday" layoutX="603.0" layoutY="104.0" onMouseClicked="#handleWeekdayFonts" text="Perjantai">
+      <Label fx:id="friday" layoutX="608.0" layoutY="111.0" onMouseClicked="#handleWeekdayFonts" prefHeight="20.0" prefWidth="87.0" text="Perjantai">
          <font>
-            <Font name="Ink Free" size="18.0" />
+            <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <Label fx:id="saturday" layoutX="722.0" layoutY="104.0" onMouseClicked="#handleWeekdayFonts" text="Lauantai">
+      <Label fx:id="saturday" layoutX="724.0" layoutY="111.0" onMouseClicked="#handleWeekdayFonts" prefHeight="22.0" prefWidth="80.0" text="Lauantai">
          <font>
-            <Font name="Ink Free" size="18.0" />
+            <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <Label fx:id="sunday" layoutX="719.0" layoutY="280.0" onMouseClicked="#handleWeekdayFonts" prefHeight="36.0" prefWidth="76.0" text="Sunnuntai">
+      <Label fx:id="sunday" layoutX="723.0" layoutY="290.0" onMouseClicked="#handleWeekdayFonts" prefHeight="22.0" prefWidth="80.0" text="Sunnuntai">
          <font>
-            <Font name="Ink Free" size="18.0" />
+            <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <Label fx:id="mondayDate" layoutX="54.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" text="2" textFill="#868383">
+      <Label fx:id="mondayDate" layoutX="63.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" prefHeight="15.0" prefWidth="20.0" text="2" textFill="#868383">
          <font>
             <Font name="Britannic Bold" size="13.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <Label fx:id="fridayDate" layoutX="576.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" text="6" textFill="#868383">
+      <Label fx:id="fridayDate" layoutX="581.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" prefHeight="15.0" prefWidth="20.0" text="6" textFill="#868383">
          <font>
             <Font name="Britannic Bold" size="13.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <Label fx:id="thursdayDate" layoutX="460.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" text="5" textFill="#868383">
+      <Label fx:id="thursdayDate" layoutX="468.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" prefHeight="13.0" prefWidth="20.0" text="5" textFill="#868383">
          <font>
             <Font name="Britannic Bold" size="13.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <Label fx:id="wednesdayDate" layoutX="291.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" text="4" textFill="#868383">
+      <Label fx:id="wednesdayDate" layoutX="295.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" prefHeight="15.0" prefWidth="23.0" text="4" textFill="#868383">
          <font>
             <Font name="Britannic Bold" size="13.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <Label fx:id="tuesdayDate" layoutX="171.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" text="3" textFill="#868383">
+      <Label fx:id="tuesdayDate" layoutX="177.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" prefHeight="15.0" prefWidth="23.0" text="3" textFill="#868383">
          <font>
             <Font name="Britannic Bold" size="13.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <Label fx:id="sundayDate" layoutX="696.0" layoutY="297.0" onMouseClicked="#handleWeekdayDateFonts" prefHeight="13.0" prefWidth="19.0" text="8" textFill="#868383">
+      <Label fx:id="sundayDate" layoutX="698.0" layoutY="297.0" onMouseClicked="#handleWeekdayDateFonts" prefHeight="13.0" prefWidth="19.0" text="8" textFill="#868383">
          <font>
             <Font name="Britannic Bold" size="13.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <Label fx:id="saturdayDate" layoutX="696.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" text="7" textFill="#868383">
+      <Label fx:id="saturdayDate" layoutX="698.0" layoutY="116.0" onMouseClicked="#handleWeekdayDateFonts" prefHeight="13.0" prefWidth="20.0" text="7" textFill="#868383">
          <font>
             <Font name="Britannic Bold" size="13.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <Label fx:id="month" layoutX="57.0" layoutY="70.0" onMouseClicked="#handleHeaderFonts" text="Syyskuu 2019" textFill="#112a43">
+      <Label fx:id="month" layoutX="57.0" layoutY="70.0" onMouseClicked="#handleHeaderFonts" prefHeight="24.0" prefWidth="337.0" text="Joulukuu/Tammikuu 2018/2019" textFill="#112a43">
          <font>
-            <Font name="Britannic Bold" size="24.0" />
+            <Font name="Britannic Bold" size="22.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
       <Label fx:id="week" layoutX="768.0" layoutY="70.0" onMouseClicked="#handleHeaderFonts" text="35" textFill="#112a43">
          <font>
             <Font name="Britannic Bold" size="24.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
       <MenuBar layoutX="54.0" layoutY="135.0" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: transparent;">
          <menus>
@@ -210,16 +262,28 @@
          <image>
             <Image url="@../img/iconfinder_icon-chevron-right_211647.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fitHeight="27.0" fitWidth="100.0" layoutX="7.0" layoutY="299.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#handleWeekBack" opacity="0.3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/iconfinder_icon-chevron-right_211647.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
-      <GridPane layoutX="30.0" layoutY="160.0" prefHeight="271.0" prefWidth="136.0">
+      <GridPane layoutX="51.0" layoutY="160.0" prefHeight="271.0" prefWidth="642.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.77775573730469" minWidth="6.333332061767578" prefWidth="23.666664123535156" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.44445037841797" minWidth="10.0" prefWidth="112.33333587646484" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.77775573730469" minWidth="6.333332061767578" prefWidth="17.5555419921875" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.44445037841797" minWidth="10.0" prefWidth="105.77778625488281" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="178.77780151367188" minWidth="10.0" prefWidth="119.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.44445037841797" minWidth="7.8888702392578125" prefWidth="108.77774047851562" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.44445037841797" minWidth="10.0" prefWidth="54.222259521484375" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.44445037841797" minWidth="10.0" prefWidth="17.222259521484375" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.44445037841797" minWidth="10.0" prefWidth="103.44439697265625" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.44445037841797" minWidth="10.0" prefWidth="116.55560302734375" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -239,7 +303,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Uusi merkintä Uusi merkintä" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label maxHeight="60.0" maxWidth="105.0" minHeight="15.0" minWidth="105.0" text="Uusi merkintä Uusi merkintä" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="10.0" />
                </font>
@@ -319,7 +383,88 @@
                   <Font size="10.0" />
                </font>
             </Label>
+            <Label text="08" GridPane.columnIndex="5" GridPane.rowIndex="1">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label text="07" GridPane.columnIndex="5">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label text="09" GridPane.columnIndex="5" GridPane.rowIndex="2">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label text="10" GridPane.columnIndex="5" GridPane.rowIndex="3">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label text="11" GridPane.columnIndex="5" GridPane.rowIndex="4">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label text="12" GridPane.columnIndex="5" GridPane.rowIndex="5">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label text="13" GridPane.columnIndex="5" GridPane.rowIndex="6">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label text="14" GridPane.columnIndex="5" GridPane.rowIndex="7">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label text="15" GridPane.columnIndex="5" GridPane.rowIndex="8">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label text="16" GridPane.columnIndex="5" GridPane.rowIndex="9">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label text="17" GridPane.columnIndex="5" GridPane.rowIndex="10">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label text="18" GridPane.columnIndex="5" GridPane.rowIndex="11">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label text="19" GridPane.columnIndex="5" GridPane.rowIndex="12">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label text="20" GridPane.columnIndex="5" GridPane.rowIndex="13">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label text="21" GridPane.columnIndex="5" GridPane.rowIndex="14">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <TextFlow prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
          </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
       </GridPane>
+      <ColorPicker layoutX="110.0" layoutY="541.0" />
+      <TextArea layoutX="475.0" layoutY="407.0" prefHeight="37.0" prefWidth="40.0" text="hsdfsöhaödgkjdlkjgdlhköafa" />
    </children>
 </AnchorPane>

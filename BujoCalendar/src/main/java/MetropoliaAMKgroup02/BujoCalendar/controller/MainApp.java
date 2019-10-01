@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import MetropoliaAMKgroup02.BujoCalendar.model.Menu;
 import MetropoliaAMKgroup02.BujoCalendar.view.CalendarOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.FontOverviewController;
+import MetropoliaAMKgroup02.BujoCalendar.view.RootLayoutController;
 
 public class MainApp extends Application {
 
@@ -20,6 +21,7 @@ public class MainApp extends Application {
     private BorderPane rootLayout;
     private CalendarOverviewController calController;
     private FontOverviewController fontController;
+    private RootLayoutController rootController;
     
 	@Override
 	public void start(Stage primaryStage) {
@@ -36,6 +38,9 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/fxml/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
+            
+            rootController = loader.getController();	//Lisätty
+        	rootController.setMainApp(this);			//Lisätty
             
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -59,8 +64,6 @@ public class MainApp extends Application {
             calController.setMainApp(this);
             
             calController.getCurrentDate();
-            
-            //calController.getTheRightWeek();
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -97,11 +100,16 @@ public class MainApp extends Application {
         }
     }
   
-    
     public int fontValue(int value) {
     	fontController.fontValue(value);
     	System.out.println("main " + value);
     	return value;
+    }
+    
+    public String getSelectedDateView(String date) {
+    	
+    	calController.handleSelectedDateView(date);
+    	return date;
     }
 
     public Stage getPrimaryStage() {

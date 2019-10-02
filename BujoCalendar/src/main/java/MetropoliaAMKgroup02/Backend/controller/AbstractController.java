@@ -9,9 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-
 import MetropoliaAMKgroup02.Backend.Database;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -26,7 +24,6 @@ import java.util.logging.Logger;
  * @author heikki
  */
 public abstract class AbstractController implements HttpHandler {
-
 	protected Database data;
 	protected ObjectMapper mapper;
 	 
@@ -98,7 +95,7 @@ public abstract class AbstractController implements HttpHandler {
 			e.printStackTrace();
 		}
 	}
-	
+
 	protected String json(Object obj) {
 		String json = "";
 		try {
@@ -139,6 +136,5 @@ public abstract class AbstractController implements HttpHandler {
 	protected abstract Object handlePut(String string, URI uri);
 	protected abstract Object handleDelete(int id, URI uri);
 	protected abstract Object handleDelete(URI uri);
-
-
+	
 }

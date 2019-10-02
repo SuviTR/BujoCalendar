@@ -12,6 +12,7 @@ import java.net.InetSocketAddress;
 
 /**
  *
+ * Simple backend for project
  * @author heikki
  */
 public class Backend {

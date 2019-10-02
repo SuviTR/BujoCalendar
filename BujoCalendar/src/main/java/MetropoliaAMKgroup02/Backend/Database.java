@@ -12,6 +12,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 /**
  *
+ * Simple database class
  * @author heikki
  */
 public class Database {

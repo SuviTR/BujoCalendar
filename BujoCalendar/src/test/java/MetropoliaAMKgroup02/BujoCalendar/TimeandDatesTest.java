@@ -33,7 +33,7 @@ public class TimeandDatesTest {
     }
 
     @Test
-    @DisplayName("Test if week number is right based on a date of monday.")
+    @DisplayName("Test if week number is right based on a date of monday")
     public void testGetWeekNumber2() {
     	int weekTest = timeDates.getWeekNumber("2019-10-07");
         int week = 41;

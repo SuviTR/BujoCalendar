@@ -8,13 +8,12 @@ import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 
-
 public class TimeandDatesTest {
 	
 	private TimeandDates timeDates = new TimeandDates();
 	
 	@BeforeEach
-    public void clearCalculator() {
+    public void currentDate() {
         timeDates.getCurrentDate();
     }
 
@@ -25,7 +24,6 @@ public class TimeandDatesTest {
         assertEquals(date,dateTest, "Dates are not equal.");
     }
 
-    
     @Test
     @DisplayName("Test if a week number is equal to the current week number")
     public void testGetWeekNumber() {

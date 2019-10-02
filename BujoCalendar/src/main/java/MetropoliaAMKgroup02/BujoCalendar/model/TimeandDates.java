@@ -69,7 +69,7 @@ public class TimeandDates {
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		mon = df.format(cal.getTime());
 		String monDay = mon.substring(mon.length() - 2);
-		System.out.println("mon" + mon);
+		System.out.println("mon" + monDay);
 		getNewWeekNumber();
 		dayList[0] = monDay;
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
@@ -101,7 +101,7 @@ public class TimeandDates {
 		sun = df.format(cal.getTime());
 		String sunDay = sun.substring(sun.length() - 2);
 		dayList[6] = sunDay;
-		System.out.println("Sun" + sun);
+		System.out.println("Sun" + sunDay);
 		
 		return dayList;
 	}

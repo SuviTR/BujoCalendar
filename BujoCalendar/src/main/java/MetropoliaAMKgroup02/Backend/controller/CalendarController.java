@@ -49,12 +49,27 @@ public class CalendarController extends AbstractController {
 	}
 
 	@Override
-	protected Object handlePut() {
+	protected Object handlePut(int id, String body, URI uri) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
 	@Override
-	protected Object handleDelete() {
+	protected Object handleDelete(int id, URI uri) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	protected Object handleGet(URI uri) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	protected Object handlePut(String string, URI uri) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	protected Object handleDelete(URI uri) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 }

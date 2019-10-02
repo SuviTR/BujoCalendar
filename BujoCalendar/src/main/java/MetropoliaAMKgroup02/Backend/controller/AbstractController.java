@@ -26,9 +26,13 @@ import java.util.logging.Logger;
  * @author heikki
  */
 public abstract class AbstractController implements HttpHandler {
+
 	protected Database data;
+	protected ObjectMapper mapper;
+	 
 	public AbstractController(Database data) {
 		this.data = data;
+		this.mapper = new ObjectMapper();
 	}
 	public void handle(HttpExchange HttpObject) throws IOException {
 
@@ -39,22 +43,40 @@ public abstract class AbstractController implements HttpHandler {
 		
 		String method = HttpObject.getRequestMethod();
 		Object responseObj;
+		URI uri;
+		uri = HttpObject.getRequestURI();
+		Integer id;
 		
 		switch (method) {
 			case "GET":
-				responseObj = this.handleGet(0, HttpObject.getRequestURI());
+			id = this.parseId(uri);
+				if (id == null) {
+					responseObj = this.handleGet(uri);
+
+				} else {
+					responseObj = this.handleGet(id, uri);
+				}
 				break;
 			case "PUT":
-				//throw new Exception("PUT-metodia ei vielä toteutettu");
-				responseObj = new Object();
+				id = this.parseId(uri);
+				if (id == null) {
+					responseObj = this.handlePut("", uri);
+
+				} else {
+					responseObj = this.handlePut(id, "", HttpObject.getRequestURI());
+				}
 				break;
 			case "POST":
 				responseObj = this.handlePost(new String(requestBody),
 					HttpObject.getRequestURI());
 				break;
 			case "DELETE":
-				//throw new Exception("DELETE-metodia ei vielä toteutettu");
-				responseObj = new Object();
+				id = this.parseId(uri);
+				if (id == null) {
+					responseObj = this.handleDelete(HttpObject.getRequestURI());
+				} else {
+					responseObj = this.handleDelete(id, HttpObject.getRequestURI());
+				}
 				break;
 			default:
 				responseObj = new Object();
@@ -78,7 +100,6 @@ public abstract class AbstractController implements HttpHandler {
 	}
 	
 	protected String json(Object obj) {
-		ObjectMapper mapper = new ObjectMapper();
 		String json = "";
 		try {
 			json = mapper.writeValueAsString(obj);
@@ -89,10 +110,35 @@ public abstract class AbstractController implements HttpHandler {
 		return json;
 	}
 
+	private Integer parseId(URI uri) {
+		String path = uri.getPath();
+
+		if (path == null) {
+			return null;
+		}
+		
+		String[] parts = path.split("/");
+
+		try {
+			// 0="/", 1=emdpoint, 2=id
+			Integer id = Integer.parseInt(parts[2]);
+			return id;
+		} catch(Exception e) {
+			// First part of the URL wasn't id...
+			return null;
+		}
+
+
+	}
+
 	protected abstract Object sendResponse(URI uri, String body);
+	protected abstract Object handleGet(URI uri);
 	protected abstract Object handleGet(int id, URI uri);
 	protected abstract Object handlePost(String body, URI uri);
-	protected abstract Object handlePut();
-	protected abstract Object handleDelete();
-	
+	protected abstract Object handlePut(int id, String body, URI uri);
+	protected abstract Object handlePut(String string, URI uri);
+	protected abstract Object handleDelete(int id, URI uri);
+	protected abstract Object handleDelete(URI uri);
+
+
 }

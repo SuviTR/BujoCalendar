@@ -11,25 +11,38 @@ package MetropoliaAMKgroup02.Backend.model;
  */
 public class TestModel {
 
-	private final String pet;
-	private final String age;
-	private final String name;
-	
-	public TestModel(String name, String age, String pet) {
-		this.name = name;
-		this.age = age;
-		this.pet = pet;
+	public String pet;
+	public String age;
+	public String name;
+
+	public TestModel() {
+
 	}
 
+	public TestModel(String givenname, String givenage, String givenpet) {
+		this.age = givenage;
+		this.name = givenname;
+		this.pet = givenpet;
+	}
+	
 	public String getPet() {
 		return pet;
+	}
+	public void setPet(String pet) {
+		this.pet = pet;
 	}
 
 	public String getAge() {
 		return age;
 	}
+	public void setAge(String age) {
+		this.age = age;
+	}
 
 	public String getName() {
 		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }

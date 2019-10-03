@@ -18,19 +18,20 @@ import java.net.URI;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import MetropoliaAMKgroup02.Common.JSONHandler;
 
 /**
  *
  * @author heikki
  */
-public abstract class AbstractController implements HttpHandler {
+public abstract class AbstractController extends JSONHandler implements HttpHandler {
 	protected Database data;
-	protected ObjectMapper mapper;
 	 
 	public AbstractController(Database data) {
 		this.data = data;
-		this.mapper = new ObjectMapper();
 	}
+
+	@Override
 	public void handle(HttpExchange HttpObject) throws IOException {
 
 		System.out.println(new Date().toString() + " Got request from: " + HttpObject.getRequestURI().toString());
@@ -97,14 +98,7 @@ public abstract class AbstractController implements HttpHandler {
 	}
 
 	protected String json(Object obj) {
-		String json = "";
-		try {
-			json = mapper.writeValueAsString(obj);
-		} catch (JsonProcessingException ex) {
-			Logger.getLogger(AbstractController.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
-		return json;
+		return this.ObjToJSON(obj);
 	}
 
 	private Integer parseId(URI uri) {
@@ -136,5 +130,5 @@ public abstract class AbstractController implements HttpHandler {
 	protected abstract Object handlePut(String string, URI uri);
 	protected abstract Object handleDelete(int id, URI uri);
 	protected abstract Object handleDelete(URI uri);
-	
+
 }

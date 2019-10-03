@@ -5,8 +5,8 @@
  */
 package MetropoliaAMKgroup02.Backend.controller;
 
+import MetropoliaAMKgroup02.Common.TestModel;
 import MetropoliaAMKgroup02.Backend.Database;
-import MetropoliaAMKgroup02.Backend.model.*;
 //import MetropoliaAMKgroup02.Backend.model.Merkinta.Prior;
 
 import java.util.Calendar;

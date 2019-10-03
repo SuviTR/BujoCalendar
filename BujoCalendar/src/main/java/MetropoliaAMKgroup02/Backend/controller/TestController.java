@@ -5,13 +5,14 @@
  */
 package MetropoliaAMKgroup02.Backend.controller;
 
+import MetropoliaAMKgroup02.Common.TestModel;
 import MetropoliaAMKgroup02.Backend.Database;
-import MetropoliaAMKgroup02.Backend.model.*;
 import java.io.IOException;
 
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import MetropoliaAMKgroup02.Common.JSONHandler;
 
 /**
  *
@@ -46,15 +47,12 @@ public class TestController extends AbstractController {
 
 	@Override
 	protected Object handlePost(String body, URI uri) {
-		TestModel testModel = new TestModel();
-		testModel.setName("Testmodel!!!");
-
-		try {
-			testModel = this.mapper.readValue(body, TestModel.class);
-		} catch (IOException ex) {
-			Logger.getLogger(TestController.class.getName()).log(Level.SEVERE, null, ex);
+		if (body != "") {
+			TestModel obj = (TestModel) this.JSONToObj(body, TestModel.class);
+			return obj;
+		} else {
+			return null;
 		}
-		return testModel;
 	}
 
 	@Override

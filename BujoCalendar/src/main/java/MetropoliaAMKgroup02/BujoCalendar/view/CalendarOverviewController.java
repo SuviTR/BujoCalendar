@@ -29,6 +29,7 @@ public class CalendarOverviewController {
 	@FXML
 	private Label mondayDate, tuesdayDate, wednesdayDate, thursdayDate,  fridayDate, 
 				  saturdayDate, sundayDate;
+	/*
 	@FXML
 	private Label monday07, monday08, monday09, monday10, monday11, monday12, monday13, monday14,
 				  monday15, monday16, monday17, monday18, monday19, monday20, monday21,
@@ -47,6 +48,7 @@ public class CalendarOverviewController {
 				  saturday19, saturday20, saturday21,
 				  sunday07, sunday08, sunday09, sunday10, sunday11, sunday12, sunday13, sunday14,
 				  sunday15, sunday16, sunday17, sunday18, sunday19, sunday20, sunday21;
+				  */
 	@FXML
 	private MenuButton fonts;
 
@@ -75,9 +77,7 @@ public class CalendarOverviewController {
 		saturdayDate.setText(dayList[5]);
 		sundayDate.setText(dayList[6]);
 		
-		String monthString = dates.getMonth();
-		String yearString = dates.getYear();
-		String monthYear = monthString + " " + yearString;
+		String monthYear = dates.getMonth() + " " + dates.getYear();
 		month.setText(monthYear);
 		
 		week.setText(String.valueOf(weekNumber));
@@ -105,9 +105,7 @@ public class CalendarOverviewController {
 		saturdayDate.setText(dayList[5]);
 		sundayDate.setText(dayList[6]);
 		
-		String monthString = dates.getMonth();
-		String yearString = dates.getYear();
-		String monthYear = monthString + " " + yearString;
+		String monthYear = dates.getMonth() + " " + dates.getYear();
 		month.setText(monthYear);
 		
 		week.setText(dates.getNewWeekNumber());
@@ -133,10 +131,8 @@ public class CalendarOverviewController {
 		fridayDate.setText(dayList[4]);
 		saturdayDate.setText(dayList[5]);
 		sundayDate.setText(dayList[6]);
-		
-		String monthString = dates.getMonth();
-		String yearString = dates.getYear();
-		String monthYear = monthString + " " + yearString;
+
+		String monthYear = dates.getMonth() + " " + dates.getYear();
 		month.setText(monthYear);
 		
 		week.setText(dates.getNewWeekNumber());

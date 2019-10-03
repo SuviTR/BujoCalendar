@@ -16,27 +16,32 @@ import java.net.URI;
  */
 public class HenkiloController extends AbstractController {
 
+	HenkiloModel henkilot = new HenkiloModel(this.data);
+
 	public HenkiloController(Database data) {
 		super(data);
 	}
 
 	@Override
 	protected Object sendResponse(URI uri, String body) {
-		HenkiloModel henkilot = new HenkiloModel(this.data);
 		henkilot.addHenkilo();
-		Object object = henkilot.getAll();
+		Object object = henkilot.getHenkilo((long) 1);
 		
 		return object;
 	}
 
 	@Override
 	protected Object handleGet(int id, URI uri) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		Object object = henkilot.getAll();
+		
+		return object;
 	}
 
 	@Override
 	protected Object handlePost(String body, URI uri) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		henkilot.addHenkilo();
+		Object object = henkilot.getAll();
+		return object;
 	}
 
 	@Override

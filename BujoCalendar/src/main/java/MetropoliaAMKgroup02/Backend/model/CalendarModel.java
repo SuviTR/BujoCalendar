@@ -36,6 +36,7 @@ public class CalendarModel {
 	
 			transaktio.commit();
 			istunto.close();
+			
 		}
 	}
 	// Tiedon haku (kaikki valuutat) (Read)

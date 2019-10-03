@@ -64,7 +64,7 @@ public class HenkiloModel{
 	public Object getAll() {
 			Session istunto = istuntotehdas.openSession();
 			istunto.beginTransaction();
-			List result = istunto.createQuery( "from Henmkilo" ).list();
+			List result = istunto.createQuery( "from Henkilo" ).list();
 			
 			istunto.getTransaction().commit();
 			istunto.close();
@@ -72,5 +72,17 @@ public class HenkiloModel{
 			return (Object) result;
 				
 		}
+	// Tiedon haku avaimen perusteella (Read)
+	public Object getHenkilo(Long id) {
+			Session istunto = istuntotehdas.openSession();
+			istunto.beginTransaction();
+			Henkilo henkilo = new Henkilo();
+			istunto.load(henkilo, id);
+			String result = henkilo.getEtunimi() + henkilo.getSukunimi();
+			istunto.getTransaction().commit();
+			istunto.close();
+			
+			return (Object) result;
+	}
 	
 }

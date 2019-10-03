@@ -39,8 +39,8 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("/fxml/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
             
-            rootController = loader.getController();	//Lisätty
-        	rootController.setMainApp(this);			//Lisätty
+            rootController = loader.getController();
+        	rootController.setMainApp(this);
             
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);

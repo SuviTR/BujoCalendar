@@ -11,7 +11,6 @@ public class TimeandDates {
 	private String date;
 	private String mon;
 	private String sun;
-	private int month;
 	
 	//======= Get date of today =======
 	public String getCurrentDate() {

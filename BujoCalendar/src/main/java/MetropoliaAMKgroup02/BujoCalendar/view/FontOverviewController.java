@@ -27,8 +27,6 @@ public class FontOverviewController {
 		ObservableList<MenuItem> items = menu.getFontList();
 		chooseFont.getItems().addAll(items);
 		fontValue = fontValue(fontValue);
-		System.out.println("ini " + fontValue);
-		
 	}
 
 	public void setDialogStage(Stage dialogStage) {
@@ -41,7 +39,6 @@ public class FontOverviewController {
 
 	@FXML
 	private void handleOk() {
-		System.out.println("ok " + fontValue);
 		if (fontValue == 1) {
 			calController.setNewWeekdayFont(newFont);
 		}
@@ -57,7 +54,6 @@ public class FontOverviewController {
 	
 	public int fontValue(int value) {
 		fontValue = value;
-		System.out.println("font " + fontValue);
 		return fontValue = value;
 	}
 	public void sendNewWeekdayFont(String font) {

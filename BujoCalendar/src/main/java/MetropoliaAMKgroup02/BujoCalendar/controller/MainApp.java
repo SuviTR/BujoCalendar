@@ -27,9 +27,9 @@ public class MainApp extends Application {
     
 	@Override
 	public void start(Stage primaryStage) {
-		TestModel testi = new TestModel("Pertti", "52", "Murre");
+		/*TestModel testi = new TestModel("Pertti", "52", "Murre");
 		HttpClient backend = new HttpClient();
-		backend.post("/test", testi, TestModel.class);
+		backend.post("/test", testi, TestModel.class);*/
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("My Bullet Journal Calendar");
 		this.primaryStage.getIcons().add(new Image("https://stickershop.line-scdn.net/stickershop/v1/product/3238751/LINEStorePC/main.png;compress=true"));

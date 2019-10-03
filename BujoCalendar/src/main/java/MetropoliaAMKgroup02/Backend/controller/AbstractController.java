@@ -9,9 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-
 import MetropoliaAMKgroup02.Backend.Database;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -20,16 +18,20 @@ import java.net.URI;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import MetropoliaAMKgroup02.Common.JSONHandler;
 
 /**
  *
  * @author heikki
  */
-public abstract class AbstractController implements HttpHandler {
+public abstract class AbstractController extends JSONHandler implements HttpHandler {
 	protected Database data;
+	 
 	public AbstractController(Database data) {
 		this.data = data;
 	}
+
+	@Override
 	public void handle(HttpExchange HttpObject) throws IOException {
 
 		System.out.println(new Date().toString() + " Got request from: " + HttpObject.getRequestURI().toString());
@@ -37,9 +39,49 @@ public abstract class AbstractController implements HttpHandler {
 		byte requestBody[] = new byte[1024];
 		is.read(requestBody);
 		
-		String response = this.json(this.sendResponse(HttpObject.getRequestURI(),
-			new String(requestBody)
-		));
+		String method = HttpObject.getRequestMethod();
+		Object responseObj;
+		URI uri;
+		uri = HttpObject.getRequestURI();
+		Integer id;
+		
+		switch (method) {
+			case "GET":
+			id = this.parseId(uri);
+				if (id == null) {
+					responseObj = this.handleGet(uri);
+
+				} else {
+					responseObj = this.handleGet(id, uri);
+				}
+				break;
+			case "PUT":
+				id = this.parseId(uri);
+				if (id == null) {
+					responseObj = this.handlePut("", uri);
+
+				} else {
+					responseObj = this.handlePut(id, "", HttpObject.getRequestURI());
+				}
+				break;
+			case "POST":
+				responseObj = this.handlePost(new String(requestBody),
+					HttpObject.getRequestURI());
+				break;
+			case "DELETE":
+				id = this.parseId(uri);
+				if (id == null) {
+					responseObj = this.handleDelete(HttpObject.getRequestURI());
+				} else {
+					responseObj = this.handleDelete(id, HttpObject.getRequestURI());
+				}
+				break;
+			default:
+				responseObj = new Object();
+				break;
+		}
+
+		String response = this.json(responseObj);
 		
 		byte[] bytes = response.getBytes();
 
@@ -54,23 +96,39 @@ public abstract class AbstractController implements HttpHandler {
 			e.printStackTrace();
 		}
 	}
-	
+
 	protected String json(Object obj) {
-		ObjectMapper mapper = new ObjectMapper();
-		String json = "";
+		return this.ObjToJSON(obj);
+	}
+
+	private Integer parseId(URI uri) {
+		String path = uri.getPath();
+
+		if (path == null) {
+			return null;
+		}
+		
+		String[] parts = path.split("/");
+
 		try {
-			json = mapper.writeValueAsString(obj);
-		} catch (JsonProcessingException ex) {
-			Logger.getLogger(AbstractController.class.getName()).log(Level.SEVERE, null, ex);
+			// 0="/", 1=emdpoint, 2=id
+			Integer id = Integer.parseInt(parts[2]);
+			return id;
+		} catch(Exception e) {
+			// First part of the URL wasn't id...
+			return null;
 		}
 
-		return json;
+
 	}
 
 	protected abstract Object sendResponse(URI uri, String body);
+	protected abstract Object handleGet(URI uri);
 	protected abstract Object handleGet(int id, URI uri);
 	protected abstract Object handlePost(String body, URI uri);
-	protected abstract Object handlePut();
-	protected abstract Object handleDelete();
-	
+	protected abstract Object handlePut(int id, String body, URI uri);
+	protected abstract Object handlePut(String string, URI uri);
+	protected abstract Object handleDelete(int id, URI uri);
+	protected abstract Object handleDelete(URI uri);
+
 }

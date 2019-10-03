@@ -6,9 +6,12 @@
 package MetropoliaAMKgroup02.Backend.controller;
 
 import MetropoliaAMKgroup02.Backend.Database;
-import MetropoliaAMKgroup02.Backend.model.HenkiloModel;
+import MetropoliaAMKgroup02.Backend.model.*;
 
+import java.io.IOException;
 import java.net.URI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,27 +34,57 @@ public class HenkiloController extends AbstractController {
 	}
 
 	@Override
+	protected Object handleGet(URI uri) {
+		// TODO Auto-generated method stub
+		HenkiloModel henkilo = new HenkiloModel(data);
+		return henkilo.getAll();
+	}
+
+	@Override
 	protected Object handleGet(int id, URI uri) {
-		Object object = henkilot.getAll();
-		
-		return object;
+		HenkiloModel henkilo = new HenkiloModel(this.data);
+		return henkilo.getHenkilo(id);
 	}
 
 	@Override
 	protected Object handlePost(String body, URI uri) {
-		henkilot.addHenkilo();
-		Object object = henkilot.getAll();
-		return object;
+		HenkiloModel henkiloModel = new HenkiloModel(this.data);
+		Henkilo henkilo = new Henkilo();
+		try {
+			henkilo = this.mapper.readValue(body, Henkilo.class);
+		} catch (IOException ex) {
+			Logger.getLogger(HenkiloController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		henkiloModel.addHenkilo(henkilo);
+		return henkilo;
 	}
 
 	@Override
-	protected Object handlePut() {
+	protected Object handlePut(int id, String body, URI uri) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+/*		HenkiloModel henkilo = new HenkiloModel(this.data);
+		henkilo.getHenkilo(id);
+		return henkilo;
+		*/
 	}
 
 	@Override
-	protected Object handleDelete() {
+	protected Object handleDelete(int id, URI uri) {
+
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//		return new TestModel("Delete-metodi", uri.getPath(), "ID: " + id);
 	}
-	
+
+	@Override
+	protected Object handlePut(String string, URI uri) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//		return new TestModel("PUT-metodi", uri.getPath(), uri.getHost());
+	}
+
+	@Override
+	protected Object handleDelete(URI uri) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//		return new TestModel("DELETE-metodi", uri.getPath(), uri.getHost());
+	}
+
 }

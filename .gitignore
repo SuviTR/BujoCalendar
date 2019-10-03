@@ -1,10 +1,14 @@
 /.metadata/
 
+BujoCalendar/nb*.xml
+
 BujoCalendar/.settings/
 
 BujoCalendar/.project
 
 BujoCalendar/.classpath
+
+BujoCalendar/.settings/
 
 BujoCalendar/bin/
 

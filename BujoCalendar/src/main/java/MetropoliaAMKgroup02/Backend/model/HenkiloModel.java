@@ -18,43 +18,25 @@ public class HenkiloModel{
 	public HenkiloModel(Database data){
 		this.istuntotehdas = data.getIstuntoTehdas();
 	}
-	public void addHenkilo() {
+	public void addHenkilo(Henkilo henkilo) {
 		Transaction transaktio = null;
 		try(Session istunto = istuntotehdas.openSession()) {
 			transaktio = istunto.beginTransaction();
 
+			istunto.saveOrUpdate(henkilo);
+	
+			transaktio.commit();
+			istunto.close();
+		}
+	}
+	public void addHenkilo() {
+		Transaction transaktio = null;
+		try(Session istunto = istuntotehdas.openSession()) {
+			transaktio = istunto.beginTransaction();
 			Henkilo henkilo = new Henkilo();
-			
 			henkilo.setEtunimi("Vladimir");
 			henkilo.setSukunimi("Gavrilov");
-			henkilo.setOsoite("Helsinki");
-			henkilo.setPuhelinnumero("0449890965");
-			
-			Henkilo henkilo2 = new Henkilo();
-			
-			henkilo2.setEtunimi("Heikki");
-			henkilo2.setSukunimi("Ketoharju");
-			henkilo2.setOsoite("Helsinki");
-			henkilo2.setPuhelinnumero("0441234567");
-			
-			Henkilo henkilo3 = new Henkilo();
-			
-			henkilo3.setEtunimi("Suvi");
-			henkilo3.setSukunimi("Rannisto");
-			henkilo3.setOsoite("Helsinki");
-			henkilo3.setPuhelinnumero("0441234567");
-			
-			Henkilo henkilo4 = new Henkilo();
-			
-			henkilo4.setEtunimi("Kari");
-			henkilo4.setSukunimi("Lampi");
-			henkilo4.setOsoite("Helsinki");
-			henkilo4.setPuhelinnumero("0441234567");
-
 			istunto.saveOrUpdate(henkilo);
-			istunto.saveOrUpdate(henkilo2);
-			istunto.saveOrUpdate(henkilo3);
-			istunto.saveOrUpdate(henkilo4);
 	
 			transaktio.commit();
 			istunto.close();
@@ -73,16 +55,16 @@ public class HenkiloModel{
 				
 		}
 	// Tiedon haku avaimen perusteella (Read)
-	public Object getHenkilo(Long id) {
+	public Object getHenkilo(int id) {
 			Session istunto = istuntotehdas.openSession();
 			istunto.beginTransaction();
 			Henkilo henkilo = new Henkilo();
 			istunto.load(henkilo, id);
-			String result = henkilo.getEtunimi() + henkilo.getSukunimi();
+			//String result = henkilo.getEtunimi() + " " + henkilo.getSukunimi();
 			istunto.getTransaction().commit();
 			istunto.close();
 			
-			return (Object) result;
+			return (Object) henkilo;
 	}
 	
 }

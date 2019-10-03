@@ -69,39 +69,32 @@ public class TimeandDates {
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		mon = df.format(cal.getTime());
 		String monDay = mon.substring(mon.length() - 2);
-		System.out.println("mon" + monDay);
 		getNewWeekNumber();
 		dayList[0] = monDay;
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
 		String tue = df.format(cal.getTime());
 		String tueDay = tue.substring(tue.length() - 2);
 		dayList[1] = tueDay;
-		System.out.println("mon" + tueDay);
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
 		String wed = df.format(cal.getTime());
 		String wedDay = wed.substring(wed.length() - 2);
 		dayList[2] = wedDay;
-		System.out.println("mon" + wedDay);
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
 		String thu = df.format(cal.getTime());
 		String thuDay = thu.substring(thu.length() - 2);
 		dayList[3] = thuDay;
-		System.out.println("mon" + thuDay);
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
 		String fri = df.format(cal.getTime());
 		String friDay = fri.substring(fri.length() - 2);
 		dayList[4] = friDay;
-		System.out.println("mon" + friDay);
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
 		String sat = df.format(cal.getTime());
 		String satDay = sat.substring(sat.length() - 2);
 		dayList[5] = satDay;
-		System.out.println("mon" + satDay);
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
 		sun = df.format(cal.getTime());
 		String sunDay = sun.substring(sun.length() - 2);
 		dayList[6] = sunDay;
-		System.out.println("Sun" + sunDay);
 		
 		return dayList;
 	}
@@ -148,7 +141,6 @@ public class TimeandDates {
 
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		mon = df.format(cal.getTime());
-		System.out.println("Mon" + mon);
 		String monDay = mon.substring(mon.length() - 2);
 		dayList[0] = monDay;
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);

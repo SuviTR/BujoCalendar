@@ -12,20 +12,16 @@ import java.net.InetSocketAddress;
 
 /**
  *
+ * Simple backend for project
  * @author heikki
  */
 public class Backend {
 	
 	public static void main(String[] args) {
-		HttpServer server = null;
-		try {
-			server = HttpServer.create(new InetSocketAddress(8000), 0);
-		} catch (Exception e) {
-			System.out.println("Http-palvelimen luonti ei onnistunut");
-		}
-		server.createContext("/test", new CalendarController());
-		server.setExecutor(null); // creates a default executor
+		System.out.println("Creating database:");
+		Database database = new Database();
+		System.out.println("Created.");
 		System.out.println("Starting server:");
-		server.start();
+		Server server = new Server(database);
 	}
 }

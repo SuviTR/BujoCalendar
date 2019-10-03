@@ -6,37 +6,21 @@
 package MetropoliaAMKgroup02.Backend.controller;
 
 import MetropoliaAMKgroup02.Backend.Database;
-import MetropoliaAMKgroup02.Backend.model.*;
-//import MetropoliaAMKgroup02.Backend.model.Merkinta.Prior;
-
-import java.util.Calendar;
 import java.net.URI;
 
 /**
  *
- * @author vladimir
+ * @author heikki
  */
-public class CalendarController extends AbstractController {
-	public CalendarController(Database data) {
+public class HenkiloController extends AbstractController {
+
+	public HenkiloController(Database data) {
 		super(data);
 	}
-	
-	/**
-	 *
-	 * @param body
-	 * @return
-	 */
+
 	@Override
 	protected Object sendResponse(URI uri, String body) {
-//		CalendarModel merkintoja = new CalendarModel(this.data);
-//		merkintoja.addMerkinta();
-//		Object object = merkintoja.getAll();
-
-		TestModel test = new TestModel("Teppo Testaaja", 
-			"53", 
-			"Kissa kirnauskis");
-
-		return test;
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
 	@Override

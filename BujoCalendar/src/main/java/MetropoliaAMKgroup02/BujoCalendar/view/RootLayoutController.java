@@ -35,7 +35,6 @@ public class RootLayoutController {
 	}
 	
 	public void getSelectedDateView(String date) {
-		System.out.println("Selected" + date);
 		mainApp.getSelectedDateView(date);
 	}
 

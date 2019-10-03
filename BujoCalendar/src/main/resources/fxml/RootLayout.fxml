@@ -9,15 +9,17 @@
    <top>
       <MenuBar stylesheets="@../menubarStyle.css" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Kalenteri">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#handleSelectDay" text="Valitse päivä" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSelectDay" text="Selaa päiviä" />
+                  <MenuItem mnemonicParsing="false" text="Etsi merkintöjä" />
               <MenuItem mnemonicParsing="false" text="Sulje kalenteri" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
               <MenuItem mnemonicParsing="false" text="Lisää merkintä" />
+                  <MenuItem mnemonicParsing="false" text="Lisää henkilö" />
                   <MenuItem mnemonicParsing="false" text="Lisää to-do-task" />
                   <Menu mnemonicParsing="false" text="Lisää moduuli">
                     <items>

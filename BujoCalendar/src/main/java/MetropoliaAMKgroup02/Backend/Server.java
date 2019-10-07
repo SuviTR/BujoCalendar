@@ -40,6 +40,6 @@ public class Server {
 
 		server.createContext("/calendar", new CalendarController(data));
 		server.createContext("/test", new TestController(data));
-//		server.createContext("/henkilo", new HenkiloController());
+		server.createContext("/henkilo", new HenkiloController(data));
 	}
 }

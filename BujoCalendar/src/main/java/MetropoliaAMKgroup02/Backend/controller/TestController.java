@@ -35,11 +35,13 @@ public class TestController extends AbstractController {
 		throw new UnsupportedOperationException("Deprecated"); //To change body of generated methods, choose Tools | Templates.
 	}
 
+	//localhost:8000/test/1
 	@Override
 	protected Object handleGet(int id, URI uri) {
 		return new TestModel("Get-metodi", uri.getPath(), "ID: " + id);
 	}
 
+	//localhost:8000/test
 	@Override
 	protected Object handleGet(URI uri) {
 		return new TestModel("Get-metodi ilman id:tä", "", "");

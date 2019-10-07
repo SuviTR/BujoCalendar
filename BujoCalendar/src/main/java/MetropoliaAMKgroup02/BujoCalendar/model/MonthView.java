@@ -29,8 +29,7 @@ public class MonthView extends Application {
         GridPane g = new GridPane(); 
 
         DatePicker d = new DatePicker(); 
-        
-        // Action
+   
         d.setOnAction(event -> {
         	selectedDate = d.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             System.out.println("Valittu päivä: " + selectedDate);

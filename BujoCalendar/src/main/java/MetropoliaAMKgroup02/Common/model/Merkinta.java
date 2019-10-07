@@ -21,7 +21,8 @@ public class Merkinta
 	public Prior prior;
 
 	
-	private Calendar date;
+	private Calendar startDate;
+	private Calendar endDate;
 
 	public Merkinta() {}
 
@@ -70,19 +71,31 @@ public class Merkinta
 	}
 	
 	public void setDate(Calendar date){
-		this.date = date;
+		this.startDate = date;
 	}
 	
 	public String getDate(){
-		return String.format("%tF" , date);
+		return String.format("%tF" , startDate);
 	}
 
 	public String getTime(){
-		return String.format("%tR" , date);
+		return String.format("%tR" , startDate);
 	}
 
 	public void deleteDate(){
 		//return null;
+	}
+
+	public int getHour() {
+		return startDate.get(Calendar.HOUR);
+	}
+
+	public int getEndHour() {
+		return endDate.get(Calendar.HOUR);
+	}
+
+	public Calendar getStart() {
+		return startDate;
 	}
 
 }

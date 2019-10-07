@@ -5,6 +5,8 @@
  */
 package MetropoliaAMKgroup02.BujoCalendar.controller;
 
+import MetropoliaAMKgroup02.BujoCalendar.view.MerkintaView;
+import java.util.ArrayList;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -16,6 +18,7 @@ public class CalendarDayController {
 	private final GridPane container;
 	private final int startTime;
 	private final int endTime;
+	private ArrayList<MerkintaView> events;
 	
 	public CalendarDayController(GridPane dayContainer, int startTime, int endTime) {
 		this.container = dayContainer;
@@ -30,6 +33,17 @@ public class CalendarDayController {
 
 	private int rowCount() {
 		return this.endTime - this.startTime;
+	}
+
+	public void drawEvents() {
+		
+		for(MerkintaView event : events) {
+			container.add(event.getGridPane(),
+			0, 
+			event.getStartTime(),
+			0,
+			event.getEndTime());
+		}
 	}
 
 }

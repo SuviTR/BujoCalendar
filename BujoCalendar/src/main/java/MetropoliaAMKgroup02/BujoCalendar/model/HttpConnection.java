@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import MetropoliaAMKgroup02.Common.model.JSONHandler;
+import MetropoliaAMKgroup02.Common.JSONHandler;
 
 /**
  *

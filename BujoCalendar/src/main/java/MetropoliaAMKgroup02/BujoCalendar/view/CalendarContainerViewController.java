@@ -38,6 +38,7 @@ public class CalendarContainerViewController {
 
 	private ArrayList<CalendarDayController> weekdayList;
 	private ArrayList<CalendarDayController> weekendList;
+	private ArrayList<CalendarDayController> dayList;
 
 	private int weekDayStart = 7;
 	private int weekDayEnd = 21;
@@ -47,12 +48,13 @@ public class CalendarContainerViewController {
 	CalendarContainerViewController(GridPane calendarContainer, GridPane weekendContainer) {
 		this.calendarContainer = calendarContainer;
 		this.weekendContainer = weekendContainer;
-		this.weekdayList = new ArrayList<>();
-		this.weekendList = new ArrayList<>();
 	}
 
 
 	public void initDates() {
+		this.weekdayList = new ArrayList<>();
+		this.weekendList = new ArrayList<>();
+		this.dayList = new ArrayList<>();
 
 		for (int i = 0; i < weekdays.length; i++) {
 			GridPane day = this.createDateColumn(weekdays[i], this.calendarContainer);
@@ -60,8 +62,17 @@ public class CalendarContainerViewController {
 				weekDayStart, weekDayEnd));
 		}
 
-		this.createDateRow(SATURDAY, weekendContainer);
-		this.createDateRow(SUNDAY, weekendContainer);
+		weekendList.add(
+			new CalendarDayController(
+				this.createDateRow(SATURDAY, weekendContainer),
+					weekendDayStart,
+					weekendDayEnd)
+		);
+		weekendList.add(
+			new CalendarDayController(
+		this.createDateRow(SUNDAY, weekendContainer), 
+				weekendDayStart,
+				weekendDayEnd));
 
 	}
 
@@ -84,15 +95,9 @@ public class CalendarContainerViewController {
 		
 	}
 
-	private void createWeekend() {
-		
-	}
-
-	/*public void drawEvents(events, day) {
-
-		for (event in events) {
-
+	public void drawEvents() {
+		for(CalendarDayController day : dayList) {
+			day.drawEvents();
 		}
-	}*/
-
+	}
 }

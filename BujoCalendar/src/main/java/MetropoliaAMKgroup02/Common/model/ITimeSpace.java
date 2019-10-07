@@ -1,4 +1,4 @@
-package MetropoliaAMKgroup02.Backend.model;
+package MetropoliaAMKgroup02.Common.model;
 
 import java.util.Calendar;
 

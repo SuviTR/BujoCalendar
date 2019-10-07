@@ -5,11 +5,18 @@
  */
 package MetropoliaAMKgroup02.Backend.controller;
 
-import MetropoliaAMKgroup02.Common.TestModel;
 import MetropoliaAMKgroup02.Backend.Database;
 //import MetropoliaAMKgroup02.Backend.model.Merkinta.Prior;
+import MetropoliaAMKgroup02.Backend.model.CalendarModel;
+import MetropoliaAMKgroup02.Common.model.Merkinta;
+import MetropoliaAMKgroup02.Common.model.TestModel;
 
 import java.util.Calendar;
+
+import java.io.IOException;
+import java.net.URI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.net.URI;
 
 /**
@@ -28,25 +35,40 @@ public class CalendarController extends AbstractController {
 	 */
 	@Override
 	protected Object sendResponse(URI uri, String body) {
-//		CalendarModel merkintoja = new CalendarModel(this.data);
-//		merkintoja.addMerkinta();
-//		Object object = merkintoja.getAll();
+		CalendarModel merkintoja = new CalendarModel(this.data);
+		Object object = merkintoja.getAll();
 
-		TestModel test = new TestModel("Teppo Testaaja", 
-			"53", 
-			"Kissa kirnauskis");
-
-		return test;
+		return object;
 	}
+
+	/*
+	@Override
+	protected Object handleGet1(URI uri) {
+		// TODO Auto-generated method stub
+		CalendarModel calendar = new CalendarModel(data);
+		return calendar.getAll();
+	}*/
 
 	@Override
 	protected Object handleGet(int id, URI uri) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		CalendarModel calendar = new CalendarModel(data);
+		return calendar.getMerkinta(id);
+		
 	}
 
 	@Override
 	protected Object handlePost(String body, URI uri) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		CalendarModel calendar = new CalendarModel(data);
+		Merkinta merkinta = new Merkinta();	
+		try {
+			merkinta = this.mapper.readValue(body, Merkinta.class);
+		} catch (IOException ex) {
+			Logger.getLogger(HenkiloController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		calendar.addMerkinta(merkinta);
+		return merkinta;
+
+//		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
 	@Override
@@ -61,7 +83,9 @@ public class CalendarController extends AbstractController {
 
 	@Override
 	protected Object handleGet(URI uri) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		CalendarModel calendar = new CalendarModel(data);
+		return calendar.getAll();
+//		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
 	@Override

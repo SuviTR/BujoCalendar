@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 
 import MetropoliaAMKgroup02.Backend.Database;
 import MetropoliaAMKgroup02.Backend.model.*;
+import MetropoliaAMKgroup02.Common.model.Henkilo;
 
 
 public class HenkiloModel{

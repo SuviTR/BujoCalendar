@@ -17,7 +17,6 @@ import MetropoliaAMKgroup02.BujoCalendar.view.FontOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.RootLayoutController;
 import MetropoliaAMKgroup02.Common.model.Merkinta;
 import MetropoliaAMKgroup02.Common.model.TestModel;
-import java.util.ArrayList;
 
 public class MainApp extends Application {
 
@@ -30,12 +29,11 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		/*TestModel testi = new TestModel("Pertti", "52", "Murre");
-		HttpConnection backend = new HttpConnection();
+		HttpClient backend = new HttpClient();
 		backend.post("/test", testi, TestModel.class);
-
-		ArrayList<Merkinta> merkinnat = (ArrayList) backend.get("/calendar");
-
-		//CalendarController.renderMerkinnat(merkinnat);*/
+	//	Merkinta merkinta = new Merkinta();
+	//	backend.post("/calendar", merkinta, Merkinta.class);
+	*/	
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("My Bullet Journal Calendar");
 		this.primaryStage.getIcons().add(new Image("https://stickershop.line-scdn.net/stickershop/v1/product/3238751/LINEStorePC/main.png;compress=true"));

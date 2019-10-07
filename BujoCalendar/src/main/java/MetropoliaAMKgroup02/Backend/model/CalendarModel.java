@@ -8,8 +8,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import MetropoliaAMKgroup02.Backend.Database;
-import MetropoliaAMKgroup02.Backend.model.Merkinta;
-import MetropoliaAMKgroup02.Backend.model.Merkinta.Prior;
+import MetropoliaAMKgroup02.Common.model.Merkinta;
+import MetropoliaAMKgroup02.Common.model.Merkinta.Prior;
 
 
 public class CalendarModel {
@@ -19,20 +19,11 @@ public class CalendarModel {
 	public CalendarModel(Database data){
 		this.istuntotehdas = data.getIstuntoTehdas();
 	}
-	public void addMerkinta() {
+	public void addMerkinta(Merkinta merkinta) {
 		Transaction transaktio = null;
 		try(Session istunto = istuntotehdas.openSession()) {
 			transaktio = istunto.beginTransaction();
-			Merkinta merk = new Merkinta("Uusi merkintä");
-			merk.setPaikka("Helsinki");
-			merk.setSisalto("Tosi tärkeä tapahtuma!");
-			Calendar date = Calendar.getInstance();
-			date.set(2018, 10, 11);
-			merk.setDate(date);
-			Merkinta merk2 = new Merkinta("Uusi merkintä2");
-			merk2.setPrior(Prior.SMALL);
-			istunto.saveOrUpdate(merk);
-			istunto.saveOrUpdate(merk2);
+			istunto.saveOrUpdate(merkinta);
 	
 			transaktio.commit();
 			istunto.close();
@@ -51,5 +42,17 @@ public class CalendarModel {
 			return (Object) result;
 				
 		}
+
+	public Object getMerkinta(int id) {
+			Session istunto = istuntotehdas.openSession();
+			istunto.beginTransaction();
+			Merkinta merkinta = new Merkinta();
+			istunto.load(merkinta, id);
+			istunto.getTransaction().commit();
+			istunto.close();
+			
+			return (Object) merkinta;
+	}
+	
 	
 }

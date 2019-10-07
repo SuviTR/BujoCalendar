@@ -32,9 +32,14 @@ public class HttpConnection extends JSONHandler {
 		this.baseUrl = "http://localhost:8000";
 	}
 
-	public Object get(String endpoint) {
+	public Object get(String endpoint, Class objectType) {
+		this.connect(endpoint, "GET");
 
-		return new Object();
+		String response = this.readResponse();
+		Object responseObj = this.JSONToObj(response, objectType);
+		this.cleanup();
+
+		return responseObj;
 	}
 
 	public Object put(String endpoint) {

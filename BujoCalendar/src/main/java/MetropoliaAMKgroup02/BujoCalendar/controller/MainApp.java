@@ -1,6 +1,6 @@
 package MetropoliaAMKgroup02.BujoCalendar.controller;
 
-import MetropoliaAMKgroup02.BujoCalendar.model.HttpClient;
+import MetropoliaAMKgroup02.BujoCalendar.model.HttpConnection;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +28,7 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		/*TestModel testi = new TestModel("Pertti", "52", "Murre");
-		HttpClient backend = new HttpClient();
+		HttpConnection backend = new HttpConnection();
 		backend.post("/test", testi, TestModel.class);*/
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("My Bullet Journal Calendar");

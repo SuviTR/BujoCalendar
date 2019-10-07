@@ -20,13 +20,13 @@ import java.util.logging.Logger;
  *
  * @author heikki
  */
-public class HttpClient extends JSONHandler {
+public class HttpConnection extends JSONHandler {
 	
 	private String baseUrl;
 	private String endpoint;
 	private HttpURLConnection con;
 
-	public HttpClient() {
+	public HttpConnection() {
 		super();
 		this.baseUrl = "http://localhost:8000";
 	}
@@ -71,11 +71,11 @@ public class HttpClient extends JSONHandler {
 
 		} catch (MalformedURLException ex) {
 			System.out.println("Malformed url");
-			Logger.getLogger(HttpClient.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(HttpConnection.class.getName()).log(Level.SEVERE, null, ex);
 			return null;
 		} catch (IOException ex) {
 			System.out.println("Connection to " + this.baseUrl + endpoint + " not successfull");
-			Logger.getLogger(HttpClient.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(HttpConnection.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 		return null;
@@ -93,7 +93,7 @@ public class HttpClient extends JSONHandler {
 
 		} catch (IOException ex) {
 			System.out.println("Reading response didn't succeed...");
-			Logger.getLogger(HttpClient.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(HttpConnection.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 		return null;
@@ -106,7 +106,7 @@ public class HttpClient extends JSONHandler {
 			os.write(input, 0, input.length);           
 		} catch (IOException ex) {
 			System.out.println("Writin JSON request body didn't work... Body: " + body);
-			Logger.getLogger(HttpClient.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(HttpConnection.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 

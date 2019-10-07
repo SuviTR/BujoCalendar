@@ -5,17 +5,24 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class TimeandDates {
 	
+	private Locale fiLocale;
 	private String date;
 	private String mon;
 	private String sun;
 	
+	public TimeandDates() {
+		fiLocale = new Locale("fi", "FI");	
+	}
+	
 	//======= Get date of today =======
 	public String getCurrentDate() {
 		
-		Date d = Calendar.getInstance().getTime();
+		Date d = Calendar.getInstance(fiLocale).getTime();
 		DateFormat dayDate = new SimpleDateFormat("yyyy-MM-dd");
 		date = dayDate.format(d);
 		
@@ -34,7 +41,7 @@ public class TimeandDates {
 			e.printStackTrace();
 		}
 		
-		Calendar cal = Calendar.getInstance();
+		Calendar cal = Calendar.getInstance(fiLocale);
 		cal.setTime(dateParse);
 		
 		int week = cal.get(Calendar.WEEK_OF_YEAR);
@@ -62,7 +69,7 @@ public class TimeandDates {
 		cal.setTime(dateParse);
 		
 		int week = cal.get(Calendar.WEEK_OF_YEAR);*/
-		Calendar cal = Calendar.getInstance();
+		Calendar cal = Calendar.getInstance(fiLocale);
 		cal.set(Calendar.WEEK_OF_YEAR, week);     
 
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
@@ -109,7 +116,7 @@ public class TimeandDates {
 			e.printStackTrace();
 		}
 		
-		Calendar cal = Calendar.getInstance();
+		Calendar cal = Calendar.getInstance(fiLocale);
 		cal.setTime(dateParse);
 		
 		int week = cal.get(Calendar.WEEK_OF_YEAR);
@@ -132,7 +139,7 @@ public class TimeandDates {
 			e.printStackTrace();
 		}
 
-		Calendar cal = Calendar.getInstance();
+		Calendar cal = Calendar.getInstance(fiLocale);
 		cal.setTime(dateParse);
 		int weekInt = cal.get(Calendar.WEEK_OF_YEAR);
 

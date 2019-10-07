@@ -60,6 +60,7 @@ public class CalendarOverviewController {
 	private int totalCounter = 0;
 
 	public CalendarOverviewController() {
+		
 	}
 
 	public void getCurrentDate() {

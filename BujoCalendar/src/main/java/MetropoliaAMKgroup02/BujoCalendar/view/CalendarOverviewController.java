@@ -70,7 +70,7 @@ public class CalendarOverviewController {
 	private int totalCounter = 0;
 
 	public void initView() {
-
+		
 		this.getCurrentDate();
 		this.calendarView = new CalendarContainerViewController(
 			calendarContainer, weekendContainer);

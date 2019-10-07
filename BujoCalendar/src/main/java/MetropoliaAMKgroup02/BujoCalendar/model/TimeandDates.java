@@ -15,7 +15,7 @@ public class TimeandDates {
 	private String mon;
 	private String sun;
 	
-	public TimeandDates(TimeZone zone, Locale aLocale) {
+	public TimeandDates() {
 		fiLocale = new Locale("fi", "FI");	
 	}
 	

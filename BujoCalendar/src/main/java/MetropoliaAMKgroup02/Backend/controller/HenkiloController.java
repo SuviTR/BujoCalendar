@@ -7,6 +7,7 @@ package MetropoliaAMKgroup02.Backend.controller;
 
 import MetropoliaAMKgroup02.Backend.Database;
 import MetropoliaAMKgroup02.Backend.model.*;
+import MetropoliaAMKgroup02.Common.model.Henkilo;
 
 import java.io.IOException;
 import java.net.URI;
@@ -19,13 +20,16 @@ import java.util.logging.Logger;
  */
 public class HenkiloController extends AbstractController {
 
+	HenkiloModel henkilot = new HenkiloModel(this.data);
+
 	public HenkiloController(Database data) {
 		super(data);
 	}
 
 	@Override
 	protected Object sendResponse(URI uri, String body) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		HenkiloModel henkilo = new HenkiloModel(data);
+		return henkilo.getAll();
 	}
 
 	@Override

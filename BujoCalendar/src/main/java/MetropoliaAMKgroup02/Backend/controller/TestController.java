@@ -5,14 +5,15 @@
  */
 package MetropoliaAMKgroup02.Backend.controller;
 
-import MetropoliaAMKgroup02.Common.TestModel;
 import MetropoliaAMKgroup02.Backend.Database;
+import MetropoliaAMKgroup02.Common.model.JSONHandler;
+import MetropoliaAMKgroup02.Common.model.TestModel;
+
 import java.io.IOException;
 
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import MetropoliaAMKgroup02.Common.JSONHandler;
 
 /**
  *

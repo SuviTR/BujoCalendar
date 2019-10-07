@@ -12,7 +12,7 @@
                 <property name="show_sql">true</property>
                 <property name="hbm2ddl.auto">update</property>
                 <mapping class="MetropoliaAMKgroup02.hibernateTest.Event"></mapping>
-                <mapping class="MetropoliaAMKgroup02.Backend.model.Henkilo"></mapping>
-                <mapping class="MetropoliaAMKgroup02.Backend.model.Merkinta"></mapping>
+                <mapping class="MetropoliaAMKgroup02.Common.model.Merkinta"></mapping>
+                <mapping class="MetropoliaAMKgroup02.Common.model.Henkilo"></mapping>
         </session-factory>
 </hibernate-configuration>

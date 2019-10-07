@@ -134,7 +134,9 @@ public class TimeandDatesTest {
     	timeDates.getWeekDates(week);
     	
     	String monthTest = timeDates.getMonth();
-        String month = "Syyskuu/Lokakuu";
+    	
+        String month = "Lokakuu";	//KOVAKOODATTU!!
+        
         assertEquals(month, monthTest, "Months are not equal.");
     }
     
@@ -163,7 +165,7 @@ public class TimeandDatesTest {
         
     	timeDates.getWeekDates(week);
     	String yearTest = timeDates.getYear();
-        String year = "2019";
+        String year = "2019";					//KOVAKOODATTU!!
         assertEquals(year, yearTest, "Years are not equal.");
     }
 }

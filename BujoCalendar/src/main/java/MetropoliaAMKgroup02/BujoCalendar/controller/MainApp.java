@@ -40,6 +40,9 @@ public class MainApp extends Application {
 		
 		initRootLayout();
 		showCalendarOverview();
+
+		CalendarController calendarController = new CalendarController();
+		calendarController.getAll();
 	}
 	
     public void initRootLayout() {

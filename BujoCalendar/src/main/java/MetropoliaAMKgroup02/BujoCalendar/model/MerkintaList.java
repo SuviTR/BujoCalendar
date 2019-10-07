@@ -6,6 +6,7 @@
 package MetropoliaAMKgroup02.BujoCalendar.model;
 
 import MetropoliaAMKgroup02.Common.model.Merkinta;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -21,10 +22,12 @@ public class MerkintaList {
 	private HashMap<Calendar, Merkinta> events;
 
 	public MerkintaList() {
+		events = new HashMap<>();
 	}
 
 	public void addMerkinta(Merkinta merkinta) {
-		this.events.put(merkinta.getStart(), merkinta);
+		Calendar date = merkinta.getStart();
+		this.events.put(date, merkinta);
 	}
 
 	public HashMap<Calendar, Merkinta> getAll() {
@@ -35,5 +38,11 @@ public class MerkintaList {
 		return events.entrySet().stream().filter(date -> date == day)
 			.map(Entry::getKey).collect(Collectors.toList());
 
+	}
+
+	public void importList(Merkinta[] merkinnat) {
+		for(int i = 0; i < merkinnat.length; i++) {
+			this.addMerkinta(merkinnat[i]);
+		}
 	}
 }

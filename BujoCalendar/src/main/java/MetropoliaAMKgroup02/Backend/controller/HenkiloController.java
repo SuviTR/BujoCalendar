@@ -7,6 +7,7 @@ package MetropoliaAMKgroup02.Backend.controller;
 
 import MetropoliaAMKgroup02.Backend.Database;
 import MetropoliaAMKgroup02.Backend.model.*;
+import MetropoliaAMKgroup02.Common.model.Henkilo;
 
 import java.io.IOException;
 import java.net.URI;

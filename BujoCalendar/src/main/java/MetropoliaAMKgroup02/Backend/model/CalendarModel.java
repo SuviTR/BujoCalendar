@@ -8,8 +8,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import MetropoliaAMKgroup02.Backend.Database;
-import MetropoliaAMKgroup02.Backend.model.Merkinta;
-import MetropoliaAMKgroup02.Backend.model.Merkinta.Prior;
+import MetropoliaAMKgroup02.Common.model.Merkinta;
+import MetropoliaAMKgroup02.Common.model.Merkinta.Prior;
 
 
 public class CalendarModel {

@@ -5,11 +5,11 @@
  */
 package MetropoliaAMKgroup02.Backend.controller;
 
-import MetropoliaAMKgroup02.Common.TestModel;
 import MetropoliaAMKgroup02.Backend.Database;
 //import MetropoliaAMKgroup02.Backend.model.Merkinta.Prior;
 import MetropoliaAMKgroup02.Backend.model.CalendarModel;
-import MetropoliaAMKgroup02.Backend.model.Merkinta;
+import MetropoliaAMKgroup02.Common.model.Merkinta;
+import MetropoliaAMKgroup02.Common.model.TestModel;
 
 import java.util.Calendar;
 

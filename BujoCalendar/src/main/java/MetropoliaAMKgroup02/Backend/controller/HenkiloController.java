@@ -27,10 +27,8 @@ public class HenkiloController extends AbstractController {
 
 	@Override
 	protected Object sendResponse(URI uri, String body) {
-		henkilot.addHenkilo();
-		Object object = henkilot.getHenkilo((long) 1);
-		
-		return object;
+		HenkiloModel henkilo = new HenkiloModel(data);
+		return henkilo.getAll();
 	}
 
 	@Override

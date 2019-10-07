@@ -5,6 +5,8 @@
  */
 package MetropoliaAMKgroup02.BujoCalendar.view;
 
+import MetropoliaAMKgroup02.BujoCalendar.controller.CalendarDayController;
+import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -34,16 +36,28 @@ public class CalendarContainerViewController {
 	private final GridPane calendarContainer;
 	private final GridPane weekendContainer;
 
+	private ArrayList<CalendarDayController> weekdayList;
+	private ArrayList<CalendarDayController> weekendList;
+
+	private int weekDayStart = 7;
+	private int weekDayEnd = 21;
+	private int weekendDayStart = 10;
+	private int weekendDayEnd = 14;
+
 	CalendarContainerViewController(GridPane calendarContainer, GridPane weekendContainer) {
 		this.calendarContainer = calendarContainer;
 		this.weekendContainer = weekendContainer;
+		this.weekdayList = new ArrayList<>();
+		this.weekendList = new ArrayList<>();
 	}
 
 
 	public void initDates() {
 
 		for (int i = 0; i < weekdays.length; i++) {
-			this.createDateColumn(weekdays[i], this.calendarContainer);
+			GridPane day = this.createDateColumn(weekdays[i], this.calendarContainer);
+			weekdayList.add(new CalendarDayController(day,
+				weekDayStart, weekDayEnd));
 		}
 
 		this.createDateRow(SATURDAY, weekendContainer);
@@ -51,25 +65,34 @@ public class CalendarContainerViewController {
 
 	}
 
-	private void createDateColumn(int day, GridPane container) {
-		this.createDate(day, 0, container);
+	private GridPane createDateColumn(int day, GridPane container) {
+		return this.createDate(day, 0, container);
 	}
 
-	private void createDateRow(int day, GridPane container) {
-		this.createDate(0, day, container);
+	private GridPane createDateRow(int day, GridPane container) {
+		return this.createDate(0, day, container);
 	}
 
-	private void createDate(int column, int row, GridPane container) {
+	private GridPane createDate(int column, int row, GridPane container) {
 
 		GridPane dayPane = new GridPane();
 		dayPane.add(
 			new Label("Testi päivä: " + column + ":" + row),
 			0, 0);
 		container.add(dayPane, column, row);
+		return dayPane;
+		
 	}
 
 	private void createWeekend() {
 		
 	}
+
+	/*public void drawEvents(events, day) {
+
+		for (event in events) {
+
+		}
+	}*/
 
 }

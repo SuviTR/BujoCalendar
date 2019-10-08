@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import MetropoliaAMKgroup02.Common.JSONHandler;
+import java.net.ConnectException;
 
 /**
  *
@@ -79,8 +80,10 @@ public class HttpConnection extends JSONHandler {
 			System.out.println("Malformed url");
 			Logger.getLogger(HttpConnection.class.getName()).log(Level.SEVERE, null, ex);
 			return null;
+		} catch (ConnectException e) {
+			System.out.println("Connection exception:Cant connect to " + this.baseUrl + endpoint);
 		} catch (IOException ex) {
-			System.out.println("Connection to " + this.baseUrl + endpoint + " not successfull");
+			System.out.println("IOException: Connection to " + this.baseUrl + endpoint + " not successfull");
 			Logger.getLogger(HttpConnection.class.getName()).log(Level.SEVERE, null, ex);
 		}
 

@@ -9,6 +9,10 @@ import MetropoliaAMKgroup02.BujoCalendar.model.HttpConnection;
 import MetropoliaAMKgroup02.BujoCalendar.model.MerkintaList;
 import MetropoliaAMKgroup02.Common.model.Merkinta;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -24,13 +28,16 @@ public class CalendarController {
 
 	
 	
-	public void getAll() {
+	public void fetchAll() {
 		HttpConnection connection = new HttpConnection();
 
 		Merkinta[] merkinnat = (Merkinta[]) connection.get("/calendar", Merkinta[].class);
 
-		merkintaList.importList(merkinnat);
+		merkintaList.importArray(merkinnat);
 
-		System.out.println(merkintaList.getAll());
+	}
+
+	public List<Merkinta> getDay(Calendar date) {
+		return merkintaList.getDay(date);
 	}
 }

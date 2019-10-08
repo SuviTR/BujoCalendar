@@ -25,6 +25,7 @@ public class MainApp extends Application {
     private CalendarOverviewController calController;
     private FontOverviewController fontController;
     private RootLayoutController rootController;
+    private CalendarController calendarController;
     
 	@Override
 	public void start(Stage primaryStage) {
@@ -38,11 +39,10 @@ public class MainApp extends Application {
 		this.primaryStage.setTitle("My Bullet Journal Calendar");
 		this.primaryStage.getIcons().add(new Image("https://stickershop.line-scdn.net/stickershop/v1/product/3238751/LINEStorePC/main.png;compress=true"));
 		
+		calendarController = new CalendarController();
 		initRootLayout();
 		showCalendarOverview();
 
-		CalendarController calendarController = new CalendarController();
-		calendarController.getAll();
 	}
 	
     public void initRootLayout() {
@@ -76,6 +76,8 @@ public class MainApp extends Application {
             calController.setMainApp(this);
             
 	    calController.initView();
+
+	    calendarController.fetchAll();
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -127,8 +129,12 @@ public class MainApp extends Application {
     public Stage getPrimaryStage() {
         return primaryStage;
     }
+
+    public CalendarController getCalendarController() {
+	    return this.calendarController;
+    }
     
-	public static void main(String[] args) {
-		launch(args);
-	}
+    public static void main(String[] args) {
+	    launch(args);
+    }
 }

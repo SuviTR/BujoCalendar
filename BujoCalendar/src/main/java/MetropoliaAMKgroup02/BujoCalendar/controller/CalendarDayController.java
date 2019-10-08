@@ -6,7 +6,10 @@
 package MetropoliaAMKgroup02.BujoCalendar.controller;
 
 import MetropoliaAMKgroup02.BujoCalendar.view.MerkintaView;
+import MetropoliaAMKgroup02.Common.model.Merkinta;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -19,9 +22,11 @@ public class CalendarDayController {
 	private final int startTime;
 	private final int endTime;
 	private ArrayList<MerkintaView> events;
+	private final Calendar date;
 	
-	public CalendarDayController(GridPane dayContainer, int startTime, int endTime) {
+	public CalendarDayController(GridPane dayContainer, int startTime, int endTime, Calendar date) {
 		this.container = dayContainer;
+		this.date = date;
 
 		if(endTime < startTime) {
 			throw new IllegalArgumentException("EndTime must be bigger than StartTime");
@@ -43,6 +48,13 @@ public class CalendarDayController {
 			event.getStartTime(),
 			0,
 			event.getEndTime());
+		}
+	}
+
+	public void injectEvents(CalendarController calendarController) {
+		List<Merkinta> eventList = calendarController.getDay(date);
+		for (Merkinta merkinta : eventList) {
+			events.add(new MerkintaView((merkinta)));
 		}
 	}
 

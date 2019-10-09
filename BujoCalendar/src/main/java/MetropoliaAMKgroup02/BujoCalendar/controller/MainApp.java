@@ -1,5 +1,6 @@
 package MetropoliaAMKgroup02.BujoCalendar.controller;
 
+import MetropoliaAMKgroup02.BujoCalendar.model.HttpConnection;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,8 @@ import MetropoliaAMKgroup02.BujoCalendar.model.Menu;
 import MetropoliaAMKgroup02.BujoCalendar.view.CalendarOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.FontOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.RootLayoutController;
+import MetropoliaAMKgroup02.Common.model.Merkinta;
+import MetropoliaAMKgroup02.Common.model.TestModel;
 
 public class MainApp extends Application {
 
@@ -25,12 +28,18 @@ public class MainApp extends Application {
     
 	@Override
 	public void start(Stage primaryStage) {
+		/*TestModel testi = new TestModel("Pertti", "52", "Murre");
+		HttpClient backend = new HttpClient();
+		backend.post("/test", testi, TestModel.class);
+	//	Merkinta merkinta = new Merkinta();
+	//	backend.post("/calendar", merkinta, Merkinta.class);
+	*/	
 		this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("My Bullet Journal Calendar");
-        this.primaryStage.getIcons().add(new Image("https://stickershop.line-scdn.net/stickershop/v1/product/3238751/LINEStorePC/main.png;compress=true"));
-        
-        initRootLayout();
-        showCalendarOverview();
+		this.primaryStage.setTitle("My Bullet Journal Calendar");
+		this.primaryStage.getIcons().add(new Image("https://stickershop.line-scdn.net/stickershop/v1/product/3238751/LINEStorePC/main.png;compress=true"));
+		
+		initRootLayout();
+		showCalendarOverview();
 	}
 	
     public void initRootLayout() {
@@ -63,7 +72,7 @@ public class MainApp extends Application {
             calController = loader.getController();
             calController.setMainApp(this);
             
-            calController.getCurrentDate();
+	    calController.initView();
             
         } catch (IOException e) {
             e.printStackTrace();

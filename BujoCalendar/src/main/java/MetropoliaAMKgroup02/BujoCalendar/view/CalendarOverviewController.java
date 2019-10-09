@@ -17,6 +17,7 @@ import java.time.temporal.Temporal;
 import MetropoliaAMKgroup02.BujoCalendar.controller.MainApp;
 import MetropoliaAMKgroup02.BujoCalendar.model.Menu;
 import MetropoliaAMKgroup02.BujoCalendar.model.TimeandDates;
+import javafx.scene.layout.GridPane;
 
 public class CalendarOverviewController {
 
@@ -52,17 +53,30 @@ public class CalendarOverviewController {
 	@FXML
 	private MenuButton fonts;
 
+
+	@FXML
+	private GridPane calendarContainer;
+
+	@FXML
+	private GridPane weekendContainer;
+
 	private MainApp mainApp;
 	private TimeandDates dates;
+	private CalendarContainerViewController calendarView;
+
 	private int fontValue;
 	private int backCounter = 0;
 	private int forwardCounter = 0;
 	private int totalCounter = 0;
 
-	public CalendarOverviewController() {
+	public void initView() {
 		
-	}
+		this.getCurrentDate();
+		this.calendarView = new CalendarContainerViewController(
+			calendarContainer, weekendContainer);
+		this.calendarView.initDates();
 
+	}
 	public void getCurrentDate() {
 		
 		dates = new TimeandDates();
@@ -237,4 +251,5 @@ public class CalendarOverviewController {
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}	
+
 }

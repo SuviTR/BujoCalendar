@@ -78,6 +78,8 @@ public class MainApp extends Application {
 	    calController.initView();
 
 	    calendarController.fetchAll();
+
+	    calController.updateView();
             
         } catch (IOException e) {
             e.printStackTrace();

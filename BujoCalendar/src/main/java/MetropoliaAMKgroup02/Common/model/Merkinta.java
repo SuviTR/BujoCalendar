@@ -75,16 +75,18 @@ public class Merkinta
 		this.startDate = date;
 	}
 	
-	public String getStartDate(){
-		return String.format("%tF" , startDate);
+	public Calendar getStartDate(){
+		//return String.format("%tF" , startDate);
+		return startDate;
 	}
 
 	public void setEndDate(Calendar date){
 		this.endDate = date;
 	}
 	
-	public String getEndDate(){
-		return String.format("%tF" , endDate);
+	public Calendar getEndDate(){
+		//return String.format("%tF" , endDate);
+		return endDate;
 	}
 
 	@JsonIgnore
@@ -98,13 +100,13 @@ public class Merkinta
 
 	@JsonIgnore
 	public int getHour() {
-		return startDate.get(Calendar.HOUR);
+		return startDate.get(Calendar.HOUR_OF_DAY);
 	}
 
 
 	@JsonIgnore
 	public int getEndHour() {
-		return endDate.get(Calendar.HOUR);
+		return endDate.get(Calendar.HOUR_OF_DAY);
 	}
 
 	@JsonIgnore

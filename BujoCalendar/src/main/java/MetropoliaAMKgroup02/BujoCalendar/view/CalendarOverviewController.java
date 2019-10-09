@@ -76,8 +76,14 @@ public class CalendarOverviewController {
 		this.calendarView = new CalendarContainerViewController(
 			calendarContainer, weekendContainer);
 		this.calendarView.setTimeAndDates(dates);
+		this.calendarView.setCalendarController(mainApp.getCalendarController());
 		this.calendarView.initDates();
 
+	}
+
+	public void updateView() {
+
+		this.calendarView.drawEvents();
 	}
 
 	public void getCurrentDate() {

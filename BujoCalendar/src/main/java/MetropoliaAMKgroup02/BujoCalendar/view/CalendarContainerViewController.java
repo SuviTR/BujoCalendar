@@ -68,6 +68,7 @@ public class CalendarContainerViewController {
 			weekdayList.add(new CalendarDayController(day,
 				weekDayStart, weekDayEnd, date));
 
+			date = (Calendar) date.clone();
 			date.add(Calendar.DAY_OF_WEEK, 1);
 		}
 
@@ -78,6 +79,7 @@ public class CalendarContainerViewController {
 					weekendDayEnd, date)
 		);
 
+		date = (Calendar) date.clone();
 		date.add(Calendar.DAY_OF_WEEK, 1);
 		weekendList.add(
 			new CalendarDayController(
@@ -85,6 +87,9 @@ public class CalendarContainerViewController {
 				weekendDayStart,
 				weekendDayEnd, date));
 
+		// Add all objects to a daylist
+		dayList.addAll(weekdayList);
+		dayList.addAll(weekendList);
 	}
 
 	private GridPane createDateColumn(int day, GridPane container) {
@@ -98,9 +103,9 @@ public class CalendarContainerViewController {
 	private GridPane createDate(int column, int row, GridPane container) {
 
 		GridPane dayPane = new GridPane();
-		dayPane.add(
-			new Label("Testi päivä: " + column + ":" + row),
-			0, 0);
+		//dayPane.add(
+		//	new Label("Testi päivä: " + column + ":" + row),
+		//	0, 0);
 		container.add(dayPane, column, row);
 		return dayPane;
 		

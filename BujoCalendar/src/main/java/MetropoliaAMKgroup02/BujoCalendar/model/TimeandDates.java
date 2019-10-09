@@ -26,7 +26,7 @@ public class TimeandDates {
 	
 	public TimeandDates() {
 		fiLocale = new Locale("fi", "FI");	
-		this.setCurrentDate(Calendar.getInstance());
+		this.setCurrentDate(Calendar.getInstance(fiLocale));
 	}
 	
 	//======= Get date of today =======
@@ -41,6 +41,7 @@ public class TimeandDates {
 
 	public void setCurrentDate(Calendar date) {
 		this.currentDate = (Calendar) date.clone();
+		//this.setCurrentDate((Calendar) date.clone());
 
 		// Scroll back to last monday:
 		while(!(currentDate.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY)) {

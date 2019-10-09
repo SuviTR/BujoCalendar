@@ -9,8 +9,10 @@ import MetropoliaAMKgroup02.BujoCalendar.view.MerkintaView;
 import MetropoliaAMKgroup02.Common.model.Merkinta;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -33,6 +35,10 @@ public class CalendarDayController {
 		}
 		this.startTime = startTime;
 		this.endTime = endTime;
+
+		this.events = new ArrayList<>();
+		this.initView();
+
 	}
 
 
@@ -40,14 +46,29 @@ public class CalendarDayController {
 		return this.endTime - this.startTime;
 	}
 
+	private void initView() {
+		for (int i = startTime; i < endTime; i++) {
+			container.addRow(i, new Text(""));
+		}
+	}
+
 	public void drawEvents() {
 		
+		if (events == null) {
+			return;
+		}
+
 		for(MerkintaView event : events) {
+
+			int eStartTime = event.getStartTime();
+			int eEndTime = event.getEndTime();
+
 			container.add(event.getGridPane(),
-			0, 
-			event.getStartTime(),
-			0,
-			event.getEndTime());
+				0,
+				eStartTime,
+				1,
+				eEndTime
+			);
 		}
 	}
 

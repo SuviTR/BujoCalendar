@@ -5,8 +5,11 @@
  */
 package MetropoliaAMKgroup02.BujoCalendar.view;
 
+import MetropoliaAMKgroup02.BujoCalendar.controller.CalendarController;
 import MetropoliaAMKgroup02.BujoCalendar.controller.CalendarDayController;
+import MetropoliaAMKgroup02.BujoCalendar.model.TimeandDates;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -38,31 +41,55 @@ public class CalendarContainerViewController {
 
 	private ArrayList<CalendarDayController> weekdayList;
 	private ArrayList<CalendarDayController> weekendList;
+	private ArrayList<CalendarDayController> dayList;
 
 	private int weekDayStart = 7;
 	private int weekDayEnd = 21;
 	private int weekendDayStart = 10;
 	private int weekendDayEnd = 14;
+	private TimeandDates dates;
+	private CalendarController calendarController;
 
 	CalendarContainerViewController(GridPane calendarContainer, GridPane weekendContainer) {
 		this.calendarContainer = calendarContainer;
 		this.weekendContainer = weekendContainer;
-		this.weekdayList = new ArrayList<>();
-		this.weekendList = new ArrayList<>();
 	}
 
 
 	public void initDates() {
+		this.weekdayList = new ArrayList<>();
+		this.weekendList = new ArrayList<>();
+		this.dayList = new ArrayList<>();
+
+		Calendar date = this.dates.getMonday();
 
 		for (int i = 0; i < weekdays.length; i++) {
 			GridPane day = this.createDateColumn(weekdays[i], this.calendarContainer);
 			weekdayList.add(new CalendarDayController(day,
-				weekDayStart, weekDayEnd));
+				weekDayStart, weekDayEnd, date));
+
+			date = (Calendar) date.clone();
+			date.add(Calendar.DAY_OF_WEEK, 1);
 		}
 
-		this.createDateRow(SATURDAY, weekendContainer);
-		this.createDateRow(SUNDAY, weekendContainer);
+		weekendList.add(
+			new CalendarDayController(
+				this.createDateRow(SATURDAY, weekendContainer),
+					weekendDayStart,
+					weekendDayEnd, date)
+		);
 
+		date = (Calendar) date.clone();
+		date.add(Calendar.DAY_OF_WEEK, 1);
+		weekendList.add(
+			new CalendarDayController(
+		this.createDateRow(SUNDAY, weekendContainer), 
+				weekendDayStart,
+				weekendDayEnd, date));
+
+		// Add all objects to a daylist
+		dayList.addAll(weekdayList);
+		dayList.addAll(weekendList);
 	}
 
 	private GridPane createDateColumn(int day, GridPane container) {
@@ -76,23 +103,26 @@ public class CalendarContainerViewController {
 	private GridPane createDate(int column, int row, GridPane container) {
 
 		GridPane dayPane = new GridPane();
-		dayPane.add(
-			new Label("Testi päivä: " + column + ":" + row),
-			0, 0);
+		//dayPane.add(
+		//	new Label("Testi päivä: " + column + ":" + row),
+		//	0, 0);
 		container.add(dayPane, column, row);
 		return dayPane;
 		
 	}
 
-	private void createWeekend() {
-		
+	public void drawEvents() {
+		for(CalendarDayController day : dayList) {
+			day.injectEvents(calendarController);
+			day.drawEvents();
+		}
 	}
 
-	/*public void drawEvents(events, day) {
+	void setTimeAndDates(TimeandDates dates) {
+		this.dates = dates;
+	}
 
-		for (event in events) {
-
-		}
-	}*/
-
+	void setCalendarController(CalendarController calendarController) {
+		this.calendarController = calendarController;
+	}
 }

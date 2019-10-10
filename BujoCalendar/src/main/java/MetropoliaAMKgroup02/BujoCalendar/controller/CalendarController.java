@@ -6,21 +6,38 @@
 package MetropoliaAMKgroup02.BujoCalendar.controller;
 
 import MetropoliaAMKgroup02.BujoCalendar.model.HttpConnection;
+import MetropoliaAMKgroup02.BujoCalendar.model.MerkintaList;
+import MetropoliaAMKgroup02.Common.model.Merkinta;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  *
  * @author heikki
  */
 public class CalendarController {
+
+	private MerkintaList merkintaList;
+
+	public CalendarController() {
+		merkintaList = new MerkintaList();
+	}
+
 	
-	public void getAll() {
+	
+	public void fetchAll() {
 		HttpConnection connection = new HttpConnection();
 
-		/*ArrayList<Merkinta> merkinnat = (ArrayList) connection.get("/calendar");
+		Merkinta[] merkinnat = (Merkinta[]) connection.get("/calendar", Merkinta[].class);
 
-		this.merkinnat = merkinnat;
+		merkintaList.importArray(merkinnat);
 
-		CalendarView.draw(merkinnat);*/
+	}
+
+	public List<Merkinta> getDay(Calendar date) {
+		return merkintaList.getDay(date);
 	}
 }

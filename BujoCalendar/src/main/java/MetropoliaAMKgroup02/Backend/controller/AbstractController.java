@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import MetropoliaAMKgroup02.Backend.Database;
-import MetropoliaAMKgroup02.Common.model.JSONHandler;
+import MetropoliaAMKgroup02.Common.JSONHandler;
 
 import java.io.IOException;
 import java.io.InputStream;

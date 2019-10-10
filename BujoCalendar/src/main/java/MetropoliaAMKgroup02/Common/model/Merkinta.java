@@ -1,5 +1,6 @@
 package MetropoliaAMKgroup02.Common.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Calendar;
 import javax.persistence.*;
 
@@ -21,7 +22,8 @@ public class Merkinta
 	public Prior prior;
 
 	
-	private Calendar date;
+	private Calendar startDate;
+	private Calendar endDate;
 
 	public Merkinta() {}
 
@@ -69,20 +71,47 @@ public class Merkinta
 		return prior;
 	}
 	
-	public void setDate(Calendar date){
-		this.date = date;
+	public void setStartDate(Calendar date){
+		this.startDate = date;
 	}
 	
-	public String getDate(){
-		return String.format("%tF" , date);
+	public Calendar getStartDate(){
+		//return String.format("%tF" , startDate);
+		return startDate;
 	}
 
+	public void setEndDate(Calendar date){
+		this.endDate = date;
+	}
+	
+	public Calendar getEndDate(){
+		//return String.format("%tF" , endDate);
+		return endDate;
+	}
+
+	@JsonIgnore
 	public String getTime(){
-		return String.format("%tR" , date);
+		return String.format("%tR" , startDate);
 	}
 
 	public void deleteDate(){
 		//return null;
+	}
+
+	@JsonIgnore
+	public int getHour() {
+		return startDate.get(Calendar.HOUR_OF_DAY);
+	}
+
+
+	@JsonIgnore
+	public int getEndHour() {
+		return endDate.get(Calendar.HOUR_OF_DAY);
+	}
+
+	@JsonIgnore
+	public Calendar getStart() {
+		return startDate;
 	}
 
 }

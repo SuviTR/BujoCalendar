@@ -5,7 +5,14 @@
  */
 package MetropoliaAMKgroup02.BujoCalendar.controller;
 
+import MetropoliaAMKgroup02.BujoCalendar.view.MerkintaView;
+import MetropoliaAMKgroup02.Common.model.Merkinta;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -16,20 +23,60 @@ public class CalendarDayController {
 	private final GridPane container;
 	private final int startTime;
 	private final int endTime;
+	private ArrayList<MerkintaView> events;
+	private final Calendar date;
 	
-	public CalendarDayController(GridPane dayContainer, int startTime, int endTime) {
+	public CalendarDayController(GridPane dayContainer, int startTime, int endTime, Calendar date) {
 		this.container = dayContainer;
+		this.date = date;
 
 		if(endTime < startTime) {
 			throw new IllegalArgumentException("EndTime must be bigger than StartTime");
 		}
 		this.startTime = startTime;
 		this.endTime = endTime;
+
+		this.events = new ArrayList<>();
+		this.initView();
+
 	}
 
 
 	private int rowCount() {
 		return this.endTime - this.startTime;
+	}
+
+	private void initView() {
+		for (int i = startTime; i < endTime; i++) {
+			container.addRow(i, new Text(""));
+		}
+	}
+
+	public void drawEvents() {
+		
+		if (events == null) {
+			return;
+		}
+
+		for(MerkintaView event : events) {
+
+			int eStartTime = event.getStartTime();
+			int eEndTime = event.getEndTime();
+
+			container.add(event.getGridPane(),
+				0,
+				eStartTime,
+				1,
+				eEndTime
+			);
+		}
+	}
+
+	public void injectEvents(CalendarController calendarController) {
+		List<Merkinta> eventList = calendarController.getDay(date);
+		for (Merkinta merkinta : eventList) {
+			events.add(new MerkintaView((merkinta)));
+		}
 	}
 
 }

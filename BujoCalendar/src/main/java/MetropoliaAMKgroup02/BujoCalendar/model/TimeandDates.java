@@ -14,9 +14,19 @@ public class TimeandDates {
 	private String date;
 	private String mon;
 	private String sun;
+
+	private Calendar currentDate;
+	private Calendar monday;
+	private Calendar tuesday;
+	private Calendar wednesday;
+	private Calendar thursday;
+	private Calendar friday;
+	private Calendar saturday;
+	private Calendar sunday;
 	
 	public TimeandDates() {
 		fiLocale = new Locale("fi", "FI");	
+		this.setCurrentDate(Calendar.getInstance(fiLocale));
 	}
 	
 	//======= Get date of today =======
@@ -27,6 +37,40 @@ public class TimeandDates {
 		date = dayDate.format(d);
 		
 		return date;
+	}
+
+	public void setCurrentDate(Calendar date) {
+		this.currentDate = (Calendar) date.clone();
+		//this.setCurrentDate((Calendar) date.clone());
+
+		// Scroll back to last monday:
+		while(!(currentDate.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY)) {
+			currentDate.add(Calendar.DAY_OF_WEEK, -1);
+		}
+
+		this.monday = (Calendar) currentDate.clone();
+		currentDate.add(Calendar.DAY_OF_WEEK, 1);
+		this.tuesday = (Calendar) currentDate.clone();
+		currentDate.add(Calendar.DAY_OF_WEEK, 1);
+		this.wednesday = (Calendar) currentDate.clone();
+		currentDate.add(Calendar.DAY_OF_WEEK, 1);
+		this.thursday = (Calendar) currentDate.clone();
+		currentDate.add(Calendar.DAY_OF_WEEK, 1);
+		this.friday = (Calendar) currentDate.clone();
+		currentDate.add(Calendar.DAY_OF_WEEK, 1);
+		this.saturday = (Calendar) currentDate.clone();
+		currentDate.add(Calendar.DAY_OF_WEEK, 1);
+		this.sunday = (Calendar) currentDate.clone();
+
+		this.currentDate = (Calendar) date.clone();
+	}
+
+	public Calendar getCurrentDateForRealz() {
+		return currentDate;
+	}
+
+	public Calendar getMonday() {
+		return this.monday;
 	}
 	
 	//======= Get week number of current date =======

@@ -6,6 +6,7 @@
         <session-factory>
                 <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
                 <property name="hibernate.connection.url">jdbc:mysql://10.114.34.17:3306/bujocalendar</property>
+                <!--<property name="hibernate.connection.url">jdbc:mysql://172.17.0.2:3306/bujocalendar</property>-->
                 <property name="hibernate.connection.password">sera43</property>
                 <property name="hibernate.connection.username">appuser</property>
                 <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>

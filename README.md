@@ -35,8 +35,9 @@ Ohjelma tarvitsee seuraavat palikat:
  
 ### Tietokanta-asetukset Dockeriin
 Jos et halua käyttää Educloudia, on projektissa myös alkeellinen tuki projektin ajamiseksi Dockerin päällä.
-Aluksi sinun on asennettava Docker käyttöjärjestelmääsi. Ohjeet löytyvät: https://www.docker.com/
-Kun Docker on asennettu, Dockerin käynnistämiseen ja konttien pystyttämiseen on olemassa pieni apuskripti projektin juuressa, nimeltä `mariadb-docker.sh`. Sitä ajetaan Linuxissa näin:
+Aluksi sinun on asennettava Docker CE käyttöjärjestelmääsi. Ohjeet löytyvät: https://docs.docker.com/install. Ja huom, valitse siis kahdesta tarjotusta versiosta Docker CE!
+
+Kun Docker on asennettu, Dockerin käynnistämiseen ja konttien pystyttämiseen on olemassa pieni apuskripti projektin juuressa, nimeltä `mariadb-docker.sh`. Sitä voi käyttää Linuxissa, ja ehkä myös Macissa. Se toimii näin:
  ```
  ./mariadb-docker.sh install
  ./mariadb-docker.sh start
@@ -44,6 +45,7 @@ Kun Docker on asennettu, Dockerin käynnistämiseen ja konttien pystyttämiseen 
  ./mariadb-docker.sh stop
 ```
 Skripti lataa Mariadb-kontainerin, asentaa ja käynnistää sen, yhdellä komennolla! Tämän jälkeen voit käyttää eriytettyä Unix-ympäristöä, ikäänkuin olisi paikallisesti oma Mariadb-palvelin. Mukavaa elää täällä tulevaisuudessa.
+
  
 /src/main/resources/hibernate.cfg.xml -tiedostossa on kommentoituna myös Dockerin Linuxissa käyttämä oletus-ip. Voit ottaa tämän vaihtoehdon käyttöön muokkaamalla tiedostoa. Mac- ja Windows-järjestelmissä ip-osoitteen paikalle kannattanee laittaa `host.docker.internal`
 

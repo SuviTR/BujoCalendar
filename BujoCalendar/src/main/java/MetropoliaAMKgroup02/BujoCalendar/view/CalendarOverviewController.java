@@ -15,10 +15,14 @@ import java.time.DayOfWeek;
 import java.time.temporal.Temporal; 
 
 import MetropoliaAMKgroup02.BujoCalendar.controller.MainApp;
-import MetropoliaAMKgroup02.BujoCalendar.model.Menu;
-import MetropoliaAMKgroup02.BujoCalendar.model.TimeandDates;
+import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
+import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
 import java.util.Calendar;
 import javafx.scene.layout.GridPane;
+
+/**
+* @author suvi
+*/
 
 public class CalendarOverviewController {
 
@@ -62,14 +66,23 @@ public class CalendarOverviewController {
 	private GridPane weekendContainer;
 
 	private MainApp mainApp;
-	private TimeandDates dates;
+	private Dates dates;
 	private CalendarContainerViewController calendarView;
 
 	private int fontValue;
+	/*
 	private int backCounter = 0;
 	private int forwardCounter = 0;
-	private int totalCounter = 0;
+	private int totalCounter = 0;*/
+	private int nextWeek = 0;
+	private int prevWeek = 0;
+	private int weekCounter = 0;
+	private boolean boolCurrentOrSelected = true;
+	private String selectedDate = "";
 
+	/**
+    * Initializes the CalendarOverviewController.
+    */
 	public void initView() {
 		
 		this.getCurrentDate();
@@ -82,13 +95,27 @@ public class CalendarOverviewController {
 	}
 
 	public void updateView() {
-
+		
 		this.calendarView.drawEvents();
 	}
+	
+	public void handleCurrentDateOrSelectedDate(String date, boolean value) {
+		boolCurrentOrSelected = value;
+		if (boolCurrentOrSelected == true) {
+			getCurrentDate();
+		}
+		else {
+			selectedDate = date;
+			handleSelectedDateView(selectedDate);
+		}
+	}
 
+	/**
+    * 
+    */
 	public void getCurrentDate() {
 		
-		dates = new TimeandDates();
+		dates = new Dates();
 		String date = dates.getCurrentDate();
 		int weekNumber = dates.getWeekNumber(date);
 		String[] dayList = dates.getWeekDates(weekNumber);
@@ -107,18 +134,33 @@ public class CalendarOverviewController {
 		week.setText(String.valueOf(weekNumber));
 	}
 	
+	/**
+    * 
+    */
 	@FXML
 	private void handleWeekForward() {	
-		forwardCounter++;
+		/*forwardCounter++;
 		backCounter = backCounter * (-1);
 		totalCounter = backCounter + forwardCounter;
-		backCounter = backCounter * (-1);
+		backCounter = backCounter * (-1);*/
 		
-		dates = new TimeandDates();
+		dates = new Dates();
 		
-		String date = dates.getCurrentDate();
+		nextWeek = nextWeek + dates.nextWeek();
+		weekCounter = nextWeek - prevWeek ;
+		System.out.println("Counter " + weekCounter);
+		
+		String date = "";
+		
+		if (boolCurrentOrSelected == true) {
+			date = dates.getCurrentDate();
+			
+		}
+		else {
+			date = selectedDate;
+		}
 		int weekNumber = dates.getWeekNumber(date);
-		int weekNumberForward = weekNumber + totalCounter;
+		int weekNumberForward = weekNumber + weekCounter; //totalCounter
 		String[] dayList = dates.getWeekDates(weekNumberForward);
 		
 		mondayDate.setText(dayList[0]);
@@ -135,17 +177,34 @@ public class CalendarOverviewController {
 		week.setText(dates.getNewWeekNumber());
 	}
 	
+	/**
+    * 
+    */
 	@FXML
 	private void handleWeekBack() {
+		/*
 		backCounter = (backCounter + 1)* (-1);
 		totalCounter = backCounter + forwardCounter;
-		backCounter = backCounter* (-1);
+		backCounter = backCounter* (-1);*/
 		
-		dates = new TimeandDates();
+		dates = new Dates();
 		
-		String date = dates.getCurrentDate();
+		prevWeek = prevWeek + dates.previousWeek();
+		weekCounter = nextWeek - prevWeek ;
+		System.out.println("PrevCounter " + weekCounter);
+		
+		//String date = dates.getCurrentDate();
+		String date = "";
+		
+		if (boolCurrentOrSelected == true) {
+			date = dates.getCurrentDate();
+			
+		}
+		else {
+			date = selectedDate;
+		}
 		int weekNumber = dates.getWeekNumber(date);
-		int weekNumberBack = weekNumber + totalCounter;
+		int weekNumberBack = weekNumber + weekCounter; //totalCounter;
 		String[] dayList = dates.getWeekDates(weekNumberBack);
 		
 		mondayDate.setText(dayList[0]);
@@ -162,6 +221,9 @@ public class CalendarOverviewController {
 		week.setText(dates.getNewWeekNumber());
 	}
 	
+	/**
+    * 
+    */
 	public void handleSelectedDateView(String date) {
 		
 		String[] dayList = dates.selectedDate(date);
@@ -198,7 +260,11 @@ public class CalendarOverviewController {
         });
 	}
 	
-	//======= Editing calendar fonts ======= 
+	//======= Editing calendar fonts =======
+	
+	/**
+    * 
+    */
 	@FXML
 	private void handleWeekdayFonts() {
 		fontValue = 1;
@@ -215,12 +281,18 @@ public class CalendarOverviewController {
 		}
 	}
 	
+	/**
+    * 
+    */
 	@FXML
 	private void handleWeekdayDateFonts() {
 		fontValue = 2;
 		boolean okClicked = mainApp.showFontOverview();
 	}
 	
+	/**
+    * 
+    */
 	public void setNewWeekdayDateFont(String font) {
 		String newFont = font;
 		System.out.println("New date font style is " + newFont);
@@ -231,12 +303,18 @@ public class CalendarOverviewController {
 		}
 	}
 	
+	/**
+    * 
+    */
 	@FXML
 	private void handleHeaderFonts() {
 		fontValue = 3;
 		boolean okClicked = mainApp.showFontOverview();
 	}
 	
+	/**
+    * 
+    */
 	public void setNewHeaderFont(String font) {
 		String newFont = font;
 		System.out.println("New month and week font style is " + newFont);
@@ -247,6 +325,9 @@ public class CalendarOverviewController {
 		}
 	}
 	
+	/**
+    * 
+    */
 	public void callFontValue() {
 		int value = mainApp.fontValue(fontValue);
 		System.out.println("handle " + value);

@@ -11,12 +11,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import MetropoliaAMKgroup02.BujoCalendar.model.Menu;
+import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
 import MetropoliaAMKgroup02.BujoCalendar.view.CalendarOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.FontOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.RootLayoutController;
 import MetropoliaAMKgroup02.Common.model.Merkinta;
 import MetropoliaAMKgroup02.Common.model.TestModel;
+
+/**
+* @author suvi
+*/
 
 public class MainApp extends Application {
 
@@ -26,7 +30,12 @@ public class MainApp extends Application {
     private FontOverviewController fontController;
     private RootLayoutController rootController;
     private CalendarController calendarController;
-    
+    private boolean handleCurrentDate = false;
+    /**
+    * Starts the calendar application.
+    * Opens the RootLayout and the Calendar view.
+    * @param primaryStage is the primary stage of the application.
+    */
 	@Override
 	public void start(Stage primaryStage) {
 		/*TestModel testi = new TestModel("Pertti", "52", "Murre");
@@ -45,6 +54,10 @@ public class MainApp extends Application {
 
 	}
 	
+	/**
+    * Initializes the RootLayout of the application.
+    * Opens the RootLayout view to primaryStage.
+    */
     public void initRootLayout() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -64,6 +77,9 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Opens Calendar view.
+     */
     public void showCalendarOverview() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -75,17 +91,20 @@ public class MainApp extends Application {
             calController = loader.getController();
             calController.setMainApp(this);
             
-	    calController.initView();
-
-	    calendarController.fetchAll();
-
-	    calController.updateView();
+		    calController.initView();
+	
+		    //calendarController.fetchAll();
+	
+		    calController.updateView();
             
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     
+    /**
+     * Opens the view where a user can change different calendar's fonts.
+     */
     public boolean showFontOverview() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -115,19 +134,33 @@ public class MainApp extends Application {
             return false;
         }
     }
-  
+    
+    public void handleCurrentDate(boolean boolCurrentDate) {
+    	calController.handleCurrentDateOrSelectedDate("0", boolCurrentDate);
+    }
+    
+    /**
+     * Conveys the date from MonthView to CalendarOverview.
+     * @param date includes the date that a user has chosen from DatePicker in a MonthView.
+     * @return date that was chosen from DatePicker in MontView.
+     */
+    public void handleSelectedDateView(String date, boolean boolCurrentDate) {
+    	calController.handleCurrentDateOrSelectedDate(date, boolCurrentDate);
+    	//calController.handleSelectedDateView(date);
+    	//return date;
+    }
+
+    /**
+     * Conveys the new font name from fontOverview to CalendarOverview.
+     * @param value includes the new font name that a user has chosen as a new font.
+     * @return value the name of the new font.
+     */
     public int fontValue(int value) {
     	fontController.fontValue(value);
     	System.out.println("main " + value);
     	return value;
     }
     
-    public String getSelectedDateView(String date) {
-    	
-    	calController.handleSelectedDateView(date);
-    	return date;
-    }
-
     public Stage getPrimaryStage() {
         return primaryStage;
     }

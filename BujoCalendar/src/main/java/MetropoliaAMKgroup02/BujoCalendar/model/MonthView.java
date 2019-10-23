@@ -22,7 +22,7 @@ public class MonthView extends Application {
         
         ok.setOnAction(event -> {
         	System.out.println("Ok");
-        	rootController.getSelectedDateView(selectedDate);
+        	rootController.handleSelectedDateView(selectedDate);
         	
         });
         

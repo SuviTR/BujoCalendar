@@ -13,6 +13,8 @@ public class RootLayoutController {
 	
 	private MainApp mainApp;
 	private MonthView monthView;
+	private boolean boolCurrentDate = true;
+	private boolean boolSelectedDate = false;
 
 	@FXML
 	private MenuItem weekdayFonts ;
@@ -34,8 +36,17 @@ public class RootLayoutController {
 		monthView.start(s);
 	}
 	
-	public void getSelectedDateView(String date) {
-		mainApp.getSelectedDateView(date);
+	@FXML
+	private void handleCurrentDate() {
+		boolCurrentDate = true;
+		//boolSelectedDate = false;
+		mainApp.handleCurrentDate(true);
+	}
+	
+	public void handleSelectedDateView(String date) {
+		mainApp.handleSelectedDateView(date, false);
+		boolCurrentDate = false;
+		//boolSelectedDate = true;
 	}
 
 	public void setMainApp(MainApp mainApp) {

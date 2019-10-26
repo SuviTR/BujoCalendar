@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
 import MetropoliaAMKgroup02.BujoCalendar.view.CalendarOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.FontOverviewController;
+import MetropoliaAMKgroup02.BujoCalendar.view.NoteOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.RootLayoutController;
 import MetropoliaAMKgroup02.Common.model.Merkinta;
 import MetropoliaAMKgroup02.Common.model.TestModel;
@@ -30,6 +31,7 @@ public class MainApp extends Application {
     private FontOverviewController fontController;
     private RootLayoutController rootController;
     private CalendarController calendarController;
+    private NoteOverviewController noteController;
     private boolean handleCurrentDate = false;
     /**
     * Starts the calendar application.
@@ -128,6 +130,36 @@ public class MainApp extends Application {
             dialogStage.showAndWait();
             
             return fontController.isOkClicked();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean showNoteOverview() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("/fxml/NoteOverview.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Merkintä");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            noteController = loader.getController();
+            
+            //calController.callFontValue();
+            
+            noteController.setRootLayoutController(rootController); 
+            noteController.setDialogStage(dialogStage);
+        
+            dialogStage.showAndWait();
+            
+            return noteController.isOkClicked();
             
         } catch (IOException e) {
             e.printStackTrace();

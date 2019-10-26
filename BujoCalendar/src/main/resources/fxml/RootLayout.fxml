@@ -17,7 +17,7 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Merkinnät">
               <items>
-              <MenuItem mnemonicParsing="false" text="Lisää uusi merkintä" />
+              <MenuItem mnemonicParsing="false" onAction="#handleNewNote" text="Lisää uusi merkintä" />
                 <MenuItem mnemonicParsing="false" text="Lisää uusi to-do -tehtävät" />
                   <MenuItem mnemonicParsing="false" text="Muokkaa merkintää" />
                   <MenuItem mnemonicParsing="false" text="Muokkaa to-do -tehtävää" />

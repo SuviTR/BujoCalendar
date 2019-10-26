@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import MetropoliaAMKgroup02.BujoCalendar.controller.MainApp;
 import MetropoliaAMKgroup02.BujoCalendar.model.MonthView;
+import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
 
 
 public class RootLayoutController {
@@ -52,8 +53,15 @@ public class RootLayoutController {
 		boolCurrentDate = true;
 		mainApp.handleCurrentDate(boolCurrentDate);
 	}
+	
+	@FXML
+	public void handleNewNote() {
+		boolean okClicked = mainApp.showNoteOverview();
+	}
 
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
+	
+
 }

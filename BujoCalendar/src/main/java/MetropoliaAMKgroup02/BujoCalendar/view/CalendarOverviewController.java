@@ -3,6 +3,8 @@ package MetropoliaAMKgroup02.BujoCalendar.view;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
@@ -16,9 +18,11 @@ import java.time.temporal.Temporal;
 
 import MetropoliaAMKgroup02.BujoCalendar.controller.MainApp;
 import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
+import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
 import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
 import java.util.Calendar;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 /**
 * @author suvi
@@ -58,15 +62,17 @@ public class CalendarOverviewController {
 	@FXML
 	private MenuButton fonts;
 
-
 	@FXML
 	private GridPane calendarContainer;
 
 	@FXML
 	private GridPane weekendContainer;
+	
+	
 
 	private MainApp mainApp;
 	private Dates dates;
+	private NoteEdit notes;
 	private CalendarContainerViewController calendarView;
 
 	private int fontValue;
@@ -248,6 +254,7 @@ public class CalendarOverviewController {
 	public void handleNote() {
 		
 	}
+	
 	
 
 	//======= Edit view =======

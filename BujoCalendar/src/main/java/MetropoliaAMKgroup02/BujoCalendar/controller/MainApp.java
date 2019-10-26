@@ -136,7 +136,7 @@ public class MainApp extends Application {
     }
     
     public void handleCurrentDate(boolean boolCurrentDate) {
-    	calController.handleCurrentDateOrSelectedDate("0", boolCurrentDate);
+    	calController.handleCurrentDateOrSelectedDate("", boolCurrentDate);
     }
     
     /**

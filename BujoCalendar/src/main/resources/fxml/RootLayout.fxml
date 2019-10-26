@@ -11,7 +11,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Kalenteri">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Hae tämä päivä" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleViewCurrentDate" text="Hae tämä päivä" />
                   <MenuItem mnemonicParsing="false" onAction="#handleSelectDay" text="Selaa päiviä" />
             </items>
           </Menu>

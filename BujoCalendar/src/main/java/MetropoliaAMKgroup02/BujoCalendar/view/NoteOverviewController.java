@@ -4,9 +4,14 @@ import org.dom4j.Node;
 
 import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
 import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
+import MetropoliaAMKgroup02.BujoCalendar.model.Priority;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
@@ -35,6 +40,9 @@ public class NoteOverviewController {
 		@FXML
 		private Label noteAlarm, notePriority;
 		
+		@FXML
+		private ChoiceBox priorityChoiceBox;
+		
 		@FXML 
 		private TextArea note;
 		
@@ -43,11 +51,24 @@ public class NoteOverviewController {
 		private boolean okClicked = false;
 		private Stage dialogStage;
 		private NoteEdit noteEdit;
+		private Priority priority;
 		
 		@FXML
 		private void initialize() {
 			noteEdit = new NoteEdit();
 			noteEdit.setNoteOverviewController(this);
+			
+			priority = new Priority();
+			priorityChoiceBox.setValue("Normal");
+		    priorityChoiceBox.setItems(priority.getPriorityList());
+		    
+		    // a listener 
+		    priorityChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() { 
+	            // if the item of the list is changed 
+	            public void changed(ObservableValue ov, Number value, Number new_value) { 
+	            	System.out.println(priority.selectedPriority(new_value.intValue()));
+	            } 
+	        }); 
 		}
 		
 		public void setDialogStage(Stage dialogStage) {
@@ -83,6 +104,8 @@ public class NoteOverviewController {
 			}
 		}
 		
+
+
 		
 		public void setRootLayoutController(RootLayoutController controller) {
 			this.rootController = controller;

@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
@@ -26,7 +27,7 @@
             <Image url="@../img/Edit.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="note" layoutX="15.0" layoutY="342.0" prefHeight="88.0" prefWidth="291.0" text="Muistiin pano" />
+      <TextArea fx:id="note" layoutX="15.0" layoutY="342.0" prefHeight="88.0" prefWidth="291.0" text="Lisätietoa" />
       <GridPane layoutX="15.0" layoutY="216.0" prefHeight="116.0" prefWidth="305.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.33331298828125" minWidth="10.0" prefWidth="19.333343505859375" />
@@ -49,11 +50,6 @@
             <Label prefHeight="17.0" prefWidth="79.0" text="Prioriteetti" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <padding>
                   <Insets left="4.0" />
-               </padding>
-            </Label>
-            <Label fx:id="notePriority" layoutX="30.0" layoutY="17.0" prefHeight="17.0" prefWidth="75.0" style="-fx-background-color: #F5DEB3;" text="Normal" GridPane.columnIndex="2" GridPane.rowIndex="4">
-               <padding>
-                  <Insets left="4.0" right="4.0" />
                </padding>
             </Label>
             <Label prefHeight="17.0" prefWidth="113.0" text="Koko päivä" GridPane.columnIndex="1">
@@ -90,6 +86,7 @@
                </image>
             </ImageView>
             <Label fx:id="noteAlarm" prefHeight="17.0" prefWidth="187.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="priorityChoiceBox" prefHeight="0.0" prefWidth="107.0" stylesheets="@../choiceBoxStyle.css" GridPane.columnIndex="2" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <GridPane layoutX="15.0" layoutY="437.0" prefHeight="49.0" prefWidth="305.0">

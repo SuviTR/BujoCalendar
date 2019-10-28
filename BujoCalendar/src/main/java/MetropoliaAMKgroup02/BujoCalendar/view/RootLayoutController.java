@@ -58,6 +58,11 @@ public class RootLayoutController {
 	public void handleNewNote() {
 		boolean okClicked = mainApp.showNoteOverview();
 	}
+	
+	public void showAlarmOverview() {
+		boolean okClicked = mainApp.showAlarmOverview();
+		//return okClicked;
+	}
 
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;

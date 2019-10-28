@@ -2,6 +2,7 @@ package MetropoliaAMKgroup02.BujoCalendar.view;
 
 import org.dom4j.Node;
 
+import MetropoliaAMKgroup02.BujoCalendar.model.AlarmView;
 import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
 import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
 import MetropoliaAMKgroup02.BujoCalendar.model.Priority;
@@ -51,20 +52,23 @@ public class NoteOverviewController {
 		private boolean okClicked = false;
 		private Stage dialogStage;
 		private NoteEdit noteEdit;
+		private AlarmOverviewController alarmController;
 		private Priority priority;
 		
 		@FXML
-		private void initialize() {
+		private void initialize() {	//Lisää startDay:ksi se päivä, jota on klikattu?
 			noteEdit = new NoteEdit();
 			noteEdit.setNoteOverviewController(this);
+			
+			//alarmController.setNoteOverviewController(this);
 			
 			priority = new Priority();
 			priorityChoiceBox.setValue("Normal");
 		    priorityChoiceBox.setItems(priority.getPriorityList());
 		    
-		    // a listener 
+		    // A listener 
 		    priorityChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() { 
-	            // if the item of the list is changed 
+	            // If the item of the list is changed 
 	            public void changed(ObservableValue ov, Number value, Number new_value) { 
 	            	System.out.println(priority.selectedPriority(new_value.intValue()));
 	            } 
@@ -104,9 +108,11 @@ public class NoteOverviewController {
 			}
 		}
 		
+		@FXML
+		private void handleOpenAlarmView() {
+			rootController.showAlarmOverview();
+		}
 
-
-		
 		public void setRootLayoutController(RootLayoutController controller) {
 			this.rootController = controller;
 		}

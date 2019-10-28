@@ -25,18 +25,17 @@ public class NoteEdit {
 				Label lbl = (Label)child;
 				TextField text = new TextField();
 				text.setPromptText(lbl.getText());
-				iterator.remove(); // remove the label that is at index currentPos
+				iterator.remove(); //Remove the label that is at index currentPos
 				toInsert.put(currentPos, text);
 			}
 			currentPos++;
 		}
 		for (Integer pos : toInsert.keySet()) {
 			TextField field = toInsert.get(pos);
-			vBox.getChildren().add(pos, field); // Add the Text field at the old position of the Label
+			vBox.getChildren().add(pos, field); //Add the TextField at the old position of the Label
 		}
 	}
 	
-
 	
 	public void setNoteOverviewController(NoteOverviewController controller) {
 		this.noteController = controller;

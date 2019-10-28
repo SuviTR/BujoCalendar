@@ -12,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
+import MetropoliaAMKgroup02.BujoCalendar.view.AlarmOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.CalendarOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.FontOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.NoteOverviewController;
@@ -32,6 +33,7 @@ public class MainApp extends Application {
     private RootLayoutController rootController;
     private CalendarController calendarController;
     private NoteOverviewController noteController;
+    private AlarmOverviewController alarmController;
     private boolean handleCurrentDate = false;
     /**
     * Starts the calendar application.
@@ -152,14 +154,42 @@ public class MainApp extends Application {
 
             noteController = loader.getController();
             
-            //calController.callFontValue();
-            
             noteController.setRootLayoutController(rootController); 
             noteController.setDialogStage(dialogStage);
         
             dialogStage.showAndWait();
             
             return noteController.isOkClicked();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean showAlarmOverview() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("/fxml/AlarmOverview.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Ilmoitus");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            alarmController = loader.getController();
+            alarmController.setNoteOverviewController(noteController);
+            
+            noteController.setRootLayoutController(rootController);
+            
+            alarmController.setDialogStage(dialogStage);
+        
+            dialogStage.showAndWait();
+            
+            return alarmController.isOkClicked();
             
         } catch (IOException e) {
             e.printStackTrace();

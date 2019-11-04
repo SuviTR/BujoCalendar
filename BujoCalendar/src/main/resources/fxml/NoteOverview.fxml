@@ -83,17 +83,6 @@
                <GridPane.margin>
                   <Insets left="8.0" />
                </GridPane.margin></CheckBox>
-            <Label fx:id="startTime" prefHeight="17.0" prefWidth="167.0" text="10:30" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <padding>
-                  <Insets left="7.0" />
-               </padding></Label>
-            <Label fx:id="endTime" prefHeight="17.0" prefWidth="169.0" text="11:30" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="7.0" />
-               </padding></Label>
             <Label onMouseClicked="#handleOpenAlarmView" prefHeight="17.0" prefWidth="95.0" text="Lisää ilmoitus" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <padding>
                   <Insets left="4.0" />
@@ -110,6 +99,8 @@
                   <Insets left="8.0" />
                </GridPane.margin></ChoiceBox>
             <TextField fx:id="alarm" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="startTime" prefHeight="25.0" prefWidth="115.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="endTime" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <GridPane layoutX="15.0" layoutY="427.0" prefHeight="49.0" prefWidth="305.0">

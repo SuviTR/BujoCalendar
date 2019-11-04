@@ -31,7 +31,7 @@ public class NoteEdit {
 		return day.getText();
 	}
 	
-	public String[] noteDayandTime(Label startDay, Label endDay, Label startTime, Label endTime) {
+	public String[] noteDayandTime(Label startDay, Label endDay, TextField startTime, TextField endTime) {
 		
 		String[] noteDaysTimes = new String[4];
 		noteDaysTimes[0] = startDay.getText();

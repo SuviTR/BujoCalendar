@@ -5,6 +5,7 @@ import javax.xml.transform.Source;
 import org.dom4j.Node;
 
 import MetropoliaAMKgroup02.BujoCalendar.model.AlarmView;
+import MetropoliaAMKgroup02.BujoCalendar.model.Clock;
 import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
 import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
 import MetropoliaAMKgroup02.BujoCalendar.model.MonthView;
@@ -39,13 +40,14 @@ public class NoteOverviewController {
 		private CheckBox allDayEvent;
 		
 		@FXML
-		private Label startDay, endDay, startTime, endTime;
+		private Label startDay, endDay;
+		
 		
 		@FXML
 		private Label notePriority;
 		
 		@FXML
-		private TextField alarm;
+		private TextField alarm, startTime, endTime;
 		
 		@FXML
 		private ChoiceBox priorityChoiceBox;
@@ -64,6 +66,7 @@ public class NoteOverviewController {
 		private Dates dates;
 		private MonthView picker;
 		private int whichDayValue = 0;
+		private Clock clock;
 		
 		@FXML
 		private void initialize() {	//Lisää startDay:ksi se päivä, jota on klikattu?
@@ -71,13 +74,11 @@ public class NoteOverviewController {
 			noteEdit.setNoteOverviewController(this);
 			
 			dates = new Dates();
-			startDay.setText(dates.getCurrentDate());
-			endDay.setText(dates.getCurrentDate());
-			
-			//startDay = currentDay() tai selectedDay();
-			//endDay = currentDay() tai selectedDay();
-			//startTime = currentTime();
-			//endTime = currentTime() + 1;
+			clock = new Clock();
+			startDay.setText(dates.getCurrentDate()); //tai day clicked
+			endDay.setText(dates.getCurrentDate());		//---/---
+			startTime.setText(clock.currentTime());
+			endTime.setText(clock.currentTimeplus1());
 			
 			picker = new MonthView();
 			picker.setNoteOverviewController(this);
@@ -117,6 +118,7 @@ public class NoteOverviewController {
 			else {
 				noteEdit.noteDayandTime(startDay, endDay, startTime, endTime);
 			}
+			handleStartandEndTime();
 			dialogStage.close();
 		}
 		
@@ -137,6 +139,11 @@ public class NoteOverviewController {
 		private void openDatePicker() {
 			Stage s = new Stage();
 			picker.start(s);
+		}
+		
+		private void handleStartandEndTime() {
+			clock.handleStartTime(startTime);
+			clock.handleEndTime(endTime);
 		}
 		
 		public void setAlarmDay(String day) {

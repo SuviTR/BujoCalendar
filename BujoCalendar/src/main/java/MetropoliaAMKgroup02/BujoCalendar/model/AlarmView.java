@@ -3,6 +3,7 @@ package MetropoliaAMKgroup02.BujoCalendar.model;
 import MetropoliaAMKgroup02.BujoCalendar.view.AlarmOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.NoteOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.RootLayoutController;
+import MetropoliaAMKgroup02.Common.model.Halytys;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 public class AlarmView {
 	
 	private AlarmOverviewController alarmController;
+	private Halytys halytys;
 	
 	public String getAlarmTime(TextField time) {
 		String alarmTime = time.getText();
@@ -34,6 +36,10 @@ public class AlarmView {
 			valueText = "vko ennen";
 		}
 		return valueText;
+	}
+	
+	public void sendAlarmInfoToCommonHalytys() {
+		
 	}
 	
 	public void setAlarmOverviewController(AlarmOverviewController controller) {

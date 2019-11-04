@@ -3,6 +3,7 @@ package MetropoliaAMKgroup02.BujoCalendar.view;
 import org.dom4j.Node;
 
 import MetropoliaAMKgroup02.BujoCalendar.model.AlarmView;
+import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
 import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
 import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
 import MetropoliaAMKgroup02.BujoCalendar.model.Priority;
@@ -57,11 +58,16 @@ public class NoteOverviewController {
 		private AlarmOverviewController alarmController;
 		private Priority priority;
 		private String alarmValue;
+		private Dates dates;
 		
 		@FXML
 		private void initialize() {	//Lisää startDay:ksi se päivä, jota on klikattu?
 			noteEdit = new NoteEdit();
 			noteEdit.setNoteOverviewController(this);
+			
+			dates = new Dates();
+			startDay.setText(dates.getCurrentDate());
+			endDay.setText(dates.getCurrentDate());
 			
 			//startDay = currentDay() tai selectedDay();
 			//endDay = currentDay() tai selectedDay();

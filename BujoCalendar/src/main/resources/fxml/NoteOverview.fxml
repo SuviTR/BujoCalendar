@@ -6,16 +6,16 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="480.0" prefWidth="200.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MetropoliaAMKgroup02.BujoCalendar.view.NoteOverviewController">
+<AnchorPane prefHeight="480.0" prefWidth="200.0" stylesheets="@../noteStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MetropoliaAMKgroup02.BujoCalendar.view.NoteOverviewController">
    <children>
       <ImageView fitHeight="140.0" fitWidth="320.0" pickOnBounds="true">
          <image>
@@ -27,12 +27,20 @@
             <Image url="@../img/Edit.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="note" layoutX="15.0" layoutY="336.0" prefHeight="88.0" prefWidth="291.0" text="Lisätietoa" />
+      <TextField fx:id="noteTitle" layoutX="15.0" layoutY="169.0" onAction="#handleNoteTitle" prefHeight="35.0" prefWidth="291.0" promptText="Otsikko">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <TextArea fx:id="noteMoreInfo" layoutX="15.0" layoutY="336.0" onMouseClicked="#handleNoteMoreInfo" prefHeight="88.0" prefWidth="291.0" promptText="Lisätietoa" />
       <GridPane layoutX="15.0" layoutY="208.0" prefHeight="116.0" prefWidth="305.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.33331298828125" minWidth="10.0" prefWidth="19.333343505859375" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.66665649414062" minWidth="10.0" prefWidth="92.66668701171875" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.66668701171875" minWidth="10.0" prefWidth="193.33331298828125" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.66665649414062" minWidth="10.0" prefWidth="83.33331298828125" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.66668701171875" minWidth="10.0" prefWidth="202.66668701171875" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -57,7 +65,6 @@
                   <Insets left="4.0" />
                </padding>
             </Label>
-            <Label prefHeight="17.0" prefWidth="201.0" GridPane.columnIndex="2" />
             <Label fx:id="startDay" text="10.10.2019" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <padding>
                   <Insets left="4.0" />
@@ -72,9 +79,21 @@
                   <Image url="@../img/schedule_grey_144x144.png" />
                </image>
             </ImageView>
-            <CheckBox fx:id="allDayEvent" mnemonicParsing="false" onMouseClicked="#handleAllDayEventCheckBox" prefHeight="17.0" prefWidth="6.0" GridPane.columnIndex="2" />
-            <Label fx:id="startTime" prefHeight="17.0" prefWidth="167.0" text="10:30" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label fx:id="endTime" prefHeight="17.0" prefWidth="169.0" text="11:30" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <CheckBox fx:id="allDayEvent" mnemonicParsing="false" onMouseClicked="#handleAllDayEventCheckBox" prefHeight="17.0" prefWidth="6.0" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets left="8.0" />
+               </GridPane.margin></CheckBox>
+            <Label fx:id="startTime" prefHeight="17.0" prefWidth="167.0" text="10:30" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="7.0" />
+               </padding></Label>
+            <Label fx:id="endTime" prefHeight="17.0" prefWidth="169.0" text="11:30" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="7.0" />
+               </padding></Label>
             <Label onMouseClicked="#handleOpenAlarmView" prefHeight="17.0" prefWidth="95.0" text="Lisää ilmoitus" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <padding>
                   <Insets left="4.0" />
@@ -86,8 +105,11 @@
                </image>
             </ImageView>
             <Label fx:id="noteAlarm" prefHeight="17.0" prefWidth="187.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <ChoiceBox fx:id="priorityChoiceBox" prefHeight="9.0" prefWidth="107.0" stylesheets="@../choiceBoxOrangeStyle.css" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Label fx:id="Alarm" prefHeight="17.0" prefWidth="190.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="priorityChoiceBox" prefHeight="9.0" prefWidth="107.0" stylesheets="@../choiceBoxOrangeStyle.css" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="8.0" />
+               </GridPane.margin></ChoiceBox>
+            <TextField fx:id="alarm" GridPane.columnIndex="2" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <GridPane layoutX="15.0" layoutY="427.0" prefHeight="49.0" prefWidth="305.0">
@@ -142,15 +164,6 @@
             </ImageView>
          </children>
       </GridPane>
-      <VBox fx:id="vbox" layoutX="15.0" layoutY="167.0" prefHeight="41.0" prefWidth="305.0">
-         <children>
-            <Label onMouseClicked="#handleNoteTitle" prefHeight="41.0" prefWidth="308.0" text="Otsikko">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
       <Button layoutX="252.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="61.0" stylesheets="@../saveButtonStyle.css" text="Tallenna" />
    </children>
 </AnchorPane>

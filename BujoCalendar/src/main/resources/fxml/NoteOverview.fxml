@@ -27,7 +27,7 @@
             <Image url="@../img/Edit.png" />
          </image>
       </ImageView>
-      <TextField fx:id="noteTitle" layoutX="15.0" layoutY="169.0" onAction="#handleNoteTitle" prefHeight="35.0" prefWidth="291.0" promptText="Otsikko">
+      <TextField fx:id="noteTitle" layoutX="15.0" layoutY="169.0" prefHeight="35.0" prefWidth="291.0" promptText="Otsikko">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -35,7 +35,7 @@
             <Insets />
          </opaqueInsets>
       </TextField>
-      <TextArea fx:id="noteMoreInfo" layoutX="15.0" layoutY="336.0" onMouseClicked="#handleNoteMoreInfo" prefHeight="88.0" prefWidth="291.0" promptText="Lisätietoa" />
+      <TextArea fx:id="noteMoreInfo" layoutX="15.0" layoutY="336.0" prefHeight="88.0" prefWidth="291.0" promptText="Lisätietoa ja #tägit" />
       <GridPane layoutX="15.0" layoutY="208.0" prefHeight="116.0" prefWidth="305.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.33331298828125" minWidth="10.0" prefWidth="19.333343505859375" />

@@ -63,6 +63,11 @@ public class NoteOverviewController {
 			noteEdit = new NoteEdit();
 			noteEdit.setNoteOverviewController(this);
 			
+			//startDay = currentDay() tai selectedDay();
+			//endDay = currentDay() tai selectedDay();
+			//startTime = currentTime();
+			//endTime = currentTime() + 1;
+			
 			priority = new Priority();
 			priorityChoiceBox.setValue("Normal");
 		    priorityChoiceBox.setItems(priority.getPriorityList());
@@ -71,7 +76,7 @@ public class NoteOverviewController {
 		    priorityChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() { 
 	            // If the item of the list is changed 
 	            public void changed(ObservableValue ov, Number value, Number new_value) { 
-	            	System.out.println(priority.selectedPriority(new_value.intValue()));
+	            	priority.selectedPriority(new_value.intValue());
 	            } 
 	        }); 
 		   
@@ -90,40 +95,27 @@ public class NoteOverviewController {
 		@FXML
 		private void handleOk() {
 			okClicked = true;
+			handleNoteTitle();
+			handleNoteMoreInfo();
+			if (allDayEvent.isSelected()) {
+				noteEdit.noteStartDay(startDay);
+			}
+			else {
+				noteEdit.noteDayandTime(startDay, endDay, startTime, endTime);
+			}
 			dialogStage.close();
 		}
-		/*
-		public void getAlarmTimeandValue() {
-			String value = rootController.alarmTimeandValue();
-			System.out.println("value " + value);
-			alarm.setText(value);
-		}*/
+
 		public void setAlarmTimeandvalue(String text) {
 			alarm.setText(text);
 		}
 		
-		
-		@FXML
 		private void handleNoteTitle() {
-			
-			/*
-			final BooleanProperty firstTime = new SimpleBooleanProperty(true);
-		
-			noteTitle.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
-	            if(newValue && firstTime.get()){
-	                vBox.requestFocus(); // Delegate the focus to container
-	                firstTime.setValue(false); // Variable value changed for future references
-	            }
-	        });*/
-			
-			//noteEdit.newNoteTitle(noteTitle);
+			noteEdit.newNoteTitle(noteTitle);
 		}
 		
-		@FXML
 		private void handleNoteMoreInfo() {
-			
-			
-			//noteEdit.newNoteMoreInfo(noteMoreInfo);
+			noteEdit.newNoteMoreInfo(noteMoreInfo);
 		}
 		
 		@FXML

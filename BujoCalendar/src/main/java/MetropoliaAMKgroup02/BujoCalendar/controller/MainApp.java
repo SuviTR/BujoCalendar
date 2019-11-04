@@ -167,6 +167,10 @@ public class MainApp extends Application {
         }
     }
     
+    public void handleOpenNoteOverview() {
+    	rootController.handleNewNote();
+    }
+    
     public boolean showAlarmOverview() {
         try {
             FXMLLoader loader = new FXMLLoader();

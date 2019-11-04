@@ -61,7 +61,6 @@ public class RootLayoutController {
 	
 	public void showAlarmOverview() {
 		boolean okClicked = mainApp.showAlarmOverview();
-		//return okClicked;
 	}
 
 	public void setMainApp(MainApp mainApp) {

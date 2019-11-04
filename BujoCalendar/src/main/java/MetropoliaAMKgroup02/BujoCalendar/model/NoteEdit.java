@@ -15,12 +15,27 @@ public class NoteEdit {
 	
 	private NoteOverviewController noteController;
 
-	public void newNoteTitle(TextField title) {
-		title.setPromptText("Otsikko");
+	public String newNoteTitle(TextField title) {
+		return title.getText();
 	}
 	
-	public void newNoteMoreInfo(TextArea text) {
-		text.setPromptText("Lisätietoa");
+	public String newNoteMoreInfo(TextArea text) {
+		return text.getText();
+	}
+	
+	public String noteStartDay(Label day) {
+		return day.getText();
+	}
+	
+	public String[] noteDayandTime(Label startDay, Label endDay, Label startTime, Label endTime) {
+		
+		String[] noteDaysTimes = new String[4];
+		noteDaysTimes[0] = startDay.getText();
+		noteDaysTimes[1] = endDay.getText();
+		noteDaysTimes[2] = startTime.getText();
+		noteDaysTimes[3] = endTime.getText();
+		
+		return noteDaysTimes;
 	}
 	
 	public void setNoteOverviewController(NoteOverviewController controller) {

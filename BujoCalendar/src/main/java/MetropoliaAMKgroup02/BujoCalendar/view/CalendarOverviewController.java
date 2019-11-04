@@ -255,6 +255,11 @@ public class CalendarOverviewController {
 		
 	}
 	
+	@FXML
+	private void handleOpenNoteOverview() {
+		mainApp.handleOpenNoteOverview();
+	}
+	
 
 	//======= Edit view =======
 	@FXML

@@ -65,12 +65,12 @@
                   <Insets left="4.0" />
                </padding>
             </Label>
-            <Label fx:id="startDay" text="10.10.2019" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="startDay" onMouseClicked="#handleOpenDatePicker1" text="10.10.2019" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <padding>
                   <Insets left="4.0" />
                </padding>
             </Label>
-            <Label fx:id="endDay" prefHeight="17.0" prefWidth="170.0" text="10.10.2019" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="endDay" onMouseClicked="#handleOpenDatePicker2" prefHeight="17.0" prefWidth="170.0" text="10.10.2019" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <padding>
                   <Insets left="4.0" />
                </padding></Label>

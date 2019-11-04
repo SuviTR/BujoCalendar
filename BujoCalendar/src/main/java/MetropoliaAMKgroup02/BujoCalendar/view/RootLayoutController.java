@@ -34,6 +34,7 @@ public class RootLayoutController {
 		monthView.setRootLayoutController(this);
 		Stage s = new Stage();
 		monthView.start(s);
+		monthView.whoValue(1);
 	}
 	
 	@FXML

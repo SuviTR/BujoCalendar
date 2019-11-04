@@ -22,7 +22,7 @@ public class MonthView extends Application {
         
         ok.setOnAction(event -> {
         	System.out.println("Ok");
-        	rootController.getSelectedDateView(selectedDate);
+        	rootController.handleSelectedDateView(selectedDate);
         	
         });
         
@@ -41,6 +41,13 @@ public class MonthView extends Application {
         g.setVgap(20);
         g.add(ok, 1, 1);
         g.add(cancel, 1, 0);
+        
+        //Closes the MonthView window
+        s.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+            if (! isNowFocused) {
+                s.hide();
+            }
+        });
   
         Scene sc = new Scene(g, 235, 200); 
         s.setScene(sc); 

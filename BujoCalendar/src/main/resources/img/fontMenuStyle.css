@@ -1,4 +1,7 @@
-
+.anchorpane {
+    -fx-background-color: rgba(0, 100, 100, 0.5); 
+    -fx-background-radius: 10;
+}
 
 .menu-button, .button {
 	-fx-font-size: 15.0;

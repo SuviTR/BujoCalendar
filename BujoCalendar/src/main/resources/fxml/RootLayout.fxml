@@ -5,31 +5,50 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MetropoliaAMKgroup02.BujoCalendar.view.RootLayoutController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MetropoliaAMKgroup02.BujoCalendar.view.RootLayoutController">
    <top>
       <MenuBar stylesheets="@../menubarStyle.css" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Kalenteri">
             <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleViewCurrentDate" text="Hae tämä päivä" />
                   <MenuItem mnemonicParsing="false" onAction="#handleSelectDay" text="Selaa päiviä" />
-                  <MenuItem mnemonicParsing="false" text="Etsi merkintöjä" />
-              <MenuItem mnemonicParsing="false" text="Sulje kalenteri" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+            <Menu mnemonicParsing="false" text="Merkinnät">
+              <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleNewNote" text="Lisää uusi merkintä" />
+                <MenuItem mnemonicParsing="false" text="Lisää uusi to-do -tehtävät" />
+                  <MenuItem mnemonicParsing="false" text="Muokkaa merkintää" />
+                  <MenuItem mnemonicParsing="false" text="Muokkaa to-do -tehtävää" />
+                  <MenuItem mnemonicParsing="false" text="Etsi merkintöjä" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Osoitekirja">
+              <items>
+                  <MenuItem mnemonicParsing="false" text="Lisää uusi henkilö" />
+                <MenuItem mnemonicParsing="false" text="Lisää uusi sijainti" />
+                  <MenuItem mnemonicParsing="false" text="Muokkaa henkilöä" />
+                  <MenuItem mnemonicParsing="false" text="Muokkaa sijaintia" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Muokkaa">
             <items>
-              <MenuItem mnemonicParsing="false" text="Lisää merkintä" />
-                  <MenuItem mnemonicParsing="false" text="Lisää henkilö" />
-                  <MenuItem mnemonicParsing="false" text="Lisää to-do-task" />
-                  <Menu mnemonicParsing="false" text="Lisää moduuli">
+                  <Menu mnemonicParsing="false" text="Muokkaa fontteja">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Päivän mieliala" />
-                        <MenuItem mnemonicParsing="false" text="Päivän sää" />
-                        <MenuItem mnemonicParsing="false" text="Treenikalenteri" />
-                        <MenuItem mnemonicParsing="false" text="Päivän säätiedotus" />
+                      <MenuItem mnemonicParsing="false" text="Vaihda headerin fontti" />
+                        <MenuItem mnemonicParsing="false" text="Vaihda viikonpäivien nimien fontti" />
+                        <MenuItem mnemonicParsing="false" text="Vaihda päivämäärien fontti" />
                     </items>
                   </Menu>
-                  <MenuItem fx:id="weekdayFonts" mnemonicParsing="false" onAction="#handleChangeWeekdayFonts" text="Vaihda viikonpäivien fonttia" />
+                  <Menu mnemonicParsing="false" text="Muokkaa fonttien värejä">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Vaihda headerin fontin väri" />
+                        <MenuItem mnemonicParsing="false" text="Vaihda viikonpäivien fonttien väri" />
+                        <MenuItem mnemonicParsing="false" text="Vaihda päivämäärien fontin väri" />
+                    </items>
+                  </Menu>
+                  <MenuItem mnemonicParsing="false" text="Vaihda headerin kuvat" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">

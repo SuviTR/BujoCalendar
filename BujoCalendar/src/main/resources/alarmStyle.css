@@ -1,0 +1,16 @@
+.root {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+}
+
+
+.menu-button, .button {
+	-fx-font-size: 12.0;
+    -fx-font-family: "System";
+    -fx-text-fill: white;
+    -fx-background-color: #8880ff;
+    
+}
+.check-box .box {
+    -fx-background-radius: 100%;
+}

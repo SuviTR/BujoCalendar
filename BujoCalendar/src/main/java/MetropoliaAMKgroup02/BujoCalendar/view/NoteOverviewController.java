@@ -1,10 +1,13 @@
 package MetropoliaAMKgroup02.BujoCalendar.view;
 
+import javax.xml.transform.Source;
+
 import org.dom4j.Node;
 
 import MetropoliaAMKgroup02.BujoCalendar.model.AlarmView;
 import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
 import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
+import MetropoliaAMKgroup02.BujoCalendar.model.MonthView;
 import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
 import MetropoliaAMKgroup02.BujoCalendar.model.Priority;
 import javafx.application.Platform;
@@ -59,6 +62,8 @@ public class NoteOverviewController {
 		private Priority priority;
 		private String alarmValue;
 		private Dates dates;
+		private MonthView picker;
+		private int whichDayValue = 0;
 		
 		@FXML
 		private void initialize() {	//Lisää startDay:ksi se päivä, jota on klikattu?
@@ -73,6 +78,9 @@ public class NoteOverviewController {
 			//endDay = currentDay() tai selectedDay();
 			//startTime = currentTime();
 			//endTime = currentTime() + 1;
+			
+			picker = new MonthView();
+			picker.setNoteOverviewController(this);
 			
 			priority = new Priority();
 			priorityChoiceBox.setValue("Normal");
@@ -110,6 +118,34 @@ public class NoteOverviewController {
 				noteEdit.noteDayandTime(startDay, endDay, startTime, endTime);
 			}
 			dialogStage.close();
+		}
+		
+		@FXML
+		private void handleOpenDatePicker1() {
+			picker.whoValue(2);
+			whichDayValue = 1;
+			openDatePicker();
+		}
+		
+		@FXML
+		private void handleOpenDatePicker2() {
+			picker.whoValue(2);
+			whichDayValue = 2;
+			openDatePicker();
+		}
+		
+		private void openDatePicker() {
+			Stage s = new Stage();
+			picker.start(s);
+		}
+		
+		public void setAlarmDay(String day) {
+			if (whichDayValue == 1) {
+				startDay.setText(day);
+			}
+			else if (whichDayValue == 2) {
+				endDay.setText(day);
+			}
 		}
 
 		public void setAlarmTimeandvalue(String text) {

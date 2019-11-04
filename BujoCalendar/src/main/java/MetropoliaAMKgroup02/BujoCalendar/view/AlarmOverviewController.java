@@ -6,7 +6,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 public class AlarmOverviewController {
@@ -15,12 +18,20 @@ public class AlarmOverviewController {
 	private NoteOverviewController noteController;
 	private boolean okClicked = false;
 	private Stage dialogStage;
+	private String time;
+	private String value;
 
 	@FXML
-	private TextField AlarmTime;
+	private TextField alarmTime;
 	
 	@FXML
-	private CheckBox min, hour, day, week;
+	private RadioButton min, hour, day, week;
+	
+	@FXML
+	private ToggleGroup toggleGroup1;
+	
+	@FXML
+	private CheckBox alarmApp, alarmEmail;
 	
 	@FXML
 	private void initialize() {
@@ -39,54 +50,46 @@ public class AlarmOverviewController {
 	@FXML
 	private void handleOk() {
 		okClicked = true;
+		noteController.setAlarmTimeandvalue(alarmTimeandValue());
 		dialogStage.close();
 	}
 	
-	@FXML
 	private void handleAlarmTime() {
-		System.out.println(AlarmTime.getText());
+		time = alarmTime.getText();
 	}
 	
 	@FXML
 	private void handleAlarmOptions() {
 		
-		ObservableList<CheckBox> options = FXCollections.observableArrayList();
-		options.addAll(min, hour, day, week);
-		/*
-		for (int i = 0; i < options.size(); i++) {
-			if (options.get(i).isSelected()) {
-				CheckBox selected = options.get(i);
-				for (int j = 0; j < options.size(); j++) {
-					if (!selected.equals(options.get(i))) {
-						options.get(i).setSelected(false);
-					}
-				}
-			}
-		}*/
-		
+		toggleGroup1 = new ToggleGroup();
+
+		min.setToggleGroup(toggleGroup1);
+		hour.setToggleGroup(toggleGroup1);
+		day.setToggleGroup(toggleGroup1);
+		week.setToggleGroup(toggleGroup1);
+
 		if (min.isSelected()) {
-			hour.setSelected(false);
-			day.setSelected(false);
-			week.setSelected(false);
+			value = alarmView.getTimeValue("min");
+			
 		}
 		else if (hour.isSelected()) {
-			min.setSelected(false);
-			day.setSelected(false);
-			week.setSelected(false);
+			value = alarmView.getTimeValue("hour");
+			
 		}
 		else if (day.isSelected()) {
-			min.setSelected(false);
-			hour.setSelected(false);
-			week.setSelected(false);
+			value = alarmView.getTimeValue("day");
+		
 		}
 		else if (week.isSelected()) {
-			min.setSelected(false);
-			hour.setSelected(false);
-			day.setSelected(false);
+			value = alarmView.getTimeValue("week");
 		}
 	}
 	
-
+	public String alarmTimeandValue() {
+		handleAlarmTime();
+		return time + " " + value;
+	}
+	
 	public void setNoteOverviewController(NoteOverviewController controller) {
 		this.noteController = controller;
 	}

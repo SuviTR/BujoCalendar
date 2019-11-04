@@ -6,6 +6,9 @@ import MetropoliaAMKgroup02.BujoCalendar.model.AlarmView;
 import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
 import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
 import MetropoliaAMKgroup02.BujoCalendar.model.Priority;
+import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -21,16 +24,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class NoteOverviewController {
-	
-		/*
+		
 		@FXML
 		private TextField noteTitle;
 		
 		@FXML
-		private Label noteTitle;*/
-
-		@FXML
-		private VBox vbox;
+		private TextArea noteMoreInfo;
 		
 		@FXML
 		private CheckBox allDayEvent;
@@ -39,7 +38,10 @@ public class NoteOverviewController {
 		private Label startDay, endDay, startTime, endTime;
 		
 		@FXML
-		private Label noteAlarm, notePriority;
+		private Label notePriority;
+		
+		@FXML
+		private TextField alarm;
 		
 		@FXML
 		private ChoiceBox priorityChoiceBox;
@@ -54,13 +56,12 @@ public class NoteOverviewController {
 		private NoteEdit noteEdit;
 		private AlarmOverviewController alarmController;
 		private Priority priority;
+		private String alarmValue;
 		
 		@FXML
 		private void initialize() {	//Lisää startDay:ksi se päivä, jota on klikattu?
 			noteEdit = new NoteEdit();
 			noteEdit.setNoteOverviewController(this);
-			
-			//alarmController.setNoteOverviewController(this);
 			
 			priority = new Priority();
 			priorityChoiceBox.setValue("Normal");
@@ -73,6 +74,9 @@ public class NoteOverviewController {
 	            	System.out.println(priority.selectedPriority(new_value.intValue()));
 	            } 
 	        }); 
+		   
+		    noteTitle.setFocusTraversable(false);
+	        noteMoreInfo.setFocusTraversable(false);
 		}
 		
 		public void setDialogStage(Stage dialogStage) {
@@ -88,10 +92,38 @@ public class NoteOverviewController {
 			okClicked = true;
 			dialogStage.close();
 		}
+		/*
+		public void getAlarmTimeandValue() {
+			String value = rootController.alarmTimeandValue();
+			System.out.println("value " + value);
+			alarm.setText(value);
+		}*/
+		public void setAlarmTimeandvalue(String text) {
+			alarm.setText(text);
+		}
+		
 		
 		@FXML
 		private void handleNoteTitle() {
-			noteEdit.newNoteTitle(vbox);
+			
+			/*
+			final BooleanProperty firstTime = new SimpleBooleanProperty(true);
+		
+			noteTitle.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
+	            if(newValue && firstTime.get()){
+	                vBox.requestFocus(); // Delegate the focus to container
+	                firstTime.setValue(false); // Variable value changed for future references
+	            }
+	        });*/
+			
+			//noteEdit.newNoteTitle(noteTitle);
+		}
+		
+		@FXML
+		private void handleNoteMoreInfo() {
+			
+			
+			//noteEdit.newNoteMoreInfo(noteMoreInfo);
 		}
 		
 		@FXML

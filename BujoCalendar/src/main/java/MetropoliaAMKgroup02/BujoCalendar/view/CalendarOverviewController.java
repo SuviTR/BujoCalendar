@@ -255,7 +255,6 @@ public class CalendarOverviewController {
 		
 	}
 	
-	
 
 	//======= Edit view =======
 	@FXML

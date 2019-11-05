@@ -145,8 +145,8 @@ public class NoteOverviewController {
 		}
 		
 		public void setAlarmTimeandValue(String text) {	
-			alarm.setText(text);
-				
+			String texts = alarm.getText() + " " + text;
+			alarm.setText(texts);
 		}
 		
 		private void handleNoteTitle() {
@@ -170,8 +170,6 @@ public class NoteOverviewController {
 				endTime.setVisible(true);
 			}
 		}
-		
-		
 		
 		@FXML
 		private void handleOpenAlarmView() {

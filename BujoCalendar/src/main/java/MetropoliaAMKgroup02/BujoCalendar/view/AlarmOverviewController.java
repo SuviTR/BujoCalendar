@@ -101,25 +101,26 @@ public class AlarmOverviewController {
 
         String errorMessage = "";
         
-        int validInt = 0;
-        boolean isValid = false;
-        
+        int validInt;
+
         try {
-            validInt = Integer.parseInt(time);
-            isValid = true;
-            
+            validInt = Integer.parseInt(alarmTime.getText());
+ 
             if (validInt > 59 || validInt < 1) {
                 errorMessage += "Antamasi ilmoitusaika ei ole 1-59 väliltä!\n"; 
-                isValid = false;
             }
+ 
         } 
         catch (NumberFormatException ex) {
         	errorMessage += "Et ole antanut ilmoitusaikaa tai\nantamasi ilmoitusaika ei ole kokonaisluku, esim. 10!\n";
-            isValid = false;
+        }
+
+        if (value == null) {
+        	errorMessage += "Et ole valinnut ilmoitusajan tyyppiä vaihtoehdoista!\n";
         }
         
         if (errorMessage.length() == 0) {
-            isValid = true;
+            return true;
         } 
         else {
             Alert alert = new Alert(AlertType.ERROR);
@@ -130,9 +131,8 @@ public class AlarmOverviewController {
             
             alert.showAndWait();
             
-            isValid = false;
+            return false;
         }
-        return isValid;
     }
 	
 	public void setNoteOverviewController(NoteOverviewController controller) {

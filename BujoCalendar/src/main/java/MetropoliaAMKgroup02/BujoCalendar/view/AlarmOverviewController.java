@@ -5,6 +5,8 @@ import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -49,17 +51,21 @@ public class AlarmOverviewController {
 
 	@FXML
 	private void handleOk() {
-		okClicked = true;
-		noteController.setAlarmTimeandvalue(alarmTimeandValue());
-		dialogStage.close();
+		if (isInputValid()) {
+			okClicked = true;
+			noteController.setAlarmTimeandValue(alarmTimeandValue());
+			dialogStage.close();
+		}
 	}
 	
-	private void handleAlarmTime() {
+	private String handleAlarmTime() {
 		time = alarmTime.getText();
+		alarmView.getAlarmTime(time);
+		return time;
 	}
 	
 	@FXML
-	private void handleAlarmOptions() {
+	private String handleAlarmOptions() {
 		
 		toggleGroup1 = new ToggleGroup();
 
@@ -83,12 +89,51 @@ public class AlarmOverviewController {
 		else if (week.isSelected()) {
 			value = alarmView.getTimeValue("week");
 		}
+		return value;
 	}
 	
 	public String alarmTimeandValue() {
 		handleAlarmTime();
 		return time + " " + value;
 	}
+	
+	private boolean isInputValid() {
+
+        String errorMessage = "";
+        
+        int validInt = 0;
+        boolean isValid = false;
+        
+        try {
+            validInt = Integer.parseInt(time);
+            isValid = true;
+            
+            if (validInt > 59 || validInt < 1) {
+                errorMessage += "Antamasi ilmoitusaika ei ole 1-59 väliltä!\n"; 
+                isValid = false;
+            }
+        } 
+        catch (NumberFormatException ex) {
+        	errorMessage += "Et ole antanut ilmoitusaikaa tai\nantamasi ilmoitusaika ei ole kokonaisluku, esim. 10!\n";
+            isValid = false;
+        }
+        
+        if (errorMessage.length() == 0) {
+            isValid = true;
+        } 
+        else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.initOwner(dialogStage);
+            alert.setTitle("Antamasi ilmoitusaika on epävalidi.");
+            alert.setHeaderText("Korjaathan epävalidin ilmoitusajan");
+            alert.setContentText(errorMessage);
+            
+            alert.showAndWait();
+            
+            isValid = false;
+        }
+        return isValid;
+    }
 	
 	public void setNoteOverviewController(NoteOverviewController controller) {
 		this.noteController = controller;

@@ -1,31 +1,18 @@
 package MetropoliaAMKgroup02.BujoCalendar.view;
 
-import javax.xml.transform.Source;
-
-import org.dom4j.Node;
-
-import MetropoliaAMKgroup02.BujoCalendar.model.AlarmView;
 import MetropoliaAMKgroup02.BujoCalendar.model.Clock;
 import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
-import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
 import MetropoliaAMKgroup02.BujoCalendar.model.MonthView;
 import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
 import MetropoliaAMKgroup02.BujoCalendar.model.Priority;
-import javafx.application.Platform;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class NoteOverviewController {
@@ -67,6 +54,7 @@ public class NoteOverviewController {
 		private MonthView picker;
 		private int whichDayValue = 0;
 		private Clock clock;
+		private String valid = "";
 		
 		@FXML
 		private void initialize() {	//Lisää startDay:ksi se päivä, jota on klikattu?
@@ -120,6 +108,7 @@ public class NoteOverviewController {
 			}
 			handleStartandEndTime();
 			dialogStage.close();
+		
 		}
 		
 		@FXML
@@ -154,9 +143,10 @@ public class NoteOverviewController {
 				endDay.setText(day);
 			}
 		}
-
-		public void setAlarmTimeandvalue(String text) {
-			alarm.setText(text);
+		
+		public void setAlarmTimeandValue(String text) {	
+			String texts = alarm.getText() + " " + text;
+			alarm.setText(texts);
 		}
 		
 		private void handleNoteTitle() {

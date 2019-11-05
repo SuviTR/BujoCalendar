@@ -15,9 +15,8 @@ public class AlarmView {
 	private AlarmOverviewController alarmController;
 	private Halytys halytys;
 	
-	public String getAlarmTime(TextField time) {
-		String alarmTime = time.getText();
-		return alarmTime;
+	public String getAlarmTime(String time) {
+		return time;
 	}
 	
 	public String getTimeValue(String value) {

@@ -23,7 +23,12 @@ public class Clock {
 		String parseMin = curTime.substring(curTime.length() - 3);
 		
 		int time = Integer.parseInt(parseHour);
-		time = time + 1;
+		if (time == 24) {
+			time = 0;
+		}
+		else {
+			time = time + 1;
+		}
 		parseHour = Integer.toString(time);
 		
 		String newTime = parseHour + parseMin;

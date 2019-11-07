@@ -1,5 +1,6 @@
 package MetropoliaAMKgroup02.BujoCalendar.view;
 
+import MetropoliaAMKgroup02.BujoCalendar.controller.AppController;
 import MetropoliaAMKgroup02.BujoCalendar.model.Clock;
 import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
 import MetropoliaAMKgroup02.BujoCalendar.model.MonthView;
@@ -61,10 +62,10 @@ public class NoteOverviewController {
 			noteEdit = new NoteEdit();
 			noteEdit.setNoteOverviewController(this);
 			
-			dates = new Dates();
+			dates = AppController.getInstance().getDates();
 			clock = new Clock();
-			startDay.setText(dates.getCurrentDate()); //tai day clicked
-			endDay.setText(dates.getCurrentDate());		//---/---
+			startDay.setText(dates.getCurrentDate().toString()); //tai day clicked
+			endDay.setText(dates.getCurrentDate().toString());		//---/---
 			startTime.setText(clock.currentTime());
 			endTime.setText(clock.currentTimeplus1());
 			

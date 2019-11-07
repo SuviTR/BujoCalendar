@@ -97,7 +97,7 @@ public class MainApp extends Application {
             
 		    calController.initView();
 	
-		    //calendarController.fetchAll();
+		    calendarController.fetchAll();
 	
 		    calController.updateView();
             

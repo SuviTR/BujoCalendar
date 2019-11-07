@@ -7,7 +7,7 @@ import javafx.event.EventHandler;
 import javafx.collections.*;
 import MetropoliaAMKgroup02.BujoCalendar.view.FontOverviewController;
 
-public class Menu {
+public class FontMenu {
 	
 	private FontOverviewController fontController;
 	private ObservableList<MenuItem> calendarFonts;

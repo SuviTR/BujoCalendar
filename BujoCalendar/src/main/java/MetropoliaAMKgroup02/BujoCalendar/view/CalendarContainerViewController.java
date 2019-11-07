@@ -7,7 +7,7 @@ package MetropoliaAMKgroup02.BujoCalendar.view;
 
 import MetropoliaAMKgroup02.BujoCalendar.controller.CalendarController;
 import MetropoliaAMKgroup02.BujoCalendar.controller.CalendarDayController;
-import MetropoliaAMKgroup02.BujoCalendar.model.TimeandDates;
+import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javafx.fxml.FXML;
@@ -47,7 +47,7 @@ public class CalendarContainerViewController {
 	private int weekDayEnd = 21;
 	private int weekendDayStart = 10;
 	private int weekendDayEnd = 14;
-	private TimeandDates dates;
+	private Dates dates;
 	private CalendarController calendarController;
 
 	CalendarContainerViewController(GridPane calendarContainer, GridPane weekendContainer) {
@@ -118,7 +118,7 @@ public class CalendarContainerViewController {
 		}
 	}
 
-	void setTimeAndDates(TimeandDates dates) {
+	void setTimeAndDates(Dates dates) {
 		this.dates = dates;
 	}
 

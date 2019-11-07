@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class TimeandDates {
+public class Dates {
 	
 	private Locale fiLocale;
 	private String date;
@@ -24,7 +24,11 @@ public class TimeandDates {
 	private Calendar saturday;
 	private Calendar sunday;
 	
-	public TimeandDates() {
+	private int backCounter = 0;
+	private int forwardCounter = 0;
+	private int totalCounter = 0;
+	
+	public Dates() {
 		fiLocale = new Locale("fi", "FI");	
 		this.setCurrentDate(Calendar.getInstance(fiLocale));
 	}
@@ -309,5 +313,24 @@ public class TimeandDates {
 			String yearString = yearMon + "/" + yearSun;
 			return yearString;
 		}
+	}
+	
+	public int nextWeek() {
+		
+		forwardCounter++;
+		backCounter = backCounter * (-1);
+		totalCounter = backCounter + forwardCounter;
+		backCounter = backCounter * (-1);
+		
+		return forwardCounter;
+	}
+	
+	public int previousWeek() {
+		
+		backCounter = (backCounter + 1)* (-1);
+		totalCounter = backCounter + forwardCounter;
+		backCounter = backCounter* (-1);
+		
+		return backCounter;
 	}
 }

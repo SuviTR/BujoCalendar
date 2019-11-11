@@ -5,7 +5,7 @@
  */
 package MetropoliaAMKgroup02.BujoCalendar.controller;
 
-import MetropoliaAMKgroup02.BujoCalendar.model.HttpConnection;
+import MetropoliaAMKgroup02.BujoCalendar.utils.HttpConnection;
 import MetropoliaAMKgroup02.BujoCalendar.model.MerkintaList;
 import MetropoliaAMKgroup02.Common.model.Merkinta;
 import java.util.ArrayList;
@@ -21,17 +21,19 @@ import java.util.List;
 public class CalendarController {
 
 	private MerkintaList merkintaList;
+    private HttpConnection connection;
+    private String endpoint = "/calendar";
 
 	public CalendarController() {
 		merkintaList = new MerkintaList();
+        connection = new HttpConnection();
 	}
 
 	
 	
 	public void fetchAll() {
-		HttpConnection connection = new HttpConnection();
 
-		Merkinta[] merkinnat = (Merkinta[]) connection.get("/calendar", Merkinta[].class);
+		Merkinta[] merkinnat = (Merkinta[]) connection.get(endpoint, Merkinta[].class);
 
 		merkintaList.importArray(merkinnat);
 
@@ -40,4 +42,8 @@ public class CalendarController {
 	public List<Merkinta> getDay(Calendar date) {
 		return merkintaList.getDay(date);
 	}
+
+        public void createAppointment(Merkinta merkinta) {
+                connection.post(endpoint, merkinta, Merkinta.class);
+        }
 }

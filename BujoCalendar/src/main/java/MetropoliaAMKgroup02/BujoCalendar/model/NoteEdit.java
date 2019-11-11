@@ -6,6 +6,7 @@ import java.util.Map;
 
 import MetropoliaAMKgroup02.BujoCalendar.view.NoteOverviewController;
 import MetropoliaAMKgroup02.Common.model.Merkinta;
+import java.util.Calendar;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -16,34 +17,45 @@ public class NoteEdit {
 	
 	private NoteOverviewController noteController;
 	private Merkinta note;
+        private String title;
+        private String text;
+        private Calendar startDate;
+        private Calendar endDate;
+        private boolean allDay;
 
-	public String newNoteTitle(TextField title) {
+	public void newNoteTitle(String title) {
 		//note.setNimi(title.getText());
-		return title.getText();
+        this.title = title;
 	}
 	
-	public String newNoteMoreInfo(TextArea text) {
+	public void newNoteMoreInfo(String text) {
 		//note.setSisalto(text.getText());
-		return text.getText();
+        this.text = text;
 	}
 	
-	public String noteStartDay(Label day) {
-		return day.getText();
+	public void noteStartDay(Calendar startDate) {
+            this.startDate = startDate;
 	}
 	
-	public String[] noteDayandTime(Label startDay, Label endDay, TextField startTime, TextField endTime) {
-		
-		String[] noteDaysTimes = new String[4];
-		noteDaysTimes[0] = startDay.getText();
-		noteDaysTimes[1] = endDay.getText();
-		noteDaysTimes[2] = startTime.getText();
-		noteDaysTimes[3] = endTime.getText();
-		
-		return noteDaysTimes;
-	}
+    public void setNoteEnd(Calendar endDate) {
+            this.endDate = endDate;
+    }
 	
 	public void setNoteOverviewController(NoteOverviewController controller) {
 		this.noteController = controller;
 	}
+
+    public Merkinta createMerkinta() {
+            Merkinta merkinta = new Merkinta();
+            merkinta.setNimi(this.title);
+            merkinta.setSisalto(text);
+            merkinta.setStartDate(startDate);
+            merkinta.setEndDate(endDate);
+            return merkinta;
+    }
+
+        public void allDayEvent() {
+                this.allDay = true;
+        }
 
 }

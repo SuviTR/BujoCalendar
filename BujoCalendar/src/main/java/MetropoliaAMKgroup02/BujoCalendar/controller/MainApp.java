@@ -1,6 +1,6 @@
 package MetropoliaAMKgroup02.BujoCalendar.controller;
 
-import MetropoliaAMKgroup02.BujoCalendar.model.HttpConnection;
+import MetropoliaAMKgroup02.BujoCalendar.utils.HttpConnection;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -155,6 +155,7 @@ public class MainApp extends Application {
             noteController = loader.getController();
             
             noteController.setRootLayoutController(rootController); 
+            noteController.setCalendarController(calendarController);
             noteController.setDialogStage(dialogStage);
         
             dialogStage.showAndWait();
@@ -238,4 +239,8 @@ public class MainApp extends Application {
     public static void main(String[] args) {
 	    launch(args);
     }
+
+        public void updateEvents() {
+                calendarController.fetchAll();
+        }
 }

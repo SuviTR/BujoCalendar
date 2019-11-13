@@ -32,27 +32,48 @@ public class CalendarModel {
 	}
 	// Tiedon haku (kaikki valuutat) (Read)
 	public Object getAll() {
-			Session istunto = istuntotehdas.openSession();
-			istunto.beginTransaction();
-			List result = istunto.createQuery( "from Merkinta" ).list();
+		Session istunto = istuntotehdas.openSession();
+		istunto.beginTransaction();
+		List result = istunto.createQuery( "from Merkinta" ).list();
+		
+		istunto.getTransaction().commit();
+		istunto.close();
+		
+		return (Object) result;
 			
-			istunto.getTransaction().commit();
-			istunto.close();
-			
-			return (Object) result;
-				
-		}
+	}
 
 	public Object getMerkinta(int id) {
-			Session istunto = istuntotehdas.openSession();
-			istunto.beginTransaction();
-			Merkinta merkinta = new Merkinta();
-			istunto.load(merkinta, id);
-			istunto.getTransaction().commit();
-			istunto.close();
-			
-			return (Object) merkinta;
+		Session istunto = istuntotehdas.openSession();
+		istunto.beginTransaction();
+		Merkinta merkinta = new Merkinta();
+		istunto.load(merkinta, id);
+		istunto.getTransaction().commit();
+		istunto.close();
+		
+		return (Object) merkinta;
 	}
 	
+	public Object editMerkinta(Merkinta merkinta) {
+		Session istunto = istuntotehdas.openSession();
+		istunto.beginTransaction();
+		
+		istunto.saveOrUpdate(merkinta);
+		istunto.getTransaction().commit();
+		istunto.close();
+		
+		return (Object) merkinta;
+	}
 	
+	public Object deleteMerkinta(int id) {
+		Session istunto = istuntotehdas.openSession();
+		istunto.beginTransaction();
+		
+		Merkinta pois = (Merkinta) getMerkinta(id);
+		istunto.delete(pois);
+		istunto.getTransaction().commit();
+		istunto.close();
+		
+		return (Object) pois;
+	}
 }

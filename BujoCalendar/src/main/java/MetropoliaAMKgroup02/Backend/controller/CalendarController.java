@@ -41,14 +41,6 @@ public class CalendarController extends AbstractController {
 		return object;
 	}
 
-	/*
-	@Override
-	protected Object handleGet1(URI uri) {
-		// TODO Auto-generated method stub
-		CalendarModel calendar = new CalendarModel(data);
-		return calendar.getAll();
-	}*/
-
 	@Override
 	protected Object handleGet(int id, URI uri) {
 		CalendarModel calendar = new CalendarModel(data);
@@ -67,31 +59,41 @@ public class CalendarController extends AbstractController {
 		}
 		calendar.addMerkinta(merkinta);
 		return merkinta;
-
-//		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
 	@Override
-	protected Object handlePut(int id, String body, URI uri) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	protected Object handlePut(String body, URI uri) {
+		
+		CalendarModel calendar = new CalendarModel(data);
+		Merkinta merkinta = new Merkinta();
+
+		try {
+			merkinta = this.mapper.readValue(body, Merkinta.class);
+		} catch (IOException ex) {
+			Logger.getLogger(HenkiloController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		calendar.editMerkinta(merkinta);
+		return merkinta;
 	}
 
 	@Override
 	protected Object handleDelete(int id, URI uri) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		CalendarModel calendar = new CalendarModel(data);
+		CalendarModel calendar2 = (CalendarModel) calendar.getMerkinta(id);
+		calendar2.deleteMerkinta(id);	
+		return calendar2;
 	}
 
 	@Override
 	protected Object handleGet(URI uri) {
 		CalendarModel calendar = new CalendarModel(data);
 		return calendar.getAll();
-//		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
-
+	/*
 	@Override
 	protected Object handlePut(String string, URI uri) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
+	}*/
 
 	@Override
 	protected Object handleDelete(URI uri) {

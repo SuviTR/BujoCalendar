@@ -127,8 +127,9 @@ public abstract class AbstractController extends JSONHandler implements HttpHand
 	protected abstract Object handleGet(URI uri);
 	protected abstract Object handleGet(int id, URI uri);
 	protected abstract Object handlePost(String body, URI uri);
-	protected abstract Object handlePut(int id, String body, URI uri);
-	protected abstract Object handlePut(String string, URI uri);
+	/*protected abstract Object handlePut(int id, String body, URI uri);*/
+	/*protected abstract Object handlePut(String string, URI uri);*/
+	protected abstract Object handlePut(String body, URI uri);
 	protected abstract Object handleDelete(int id, URI uri);
 	protected abstract Object handleDelete(URI uri);
 

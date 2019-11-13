@@ -13,6 +13,7 @@
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#handleViewCurrentDate" text="Hae tämä päivä" />
                   <MenuItem mnemonicParsing="false" onAction="#handleSelectDay" text="Selaa päiviä" />
+                  <MenuItem mnemonicParsing="false" onAction="#updateEvents" text="Päivitä tapahtumat" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Merkinnät">

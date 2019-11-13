@@ -1,10 +1,19 @@
 package MetropoliaAMKgroup02.BujoCalendar.view;
 
+import MetropoliaAMKgroup02.BujoCalendar.controller.AppController;
+import MetropoliaAMKgroup02.BujoCalendar.controller.CalendarController;
 import MetropoliaAMKgroup02.BujoCalendar.model.Clock;
 import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
 import MetropoliaAMKgroup02.BujoCalendar.model.MonthView;
 import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
 import MetropoliaAMKgroup02.BujoCalendar.model.Priority;
+import MetropoliaAMKgroup02.BujoCalendar.utils.DateConverter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -55,16 +64,17 @@ public class NoteOverviewController {
 		private int whichDayValue = 0;
 		private Clock clock;
 		private String valid = "";
+        private CalendarController calendarController;
 		
 		@FXML
 		private void initialize() {	//Lisää startDay:ksi se päivä, jota on klikattu?
 			noteEdit = new NoteEdit();
 			noteEdit.setNoteOverviewController(this);
 			
-			dates = new Dates();
+			dates = AppController.getInstance().getDates();
 			clock = new Clock();
-			startDay.setText(dates.getCurrentDate()); //tai day clicked
-			endDay.setText(dates.getCurrentDate());		//---/---
+			startDay.setText(dates.getCurrentDate().toString()); //tai day clicked
+			endDay.setText(dates.getCurrentDate().toString());		//---/---
 			startTime.setText(clock.currentTime());
 			endTime.setText(clock.currentTimeplus1());
 			
@@ -101,12 +111,14 @@ public class NoteOverviewController {
 			handleNoteTitle();
 			handleNoteMoreInfo();
 			if (allDayEvent.isSelected()) {
-				noteEdit.noteStartDay(startDay);
+				noteEdit.allDayEvent();
 			}
-			else {
-				noteEdit.noteDayandTime(startDay, endDay, startTime, endTime);
-			}
+            handleStartDay();
+            handleEndDay();
+             
 			handleStartandEndTime();
+
+            calendarController.createAppointment(noteEdit.createMerkinta());
 			dialogStage.close();
 		
 		}
@@ -150,11 +162,11 @@ public class NoteOverviewController {
 		}
 		
 		private void handleNoteTitle() {
-			noteEdit.newNoteTitle(noteTitle);
+			noteEdit.newNoteTitle(noteTitle.getText());
 		}
 		
 		private void handleNoteMoreInfo() {
-			noteEdit.newNoteMoreInfo(noteMoreInfo);
+			noteEdit.newNoteMoreInfo(noteMoreInfo.getText());
 		}
 		
 		@FXML
@@ -179,5 +191,23 @@ public class NoteOverviewController {
 		public void setRootLayoutController(RootLayoutController controller) {
 			this.rootController = controller;
 		}
+
+        private void handleEndDay() {
+                DateConverter conv = new DateConverter();
+                conv.setDate(startDay.getText());
+                conv.setTime(startTime.getText());
+                noteEdit.noteStartDay(conv.getCalendar());
+        }
+
+        private void handleStartDay() {
+                DateConverter conv = new DateConverter();
+                conv.setDate(endDay.getText());
+                conv.setTime(endTime.getText());
+                noteEdit.setNoteEnd(conv.getCalendar());
+        }
+
+        public void setCalendarController(CalendarController calendarController) {
+                this.calendarController = calendarController;
+        }
 
 }

@@ -48,6 +48,10 @@ public class RootLayoutController {
 		mainApp.handleSelectedDateView(date, boolCurrentDate);
 		
 	}
+
+    public void updateEvents() {
+            mainApp.updateEvents();
+    }
 	
 	@FXML
 	public void handleViewCurrentDate() {

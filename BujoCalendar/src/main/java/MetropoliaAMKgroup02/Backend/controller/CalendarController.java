@@ -62,13 +62,28 @@ public class CalendarController extends AbstractController {
 	}
 
 	@Override
-	protected Object handlePut(String body, URI uri) {
+	protected Object handlePut(int id, String body, URI uri) {
 		
 		CalendarModel calendar = new CalendarModel(data);
 		Merkinta merkinta = new Merkinta();
 
 		try {
 			merkinta = this.mapper.readValue(body, Merkinta.class);
+		} catch (IOException ex) {
+			Logger.getLogger(HenkiloController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		calendar.editMerkinta(id, merkinta);
+		return merkinta;
+	}
+	
+	@Override
+	protected Object handlePut(String string, URI uri) {
+		
+		CalendarModel calendar = new CalendarModel(data);
+		Merkinta merkinta = new Merkinta();
+
+		try {
+			merkinta = this.mapper.readValue(string, Merkinta.class);
 		} catch (IOException ex) {
 			Logger.getLogger(HenkiloController.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -79,9 +94,8 @@ public class CalendarController extends AbstractController {
 	@Override
 	protected Object handleDelete(int id, URI uri) {
 		CalendarModel calendar = new CalendarModel(data);
-		CalendarModel calendar2 = (CalendarModel) calendar.getMerkinta(id);
-		calendar2.deleteMerkinta(id);	
-		return calendar2;
+		calendar.deleteMerkinta(id);	
+		return calendar;
 	}
 
 	@Override

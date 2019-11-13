@@ -62,12 +62,11 @@ public abstract class AbstractController extends JSONHandler implements HttpHand
 					responseObj = this.handlePut("", uri);
 
 				} else {
-					responseObj = this.handlePut(id, "", HttpObject.getRequestURI());
+					responseObj = this.handlePut(id, new String(requestBody), HttpObject.getRequestURI());
 				}
 				break;
 			case "POST":
-				responseObj = this.handlePost(new String(requestBody),
-					HttpObject.getRequestURI());
+				responseObj = this.handlePost(new String(requestBody), HttpObject.getRequestURI());
 				break;
 			case "DELETE":
 				id = this.parseId(uri);
@@ -127,9 +126,8 @@ public abstract class AbstractController extends JSONHandler implements HttpHand
 	protected abstract Object handleGet(URI uri);
 	protected abstract Object handleGet(int id, URI uri);
 	protected abstract Object handlePost(String body, URI uri);
-	/*protected abstract Object handlePut(int id, String body, URI uri);*/
-	/*protected abstract Object handlePut(String string, URI uri);*/
-	protected abstract Object handlePut(String body, URI uri);
+	protected abstract Object handlePut(int id, String body, URI uri);
+	protected abstract Object handlePut(String string, URI uri);
 	protected abstract Object handleDelete(int id, URI uri);
 	protected abstract Object handleDelete(URI uri);
 

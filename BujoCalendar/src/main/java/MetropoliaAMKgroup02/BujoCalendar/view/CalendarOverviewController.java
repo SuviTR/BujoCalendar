@@ -92,6 +92,7 @@ public class CalendarOverviewController {
         public CalendarOverviewController() {
                 this.dates = AppController.getInstance().getDates();
                 this.dayLabels = new ArrayList<Label>();
+                AppController.getInstance().setCalendarOverviewController(this);
         }
 
 	/**

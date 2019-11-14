@@ -6,6 +6,7 @@
 package MetropoliaAMKgroup02.BujoCalendar.controller;
 
 import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
+import MetropoliaAMKgroup02.BujoCalendar.view.CalendarOverviewController;
 import java.util.Locale;
 
 /**
@@ -18,6 +19,7 @@ public class AppController {
 
         private final Dates dates;
         private final Locale locale;
+        private CalendarOverviewController calOverviewController;
 
         private AppController() {
                 this.dates = new Dates();
@@ -38,6 +40,14 @@ public class AppController {
 
         public Locale getLocale() {
                 return locale;
+        }
+
+        public void setCalendarOverviewController(CalendarOverviewController ctrl) {
+                this.calOverviewController = ctrl;
+        }
+
+        public CalendarOverviewController getCalendarOverviewController() {
+                return this.calOverviewController;
         }
 
         

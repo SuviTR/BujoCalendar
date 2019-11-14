@@ -60,7 +60,14 @@ public class CalendarController extends AbstractController {
 		calendar.addMerkinta(merkinta);
 		return merkinta;
 	}
-
+	
+	/**
+     * Handles put operation. Gets a changed note, note's id and uri.
+     * @param id includes the id of the changed note.
+     * @param body includes the content of the note.
+     * @param uri includes the path.
+     * @return merkinta is the new note.
+     */
 	@Override
 	protected Object handlePut(int id, String body, URI uri) {
 		
@@ -78,6 +85,12 @@ public class CalendarController extends AbstractController {
 		return merkinta;
 	}
 	
+	/**
+     * Handles put operation. Gets a changed note, note's id and uri.
+     * @param body includes the content of the note.
+     * @param uri includes the path.
+     * @return merkinta is the new note.
+     */
 	@Override
 	protected Object handlePut(String string, URI uri) {
 		
@@ -93,6 +106,12 @@ public class CalendarController extends AbstractController {
 		return merkinta;
 	}
 
+	/**
+     * Handles delete operation. Gets an id of the note that a user wants to delete and uri.
+     * @param id includes the id of the note that a user wants to delete.
+     * @param uri includes the path.
+     * @return calendar is the updated calendar.
+     */
 	@Override
 	protected Object handleDelete(int id, URI uri) {
 		CalendarModel calendar = new CalendarModel(data);

@@ -66,13 +66,15 @@ public class CalendarController extends AbstractController {
 		
 		CalendarModel calendar = new CalendarModel(data);
 		Merkinta merkinta = new Merkinta();
+		
 
 		try {
 			merkinta = this.mapper.readValue(body, Merkinta.class);
 		} catch (IOException ex) {
 			Logger.getLogger(HenkiloController.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		calendar.editMerkinta(id, merkinta);
+		merkinta.setId(id);
+		calendar.editMerkinta(merkinta);
 		return merkinta;
 	}
 	
@@ -103,11 +105,6 @@ public class CalendarController extends AbstractController {
 		CalendarModel calendar = new CalendarModel(data);
 		return calendar.getAll();
 	}
-	/*
-	@Override
-	protected Object handlePut(String string, URI uri) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}*/
 
 	@Override
 	protected Object handleDelete(URI uri) {

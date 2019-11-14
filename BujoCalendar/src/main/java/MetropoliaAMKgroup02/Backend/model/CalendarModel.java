@@ -54,26 +54,11 @@ public class CalendarModel {
 		return (Object) merkinta;
 	}
 	
-	public Object editMerkinta(int id, Merkinta merkinta) {
-		Session istunto = istuntotehdas.openSession();
-		istunto.beginTransaction();
-		
-		Merkinta muokattu = (Merkinta) getMerkinta(id);
-		muokattu = (Merkinta) istunto.merge(merkinta);
-		
-		istunto.update(muokattu);
-		System.out.println("Edit " + id);
-		istunto.getTransaction().commit();
-		istunto.close();
-		
-		return (Object) muokattu;
-	}
-	
 	public Object editMerkinta(Merkinta merkinta) {
 		Session istunto = istuntotehdas.openSession();
 		istunto.beginTransaction();
 		
-		istunto.update(merkinta);
+		istunto.merge(merkinta);
 		istunto.getTransaction().commit();
 		istunto.close();
 		

@@ -135,7 +135,7 @@ public class DatesTest {
     	
     	String monthTest = dates.getMonth();
     	
-        String month = "Lokakuu";	//KOVAKOODATTU!!
+        String month = "Marraskuu";	//KOVAKOODATTU!!
         
         assertEquals(month, monthTest, "Months are not equal.");
     }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MetropoliaAMKgroup02.BujoCalendar.model;
+package MetropoliaAMKgroup02.BujoCalendar.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,26 +15,32 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import MetropoliaAMKgroup02.Common.model.JSONHandler;
+import MetropoliaAMKgroup02.Common.JSONHandler;
+import java.net.ConnectException;
 
 /**
  *
  * @author heikki
  */
-public class HttpClient extends JSONHandler {
+public class HttpConnection extends JSONHandler {
 	
 	private String baseUrl;
 	private String endpoint;
 	private HttpURLConnection con;
 
-	public HttpClient() {
+	public HttpConnection() {
 		super();
 		this.baseUrl = "http://localhost:8000";
 	}
 
-	public Object get(String endpoint) {
+	public Object get(String endpoint, Class objectType) {
+		this.connect(endpoint, "GET");
 
-		return new Object();
+		String response = this.readResponse();
+		Object responseObj = this.JSONToObj(response, objectType);
+		this.cleanup();
+
+		return responseObj;
 	}
 
 	public Object put(String endpoint) {
@@ -72,11 +78,13 @@ public class HttpClient extends JSONHandler {
 
 		} catch (MalformedURLException ex) {
 			System.out.println("Malformed url");
-			Logger.getLogger(HttpClient.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(HttpConnection.class.getName()).log(Level.SEVERE, null, ex);
 			return null;
+		} catch (ConnectException e) {
+			System.out.println("Connection exception:Cant connect to " + this.baseUrl + endpoint);
 		} catch (IOException ex) {
-			System.out.println("Connection to " + this.baseUrl + endpoint + " not successfull");
-			Logger.getLogger(HttpClient.class.getName()).log(Level.SEVERE, null, ex);
+			System.out.println("IOException: Connection to " + this.baseUrl + endpoint + " not successfull");
+			Logger.getLogger(HttpConnection.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 		return null;
@@ -94,7 +102,7 @@ public class HttpClient extends JSONHandler {
 
 		} catch (IOException ex) {
 			System.out.println("Reading response didn't succeed...");
-			Logger.getLogger(HttpClient.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(HttpConnection.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 		return null;
@@ -107,7 +115,7 @@ public class HttpClient extends JSONHandler {
 			os.write(input, 0, input.length);           
 		} catch (IOException ex) {
 			System.out.println("Writin JSON request body didn't work... Body: " + body);
-			Logger.getLogger(HttpClient.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(HttpConnection.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 

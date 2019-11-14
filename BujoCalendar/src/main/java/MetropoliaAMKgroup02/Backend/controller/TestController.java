@@ -6,7 +6,7 @@
 package MetropoliaAMKgroup02.Backend.controller;
 
 import MetropoliaAMKgroup02.Backend.Database;
-import MetropoliaAMKgroup02.Common.model.JSONHandler;
+import MetropoliaAMKgroup02.Common.JSONHandler;
 import MetropoliaAMKgroup02.Common.model.TestModel;
 
 import java.io.IOException;

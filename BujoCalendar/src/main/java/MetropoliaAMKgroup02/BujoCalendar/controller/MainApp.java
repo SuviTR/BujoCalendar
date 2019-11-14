@@ -35,6 +35,7 @@ public class MainApp extends Application {
     private NoteOverviewController noteController;
     private AlarmOverviewController alarmController;
     private boolean handleCurrentDate = false;
+    
     /**
     * Starts the calendar application.
     * Opens the RootLayout and the Calendar view.
@@ -82,7 +83,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Opens Calendar view.
+     * Opens the calendar window that includes calendar week view.
      */
     public void showCalendarOverview() {
         try {
@@ -107,7 +108,9 @@ public class MainApp extends Application {
     }
     
     /**
-     * Opens the view where a user can change different calendar's fonts.
+     * Opens the font menu window where a user is able to choose new font style for the calendar fonts.
+     * @return showController.isOkClicked() is true and window is open as far as a user clicks 
+     * ok or close button.
      */
     public boolean showFontOverview() {
         try {
@@ -139,6 +142,11 @@ public class MainApp extends Application {
         }
     }
     
+    /**
+     * Opens the Note edit window where a user is able to edit a note information.
+     * @return noteController.isOkClicked() is true and window is open as far as a user clicks 
+     * ok or close button.
+     */
     public boolean showNoteOverview() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -172,6 +180,12 @@ public class MainApp extends Application {
     	rootController.handleNewNote();
     }
     
+    
+    /**
+     * Opens the Alarm window where a user is able to set alarm for the note.
+     * @return alarmController.isOkClicked() is true and window is open as far as a user clicks 
+     * ok or close button.
+     */
     public boolean showAlarmOverview() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -202,6 +216,9 @@ public class MainApp extends Application {
         }
     }
     
+    /**
+     * Sets the window
+     */   
     public void handleCurrentDate(boolean boolCurrentDate) {
     	calController.handleCurrentDateOrSelectedDate("", boolCurrentDate);
     }
@@ -213,8 +230,6 @@ public class MainApp extends Application {
      */
     public void handleSelectedDateView(String date, boolean boolCurrentDate) {
     	calController.handleCurrentDateOrSelectedDate(date, boolCurrentDate);
-    	//calController.handleSelectedDateView(date);
-    	//return date;
     }
 
     /**
@@ -228,19 +243,29 @@ public class MainApp extends Application {
     	return value;
     }
     
+    /**
+     * Sets the window.
+     * @return primaryStage returns the primary stage.
+     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
+    /**
+     * MainApp know CalendarController class
+     */
     public CalendarController getCalendarController() {
 	    return this.calendarController;
     }
     
+    /**
+     * This is where the application is launched
+     */
     public static void main(String[] args) {
 	    launch(args);
     }
 
-        public void updateEvents() {
-                calendarController.fetchAll();
-        }
+    public void updateEvents() {
+            calendarController.fetchAll();
+    }
 }

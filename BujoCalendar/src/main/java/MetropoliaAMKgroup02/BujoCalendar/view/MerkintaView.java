@@ -22,6 +22,9 @@ public class MerkintaView {
 		this.merkinta = merkinta;
 		this.container = new GridPane();
 		this.container.add(new Label(merkinta.getNimi()),0,0);
+                this.container.setOnMouseClicked((t) -> {
+                    this.eventActivated();
+                });
 	}
 
 	public int getStartTime() {
@@ -39,5 +42,11 @@ public class MerkintaView {
 	public GridPane getGridPane() {
 		return this.container;
 	}
+        
+        private void eventActivated() {
+            System.out.println("Event " + this.merkinta.getNimi() + " activated");
+            //This could work for example like:
+            // AppController.getInstance().getMainApp().openNoteOverview(this.merkinta);
+        }
 
 }

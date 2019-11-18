@@ -241,6 +241,11 @@ public class MainApp extends Application {
     }
 
         public void updateEvents() {
+                Merkinta test = new Merkinta();
+                test.setId(18);
+                test.setNimi("Matka Helsinkiin");
+                test.setPaikka("Testipaikka:");
+                calendarController.editAppointment(test);
                 calendarController.fetchAll();
         }
 }

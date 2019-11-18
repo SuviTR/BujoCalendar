@@ -46,4 +46,9 @@ public class CalendarController {
     public void createAppointment(Merkinta merkinta) {
             connection.post(endpoint, merkinta, Merkinta.class);
     }
+
+    public void editAppointment(Merkinta merkinta) {
+            String id = String.valueOf(merkinta.getId());
+            connection.put(endpoint + "/" + id, merkinta, Merkinta.class);
+    }
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MetropoliaAMKgroup02.BujoCalendar.controller;
+package MetropoliaAMKgroup02.BujoCalendar.fetchers;
 
 import MetropoliaAMKgroup02.BujoCalendar.utils.HttpConnection;
 import MetropoliaAMKgroup02.BujoCalendar.model.MerkintaList;
@@ -18,13 +18,13 @@ import java.util.List;
  *
  * @author heikki
  */
-public class CalendarController {
+public class CalendarFetcher {
 
 	private MerkintaList merkintaList;
     private HttpConnection connection;
     private String endpoint = "/calendar";
 
-	public CalendarController() {
+	public CalendarFetcher() {
 		merkintaList = new MerkintaList();
         connection = new HttpConnection();
 	}

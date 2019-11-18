@@ -1,13 +1,14 @@
 package MetropoliaAMKgroup02.BujoCalendar.view;
 
 import MetropoliaAMKgroup02.BujoCalendar.controller.AppController;
-import MetropoliaAMKgroup02.BujoCalendar.controller.CalendarController;
+import MetropoliaAMKgroup02.BujoCalendar.fetchers.CalendarFetcher;
 import MetropoliaAMKgroup02.BujoCalendar.model.Clock;
 import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
 import MetropoliaAMKgroup02.BujoCalendar.model.BujoDatePicker;
 import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
 import MetropoliaAMKgroup02.BujoCalendar.model.Priority;
 import MetropoliaAMKgroup02.BujoCalendar.utils.DateConverter;
+import MetropoliaAMKgroup02.Common.model.Merkinta;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -64,7 +65,7 @@ public class NoteOverviewController {
 		private int whichDayValue = 0;
 		private Clock clock;
 		private String valid = "";
-        private CalendarController calendarController;
+        private CalendarFetcher calendarFetcher;
 		
 		@FXML
 		private void initialize() {	//Lisää startDay:ksi se päivä, jota on klikattu?
@@ -118,7 +119,7 @@ public class NoteOverviewController {
              
 			handleStartandEndTime();
 
-            calendarController.createAppointment(noteEdit.createMerkinta());
+            calendarFetcher.createAppointment(noteEdit.createMerkinta());
 			dialogStage.close();
 		
 		}
@@ -206,8 +207,16 @@ public class NoteOverviewController {
                 noteEdit.setNoteEnd(conv.getCalendar());
         }
 
-        public void setCalendarController(CalendarController calendarController) {
-                this.calendarController = calendarController;
+        public void setCalendarFetcher(CalendarFetcher calendarFetcher) {
+                this.calendarFetcher = calendarFetcher;
         }
+
+        public void setMerkinta(Merkinta merkinta) {
+                this.noteTitle.setText(merkinta.getNimi());
+                this.startDay.setText(merkinta.getStartDate().toString());
+                this.startTime.setText(merkinta.getTime());
+                this.endDay.setText(merkinta.getEndDate().toString());
+
+                noteEdit.setId(merkinta.getId());
 
 }

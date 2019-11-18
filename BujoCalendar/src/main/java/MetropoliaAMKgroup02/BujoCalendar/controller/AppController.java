@@ -20,6 +20,7 @@ public class AppController {
         private final Dates dates;
         private final Locale locale;
         private CalendarOverviewController calOverviewController;
+        private MainApp mainApp;
 
         private AppController() {
                 this.dates = new Dates();
@@ -50,5 +51,14 @@ public class AppController {
                 return this.calOverviewController;
         }
 
-        
+        public void setMainApp(MainApp mainApp) {
+                if(this.mainApp == null) {
+                        this.mainApp = mainApp;
+                }
+        }
+
+        public MainApp getMainApp() {
+                return this.mainApp;
+        }
+
 }

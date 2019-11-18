@@ -99,8 +99,8 @@
                   <Insets left="8.0" />
                </GridPane.margin></ChoiceBox>
             <TextField fx:id="alarm" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <TextField fx:id="startTime" prefHeight="25.0" prefWidth="115.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="endTime" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="startTime" onAction="#handleStartTime" prefHeight="25.0" prefWidth="115.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="endTime" onAction="#handleEndTime" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <GridPane layoutX="15.0" layoutY="427.0" prefHeight="49.0" prefWidth="305.0">
@@ -155,6 +155,7 @@
             </ImageView>
          </children>
       </GridPane>
-      <Button layoutX="252.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="61.0" stylesheets="@../saveButtonStyle.css" text="Tallenna" />
+      <Button fx:id="saveNote" layoutX="182.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="61.0" stylesheets="@../saveButtonStyle.css" text="Tallenna" />
+      <Button fx:id="deleteNote" layoutX="251.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleDeleteNote" prefHeight="25.0" prefWidth="61.0" stylesheets="@../saveButtonStyle.css" text="Poista" />
    </children>
 </AnchorPane>

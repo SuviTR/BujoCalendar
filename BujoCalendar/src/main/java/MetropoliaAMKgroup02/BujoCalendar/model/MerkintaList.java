@@ -30,6 +30,14 @@ public class MerkintaList {
 		this.events.add(merkinta);
 	}
 
+	public void removeMerkinta(int merkintaId) {
+		for (Merkinta m : events){
+			if (m.getId() == merkintaId){
+				events.remove(m);
+			}
+		}
+	}
+
 	public List<Merkinta> getAll() {
 		return events;
 	}

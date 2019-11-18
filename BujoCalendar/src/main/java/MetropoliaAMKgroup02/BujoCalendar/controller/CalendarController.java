@@ -46,4 +46,9 @@ public class CalendarController {
         public void createAppointment(Merkinta merkinta) {
                 connection.post(endpoint, merkinta, Merkinta.class);
         }
+
+        public void delete(int merkintaId) {
+		merkintaList.removeMerkinta(merkintaId);
+                connection.delete(endpoint + "/" + merkintaId);
+        }
 }

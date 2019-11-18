@@ -155,12 +155,12 @@ public class NoteOverviewController {
 	
 	@FXML
 	public void handleStartTime() {
-		clock.checkStartandEndTime(startTime);
+		startTime.setText(clock.checkStartandEndTime(startTime));
 	}
 	
 	@FXML
 	public void handleEndTime() {
-		clock.checkStartandEndTime(endTime);
+		endTime.setText(clock.checkStartandEndTime(endTime));
 	}
 	
 	public void setAlarmDay(String day) {

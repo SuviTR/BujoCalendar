@@ -164,11 +164,11 @@ public class MainApp extends Application {
         
             dialogStage.showAndWait();
             
-            return noteController.isOkClicked();
+            //return noteController.isOkClicked();
             
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
+            //return false;
         }
     }
     

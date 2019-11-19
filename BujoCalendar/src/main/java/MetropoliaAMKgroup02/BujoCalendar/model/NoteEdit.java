@@ -17,15 +17,15 @@ public class NoteEdit {
 	
 	private NoteOverviewController noteController;
 	private Merkinta note;
-        private String title;
-        private String text;
-        private Calendar startDate;
-        private Calendar endDate;
-        private boolean allDay;
+    private String title;
+    private String text;
+    private Calendar startDate;
+    private Calendar endDate;
+    private boolean allDay;
 
 	public void newNoteTitle(String title) {
 		//note.setNimi(title.getText());
-        this.title = title;
+        this.title = title; 
 	}
 	
 	public void newNoteMoreInfo(String text) {
@@ -34,11 +34,11 @@ public class NoteEdit {
 	}
 	
 	public void noteStartDay(Calendar startDate) {
-            this.startDate = startDate;
+        this.startDate = startDate;
 	}
 	
     public void setNoteEnd(Calendar endDate) {
-            this.endDate = endDate;
+        this.endDate = endDate;
     }
 	
 	public void setNoteOverviewController(NoteOverviewController controller) {
@@ -46,16 +46,16 @@ public class NoteEdit {
 	}
 
     public Merkinta createMerkinta() {
-            Merkinta merkinta = new Merkinta();
-            merkinta.setNimi(this.title);
-            merkinta.setSisalto(text);
-            merkinta.setStartDate(startDate);
-            merkinta.setEndDate(endDate);
-            return merkinta;
+        Merkinta merkinta = new Merkinta();
+        merkinta.setNimi(this.title);
+        merkinta.setSisalto(text);
+        merkinta.setStartDate(startDate);
+        merkinta.setEndDate(endDate);
+        return merkinta;
     }
 
-        public void allDayEvent() {
-                this.allDay = true;
-        }
+    public void allDayEvent() {
+        this.allDay = true;
+    }
 
 }

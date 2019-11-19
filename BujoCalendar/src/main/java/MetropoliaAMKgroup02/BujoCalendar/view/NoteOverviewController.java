@@ -26,31 +26,17 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class NoteOverviewController {
-		
-	@FXML
-	private TextField noteTitle;
-	
-	@FXML
-	private TextArea noteMoreInfo;
 	
 	@FXML
 	private CheckBox allDayEvent;
-	
 	@FXML
-	private Label startDay, endDay;
-	
+	private Label startDay, endDay, notePriority;
 	@FXML
-	private Label notePriority;
-	
-	@FXML
-	private TextField alarm, startTime, endTime;
-	
+	private TextField noteTitle, alarm, startTime, endTime;
 	@FXML
 	private ChoiceBox priorityChoiceBox;
-	
 	@FXML 
-	private TextArea note;
-	
+	private TextArea note, noteMoreInfo;
 	@FXML
 	private Button saveNote, deleteNote;
 		
@@ -68,6 +54,12 @@ public class NoteOverviewController {
 	private String valid = "";
     private CalendarController calendarController;
 	
+    /**
+     * Initializes the note editing window.
+     * Initializes the startDay and endDay with the current day or the day that a user has clicked.
+     * Initializes the startTime with the current time and endTime with the current time + 1 hour.
+     * Initializes the priority choicebox with the priority values.
+     */
 	@FXML
 	private void initialize() {	//Lisää startDay:ksi se päivä, jota on klikattu?
 		noteEdit = new NoteEdit();
@@ -99,14 +91,26 @@ public class NoteOverviewController {
         noteMoreInfo.setFocusTraversable(false);
 	}
 	
+	/**
+	 * Sets the Note editing window.
+	 * @param dialogStage is the new stage.
+	 */
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
 	}
 
+	/**
+	 * Keeps tracking if the ok button is clicked.
+	 * @return okClicked includes the value if the button is clicked or not.
+	 */
 	public boolean isOkClicked() {
 		return okClicked;
 	}
-
+	
+	/**
+	 * When the ok button is clicked all the information of the note editing window 
+	 * is sent to different model class' to saving the information to database.
+	 */
 	@FXML
 	private void handleOk() {
 		okClicked = true;
@@ -124,11 +128,17 @@ public class NoteOverviewController {
 		dialogStage.close();
 	}
 	
+	/**
+	 * Method sends the information of the note that a user wanted to delete to backend.
+	 */
 	@FXML
 	private void handleDeleteNote() {
 		
 	}
 	
+	/**
+	 *
+	 */
 	@FXML
 	private void handleOpenDatePicker1() {
 		picker.whoValue(2);
@@ -136,6 +146,9 @@ public class NoteOverviewController {
 		openDatePicker();
 	}
 	
+	/**
+	 *
+	 */
 	@FXML
 	private void handleOpenDatePicker2() {
 		picker.whoValue(2);
@@ -143,26 +156,42 @@ public class NoteOverviewController {
 		openDatePicker();
 	}
 	
+	/**
+	 * Opens the datepicker.
+	 */
 	private void openDatePicker() {
 		Stage s = new Stage();
 		picker.start(s);
 	}
 	
+	/**
+	 * Get the values of the labels.
+	 * Is called when ok button is clicked.
+	 */
 	private void handleStartandEndTime() {
 		clock.handleStartTime(startTime);
 		clock.handleEndTime(endTime);
 	}
 	
+	/**
+	 * Calls the clock class to check if the input is correct.
+	 */
 	@FXML
 	public void handleStartTime() {
 		startTime.setText(clock.checkStartandEndTime(startTime));
 	}
 	
+	/**
+	 * Calls the clock class to check if the input is correct.
+	 */
 	@FXML
 	public void handleEndTime() {
 		endTime.setText(clock.checkStartandEndTime(endTime));
 	}
 	
+	/**
+	 * Sets the start and end day of the alarm.
+	 */
 	public void setAlarmDay(String day) {
 		if (whichDayValue == 1) {
 			startDay.setText(day);
@@ -172,19 +201,32 @@ public class NoteOverviewController {
 		}
 	}
 	
+	/**
+	 * Calls the clock class to check if the input is correct.
+	 */
 	public void setAlarmTimeandValue(String text) {	
 		String texts = alarm.getText() + " " + text;
 		alarm.setText(texts);
 	}
 	
+	/**
+	 * Sends the note title text to noteEdit class.
+	 */
 	private void handleNoteTitle() {
 		noteEdit.newNoteTitle(noteTitle.getText());
 	}
 	
+	/**
+	 * Sends the note info text to noteEdit class.
+	 */
 	private void handleNoteMoreInfo() {
 		noteEdit.newNoteMoreInfo(noteMoreInfo.getText());
 	}
 	
+	/**
+	 * Sets endDay, start and end time invisible if the allDayEvent checkbox is clicked 
+	 * and the other way round.
+	 */
 	@FXML
 	private void handleAllDayEventCheckBox() {
 		if (allDayEvent.isSelected()) {
@@ -199,15 +241,15 @@ public class NoteOverviewController {
 		}
 	}
 	
+	/**
+	 * Opens the alarm editing window.
+	 */
 	@FXML
 	private void handleOpenAlarmView() {
 		rootController.showAlarmOverview();
 	}
 
-	public void setRootLayoutController(RootLayoutController controller) {
-		this.rootController = controller;
-	}
-
+	
     private void handleEndDay() {
             DateConverter conv = new DateConverter();
             conv.setDate(startDay.getText());
@@ -221,6 +263,14 @@ public class NoteOverviewController {
             conv.setTime(endTime.getText());
             noteEdit.setNoteEnd(conv.getCalendar());
     }
+    
+    /**
+	 * Sets the RootLayoutController.
+	 * @param controller is the RootLayoutController.
+	 */
+	public void setRootLayoutController(RootLayoutController controller) {
+		this.rootController = controller;
+	}
 
     public void setCalendarController(CalendarController calendarController) {
             this.calendarController = calendarController;

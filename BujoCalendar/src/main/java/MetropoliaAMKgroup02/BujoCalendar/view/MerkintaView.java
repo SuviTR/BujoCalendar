@@ -21,7 +21,11 @@ public class MerkintaView {
 	public MerkintaView(Merkinta merkinta) {
 		this.merkinta = merkinta;
 		this.container = new GridPane();
-		this.container.add(new Label(merkinta.getNimi()),0,0);
+		Label label = new Label(merkinta.getNimi());
+		label.setWrapText(true);
+		this.container.add(label,0,0);
+		 
+
 	}
 
 	public int getStartTime() {

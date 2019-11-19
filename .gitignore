@@ -15,3 +15,11 @@ BujoCalendar/bin/
 .classpath
 
 .project
+
+BujoCalendar/perse.txt
+
+BujoCalendar/src/main/java/MetropoliaAMKgroup02/BujoCalendar/controller/MerkintaStarter.java
+
+BujoCalendar/src/main/java/MetropoliaAMKgroup02/BujoCalendar/model/merkintaReceiver.java
+
+FactoryMethod.zip

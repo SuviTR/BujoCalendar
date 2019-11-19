@@ -12,6 +12,7 @@ package MetropoliaAMKgroup02.BujoCalendar.utils;
  */
 import java.io.File;
 import java.util.ListResourceBundle;
+import java.util.ResourceBundle.Control;
 import java.util.ResourceBundle;
 import java.util.Locale;
 import java.io.FileReader;
@@ -30,7 +31,11 @@ public  class LangBundle extends ListResourceBundle{
 
         private Locale target;
         private List <Path> lista;
+        private ResourceBundle svenska;
+        private ResourceBundle english;
+        private ResourceBundle suomi;
         private Scanner gateKeeper;
+        
   /*
         Luokka, joka vastaa resurssitiedostojen lataamisesta.
         Sitä voi pyytää lataamaan tietyn resurssitiedoston
@@ -46,10 +51,10 @@ public  class LangBundle extends ListResourceBundle{
         }
     
     public List ListAllFiles() throws IOException{
-         Path path = Paths.get("C:\\Users\\Vision2\\git\\BujoCalendar\\BujoCalendar\\src\\main\\resources\\languages\\language_en.properties");
+         Path path = Paths.get("C:\\Users\\Vision2\\git\\BujoCalendar\\BujoCalendar\\src\\main\\resources\\languages\\");
          try(Stream <Path> subPaths=Files.walk(path)){
-             
-        lista = subPaths.filter(Files::isRegularFile).collect( Collectors.toList());
+               
+            lista = subPaths.filter(Files::isRegularFile).collect( Collectors.toList());
          } catch(IOException e){
              e.printStackTrace();
          }
@@ -61,22 +66,61 @@ public  class LangBundle extends ListResourceBundle{
         
         for (int i=0 ;  i<lista.size(); i++){ 
         System.out.println(lista.get(i).getFileName());
+   
+        
         } 
     }
      
    
         void loadLanguage(Path lang) {
-            if(lang.toString().equals("language_en.properties")){
+            if(lang.getFileName().toString().equals("language_se.properties")){
+              String lang2 = "se";
+              String country2 = "SE";
+              String part =lang.getFileName().toString();
+              String[] cutter = part.split("\\.");
+              String path = cutter[0];
+            //System.out.println(path);
+              Locale land2 = new Locale(lang2,country2);
+              svenska = ResourceBundle.getBundle(path, land2);
+             
+              String str2 = svenska.getString("name");
+              String str3 = svenska.getString("age");
+              String str4 = svenska.getString("ad");
+              System.out.println(str2);
+              System.out.println(str3);
+              System.out.println(str4);
+            } if(lang.getFileName().toString().equals("language_en.properties")){
               String lang2 = "en";
-              System.out.println("PRKL");  
               String country2 = "UK";
-                String part =lang.getFileName().toString();
-                String Path = "languages." + part;
-                Locale land2 = new Locale(lang2,country2);
-                ResourceBundle resource2 = ResourceBundle.getBundle("language_en.properties",land2);
-                
-                String str2 = resource2.getString("Name");
-                System.out.println(str2);
+              String part =lang.getFileName().toString();
+              String[] cutter = part.split("\\.");
+              String path = cutter[0];
+            //System.out.println(path);
+              Locale land2 = new Locale(lang2,country2);
+              english = ResourceBundle.getBundle(path, land2);
+             
+              String str2 = english.getString("name");
+              String str3 = english.getString("age");
+              String str4 = english.getString("ad");
+              System.out.println(str2);
+              System.out.println(str3);
+              System.out.println(str4);
+            } if(lang.getFileName().toString().equals("language_fi.properties")){
+              String lang2 = "fi";
+              String country2 = "FI";
+              String part =lang.getFileName().toString();
+              String[] cutter = part.split("\\.");
+              String path = cutter[0];
+            //System.out.println(path);
+              Locale land2 = new Locale(lang2,country2);
+              suomi = ResourceBundle.getBundle(path, land2);
+             
+              String str2 = suomi.getString("name");
+              String str3 = suomi.getString("age");
+              String str4 = suomi.getString("ad");
+              System.out.println(str2);
+              System.out.println(str3);
+              System.out.println(str4);
             }
     }
     

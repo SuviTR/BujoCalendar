@@ -36,7 +36,14 @@ public class Localize {
        LangBundle  g = new LangBundle(land);
        List <Path> lista = g.ListAllFiles();
        g.printList(lista);
+       System.out.println();
        g.loadLanguage(lista.get(0));
+       System.out.println();
+       g.loadLanguage(lista.get(1));
+       System.out.println();
+       g.loadLanguage(lista.get(2));
+
+       //g.loadLanguage(lista2.get(2));
                 // L10N -> Localisation
         // I10N -> Internationalisation
         

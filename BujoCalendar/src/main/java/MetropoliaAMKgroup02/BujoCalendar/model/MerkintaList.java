@@ -43,6 +43,9 @@ public class MerkintaList {
 	}
 
 	public List<Merkinta> getDay(Calendar day) {
+            if (day == null || events.isEmpty()) {
+                    return new ArrayList<Merkinta>();
+            }
 		//Start will be at midnight
 		Calendar start = (Calendar) day.clone();
 		start.set(Calendar.HOUR_OF_DAY, 0);

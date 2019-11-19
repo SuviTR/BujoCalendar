@@ -6,14 +6,14 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import MetropoliaAMKgroup02.BujoCalendar.controller.MainApp;
-import MetropoliaAMKgroup02.BujoCalendar.model.MonthView;
+import MetropoliaAMKgroup02.BujoCalendar.model.BujoDatePicker;
 import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
 
 
 public class RootLayoutController {
 	
 	private MainApp mainApp;
-	private MonthView monthView;
+	private BujoDatePicker monthView;
 	private boolean boolCurrentDate = true;
 
 	@FXML
@@ -30,7 +30,7 @@ public class RootLayoutController {
 	
 	@FXML
 	private void handleSelectDay() {
-		monthView = new MonthView();
+		monthView = new BujoDatePicker();
 		monthView.setRootLayoutController(this);
 		Stage s = new Stage();
 		monthView.start(s);

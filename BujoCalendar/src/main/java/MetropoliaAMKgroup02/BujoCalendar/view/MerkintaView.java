@@ -5,6 +5,7 @@
  */
 package MetropoliaAMKgroup02.BujoCalendar.view;
 
+import MetropoliaAMKgroup02.BujoCalendar.controller.AppController;
 import MetropoliaAMKgroup02.Common.model.Merkinta;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -46,7 +47,7 @@ public class MerkintaView {
         private void eventActivated() {
             System.out.println("Event " + this.merkinta.getNimi() + " activated");
             //This could work for example like:
-            // AppController.getInstance().getMainApp().openNoteOverview(this.merkinta);
+            AppController.getInstance().getMainApp().showNoteOverview(this.merkinta);
         }
 
 }

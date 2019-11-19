@@ -54,7 +54,6 @@ public class NoteOverviewController {
 		
 		
 		private RootLayoutController rootController;
-		private boolean okClicked = false;
 		private Stage dialogStage;
 		private NoteEdit noteEdit;
 		private AlarmOverviewController alarmController;
@@ -66,11 +65,15 @@ public class NoteOverviewController {
 		private Clock clock;
 		private String valid = "";
         private CalendarFetcher calendarFetcher;
+
+        private Merkinta merkinta;
 		
 		@FXML
 		private void initialize() {	//Lisää startDay:ksi se päivä, jota on klikattu?
 			noteEdit = new NoteEdit();
 			noteEdit.setNoteOverviewController(this);
+
+            merkinta = new Merkinta();
 			
 			dates = AppController.getInstance().getDates();
 			clock = new Clock();
@@ -96,19 +99,16 @@ public class NoteOverviewController {
 		   
 		    noteTitle.setFocusTraversable(false);
 	        noteMoreInfo.setFocusTraversable(false);
+
+
 		}
 		
 		public void setDialogStage(Stage dialogStage) {
 			this.dialogStage = dialogStage;
 		}
 
-		public boolean isOkClicked() {
-			return okClicked;
-		}
-
 		@FXML
-		private void handleOk() {
-			okClicked = true;
+		private void saveAppointment() {
 			handleNoteTitle();
 			handleNoteMoreInfo();
 			if (allDayEvent.isSelected()) {
@@ -212,11 +212,21 @@ public class NoteOverviewController {
         }
 
         public void setMerkinta(Merkinta merkinta) {
+                this.merkinta = merkinta;
+                this.updateView();
+        }
+
+        private void updateView() {
                 this.noteTitle.setText(merkinta.getNimi());
                 this.startDay.setText(merkinta.getStartDate().toString());
                 this.startTime.setText(merkinta.getTime());
                 this.endDay.setText(merkinta.getEndDate().toString());
 
                 noteEdit.setId(merkinta.getId());
+        }
+
+        private void updateMerkinta() {
+
+        }
 
 }

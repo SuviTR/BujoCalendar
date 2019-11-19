@@ -52,8 +52,8 @@ public class CalendarFetcher {
             connection.put(endpoint + "/" + id, merkinta, Merkinta.class);
     }
 
-	public void delete(int merkintaId) {
-		merkintaList.removeMerkinta(merkintaId);
-		connection.delete(endpoint + "/" + merkintaId);
+	public void delete(Merkinta merkinta) {
+		merkintaList.removeMerkinta(merkinta.getId());
+		connection.delete(endpoint + "/" + merkinta.getId());
 	}
 }

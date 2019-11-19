@@ -123,6 +123,12 @@ public class NoteOverviewController {
 			dialogStage.close();
 		
 		}
+
+		@FXML
+		private void deleteAppointment(){
+			calendarFetcher.delete(this.merkinta);
+			dialogStage.close();
+		}
 		
 		@FXML
 		private void handleOpenDatePicker1() {

@@ -47,8 +47,5 @@ public class CalendarController {
                 connection.post(endpoint, merkinta, Merkinta.class);
         }
 
-        public void delete(int merkintaId) {
-		merkintaList.removeMerkinta(merkintaId);
-                connection.delete(endpoint + "/" + merkintaId);
-        }
+        
 }

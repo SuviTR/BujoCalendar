@@ -19,6 +19,11 @@ public class AlarmView {
 		return time;
 	}
 	
+	/**
+	 * Checks what radiobutton user has clicked and gives text for the front.
+	 * @param value includes the value of the radiobutton.
+	 * @return valueText is the text what is going to add to front.
+	 */
 	public String getTimeValue(String value) {
 		String valueText = "";
 		
@@ -41,6 +46,10 @@ public class AlarmView {
 		
 	}
 	
+	/**
+	 * Sets the AlarmOverviewController.
+	 * @param alarmController is the AlarmOverviewController.
+	 */
 	public void setAlarmOverviewController(AlarmOverviewController controller) {
 		this.alarmController = controller;
 	}

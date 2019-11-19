@@ -1,8 +1,11 @@
 package MetropoliaAMKgroup02.BujoCalendar.view;
 
+import MetropoliaAMKgroup02.BujoCalendar.controller.AppController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
@@ -15,172 +18,211 @@ import java.time.DayOfWeek;
 import java.time.temporal.Temporal; 
 
 import MetropoliaAMKgroup02.BujoCalendar.controller.MainApp;
-import MetropoliaAMKgroup02.BujoCalendar.model.Menu;
-import MetropoliaAMKgroup02.BujoCalendar.model.TimeandDates;
+import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
+import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
+import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
+import java.util.ArrayList;
+import java.util.Calendar;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+
+/**
+* @author suvi
+*/
 
 public class CalendarOverviewController {
 
 	@FXML
-	private ImageView calendar;
-
+	private ImageView calendar, leftHeader, rightHeader;
 	@FXML
-	private ImageView leftHeader;
+	private Label month, week;
 	@FXML
-	private ImageView rightHeader;
-	
+	private Label monday, tuesday, wednesday, thursday, friday, saturday, sunday;
 	@FXML
-	private Label month;
+	private Label mondayDate, tuesdayDate, wednesdayDate, thursdayDate,  fridayDate, 
+				  saturdayDate, sundayDate;
+	/*
 	@FXML
-	private Label week;
-
-	@FXML
-	private Label monday;
-	@FXML
-	private Label tuesday;
-	@FXML
-	private Label wednesday;
-	@FXML
-	private Label thursday;
-	@FXML
-	private Label friday;
-	@FXML
-	private Label saturday;
-	@FXML
-	private Label sunday;
-
-	@FXML
-	private Label mondayDate;
-	@FXML
-	private Label tuesdayDate;
-	@FXML
-	private Label wednesdayDate;
-	@FXML
-	private Label thursdayDate;
-	@FXML
-	private Label fridayDate;
-	@FXML
-	private Label saturdayDate;
-	@FXML
-	private Label sundayDate;
-	
+	private Label monday07, monday08, monday09, monday10, monday11, monday12, monday13, monday14,
+				  monday15, monday16, monday17, monday18, monday19, monday20, monday21,
+				  tuesday07, tuesday08, tuesday09, tuesday10, tuesday11, tuesday12, tuesday13, tuesday14,
+				  tuesday15, tuesday16, tuesday17, tuesday18, tuesday19, tuesday20, tuesday21,
+				  wednesday07, wednesday08, wednesday09, wednesday10, wednesday11, wednesday12, 
+				  wednesday13, wednesday14, wednesday15, wednesday16, wednesday17, wednesday18, 
+				  wednesday19, wednesday20, wednesday21,
+				  thursday07, thursday08, thursday09, thursday10, thursday11, thursday12, 
+				  thursday13, thursday14, thursday15, thursday16, thursday17, thursday18, thursday19, 
+				  thursday20, thursay21,
+				  friday07, friday08, friday09, friday10, friday11, friday12, friday13, friday14,
+				  friday15, friday16, friday17, friday18, friday19, friday20, friday21,
+				  saturday07, saturday08, saturday09, saturday10, saturday11, saturday12, 
+				  saturday13, saturday14, saturday15, saturday16, saturday17, saturday18, 
+				  saturday19, saturday20, saturday21,
+				  sunday07, sunday08, sunday09, sunday10, sunday11, sunday12, sunday13, sunday14,
+				  sunday15, sunday16, sunday17, sunday18, sunday19, sunday20, sunday21;
+				  */
 	@FXML
 	private MenuButton fonts;
 
+	@FXML
+	private GridPane calendarContainer;
+
+	@FXML
+	private GridPane weekendContainer;
+	
+	
+
 	private MainApp mainApp;
-	private TimeandDates dates;
+	private Dates dates;
+	private NoteEdit notes;
+	private CalendarContainerViewController calendarView;
+
 	private int fontValue;
+	/*
 	private int backCounter = 0;
 	private int forwardCounter = 0;
-	private int totalCounter = 0;
+	private int totalCounter = 0;*/
+	private int nextWeek = 0;
+	private int prevWeek = 0;
+	private int weekCounter = 0;
+	private boolean boolCurrentOrSelected = true;
+	private String selectedDate = "";
+        private final ArrayList<Label> dayLabels;
 
-	public CalendarOverviewController() {
+        public CalendarOverviewController() {
+                this.dates = AppController.getInstance().getDates();
+                this.dayLabels = new ArrayList<Label>();
+        }
+
+	/**
+    * Initializes the CalendarOverviewController.
+    */
+	public void initView() {
+		
+		this.getCurrentDate();
+		this.calendarView = new CalendarContainerViewController(
+			calendarContainer, weekendContainer);
+		this.calendarView.setTimeAndDates(dates);
+		this.calendarView.setCalendarController(mainApp.getCalendarController());
+		this.calendarView.initDates();
+
+                dayLabels.add(this.mondayDate);
+                dayLabels.add(tuesdayDate);
+                dayLabels.add(wednesdayDate);
+                dayLabels.add(thursdayDate);
+                dayLabels.add(fridayDate);
+                dayLabels.add(saturdayDate);
+                dayLabels.add(sundayDate);
+
 	}
 
+	public void updateView() {
+        this.calendarView.updateDays();
+		String monthYear = dates.getMonth() + " " + dates.getYear();
+		month.setText(monthYear);
+		
+		week.setText(dates.getWeekNumberAsString());
+        this.calendarView.drawEvents();
+        this.updateDateNames();
+	}
+	
+	public void handleCurrentDateOrSelectedDate(String date, boolean value) {
+		boolCurrentOrSelected = value;
+		if (boolCurrentOrSelected == true) {
+			getCurrentDate();
+		}
+		else {
+			selectedDate = date;
+			handleSelectedDateView(selectedDate);
+		}
+	}
+
+	/**
+    * 
+    */
 	public void getCurrentDate() {
-		dates = new TimeandDates();
-		dates.getCurrentDate();
-		dates.getCurrentMonth();
-		dates.getWeekdayName();
 		
-		String mondayString = dates.updateDate(2);
-		String tuesdayString = dates.updateDate(3);
-		String wednesdayString = dates.updateDate(4);
-		String thursdayString = dates.updateDate(5);
-		String fridayString = dates.updateDate(6);
-		String saturdayString = dates.updateDate(7);
-		String sundayString = dates.updateDate(1);
+        this.updateDateNames();
+
+		String monthYear = dates.getMonth() + " " + dates.getYear();
+		month.setText(monthYear);
 		
-		mondayDate.setText(mondayString);
-		tuesdayDate.setText(tuesdayString);
-		wednesdayDate.setText(wednesdayString);
-		thursdayDate.setText(thursdayString);
-		fridayDate.setText(fridayString);
-		saturdayDate.setText(saturdayString);
-		sundayDate.setText(sundayString);
+		week.setText(dates.getWeekNumberAsString());
+	}
+	
+	/**
+    * 
+    */
+	@FXML
+	private void handleWeekForward() {	
 		
-		String monthString = dates.updateMonth();
-		String yearString = dates.updateYear();
+		dates.nextWeek();
+		
+		
+
+        this.updateView();
+	}
+
+    private void updateDateNames() {
+
+            Calendar date = dates.getMonday();
+            for(Label l : dayLabels) {
+                    l.setText(String.valueOf(date.get(Calendar.DAY_OF_MONTH)));
+                    date.add(Calendar.DATE, 1);
+            }
+    }
+	
+	/**
+    * 
+    */
+	@FXML
+	private void handleWeekBack() {
+		/*
+		backCounter = (backCounter + 1)* (-1);
+		totalCounter = backCounter + forwardCounter;
+		backCounter = backCounter* (-1);*/
+		
+		
+		dates.previousWeek();
+
+        this.updateView();
+	}
+	
+	/**
+    * 
+    */
+	public void handleSelectedDateView(String date) {
+		
+		String[] dayList = dates.selectedDate(date);
+		
+		mondayDate.setText(dayList[0]);
+		tuesdayDate.setText(dayList[1]);
+		wednesdayDate.setText(dayList[2]);
+		thursdayDate.setText(dayList[3]);
+		fridayDate.setText(dayList[4]);
+		saturdayDate.setText(dayList[5]);
+		sundayDate.setText(dayList[6]);
+		
+		String monthString = dates.getMonth();
+		String yearString = dates.getYear();
 		String monthYear = monthString + " " + yearString;
 		month.setText(monthYear);
 		
-		int weekNumberInt = dates.updateWeekNumber();
-		week.setText(String.valueOf(weekNumberInt));
+		week.setText(dates.getWeekNumberAsString());
+		
+	}
+	//======= Notes =======
+	public void handleNote() {
+		
 	}
 	
 	@FXML
-	private void handleWeekForward() {	
-		forwardCounter++;
-		backCounter = backCounter * (-1);
-		totalCounter = backCounter + forwardCounter;
-		backCounter = backCounter * (-1);
-		
-		dates = new TimeandDates();
-		dates.getCurrentDate();
-		dates.getCurrentMonth();
-		dates.getWeekdayName();
-		
-		String mondayString = dates.nextWeek(2, totalCounter);
-		String tuesdayString = dates.nextWeek(3, totalCounter);
-		String wednesdayString = dates.nextWeek(4, totalCounter);
-		String thursdayString = dates.nextWeek(5, totalCounter);
-		String fridayString = dates.nextWeek(6, totalCounter);
-		String saturdayString = dates.nextWeek(7, totalCounter);
-		dates.getSaturday(saturdayString);
-		String sundayString = dates.nextWeek(1, totalCounter);
-		
-		mondayDate.setText(mondayString);
-		tuesdayDate.setText(tuesdayString);
-		wednesdayDate.setText(wednesdayString);
-		thursdayDate.setText(thursdayString);
-		fridayDate.setText(fridayString);
-		saturdayDate.setText(saturdayString);
-		sundayDate.setText(sundayString);
-		
-		String monthString = dates.getNewMonth();
-		month.setText(monthString);
-		
-		int weekInt = dates.getWeekNumber();
-		String weekString = Integer.toString(weekInt);
-		week.setText(weekString);
+	private void handleOpenNoteOverview() {
+		mainApp.handleOpenNoteOverview();
 	}
 	
-	@FXML
-	private void handleWeekBack() {	//Ei vielä huomioitu kuukausien vaihtumista
-		backCounter = (backCounter + 1)* (-1);
-		totalCounter = backCounter + forwardCounter;
-		backCounter = backCounter* (-1);
-		
-		dates = new TimeandDates();
-		dates.getCurrentDate();
-		dates.getCurrentMonth();
-		dates.getWeekdayName();
-		
-		String mondayString = dates.lastWeek(2, totalCounter);
-		String tuesdayString = dates.lastWeek(3, totalCounter);
-		String wednesdayString = dates.lastWeek(4, totalCounter);
-		String thursdayString = dates.lastWeek(5, totalCounter);
-		String fridayString = dates.lastWeek(6, totalCounter);
-		String saturdayString = dates.lastWeek(7, totalCounter);
-		dates.getSaturday(saturdayString);
-		String sundayString = dates.lastWeek(1, totalCounter);
-		
-		mondayDate.setText(mondayString);
-		tuesdayDate.setText(tuesdayString);
-		wednesdayDate.setText(wednesdayString);
-		thursdayDate.setText(thursdayString);
-		fridayDate.setText(fridayString);
-		saturdayDate.setText(saturdayString);
-		sundayDate.setText(sundayString);
-		
-		String monthString = dates.getNewMonth();
-		month.setText(monthString);
-		
-		int weekInt = dates.getWeekNumber();
-		String weekString = Integer.toString(weekInt);
-		week.setText(weekString);
-	}
 
-	
+	//======= Edit view =======
 	@FXML
 	private void handleLeftHeader() {
         leftHeader.setPickOnBounds(true); // allows click on transparent areas
@@ -190,7 +232,11 @@ public class CalendarOverviewController {
         });
 	}
 	
-	//======= Editing calendar fonts ======= 
+	//======= Editing calendar fonts =======
+	
+	/**
+    * 
+    */
 	@FXML
 	private void handleWeekdayFonts() {
 		fontValue = 1;
@@ -203,16 +249,22 @@ public class CalendarOverviewController {
 		
 		Label[] list = {monday, tuesday, wednesday, thursday, friday, saturday, sunday};
 		for (Label day : list) {
-			day.setFont(new Font(newFont,16));
+			day.setFont(new Font(newFont,15));
 		}
 	}
 	
+	/**
+    * 
+    */
 	@FXML
 	private void handleWeekdayDateFonts() {
 		fontValue = 2;
 		boolean okClicked = mainApp.showFontOverview();
 	}
 	
+	/**
+    * 
+    */
 	public void setNewWeekdayDateFont(String font) {
 		String newFont = font;
 		System.out.println("New date font style is " + newFont);
@@ -223,12 +275,18 @@ public class CalendarOverviewController {
 		}
 	}
 	
+	/**
+    * 
+    */
 	@FXML
 	private void handleHeaderFonts() {
 		fontValue = 3;
 		boolean okClicked = mainApp.showFontOverview();
 	}
 	
+	/**
+    * 
+    */
 	public void setNewHeaderFont(String font) {
 		String newFont = font;
 		System.out.println("New month and week font style is " + newFont);
@@ -239,6 +297,9 @@ public class CalendarOverviewController {
 		}
 	}
 	
+	/**
+    * 
+    */
 	public void callFontValue() {
 		int value = mainApp.fontValue(fontValue);
 		System.out.println("handle " + value);
@@ -252,4 +313,5 @@ public class CalendarOverviewController {
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}	
+
 }

@@ -12,23 +12,24 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 /**
  *
+ * Simple database class
  * @author heikki
  */
 public class Database {
 	
 	private SessionFactory istuntotehdas = null;
 
-	public void Database() {
+	public Database() {
 
 		System.out.println("Luodaan istuntotehdas");
-		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-
+		StandardServiceRegistry registry ;
 		try {
+			registry = new StandardServiceRegistryBuilder().configure().build();
 			istuntotehdas =  new MetadataSources(registry).buildMetadata().buildSessionFactory();
 		}
 		catch(Exception e) {
 			System.out.println("Istuntotehtaan luonti ei onnistunut");
-			StandardServiceRegistryBuilder.destroy(registry);
+			//StandardServiceRegistryBuilder.destroy(registry);
 			e.printStackTrace();
 			System.exit(-1);
 		}
@@ -38,4 +39,5 @@ public class Database {
 	public SessionFactory getIstuntoTehdas() {
 		return this.istuntotehdas;
 	}
+
 }

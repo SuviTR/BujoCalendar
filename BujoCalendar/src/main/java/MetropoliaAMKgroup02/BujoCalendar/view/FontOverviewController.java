@@ -1,8 +1,7 @@
 package MetropoliaAMKgroup02.BujoCalendar.view;
 
-import MetropoliaAMKgroup02.BujoCalendar.model.Menu;
+import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
 import MetropoliaAMKgroup02.BujoCalendar.view.CalendarOverviewController;
-import MetropoliaAMKgroup02.BujoCalendar.controller.MainApp;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
@@ -22,14 +21,12 @@ public class FontOverviewController {
 
 	@FXML
 	private void initialize() {
-		Menu menu = new Menu();
+		FontMenu menu = new FontMenu();
 		menu.setFontOverviewController(this);
 		
 		ObservableList<MenuItem> items = menu.getFontList();
 		chooseFont.getItems().addAll(items);
 		fontValue = fontValue(fontValue);
-		System.out.println("ini " + fontValue);
-		
 	}
 
 	public void setDialogStage(Stage dialogStage) {
@@ -42,7 +39,6 @@ public class FontOverviewController {
 
 	@FXML
 	private void handleOk() {
-		System.out.println("ok " + fontValue);
 		if (fontValue == 1) {
 			calController.setNewWeekdayFont(newFont);
 		}
@@ -58,7 +54,6 @@ public class FontOverviewController {
 	
 	public int fontValue(int value) {
 		fontValue = value;
-		System.out.println("font " + fontValue);
 		return fontValue = value;
 	}
 	public void sendNewWeekdayFont(String font) {

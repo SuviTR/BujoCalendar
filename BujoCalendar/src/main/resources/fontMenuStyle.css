@@ -1,0 +1,8 @@
+
+
+.menu-button, .button {
+	-fx-font-size: 15.0;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: black;
+    -fx-background-color: white;
+}

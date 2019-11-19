@@ -7,14 +7,14 @@ import javafx.event.EventHandler;
 import javafx.collections.*;
 import MetropoliaAMKgroup02.BujoCalendar.view.FontOverviewController;
 
-public class Menu {
+public class FontMenu {
 	
 	private FontOverviewController fontController;
 	private ObservableList<MenuItem> calendarFonts;
 	private MenuItem menuItem;
 	private String newFont;
 
-	//======= Getting available fonts ======= 
+	//======= Getting available fonts ======
 	private String[] FontList() {
 		String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 		return fonts;

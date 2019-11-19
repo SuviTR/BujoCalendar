@@ -37,34 +37,30 @@ public class NoteOverviewController {
 		private CheckBox allDayEvent;
 		
 		@FXML
-		private Label startDay, endDay;
-		
-		
-		@FXML
 		private Label notePriority;
 		
 		@FXML
-		private TextField alarm, startTime, endTime;
+		private TextField alarm; 
 		
 		@FXML
 		private ChoiceBox priorityChoiceBox;
 		
 		@FXML 
 		private TextArea note;
-		
-		
-		private RootLayoutController rootController;
-		private Stage dialogStage;
+        
+        @FXML
+        private TextField startHr, startMin, endHr, endMin;
+
+        private RootLayoutController rootController;
 		private NoteEdit noteEdit;
-		private AlarmOverviewController alarmController;
 		private Priority priority;
-		private String alarmValue;
 		private Dates dates;
 		private BujoDatePicker picker;
 		private int whichDayValue = 0;
 		private Clock clock;
 		private String valid = "";
         private CalendarFetcher calendarFetcher;
+        private Stage dialogStage;
 
         private Merkinta merkinta;
 		
@@ -77,10 +73,12 @@ public class NoteOverviewController {
 			
 			dates = AppController.getInstance().getDates();
 			clock = new Clock();
+            /*
 			startDay.setText(dates.getCurrentDate().toString()); //tai day clicked
 			endDay.setText(dates.getCurrentDate().toString());		//---/---
 			startTime.setText(clock.currentTime());
 			endTime.setText(clock.currentTimeplus1());
+            */
 			
 			picker = new BujoDatePicker();
 			picker.setNoteOverviewController(this);
@@ -107,20 +105,27 @@ public class NoteOverviewController {
 			this.dialogStage = dialogStage;
 		}
 
+        @FXML 
+        private void startDate() {
+
+        }
+
+        @FXML
+        private void endDate() {
+                
+        }
+
 		@FXML
 		private void saveAppointment() {
-			handleNoteTitle();
-			handleNoteMoreInfo();
+            updateMerkinta();
 			if (allDayEvent.isSelected()) {
 				noteEdit.allDayEvent();
 			}
             handleStartDay();
             handleEndDay();
              
-			handleStartandEndTime();
 
-            calendarFetcher.createAppointment(noteEdit.createMerkinta());
-			dialogStage.close();
+            calendarFetcher.createAppointment(this.merkinta);
 		
 		}
 
@@ -224,15 +229,19 @@ public class NoteOverviewController {
 
         private void updateView() {
                 this.noteTitle.setText(merkinta.getNimi());
-                this.startDay.setText(merkinta.getStartDate().toString());
-                this.startTime.setText(merkinta.getTime());
-                this.endDay.setText(merkinta.getEndDate().toString());
+                //this.startDay.setText(merkinta.getStartDate().toString());
+                //this.startTime.setText(merkinta.getTime());
+                //this.endDay.setText(merkinta.getEndDate().toString());
 
                 noteEdit.setId(merkinta.getId());
         }
 
         private void updateMerkinta() {
 
+                this.merkinta.setNimi(this.noteTitle.getText());
+                this.merkinta.setAllDay(this.allDayEvent.isSelected());
+                this.merkinta.setSisalto(this.noteMoreInfo.getText());
+                //this.merkinta.setStartDate(date);
         }
 
 }

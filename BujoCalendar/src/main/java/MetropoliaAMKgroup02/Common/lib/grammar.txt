@@ -1,0 +1,8 @@
+## This grammar is in Backus-naur form
+
+<time_expression> ::= <timetoken> <time> | <time>
+<timetoken> ::= "klo" | "kl"
+<time> ::= <numeral> <separator> <numeral>
+<numeral> ::= [0-9] | [0-9][0-9]
+<separator> ::= ":" | "."
+

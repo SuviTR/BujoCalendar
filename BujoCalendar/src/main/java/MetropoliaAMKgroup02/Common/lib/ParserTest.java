@@ -12,7 +12,7 @@ package MetropoliaAMKgroup02.Common.lib;
 public class ParserTest {
 	
 	public static void main(String[] args) {
-		TimeParser parser = new TimeParser("Lounas klo 16:00 tänään");
+		Parser parser = new Parser("Lounas klo 16:00 tänään");
 		Symbol time = parser.getTime();
 		System.out.println(time.getContent());
 	}

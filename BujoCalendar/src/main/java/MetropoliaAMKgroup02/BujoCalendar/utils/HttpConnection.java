@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MetropoliaAMKgroup02.BujoCalendar.model;
+package MetropoliaAMKgroup02.BujoCalendar.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,30 +43,43 @@ public class HttpConnection extends JSONHandler {
 		return responseObj;
 	}
 
-	public Object put(String endpoint) {
+	public Object put(String endpoint, Object body, Class objectType) {
+            this.connect(endpoint, "PUT");
+            return this.sendData(endpoint, body, objectType);
 
-		return new Object();
 	}
 
 	public Object delete(String endpoint) {
 		
-		return new Object();
+            this.connect(endpoint, "DELETE");
+            return this.getResponse(Object.class);
 	}
 
 	public Object post(String endpoint, Object body, Class objectType) {
 		this.connect(endpoint, "POST");
+        return this.sendData(endpoint, body, objectType);
+	}
+
+    private Object sendData(String endpoint, Object body, Class objectType) {
+
 		this.con.setRequestProperty("Content-Type", "application/json; utf-8");
 		this.con.setDoOutput(true);
 
 		String bodystr = this.ObjToJSON(body);
 		this.sendRequestBody(bodystr);
+
+        return this.getResponse(objectType);
+    }
+
+    private Object getResponse(Class objectType) {
+            
 		String response = this.readResponse();
 
 		Object responseObj = this.JSONToObj(response, objectType);
 		this.cleanup();
 
 		return responseObj;
-	}
+    }
 
 	private HttpURLConnection connect(String endpoint, String method) {
 		URL url;

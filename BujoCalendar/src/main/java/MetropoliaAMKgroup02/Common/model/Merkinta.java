@@ -17,6 +17,8 @@ public class Merkinta
 
 	private int id;
 	private String nimi, paikka, sisalto;
+        private boolean allDayEvent;
+
 
 	public enum Prior {SMALL, MIDDLE, HIGH};
 	public Prior prior;
@@ -54,7 +56,15 @@ public class Merkinta
 	public String getPaikka() {
 		return paikka;
 	}
+
+    public void setAllDay() {
+            this.allDayEvent = true;
+    }
 	
+    public void setAllDay(boolean allDayEvent) {
+            this.allDayEvent = allDayEvent;
+    }
+
 	public void setSisalto(String sisalto){
 		this.sisalto = sisalto;
 	}

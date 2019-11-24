@@ -8,14 +8,14 @@ import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import MetropoliaAMKgroup02.BujoCalendar.model.Menu;
+import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
 import javafx.collections.ObservableList;
 import javafx.scene.control.MenuItem;
 
 
-class MenuTest {
+class FontMenuTest {
 
-private Menu menu = new Menu();
+private FontMenu menu = new FontMenu();
 
     @Test
     @DisplayName("Get all font families installed on the user's system")

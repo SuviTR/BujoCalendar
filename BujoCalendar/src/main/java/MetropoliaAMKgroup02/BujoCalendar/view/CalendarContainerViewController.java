@@ -5,9 +5,8 @@
  */
 package MetropoliaAMKgroup02.BujoCalendar.view;
 
-import MetropoliaAMKgroup02.BujoCalendar.controller.CalendarController;
-import MetropoliaAMKgroup02.BujoCalendar.controller.CalendarDayController;
-import MetropoliaAMKgroup02.BujoCalendar.model.TimeandDates;
+import MetropoliaAMKgroup02.BujoCalendar.fetchers.CalendarFetcher;
+import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javafx.fxml.FXML;
@@ -39,16 +38,16 @@ public class CalendarContainerViewController {
 	private final GridPane calendarContainer;
 	private final GridPane weekendContainer;
 
-	private ArrayList<CalendarDayController> weekdayList;
-	private ArrayList<CalendarDayController> weekendList;
-	private ArrayList<CalendarDayController> dayList;
+	private ArrayList<CalendarDayViewController> weekdayList;
+	private ArrayList<CalendarDayViewController> weekendList;
+	private ArrayList<CalendarDayViewController> dayList;
 
 	private int weekDayStart = 7;
 	private int weekDayEnd = 21;
 	private int weekendDayStart = 10;
 	private int weekendDayEnd = 14;
-	private TimeandDates dates;
-	private CalendarController calendarController;
+	private Dates dates;
+	private CalendarFetcher calendarFetcher;
 
 	CalendarContainerViewController(GridPane calendarContainer, GridPane weekendContainer) {
 		this.calendarContainer = calendarContainer;
@@ -65,15 +64,14 @@ public class CalendarContainerViewController {
 
 		for (int i = 0; i < weekdays.length; i++) {
 			GridPane day = this.createDateColumn(weekdays[i], this.calendarContainer);
-			weekdayList.add(new CalendarDayController(day,
+			weekdayList.add(new CalendarDayViewController(day,
 				weekDayStart, weekDayEnd, date));
 
 			date = (Calendar) date.clone();
 			date.add(Calendar.DAY_OF_WEEK, 1);
 		}
 
-		weekendList.add(
-			new CalendarDayController(
+		weekendList.add(new CalendarDayViewController(
 				this.createDateRow(SATURDAY, weekendContainer),
 					weekendDayStart,
 					weekendDayEnd, date)
@@ -81,8 +79,7 @@ public class CalendarContainerViewController {
 
 		date = (Calendar) date.clone();
 		date.add(Calendar.DAY_OF_WEEK, 1);
-		weekendList.add(
-			new CalendarDayController(
+		weekendList.add(new CalendarDayViewController(
 		this.createDateRow(SUNDAY, weekendContainer), 
 				weekendDayStart,
 				weekendDayEnd, date));
@@ -91,6 +88,15 @@ public class CalendarContainerViewController {
 		dayList.addAll(weekdayList);
 		dayList.addAll(weekendList);
 	}
+
+    public void updateDays() {
+            Calendar date = this.dates.getMonday();
+
+            for(CalendarDayViewController day : dayList) {
+                    day.setDate(date);
+                    date.add(Calendar.DATE, 1);
+            }
+    }
 
 	private GridPane createDateColumn(int day, GridPane container) {
 		return this.createDate(day, 0, container);
@@ -112,17 +118,17 @@ public class CalendarContainerViewController {
 	}
 
 	public void drawEvents() {
-		for(CalendarDayController day : dayList) {
-			day.injectEvents(calendarController);
+		for(CalendarDayViewController day : dayList) {
+			day.injectEvents(calendarFetcher);
 			day.drawEvents();
 		}
 	}
 
-	void setTimeAndDates(TimeandDates dates) {
+	void setTimeAndDates(Dates dates) {
 		this.dates = dates;
 	}
 
-	void setCalendarController(CalendarController calendarController) {
-		this.calendarController = calendarController;
+	void setCalendarFetcher(CalendarFetcher calendarFetcher) {
+		this.calendarFetcher = calendarFetcher;
 	}
 }

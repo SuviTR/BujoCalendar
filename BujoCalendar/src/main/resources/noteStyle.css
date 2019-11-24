@@ -1,0 +1,27 @@
+.root {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+}
+.text-field {
+    -fx-text-box-border: transparent;
+}
+
+.text-field {
+    -fx-background-color: -fx-control-inner-background;
+    -fx-background-insets: 0;
+}
+
+.text-area {
+    -fx-background-insets: 0;
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area .content {
+    -fx-padding: 10px;
+    -fx-text-fill: gray;
+    -fx-highlight-fill: #7ecfff;
+}

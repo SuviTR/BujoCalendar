@@ -6,13 +6,15 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import MetropoliaAMKgroup02.BujoCalendar.controller.MainApp;
-import MetropoliaAMKgroup02.BujoCalendar.model.MonthView;
+import MetropoliaAMKgroup02.BujoCalendar.model.BujoDatePicker;
+import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
 
 
 public class RootLayoutController {
 	
 	private MainApp mainApp;
-	private MonthView monthView;
+	private BujoDatePicker monthView;
+	private boolean boolCurrentDate = true;
 
 	@FXML
 	private MenuItem weekdayFonts ;
@@ -28,17 +30,47 @@ public class RootLayoutController {
 	
 	@FXML
 	private void handleSelectDay() {
-		monthView = new MonthView();
+		monthView = new BujoDatePicker();
 		monthView.setRootLayoutController(this);
 		Stage s = new Stage();
 		monthView.start(s);
+		monthView.whoValue(1);
 	}
 	
-	public void getSelectedDateView(String date) {
-		mainApp.getSelectedDateView(date);
+	@FXML
+	private void handleCurrentDate() {
+		boolCurrentDate = true;
+		mainApp.handleCurrentDate(boolCurrentDate);
+	}
+	
+	public void handleSelectedDateView(String date) {
+		boolCurrentDate = false;
+		mainApp.handleSelectedDateView(date, boolCurrentDate);
+		
+	}
+
+    public void updateEvents() {
+            mainApp.updateEvents();
+    }
+	
+	@FXML
+	public void handleViewCurrentDate() {
+		boolCurrentDate = true;
+		mainApp.handleCurrentDate(boolCurrentDate);
+	}
+	
+	@FXML
+	public void handleNewNote() {
+		boolean okClicked = mainApp.showNoteOverview();
+	}
+	
+	public void showAlarmOverview() {
+		boolean okClicked = mainApp.showAlarmOverview();
 	}
 
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
+	
+
 }

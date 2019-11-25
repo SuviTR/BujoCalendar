@@ -191,6 +191,7 @@ public class CalendarOverviewController {
 		mainApp.handleOpenNoteOverview();
 	}
 	
+	
 
 	//======= Edit view =======
 	@FXML

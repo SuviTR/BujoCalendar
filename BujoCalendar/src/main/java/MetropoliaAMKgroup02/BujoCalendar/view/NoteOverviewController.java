@@ -132,8 +132,9 @@ public class NoteOverviewController {
 	 * Method sends the information of the note that a user wanted to delete to backend.
 	 */
 	@FXML
-	private void handleDeleteNote() {
-		
+	private void handleRemoveNote() {
+		//CalendarController calCtrl = new CalendarController();
+		noteEdit.removeNoteWarning();
 	}
 	
 	/**
@@ -248,8 +249,10 @@ public class NoteOverviewController {
 	private void handleOpenAlarmView() {
 		rootController.showAlarmOverview();
 	}
-
 	
+	/**
+	 * Handles the end day of the note.
+	 */
     private void handleEndDay() {
             DateConverter conv = new DateConverter();
             conv.setDate(startDay.getText());
@@ -257,11 +260,14 @@ public class NoteOverviewController {
             noteEdit.noteStartDay(conv.getCalendar());
     }
 
+    /**
+	 * Handles the start day of the note.
+	 */
     private void handleStartDay() {
             DateConverter conv = new DateConverter();
             conv.setDate(endDay.getText());
             conv.setTime(endTime.getText());
-            noteEdit.setNoteEnd(conv.getCalendar());
+            noteEdit.noteEndDay(conv.getCalendar());
     }
     
     /**
@@ -272,6 +278,10 @@ public class NoteOverviewController {
 		this.rootController = controller;
 	}
 
+	/**
+	 * Sets the CalendarController.
+	 * @param controller is the CalendarController.
+	 */
     public void setCalendarController(CalendarController calendarController) {
             this.calendarController = calendarController;
     }

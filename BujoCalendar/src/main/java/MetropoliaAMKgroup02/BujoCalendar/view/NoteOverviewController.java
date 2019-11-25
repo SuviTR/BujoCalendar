@@ -7,7 +7,8 @@ import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
 import MetropoliaAMKgroup02.BujoCalendar.model.BujoDatePicker;
 import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
 import MetropoliaAMKgroup02.BujoCalendar.model.Priority;
-import MetropoliaAMKgroup02.BujoCalendar.utils.DateConverter;
+import MetropoliaAMKgroup02.BujoCalendar.utils.DateAndCalendarConverter;
+import MetropoliaAMKgroup02.BujoCalendar.utils.StringToCalConverter;
 import MetropoliaAMKgroup02.Common.model.Merkinta;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,6 +21,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -50,6 +52,9 @@ public class NoteOverviewController {
         
         @FXML
         private TextField startHr, startMin, endHr, endMin;
+
+        @FXML
+        private DatePicker startDatePicker, endDatePicker;
 
         private RootLayoutController rootController;
 		private NoteEdit noteEdit;
@@ -135,6 +140,7 @@ public class NoteOverviewController {
 			dialogStage.close();
 		}
 		
+        //DEPRECATED 
 		@FXML
 		private void handleOpenDatePicker1() {
 			picker.whoValue(2);
@@ -142,6 +148,7 @@ public class NoteOverviewController {
 			openDatePicker();
 		}
 		
+        //DEprecated
 		@FXML
 		private void handleOpenDatePicker2() {
 			picker.whoValue(2);
@@ -149,16 +156,20 @@ public class NoteOverviewController {
 			openDatePicker();
 		}
 		
+        // DePERECATED
 		private void openDatePicker() {
 			Stage s = new Stage();
 			picker.start(s);
 		}
 		
+        /*
+        PROBABLE DEPRECATED
 		private void handleStartandEndTime() {
 			clock.handleStartTime(startTime);
 			clock.handleEndTime(endTime);
 		}
-		
+*/
+	/*	
 		public void setAlarmDay(String day) {
 			if (whichDayValue == 1) {
 				startDay.setText(day);
@@ -167,6 +178,7 @@ public class NoteOverviewController {
 				endDay.setText(day);
 			}
 		}
+*/
 		
 		public void setAlarmTimeandValue(String text) {	
 			String texts = alarm.getText() + " " + text;
@@ -174,11 +186,11 @@ public class NoteOverviewController {
 		}
 		
 		private void handleNoteTitle() {
-			noteEdit.newNoteTitle(noteTitle.getText());
+                this.merkinta.setNimi(noteTitle.getText());
 		}
 		
 		private void handleNoteMoreInfo() {
-			noteEdit.newNoteMoreInfo(noteMoreInfo.getText());
+                this.merkinta.setSisalto(noteMoreInfo.getText());
 		}
 		
 		@FXML
@@ -205,14 +217,14 @@ public class NoteOverviewController {
 		}
 
         private void handleEndDay() {
-                DateConverter conv = new DateConverter();
+                StringToCalConverter conv = new StringToCalConverter();
                 conv.setDate(startDay.getText());
                 conv.setTime(startTime.getText());
                 noteEdit.noteStartDay(conv.getCalendar());
         }
 
         private void handleStartDay() {
-                DateConverter conv = new DateConverter();
+                StringToCalConverter conv = new StringToCalConverter();
                 conv.setDate(endDay.getText());
                 conv.setTime(endTime.getText());
                 noteEdit.setNoteEnd(conv.getCalendar());
@@ -229,6 +241,13 @@ public class NoteOverviewController {
 
         private void updateView() {
                 this.noteTitle.setText(merkinta.getNimi());
+                DateAndCalendarConverter conv = new DateAndCalendarConverter();
+                this.startDatePicker.setValue(conv.CalToLocalDate(merkinta.getStart()));
+                this.endDatePicker.setValue(conv.CalToLocalDate(merkinta.getEndDate()));
+                this.startHr.setText(Integer.toString(
+                        conv.CalToLocalTime(merkinta.getStart()).getHour()));
+                this.startMin.setText(Integer.toString(
+                        conv.CalToLocalTime(merkinta.getEndDate()).getMinute()));
                 //this.startDay.setText(merkinta.getStartDate().toString());
                 //this.startTime.setText(merkinta.getTime());
                 //this.endDay.setText(merkinta.getEndDate().toString());

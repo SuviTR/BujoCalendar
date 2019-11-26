@@ -19,7 +19,8 @@ public class DateAndCalendarConverter {
         public LocalDate CalToLocalDate(Calendar cal) {
                 LocalDate date = LocalDate.of(
                         cal.get(Calendar.YEAR),
-                        cal.get(Calendar.MONTH),
+                        // Calendar 0-11, LocalDate 1-12
+                        cal.get(Calendar.MONTH) + 1,
                         cal.get(Calendar.DAY_OF_MONTH)
                 );
                 return date;
@@ -38,9 +39,28 @@ public class DateAndCalendarConverter {
 
                 cal.set(date.getYear(),
                         date.getMonthValue(),
-                        date.getDayOfMonth());
+                        // Calendar 0-11, LocalDate 1-12
+                        date.getDayOfMonth() - 1);
                 cal.set(Calendar.HOUR_OF_DAY, time.getHour());
                 cal.set(Calendar.MINUTE, time.getMinute());
                 return cal;
+        }
+
+        public LocalTime createLocalTime(String hour, String minute) {
+                return LocalTime.of(Integer.parseInt(hour), Integer.parseInt(minute));
+        }
+
+        public String hourRepresentation(Calendar cal) {
+                int hour = cal.get(Calendar.HOUR_OF_DAY);
+                return String.format("%02d", hour);
+        }
+
+        public String minuteRepresentation(Calendar cal) {
+                int min = cal.get(Calendar.MINUTE);
+                return String.format("%02d", min);
+        }
+
+        private void LocalDate(int parseInt, int parseInt0) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 }

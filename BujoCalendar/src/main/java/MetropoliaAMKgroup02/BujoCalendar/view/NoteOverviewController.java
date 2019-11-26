@@ -12,6 +12,7 @@ import MetropoliaAMKgroup02.BujoCalendar.utils.StringToCalConverter;
 import MetropoliaAMKgroup02.Common.model.Merkinta;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -68,7 +69,7 @@ public class NoteOverviewController {
         private Stage dialogStage;
 
         private Merkinta merkinta;
-		
+
 		@FXML
 		private void initialize() {	//Lisää startDay:ksi se päivä, jota on klikattu?
 			noteEdit = new NoteEdit();
@@ -122,15 +123,18 @@ public class NoteOverviewController {
 
 		@FXML
 		private void saveAppointment() {
-            updateMerkinta();
 			if (allDayEvent.isSelected()) {
 				noteEdit.allDayEvent();
 			}
-            handleStartDay();
-            handleEndDay();
              
+            updateMerkinta();
 
-            calendarFetcher.createAppointment(this.merkinta);
+            // If Id=0, this is a new appointment
+            if(this.merkinta.getId() == 0) {
+                    calendarFetcher.createAppointment(this.merkinta);
+            } else {
+                    calendarFetcher.editAppointment(this.merkinta);
+            }
 		
 		}
 
@@ -196,14 +200,16 @@ public class NoteOverviewController {
 		@FXML
 		private void handleAllDayEventCheckBox() {
 			if (allDayEvent.isSelected()) {
-				endDay.setVisible(false);
-				startTime.setVisible(false);
-				endTime.setVisible(false);
+				startHr.setVisible(false);
+				startMin.setVisible(false);
+				endHr.setVisible(false);
+				endMin.setVisible(false);
 			}					
 			else {
-				endDay.setVisible(true);
-				startTime.setVisible(true);
-				endTime.setVisible(true);
+				startHr.setVisible(true);
+				startMin.setVisible(true);
+				endHr.setVisible(true);
+				endMin.setVisible(true);
 			}
 		}
 		
@@ -216,18 +222,19 @@ public class NoteOverviewController {
 			this.rootController = controller;
 		}
 
-        private void handleEndDay() {
-                StringToCalConverter conv = new StringToCalConverter();
-                conv.setDate(startDay.getText());
-                conv.setTime(startTime.getText());
-                noteEdit.noteStartDay(conv.getCalendar());
+        private void updateStartDay() {
+                merkinta.setStartDate(handleDay(startDatePicker, startHr, startMin));
         }
 
-        private void handleStartDay() {
-                StringToCalConverter conv = new StringToCalConverter();
-                conv.setDate(endDay.getText());
-                conv.setTime(endTime.getText());
-                noteEdit.setNoteEnd(conv.getCalendar());
+        private void updateEndDay() {
+                merkinta.setEndDate(handleDay(endDatePicker, endHr, endMin));
+        }
+
+        private Calendar handleDay(DatePicker datePicker, TextField hr, TextField min) {
+                DateAndCalendarConverter conv = new DateAndCalendarConverter();
+                LocalTime time = conv.createLocalTime(
+                        hr.getText(), min.getText());
+                return conv.LocalsToCal(datePicker.getValue(), time);
         }
 
         public void setCalendarFetcher(CalendarFetcher calendarFetcher) {
@@ -244,13 +251,10 @@ public class NoteOverviewController {
                 DateAndCalendarConverter conv = new DateAndCalendarConverter();
                 this.startDatePicker.setValue(conv.CalToLocalDate(merkinta.getStart()));
                 this.endDatePicker.setValue(conv.CalToLocalDate(merkinta.getEndDate()));
-                this.startHr.setText(Integer.toString(
-                        conv.CalToLocalTime(merkinta.getStart()).getHour()));
-                this.startMin.setText(Integer.toString(
-                        conv.CalToLocalTime(merkinta.getEndDate()).getMinute()));
-                //this.startDay.setText(merkinta.getStartDate().toString());
-                //this.startTime.setText(merkinta.getTime());
-                //this.endDay.setText(merkinta.getEndDate().toString());
+                this.startHr.setText(conv.hourRepresentation(merkinta.getStart()));
+                this.startMin.setText(conv.minuteRepresentation(merkinta.getStart()));
+                this.endHr.setText(conv.hourRepresentation(merkinta.getEndDate()));
+                this.endMin.setText(conv.minuteRepresentation(merkinta.getEndDate()));
 
                 noteEdit.setId(merkinta.getId());
         }
@@ -260,7 +264,9 @@ public class NoteOverviewController {
                 this.merkinta.setNimi(this.noteTitle.getText());
                 this.merkinta.setAllDay(this.allDayEvent.isSelected());
                 this.merkinta.setSisalto(this.noteMoreInfo.getText());
-                //this.merkinta.setStartDate(date);
+
+                this.updateStartDay();
+                this.updateEndDay();
         }
 
 }

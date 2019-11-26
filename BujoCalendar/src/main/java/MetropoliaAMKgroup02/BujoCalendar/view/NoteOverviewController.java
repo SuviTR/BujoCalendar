@@ -10,6 +10,7 @@ import MetropoliaAMKgroup02.BujoCalendar.model.Priority;
 import MetropoliaAMKgroup02.BujoCalendar.utils.DateConverter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -20,9 +21,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class NoteOverviewController {
@@ -31,6 +34,8 @@ public class NoteOverviewController {
 	private CheckBox allDayEvent;
 	@FXML
 	private Label startDay, endDay, notePriority;
+	@FXML
+	private DatePicker startDayPicker, endDayPicker;
 	@FXML
 	private TextField noteTitle, alarm, startTime, endTime;
 	@FXML
@@ -141,20 +146,18 @@ public class NoteOverviewController {
 	 *
 	 */
 	@FXML
-	private void handleOpenDatePicker1() {
-		picker.whoValue(2);
-		whichDayValue = 1;
-		openDatePicker();
+	private void handleStartDayPicker() {
+		String selectedDate = startDayPicker.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+		startDay.setText(selectedDate);
 	}
 	
 	/**
 	 *
 	 */
 	@FXML
-	private void handleOpenDatePicker2() {
-		picker.whoValue(2);
-		whichDayValue = 2;
-		openDatePicker();
+	private void handleEndDayPicker() {
+		String selectedDate = endDayPicker.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+		endDay.setText(selectedDate);
 	}
 	
 	/**
@@ -163,6 +166,11 @@ public class NoteOverviewController {
 	private void openDatePicker() {
 		Stage s = new Stage();
 		picker.start(s);
+	}
+	
+	@FXML
+	private void handleDatePicker() {
+		
 	}
 	
 	/**
@@ -194,12 +202,13 @@ public class NoteOverviewController {
 	 * Sets the start and end day of the alarm.
 	 */
 	public void setAlarmDay(String day) {
+		/*
 		if (whichDayValue == 1) {
 			startDay.setText(day);
 		}
 		else if (whichDayValue == 2) {
 			endDay.setText(day);
-		}
+		}*/
 	}
 	
 	/**

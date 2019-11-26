@@ -56,6 +56,7 @@ public  class LangBundlePro extends ListResourceBundle{
             //String url = "C:\\Users\\Vision2\\git\\BujoCalendar\\BujoCalendar\\src\\main\\resources\\";
             String lan = "language_"+ land.getLanguage();
             language = ResourceBundle.getBundle(lan,land);
+           /* 
             String list = String.join(",", language.keySet());
             String[] keys = list.split(",");
             String key1 = keys[0];
@@ -66,7 +67,7 @@ public  class LangBundlePro extends ListResourceBundle{
                name= language.getString(key2);
                age = language.getString(key3);
                ad = language.getString(key1);
-           /*   
+             
               System.out.println(list);
               System.out.println(name);
               System.out.println(age);

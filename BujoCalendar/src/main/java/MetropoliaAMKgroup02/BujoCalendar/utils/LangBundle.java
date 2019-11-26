@@ -10,6 +10,7 @@ package MetropoliaAMKgroup02.BujoCalendar.utils;
  *
  * @author Vision2
  */
+import java.io.FilenameFilter;
 import java.io.File;
 import java.util.ListResourceBundle;
 import java.util.ResourceBundle.Control;
@@ -26,6 +27,7 @@ import java.util.Scanner;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 
 public  class LangBundle extends ListResourceBundle{
 
@@ -51,10 +53,17 @@ public  class LangBundle extends ListResourceBundle{
         }
     
     public List ListAllFiles() throws IOException{
-         Path path = Paths.get("C:\\Users\\Vision2\\git\\BujoCalendar\\BujoCalendar\\src\\main\\resources\\languages\\");
+         
+
+        
+        Path path = Paths.get("C:\\Users\\Vision2\\git\\BujoCalendar\\BujoCalendar\\src\\main\\resources\\");
          try(Stream <Path> subPaths=Files.walk(path)){
-               
-            lista = subPaths.filter(Files::isRegularFile).collect( Collectors.toList());
+              
+            lista = subPaths.filter(Files::isRegularFile).filter(p ->p.endsWith(".properties")).collect( Collectors.toList());
+        
+            
+         
+            
          } catch(IOException e){
              e.printStackTrace();
          }
@@ -66,7 +75,7 @@ public  class LangBundle extends ListResourceBundle{
         
         for (int i=0 ;  i<lista.size(); i++){ 
         System.out.println(lista.get(i).getFileName());
-   
+
         
         } 
     }
@@ -77,11 +86,12 @@ public  class LangBundle extends ListResourceBundle{
               String lang2 = "se";
               String country2 = "SE";
               String part =lang.getFileName().toString();
+              //lang.
               String[] cutter = part.split("\\.");
-              String path = cutter[0];
-            //System.out.println(path);
+              String road = cutter[0];
+              System.out.println(road);
               Locale land2 = new Locale(lang2,country2);
-              svenska = ResourceBundle.getBundle(path, land2);
+              svenska = ResourceBundle.getBundle( road, land2);
              
               String str2 = svenska.getString("name");
               String str3 = svenska.getString("age");
@@ -94,10 +104,10 @@ public  class LangBundle extends ListResourceBundle{
               String country2 = "UK";
               String part =lang.getFileName().toString();
               String[] cutter = part.split("\\.");
-              String path = cutter[0];
+              String road = cutter[0];
             //System.out.println(path);
               Locale land2 = new Locale(lang2,country2);
-              english = ResourceBundle.getBundle(path, land2);
+              english = ResourceBundle.getBundle(road, land2);
              
               String str2 = english.getString("name");
               String str3 = english.getString("age");
@@ -110,10 +120,10 @@ public  class LangBundle extends ListResourceBundle{
               String country2 = "FI";
               String part =lang.getFileName().toString();
               String[] cutter = part.split("\\.");
-              String path = cutter[0];
+              String road = cutter[0];
             //System.out.println(path);
               Locale land2 = new Locale(lang2,country2);
-              suomi = ResourceBundle.getBundle(path, land2);
+              suomi = ResourceBundle.getBundle(road, land2);
              
               String str2 = suomi.getString("name");
               String str3 = suomi.getString("age");

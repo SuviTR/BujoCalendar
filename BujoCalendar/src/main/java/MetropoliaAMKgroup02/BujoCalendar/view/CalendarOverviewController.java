@@ -64,10 +64,11 @@ public class CalendarOverviewController {
 	private String selectedDate = "";
     private final ArrayList<Label> dayLabels;
 
-    public CalendarOverviewController() {
-            this.dates = AppController.getInstance().getDates();
-            this.dayLabels = new ArrayList<Label>();
-    }
+        public CalendarOverviewController() {
+                this.dates = AppController.getInstance().getDates();
+                this.dayLabels = new ArrayList<Label>();
+                AppController.getInstance().setCalendarOverviewController(this);
+        }
 
 	/**
     * Initializes the CalendarOverviewController.
@@ -78,7 +79,7 @@ public class CalendarOverviewController {
 		this.calendarView = new CalendarContainerViewController(
 			calendarContainer, weekendContainer);
 		this.calendarView.setTimeAndDates(dates);
-		this.calendarView.setCalendarController(mainApp.getCalendarController());
+		this.calendarView.setCalendarFetcher(mainApp.getCalendarFetcher());
 		this.calendarView.initDates();
 
         dayLabels.add(this.mondayDate);

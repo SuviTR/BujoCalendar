@@ -25,11 +25,12 @@ public class NoteEdit {
 	
 	private NoteOverviewController noteController;
 	private Merkinta note;
-    private String title;
-    private String text;
-    private Calendar startDate;
-    private Calendar endDate;
-    private boolean allDay;
+        private String title;
+        private String text;
+        private Calendar startDate;
+        private Calendar endDate;
+        private boolean allDay;
+        private int id;
 
     /**
      * Gets the title name of the note.
@@ -72,6 +73,7 @@ public class NoteEdit {
     public Merkinta createMerkinta() { //Alarm is missing!!!!!!
         Merkinta merkinta = new Merkinta();
         merkinta.setNimi(this.title);
+        merkinta.setId(id);
         merkinta.setSisalto(text);
         merkinta.setStartDate(startDate);
         merkinta.setEndDate(endDate);
@@ -118,4 +120,8 @@ public class NoteEdit {
 	public void setNoteOverviewController(NoteOverviewController controller) {
 		this.noteController = controller;
 	}
+        public void setId(int id) {
+                this.id = id;
+        }
+
 }

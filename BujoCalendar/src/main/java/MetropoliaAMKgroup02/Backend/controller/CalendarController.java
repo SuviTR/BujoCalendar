@@ -93,17 +93,8 @@ public class CalendarController extends AbstractController {
      */
 	@Override
 	protected Object handlePut(String string, URI uri) {
-		
-		CalendarModel calendar = new CalendarModel(data);
-		Merkinta merkinta = new Merkinta();
-
-		try {
-			merkinta = this.mapper.readValue(string, Merkinta.class);
-		} catch (IOException ex) {
-			Logger.getLogger(HenkiloController.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		calendar.editMerkinta(merkinta);
-		return merkinta;
+            //TODO:implement HTTPstatus codes
+            return new Object();
 	}
 
 	/**

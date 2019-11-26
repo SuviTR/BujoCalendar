@@ -1,16 +1,19 @@
 package MetropoliaAMKgroup02.BujoCalendar.view;
 
 import MetropoliaAMKgroup02.BujoCalendar.controller.AppController;
-import MetropoliaAMKgroup02.BujoCalendar.controller.CalendarController;
+import MetropoliaAMKgroup02.BujoCalendar.fetchers.CalendarFetcher;
 import MetropoliaAMKgroup02.BujoCalendar.model.Clock;
 import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
-import MetropoliaAMKgroup02.BujoCalendar.model.MonthView;
+import MetropoliaAMKgroup02.BujoCalendar.model.BujoDatePicker;
 import MetropoliaAMKgroup02.BujoCalendar.model.NoteEdit;
 import MetropoliaAMKgroup02.BujoCalendar.model.Priority;
-import MetropoliaAMKgroup02.BujoCalendar.utils.DateConverter;
+import MetropoliaAMKgroup02.BujoCalendar.utils.DateAndCalendarConverter;
+import MetropoliaAMKgroup02.BujoCalendar.utils.StringToCalConverter;
+import MetropoliaAMKgroup02.Common.model.Merkinta;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -80,30 +83,80 @@ public class NoteOverviewController {
 		picker = new MonthView();
 		picker.setNoteOverviewController(this);
 		
-		priority = new Priority();
-		priorityChoiceBox.setValue("Normal");
-	    priorityChoiceBox.setItems(priority.getPriorityList());
-	    
-	    // A listener 
-	    priorityChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() { 
-            // If the item of the list is changed 
-            public void changed(ObservableValue ov, Number value, Number new_value) { 
-            	priority.selectedPriority(new_value.intValue());
-            } 
-        }); 
-	   
-	    noteTitle.setFocusTraversable(false);
-        noteMoreInfo.setFocusTraversable(false);
-	}
-	
-	/**
-	 * Sets the Note editing window.
-	 * @param dialogStage is the new stage.
-	 */
-	public void setDialogStage(Stage dialogStage) {
-		this.dialogStage = dialogStage;
-	}
+		@FXML
+		private Label notePriority;
+		
+		@FXML
+		private TextField alarm; 
+		
+		@FXML
+		private ChoiceBox priorityChoiceBox;
+		
+		@FXML 
+		private TextArea note;
+        
+        @FXML
+        private TextField startHr, startMin, endHr, endMin;
 
+        @FXML
+        private DatePicker startDatePicker, endDatePicker;
+
+        private RootLayoutController rootController;
+		private NoteEdit noteEdit;
+		private Priority priority;
+		private Dates dates;
+		private BujoDatePicker picker;
+		private int whichDayValue = 0;
+		private Clock clock;
+		private String valid = "";
+        private CalendarFetcher calendarFetcher;
+        private Stage dialogStage;
+
+        private Merkinta merkinta;
+
+		@FXML
+		private void initialize() {	//Lisää startDay:ksi se päivä, jota on klikattu?
+			noteEdit = new NoteEdit();
+			noteEdit.setNoteOverviewController(this);
+
+            merkinta = new Merkinta();
+			
+			dates = AppController.getInstance().getDates();
+			clock = new Clock();
+            /*
+			startDay.setText(dates.getCurrentDate().toString()); //tai day clicked
+			endDay.setText(dates.getCurrentDate().toString());		//---/---
+			startTime.setText(clock.currentTime());
+			endTime.setText(clock.currentTimeplus1());
+            */
+			
+			picker = new BujoDatePicker();
+			picker.setNoteOverviewController(this);
+			
+			priority = new Priority();
+			priorityChoiceBox.setValue("Normal");
+		    priorityChoiceBox.setItems(priority.getPriorityList());
+		    
+		    // A listener 
+		    priorityChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() { 
+	            // If the item of the list is changed 
+	            public void changed(ObservableValue ov, Number value, Number new_value) { 
+	            	priority.selectedPriority(new_value.intValue());
+	            } 
+	        }); 
+		   
+		    noteTitle.setFocusTraversable(false);
+	        noteMoreInfo.setFocusTraversable(false);
+
+
+		}
+		
+		public void setDialogStage(Stage dialogStage) {
+			this.dialogStage = dialogStage;
+		}
+
+        @FXML 
+        private void startDate() {
 	/**
 	 * Keeps tracking if the ok button is clicked.
 	 * @return okClicked includes the value if the button is clicked or not.
@@ -129,47 +182,27 @@ public class NoteOverviewController {
          
 		handleStartandEndTime();
 
-        calendarController.createAppointment(noteEdit.createMerkinta());
-		dialogStage.close();
-	}
-	
-	/**
-	 * Method sends the information of the note that a user wanted to delete to backend.
-	 */
-	@FXML
-	private void handleRemoveNote() {
-		//CalendarController calCtrl = new CalendarController();
-		noteEdit.removeNoteWarning();
-	}
-	
-	/**
-	 *
-	 */
-	@FXML
-	private void handleStartDayPicker() {
-		String selectedDate = startDayPicker.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-		startDay.setText(selectedDate);
-	}
-	
-	/**
-	 *
-	 */
-	@FXML
-	private void handleEndDayPicker() {
-		String selectedDate = endDayPicker.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-		endDay.setText(selectedDate);
-	}
-	
-	/**
-	 * Opens the datepicker.
-	 */
-	private void openDatePicker() {
-		Stage s = new Stage();
-		picker.start(s);
-	}
-	
-	@FXML
-	private void handleDatePicker() {
+        }
+
+        @FXML
+        private void endDate() {
+                
+        }
+
+		@FXML
+		private void saveAppointment() {
+			if (allDayEvent.isSelected()) {
+				noteEdit.allDayEvent();
+			}
+             
+            updateMerkinta();
+
+            // If Id=0, this is a new appointment
+            if(this.merkinta.getId() == 0) {
+                    calendarFetcher.createAppointment(this.merkinta);
+            } else {
+                    calendarFetcher.editAppointment(this.merkinta);
+            }
 		
 	}
 	
@@ -206,68 +239,78 @@ public class NoteOverviewController {
 		if (whichDayValue == 1) {
 			startDay.setText(day);
 		}
-		else if (whichDayValue == 2) {
-			endDay.setText(day);
-		}*/
-	}
-	
-	/**
-	 * Calls the clock class to check if the input is correct.
-	 */
-	public void setAlarmTimeandValue(String text) {	
-		String texts = alarm.getText() + " " + text;
-		alarm.setText(texts);
-	}
-	
-	/**
-	 * Sends the note title text to noteEdit class.
-	 */
-	private void handleNoteTitle() {
-		noteEdit.newNoteTitle(noteTitle.getText());
-	}
-	
-	/**
-	 * Sends the note info text to noteEdit class.
-	 */
-	private void handleNoteMoreInfo() {
-		noteEdit.newNoteMoreInfo(noteMoreInfo.getText());
-	}
-	
-	/**
-	 * Sets endDay, start and end time invisible if the allDayEvent checkbox is clicked 
-	 * and the other way round.
-	 */
-	@FXML
-	private void handleAllDayEventCheckBox() {
-		if (allDayEvent.isSelected()) {
-			endDay.setVisible(false);
-			startTime.setVisible(false);
-			endTime.setVisible(false);
-		}					
-		else {
-			endDay.setVisible(true);
-			startTime.setVisible(true);
-			endTime.setVisible(true);
+
+		@FXML
+		private void deleteAppointment(){
+			calendarFetcher.delete(this.merkinta);
+			dialogStage.close();
 		}
-	}
-	
-	/**
-	 * Opens the alarm editing window.
-	 */
-	@FXML
-	private void handleOpenAlarmView() {
-		rootController.showAlarmOverview();
-	}
-	
-	/**
-	 * Handles the end day of the note.
-	 */
-    private void handleEndDay() {
-            DateConverter conv = new DateConverter();
-            conv.setDate(startDay.getText());
-            conv.setTime(startTime.getText());
-            noteEdit.noteStartDay(conv.getCalendar());
-    }
+		
+        //DEPRECATED 
+		@FXML
+		private void handleOpenDatePicker1() {
+			picker.whoValue(2);
+			whichDayValue = 1;
+			openDatePicker();
+		}
+		
+		@FXML
+		private void handleOpenDatePicker2() {
+			picker.whoValue(2);
+			whichDayValue = 2;
+			openDatePicker();
+		}
+		
+		private void openDatePicker() {
+			Stage s = new Stage();
+			picker.start(s);
+		}
+		
+		private void handleStartandEndTime() {
+			clock.handleStartTime(startTime);
+			clock.handleEndTime(endTime);
+		}
+		
+		public void setAlarmDay(String day) {
+			if (whichDayValue == 1) {
+				startDay.setText(day);
+			}
+			else if (whichDayValue == 2) {
+				endDay.setText(day);
+			}
+		}
+		
+		public void setAlarmTimeandValue(String text) {	
+			String texts = alarm.getText() + " " + text;
+			alarm.setText(texts);
+		}
+		
+		private void handleNoteTitle() {
+			noteEdit.newNoteTitle(noteTitle.getText());
+		}
+		
+		private void handleNoteMoreInfo() {
+			noteEdit.newNoteMoreInfo(noteMoreInfo.getText());
+		}
+		
+		@FXML
+		private void handleAllDayEventCheckBox() {
+			if (allDayEvent.isSelected()) {
+				endDay.setVisible(false);
+				startTime.setVisible(false);
+				endTime.setVisible(false);
+			}					
+			else {
+				endDay.setVisible(true);
+				startTime.setVisible(true);
+				endTime.setVisible(true);
+			}
+		}
+		
+		@FXML
+		private void handleOpenAlarmView() {
+			rootController.showAlarmOverview();
+		}
 
     /**
 	 * Handles the start day of the note.
@@ -287,12 +330,22 @@ public class NoteOverviewController {
 		this.rootController = controller;
 	}
 
-	/**
-	 * Sets the CalendarController.
-	 * @param controller is the CalendarController.
-	 */
-    public void setCalendarController(CalendarController calendarController) {
-            this.calendarController = calendarController;
-    }
+        private void handleEndDay() {
+                DateConverter conv = new DateConverter();
+                conv.setDate(startDay.getText());
+                conv.setTime(startTime.getText());
+                noteEdit.noteStartDay(conv.getCalendar());
+        }
+
+        private void handleStartDay() {
+                DateConverter conv = new DateConverter();
+                conv.setDate(endDay.getText());
+                conv.setTime(endTime.getText());
+                noteEdit.setNoteEnd(conv.getCalendar());
+        }
+
+        public void setCalendarController(CalendarController calendarController) {
+                this.calendarController = calendarController;
+        }
 
 }

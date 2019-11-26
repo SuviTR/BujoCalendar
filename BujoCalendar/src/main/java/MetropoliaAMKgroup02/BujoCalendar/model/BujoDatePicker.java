@@ -1,23 +1,28 @@
 package MetropoliaAMKgroup02.BujoCalendar.model;
 
+import MetropoliaAMKgroup02.BujoCalendar.controller.AppController;
 import MetropoliaAMKgroup02.BujoCalendar.view.NoteOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.RootLayoutController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Locale;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class MonthView extends Application { 
+public class BujoDatePicker extends Application { 
 	
 	private RootLayoutController rootController;
 	private NoteOverviewController noteController;
 	private String selectedDate;
+    private Calendar selectedDateForRealz;
 	private int whoValue = 0;
 	private int whichDayValue = 0;
 	  
@@ -28,8 +33,9 @@ public class MonthView extends Application {
         Button cancel = new Button("Cancel");
         
         ok.setOnAction(event -> {
+                AppController.getInstance().getDates().setCurrentDate(selectedDateForRealz);
         	if (whoValue == 1) {
-        		rootController.handleSelectedDateView(selectedDate);
+                    AppController.getInstance().getCalendarOverviewController().updateView();
         	}
         	else if (whoValue == 2) {
         		noteController.setAlarmDay(selectedDate);
@@ -42,7 +48,9 @@ public class MonthView extends Application {
         DatePicker d = new DatePicker(); 
    
         d.setOnAction(event -> {
-        	selectedDate = d.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                LocalDate pickerValue = d.getValue();
+            selectedDateForRealz = Calendar.getInstance();
+selectedDateForRealz.set(pickerValue.getYear(), pickerValue.getMonthValue()-1, pickerValue.getDayOfMonth());
             System.out.println("Valittu päivä: " + selectedDate);
         });
   
@@ -54,7 +62,7 @@ public class MonthView extends Application {
         g.add(ok, 1, 2);
         g.add(cancel, 1, 1);
         
-        //Closes the MonthView window
+        //Closes the BujoDatePicker window
         s.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
             if (! isNowFocused) {
                 s.hide();
@@ -74,7 +82,7 @@ public class MonthView extends Application {
     } 
     /*
     public void launchDatePicker() {
-    	Application.launch(MonthView.class);
+    	Application.launch(BujoDatePicker.class);
     }*/
     
     public void whoValue(int value) {

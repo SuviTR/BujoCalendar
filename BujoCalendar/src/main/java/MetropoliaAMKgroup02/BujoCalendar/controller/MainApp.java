@@ -1,5 +1,6 @@
 package MetropoliaAMKgroup02.BujoCalendar.controller;
 
+import MetropoliaAMKgroup02.BujoCalendar.fetchers.CalendarFetcher;
 import MetropoliaAMKgroup02.BujoCalendar.utils.HttpConnection;
 import java.io.IOException;
 import javafx.application.Application;
@@ -31,7 +32,7 @@ public class MainApp extends Application {
     private CalendarOverviewController calController;
     private FontOverviewController fontController;
     private RootLayoutController rootController;
-    private CalendarController calendarController;
+    private CalendarFetcher calendarFetcher;
     private NoteOverviewController noteController;
     private AlarmOverviewController alarmController;
     private boolean handleCurrentDate = false;
@@ -43,17 +44,13 @@ public class MainApp extends Application {
     */
 	@Override
 	public void start(Stage primaryStage) {
-		/*TestModel testi = new TestModel("Pertti", "52", "Murre");
-		HttpClient backend = new HttpClient();
-		backend.post("/test", testi, TestModel.class);
-	//	Merkinta merkinta = new Merkinta();
-	//	backend.post("/calendar", merkinta, Merkinta.class);
-	*/	
+        AppController.getInstance().setMainApp(this);
+
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("My Bullet Journal Calendar");
 		this.primaryStage.getIcons().add(new Image("https://stickershop.line-scdn.net/stickershop/v1/product/3238751/LINEStorePC/main.png;compress=true"));
 		
-		calendarController = new CalendarController();
+		calendarFetcher = new CalendarFetcher();
 		initRootLayout();
 		showCalendarOverview();
 
@@ -98,7 +95,7 @@ public class MainApp extends Application {
             
 		    calController.initView();
 	
-		    calendarController.fetchAll();
+		    calendarFetcher.fetchAll();
 	
 		    calController.updateView();
             
@@ -142,12 +139,17 @@ public class MainApp extends Application {
         }
     }
     
+    public void showNoteOverview() {
+            this.showNoteOverview(null);
+    }
+    
     /**
      * Opens the Note edit window where a user is able to edit a note information.
      * @return noteController.isOkClicked() is true and window is open as far as a user clicks 
      * ok or close button.
      */
-    public boolean showNoteOverview() {
+    public void showNoteOverview(Merkinta merkinta) {
+    
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/fxml/NoteOverview.fxml"));
@@ -161,18 +163,22 @@ public class MainApp extends Application {
             dialogStage.setScene(scene);
 
             noteController = loader.getController();
+
+            if (merkinta != null) {
+                    noteController.setMerkinta(merkinta);
+            }
             
             noteController.setRootLayoutController(rootController); 
-            noteController.setCalendarController(calendarController);
+            noteController.setCalendarFetcher(calendarFetcher);
             noteController.setDialogStage(dialogStage);
         
             dialogStage.showAndWait();
             
-            return noteController.isOkClicked();
+            //return noteController.isOkClicked();
             
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
+            //return false;
         }
     }
     
@@ -251,6 +257,8 @@ public class MainApp extends Application {
         return primaryStage;
     }
 
+    public CalendarFetcher getCalendarFetcher() {
+	    return this.calendarFetcher;
     /**
      * MainApp know CalendarController class
      */
@@ -265,7 +273,7 @@ public class MainApp extends Application {
 	    launch(args);
     }
 
-    public void updateEvents() {
-            calendarController.fetchAll();
-    }
+        public void updateEvents() {
+                calendarFetcher.fetchAll();
+        }
 }

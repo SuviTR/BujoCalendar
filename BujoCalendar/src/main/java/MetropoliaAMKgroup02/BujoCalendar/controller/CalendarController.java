@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MetropoliaAMKgroup02.BujoCalendar.fetchers;
+package MetropoliaAMKgroup02.BujoCalendar.controller;
 
 import MetropoliaAMKgroup02.BujoCalendar.utils.HttpConnection;
 import MetropoliaAMKgroup02.BujoCalendar.model.MerkintaList;
@@ -18,13 +18,13 @@ import java.util.List;
  *
  * @author heikki
  */
-public class CalendarFetcher {
+public class CalendarController {
 
 	private MerkintaList merkintaList;
     private HttpConnection connection;
     private String endpoint = "/calendar";
 
-	public CalendarFetcher() {
+	public CalendarController() {
 		merkintaList = new MerkintaList();
         connection = new HttpConnection();
 	}
@@ -43,17 +43,9 @@ public class CalendarFetcher {
 		return merkintaList.getDay(date);
 	}
 
-    public void createAppointment(Merkinta merkinta) {
-            connection.post(endpoint, merkinta, Merkinta.class);
-    }
+        public void createAppointment(Merkinta merkinta) {
+                connection.post(endpoint, merkinta, Merkinta.class);
+        }
 
-    public void editAppointment(Merkinta merkinta) {
-            String id = String.valueOf(merkinta.getId());
-            connection.put(endpoint + "/" + id, merkinta, Merkinta.class);
-    }
-
-	public void delete(Merkinta merkinta) {
-		merkintaList.removeMerkinta(merkinta.getId());
-		connection.delete(endpoint + "/" + merkinta.getId());
-	}
+        
 }

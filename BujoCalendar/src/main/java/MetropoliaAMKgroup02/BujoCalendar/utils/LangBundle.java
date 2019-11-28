@@ -8,7 +8,7 @@ package MetropoliaAMKgroup02.BujoCalendar.utils;
 
 /**
  *
- * @author Vision2
+ * @author Kari
  */
 import java.io.FilenameFilter;
 import java.io.File;

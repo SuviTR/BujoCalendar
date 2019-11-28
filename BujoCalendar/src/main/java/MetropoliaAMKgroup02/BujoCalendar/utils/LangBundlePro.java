@@ -8,7 +8,7 @@ package MetropoliaAMKgroup02.BujoCalendar.utils;
 
 /**
  *
- * @author Vision2
+ * @author Kari
  */
 
 import java.util.ListResourceBundle;
@@ -56,23 +56,6 @@ public  class LangBundlePro extends ListResourceBundle{
             //String url = "C:\\Users\\Vision2\\git\\BujoCalendar\\BujoCalendar\\src\\main\\resources\\";
             String lan = "language_"+ land.getLanguage();
             language = ResourceBundle.getBundle(lan,land);
-           /* 
-            String list = String.join(",", language.keySet());
-            String[] keys = list.split(",");
-            String key1 = keys[0];
-            String key2 = keys[1];
-            String key3 = keys[2];
-              
-            
-               name= language.getString(key2);
-               age = language.getString(key3);
-               ad = language.getString(key1);
-             
-              System.out.println(list);
-              System.out.println(name);
-              System.out.println(age);
-              System.out.println(ad);
-            */
            return language;
             }
 

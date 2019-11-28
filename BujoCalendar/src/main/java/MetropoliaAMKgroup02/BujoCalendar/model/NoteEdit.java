@@ -25,12 +25,12 @@ public class NoteEdit {
 	
 	private NoteOverviewController noteController;
 	private Merkinta note;
-        private String title;
-        private String text;
-        private Calendar startDate;
-        private Calendar endDate;
-        private boolean allDay;
-        private int id;
+    private String title;
+    private String text;
+    private Calendar startDate;
+    private Calendar endDate;
+    private boolean allDay;
+    private int id;
 
     /**
      * Gets the title name of the note.
@@ -88,8 +88,9 @@ public class NoteEdit {
      * Alerts the user of removing a note.
      * Asks confirmation of removing a note.
      */
-    public void removeNoteWarning() {
+    public boolean removeNoteWarning() {
  
+    	boolean b;
         Alert a = new Alert(AlertType.NONE); 
 
         a.setAlertType(AlertType.CONFIRMATION); 
@@ -105,23 +106,24 @@ public class NoteEdit {
 
         Optional<ButtonType> result = a.showAndWait();
         if (result.get() == ButtonType.OK){
-            //removeNote();
+        	b = true;
+        	//noteController.deleteNote(true);
+        }
+        else {
+        	b = false;
+        	//noteController.deleteNote(false);
         }
 
         a.show(); 
+        return b;
+    }
 
+    public void setId(int id) {
+        this.id = id;
     }
     
-    public void removeNote() {
-    	
-    	
-    }
-
 	public void setNoteOverviewController(NoteOverviewController controller) {
 		this.noteController = controller;
-	}
-        public void setId(int id) {
-                this.id = id;
-        }
+	}    
 
 }

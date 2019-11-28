@@ -22,7 +22,7 @@
    <children>
       <ImageView fitHeight="140.0" fitWidth="320.0" pickOnBounds="true">
          <image>
-            <Image url="@../img/MuokkausTausta.png" />
+            <Image url="@../img/beach.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="63.0" fitWidth="61.0" layoutX="7.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
@@ -88,15 +88,13 @@
                </image>
             </ImageView>
             <Label fx:id="noteAlarm" prefHeight="17.0" prefWidth="187.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <ChoiceBox fx:id="priorityChoiceBox" prefHeight="9.0" prefWidth="115.0" stylesheets="@../choiceBoxOrangeStyle.css" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <ChoiceBox fx:id="priorityChoiceBox" minHeight="22.0" prefHeight="9.0" prefWidth="115.0" stylesheets="@../choiceBoxOrangeStyle.css" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <GridPane.margin>
-                  <Insets />
+                  <Insets top="1.0" />
                </GridPane.margin></ChoiceBox>
             <TextField fx:id="alarm" maxWidth="168.0" prefHeight="25.0" prefWidth="168.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <TextField fx:id="startTime" maxWidth="168.0" onAction="#handleStartTime" prefHeight="25.0" prefWidth="168.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="endTime" maxWidth="168.0" onAction="#handleEndTime" prefHeight="25.0" prefWidth="168.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <DatePicker fx:id="startDayPicker" layoutX="29.0" layoutY="61.0" minWidth="0.0" onAction="#handleStartDayPicker" opacity="0.7" prefHeight="25.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <DatePicker fx:id="endDayPicker" minWidth="0.0" onAction="#handleEndDayPicker" opacity="0.7" prefHeight="25.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="startDatePicker" layoutX="29.0" layoutY="61.0" minWidth="0.0" onAction="#handleStartDayPicker" opacity="0.7" prefHeight="25.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="endDatePicker" minWidth="0.0" onAction="#handleEndDayPicker" opacity="0.7" prefHeight="25.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="startDay" text="10.10.2019" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <padding>
                   <Insets left="4.0" />
@@ -107,6 +105,44 @@
                   <Insets left="4.0" />
                </padding>
             </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <TextField fx:id="startHr" maxHeight="20.0" maxWidth="40.0" minHeight="20.0" prefHeight="25.0" prefWidth="29.0" promptText="12">
+                     <HBox.margin>
+                        <Insets top="3.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label prefHeight="26.0" prefWidth="9.0" text=":">
+                     <padding>
+                        <Insets left="3.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="startMin" maxHeight="20.0" maxWidth="40.0" minHeight="20.0" prefHeight="25.0" prefWidth="29.0">
+                     <HBox.margin>
+                        <Insets top="3.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <TextField fx:id="endHr" maxHeight="20.0" maxWidth="40.0" minHeight="20.0" prefHeight="25.0" prefWidth="29.0" promptText="12">
+                     <HBox.margin>
+                        <Insets top="3.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label prefHeight="26.0" prefWidth="9.0" text=":">
+                     <padding>
+                        <Insets left="3.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="endMin" maxHeight="20.0" maxWidth="40.0" minHeight="20.0" prefHeight="25.0" prefWidth="29.0">
+                     <HBox.margin>
+                        <Insets top="3.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
          </children>
       </GridPane>
       <GridPane layoutX="15.0" layoutY="427.0" prefHeight="49.0" prefWidth="305.0">
@@ -161,8 +197,8 @@
             </ImageView>
          </children>
       </GridPane>
-      <Button layoutX="190.0" layoutY="2.0" mnemonicParsing="false" onAction="#saveAppointment" prefHeight="25.0" prefWidth="71.0" stylesheets="@../saveButtonStyle.css" text="Tallenna" />
-      <Button layoutX="204.0" layoutY="70.0" mnemonicParsing="false" onAction="#deleteAppointment" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #f66;" stylesheets="@../saveButtonStyle.css" text="Poista" />
+      <Button layoutX="168.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="25.0" prefWidth="71.0" stylesheets="@../saveButtonStyle.css" text="Tallenna" />
+      <Button layoutX="244.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #ff1a75; -fx-text-fill: white; -fx-font-weight: bold;" stylesheets="@../saveButtonStyle.css" text="Poista" />
    </children>
    <stylesheets>
       <URL value="@../noteStyle.css" />

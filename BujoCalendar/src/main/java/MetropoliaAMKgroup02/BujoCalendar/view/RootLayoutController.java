@@ -61,7 +61,7 @@ public class RootLayoutController {
 	
 	@FXML
 	public void handleNewNote() {
-		mainApp.showNoteOverview();
+		boolean okClicked = mainApp.showNoteOverview();
 	}
 	
 	public void showAlarmOverview() {

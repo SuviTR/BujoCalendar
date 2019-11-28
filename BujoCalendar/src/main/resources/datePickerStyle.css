@@ -1,6 +1,6 @@
 .date-picker-popup > .month-year-pane {
     -fx-background-color: #9999ff;
-    -fx-text-fill: ;
+    /*-fx-text-fill: ;*/
 }
 .date-picker-popup > * > .spinner {
     -fx-background-color: #9999ff;
@@ -50,6 +50,6 @@
     -fx-border-width: 1px;
     -fx-font-size: 1em;
     -fx-background: -fx-control-inner-background;
-    -fx-background-color: ;
+    /*-fx-background-color: ;*/
     -fx-text-fill: -fx-text-background-color;
 }

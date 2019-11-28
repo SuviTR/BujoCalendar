@@ -139,8 +139,8 @@ public class MainApp extends Application {
         }
     }
     
-    public void showNoteOverview() {
-            this.showNoteOverview(null);
+    public boolean showNoteOverview() {
+        return this.showNoteOverview(null);
     }
     
     /**
@@ -148,7 +148,7 @@ public class MainApp extends Application {
      * @return noteController.isOkClicked() is true and window is open as far as a user clicks 
      * ok or close button.
      */
-    public void showNoteOverview(Merkinta merkinta) {
+    public boolean showNoteOverview(Merkinta merkinta) {
     
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -174,11 +174,11 @@ public class MainApp extends Application {
         
             dialogStage.showAndWait();
             
-            //return noteController.isOkClicked();
+            return noteController.isOkClicked();
             
         } catch (IOException e) {
             e.printStackTrace();
-            //return false;
+            return false;
         }
     }
     
@@ -259,11 +259,6 @@ public class MainApp extends Application {
 
     public CalendarFetcher getCalendarFetcher() {
 	    return this.calendarFetcher;
-    /**
-     * MainApp know CalendarController class
-     */
-    public CalendarController getCalendarController() {
-	    return this.calendarController;
     }
     
     /**

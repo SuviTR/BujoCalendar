@@ -43,6 +43,8 @@ public class Localize {
       String list = String.join(",", language.keySet());
       System.out.println(language.getBaseBundleName());
       System.out.println(list);
+      
+       
       System.out.println(language.getString("name"));
       System.out.println(language.getString("age"));
       System.out.println(language.getString("ad"));

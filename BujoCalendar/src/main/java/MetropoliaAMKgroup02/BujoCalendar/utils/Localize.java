@@ -25,7 +25,7 @@ public class Localize {
     
       
 
-       String lang2 = "se";
+       String lang2 = "en";
        
        LangBundlePro country = new LangBundlePro(new Locale(lang2));
        country.LoadResourceFile(new Locale(lang2));

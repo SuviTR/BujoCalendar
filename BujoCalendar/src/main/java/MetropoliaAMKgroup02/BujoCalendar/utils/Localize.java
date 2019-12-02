@@ -23,44 +23,28 @@ public class Localize {
         public static void main(String[] args) throws IOException {
         
     
- 
-/*        Locale[] languages = {
-            new Locale("en", "UK"),
-            new Locale("fi", "FI"),
-            new Locale("se","SE")
-        };*/
-       
+      
 
-       String lang2 = "se";
-       String location2 = "EN";
+       String lang2 = "dk";
        
-       
-      
        LangBundlePro country = new LangBundlePro(new Locale(lang2));
-       ResourceBundle language = country.LoadResourceFile(new Locale(lang2));
+       country.LoadResourceFile(new Locale(lang2));
        
-      String list = String.join(",", language.keySet());
-      System.out.println(language.getBaseBundleName());
-      System.out.println(list);
+   
       
        
-      System.out.println(language.getString("name"));
-      System.out.println(language.getString("age"));
-      System.out.println(language.getString("ad"));
+      System.out.println(country.getString("name"));
+      System.out.println(country.getString("age"));
+      System.out.println(country.getString("ad"));
       
-      /*
-       LangBundle  g = new LangBundle(land);
-       List <Path> lista = g.ListAllFiles();
-       g.printList(lista);
-       System.out.println("******************************************");
-       System.out.println();
-       g.loadLanguage(lista.get(0));
-       System.out.println();
-       g.loadLanguage(lista.get(1));
-       System.out.println();
-       g.loadLanguage(lista.get(2));
-       */
-       
+      System.out.println(country.getString("monday"));
+      System.out.println(country.getString("tuesday"));
+      System.out.println(country.getString("wednesday"));
+      System.out.println(country.getString("thursday"));
+      System.out.println(country.getString("friday"));
+      System.out.println(country.getString("saturday"));
+      System.out.println(country.getString("sunday"));
+      
        
        //g.loadLanguage(lista2.get(2));
                 // L10N -> Localisation

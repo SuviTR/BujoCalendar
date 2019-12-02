@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import MetropoliaAMKgroup02.BujoCalendar.model.FontMenu;
+import MetropoliaAMKgroup02.BujoCalendar.utils.LangBundlePro;
 import MetropoliaAMKgroup02.BujoCalendar.view.AlarmOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.CalendarOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.FontOverviewController;
@@ -20,6 +21,7 @@ import MetropoliaAMKgroup02.BujoCalendar.view.NoteOverviewController;
 import MetropoliaAMKgroup02.BujoCalendar.view.RootLayoutController;
 import MetropoliaAMKgroup02.Common.model.Merkinta;
 import MetropoliaAMKgroup02.Common.model.TestModel;
+import java.util.Locale;
 
 /**
 * @author suvi
@@ -45,7 +47,8 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
         AppController.getInstance().setMainApp(this);
-
+                String lang = "fi";
+                LangBundlePro country = new LangBundlePro( new Locale (lang));
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("My Bullet Journal Calendar");
 		this.primaryStage.getIcons().add(new Image("https://stickershop.line-scdn.net/stickershop/v1/product/3238751/LINEStorePC/main.png;compress=true"));
@@ -53,7 +56,8 @@ public class MainApp extends Application {
 		calendarFetcher = new CalendarFetcher();
 		initRootLayout();
 		showCalendarOverview();
-
+                AppController.getInstance().SetLangBundlePro(country);
+                
 	}
 	
 	/**

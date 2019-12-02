@@ -43,9 +43,9 @@ public class CalendarController {
 		return merkintaList.getDay(date);
 	}
 
-        public void createAppointment(Merkinta merkinta) {
-                connection.post(endpoint, merkinta, Merkinta.class);
-        }
+    public void createAppointment(Merkinta merkinta) {
+            connection.post(endpoint, merkinta, Merkinta.class);
+    }
 
         
 }

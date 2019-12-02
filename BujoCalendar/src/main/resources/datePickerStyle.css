@@ -1,0 +1,55 @@
+.date-picker-popup > .month-year-pane {
+    -fx-background-color: #9999ff;
+    /*-fx-text-fill: ;*/
+}
+.date-picker-popup > * > .spinner {
+    -fx-background-color: #9999ff;
+    
+}
+.date-picker-popup > * > .today {
+    -fx-background-color:  #ff1a75;
+    -fx-text-fill: white;
+}
+.date-picker-popup > * > .day-cell:hover,
+.date-picker-popup > * > .selected {
+    -fx-background-color: #9999ff;
+    -fx-text-fill: white;
+    -fx-fill: -fx-text-background-color;
+}
+
+.date-picker:focused > .arrow-button { /*textfield area*/
+    -fx-background-color: white;
+}
+.date-picker-popup {
+    -fx-background-color: #9999ff;
+    -fx-padding: 0.083333em; /* 1 1 1 1 */
+}
+.date-picker-popup > * > .spinner > .left-button {
+    -fx-background-color: #9999ff;
+    -fx-color: white;
+}
+.date-picker-popup > * > .spinner > .right-button {
+    -fx-background-color: #9999ff;
+    -fx-color: white;
+}
+
+.menu-button, .button {
+    -fx-font-size: 12.0;
+    -fx-font-family: "System";
+    -fx-text-fill: black;
+    -fx-background-color: white;
+}
+.root {
+    -fx-background-image: url("https://image.freepik.com/free-vector/abstract-holographic-pastel-colors-gradient-abstract-wavy-color-background_1962-1336.jpg");
+}
+
+
+.date-picker-popup > * > .day-cell {
+    -fx-padding: 0.333333em 0.583333em 0.333333em 0.583333em; /* 4 7 4 7 */
+    -fx-border-color: derive(-fx-selection-bar-non-focused, 60%);
+    -fx-border-width: 1px;
+    -fx-font-size: 1em;
+    -fx-background: -fx-control-inner-background;
+    /*-fx-background-color: ;*/
+    -fx-text-fill: -fx-text-background-color;
+}

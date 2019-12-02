@@ -24,14 +24,11 @@ public class AlarmOverviewController {
 	private String value;
 
 	@FXML
-	private TextField alarmTime;
-	
+	private TextField alarmTime;	
 	@FXML
-	private RadioButton min, hour, day, week;
-	
+	private RadioButton min, hour, day, week;	
 	@FXML
-	private ToggleGroup toggleGroup1;
-	
+	private ToggleGroup toggleGroup1;	
 	@FXML
 	private CheckBox alarmApp, alarmEmail;
 	

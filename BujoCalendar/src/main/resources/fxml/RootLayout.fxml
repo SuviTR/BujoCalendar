@@ -56,9 +56,9 @@
                <items>
                   <Menu mnemonicParsing="false" text="Vaihda kieli">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Vaihda headerin fontti" />
-                        <MenuItem mnemonicParsing="false" text="Vaihda viikonpäivien nimien fontti" />
-                        <MenuItem mnemonicParsing="false" text="Vaihda päivämäärien fontti" />
+                        <MenuItem mnemonicParsing="false" text="Finnish" />
+                        <MenuItem mnemonicParsing="false" text="English" />
+                        <MenuItem mnemonicParsing="false" text="Swedish" />
                      </items>
                   </Menu>
                </items>

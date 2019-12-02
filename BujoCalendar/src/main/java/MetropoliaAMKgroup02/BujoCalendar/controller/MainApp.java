@@ -46,7 +46,7 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
         AppController.getInstance().setMainApp(this);
-                String lang = "fi";
+                String lang = "en";
                 LangBundlePro country = new LangBundlePro( new Locale (lang));
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("My Bullet Journal Calendar");

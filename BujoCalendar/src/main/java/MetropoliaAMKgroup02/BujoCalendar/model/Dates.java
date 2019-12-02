@@ -35,7 +35,7 @@ public class Dates {
 
     private void updateDays() {
 
-            Calendar date = (Calendar) this.currentDate.clone();
+        Calendar date = (Calendar) this.currentDate.clone();
 		// Scroll back to last monday:
 		while(!(date.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY)) {
 			date.add(Calendar.DAY_OF_WEEK, -1);
@@ -73,41 +73,35 @@ public class Dates {
 
 	//======= Get selected date from datepicker and dates of days of weeks =======
 	public String[] selectedDate(String date) { //date = 20190925 = 25.9.2019 Kuukausi ja vkonro vielä
-
-		
 		return new String[3];
 	}
 	
 	//======= Get month =======
-	public String getMonth() {
-		
+	public String getMonth() {	
         return this.currentDate.getDisplayName(Calendar.MONTH, Calendar.LONG_STANDALONE, this.locale);
 	}
 	
 	//======= Get year number =======
-	public String getYear() {
-		
+	public String getYear() {		
         return this.currentDate.getDisplayName(Calendar.YEAR, Calendar.LONG_STANDALONE, this.locale);
 	}
 	
-	public void nextWeek() {
-		
-            this.currentDate.add(Calendar.DATE, 7);
-            this.updateDays();
+	public void nextWeek() {	
+        this.currentDate.add(Calendar.DATE, 7);
+        this.updateDays();
             
 	}
 	
 	public void previousWeek() {
-		
-            this.currentDate.add(Calendar.DATE, -7);
-            this.updateDays();
+        this.currentDate.add(Calendar.DATE, -7);
+        this.updateDays();
 	}
 
-        public Locale getLocale() {
-                return this.locale;
-        }
+    public Locale getLocale() {
+        return this.locale;
+    }
 
-        public String getWeekNumberAsString() {
-                return String.valueOf(this.getWeekNumber());
-        }
+    public String getWeekNumberAsString() {
+        return String.valueOf(this.getWeekNumber());
+    }
 }

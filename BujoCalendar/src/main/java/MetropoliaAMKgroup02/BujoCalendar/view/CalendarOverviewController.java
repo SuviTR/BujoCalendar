@@ -41,26 +41,7 @@ public class CalendarOverviewController {
 	@FXML
 	private Label mondayDate, tuesdayDate, wednesdayDate, thursdayDate,  fridayDate, 
 				  saturdayDate, sundayDate;
-	/*
-	@FXML
-	private Label monday07, monday08, monday09, monday10, monday11, monday12, monday13, monday14,
-				  monday15, monday16, monday17, monday18, monday19, monday20, monday21,
-				  tuesday07, tuesday08, tuesday09, tuesday10, tuesday11, tuesday12, tuesday13, tuesday14,
-				  tuesday15, tuesday16, tuesday17, tuesday18, tuesday19, tuesday20, tuesday21,
-				  wednesday07, wednesday08, wednesday09, wednesday10, wednesday11, wednesday12, 
-				  wednesday13, wednesday14, wednesday15, wednesday16, wednesday17, wednesday18, 
-				  wednesday19, wednesday20, wednesday21,
-				  thursday07, thursday08, thursday09, thursday10, thursday11, thursday12, 
-				  thursday13, thursday14, thursday15, thursday16, thursday17, thursday18, thursday19, 
-				  thursday20, thursay21,
-				  friday07, friday08, friday09, friday10, friday11, friday12, friday13, friday14,
-				  friday15, friday16, friday17, friday18, friday19, friday20, friday21,
-				  saturday07, saturday08, saturday09, saturday10, saturday11, saturday12, 
-				  saturday13, saturday14, saturday15, saturday16, saturday17, saturday18, 
-				  saturday19, saturday20, saturday21,
-				  sunday07, sunday08, sunday09, sunday10, sunday11, sunday12, sunday13, sunday14,
-				  sunday15, sunday16, sunday17, sunday18, sunday19, sunday20, sunday21;
-				  */
+	
 	@FXML
 	private MenuButton fonts;
 
@@ -70,24 +51,18 @@ public class CalendarOverviewController {
 	@FXML
 	private GridPane weekendContainer;
 	
-	
-
 	private MainApp mainApp;
 	private Dates dates;
 	private NoteEdit notes;
 	private CalendarContainerViewController calendarView;
 
 	private int fontValue;
-	/*
-	private int backCounter = 0;
-	private int forwardCounter = 0;
-	private int totalCounter = 0;*/
 	private int nextWeek = 0;
 	private int prevWeek = 0;
 	private int weekCounter = 0;
 	private boolean boolCurrentOrSelected = true;
 	private String selectedDate = "";
-        private final ArrayList<Label> dayLabels;
+    private final ArrayList<Label> dayLabels;
 
         public CalendarOverviewController() {
                 this.dates = AppController.getInstance().getDates();
@@ -107,13 +82,13 @@ public class CalendarOverviewController {
 		this.calendarView.setCalendarFetcher(mainApp.getCalendarFetcher());
 		this.calendarView.initDates();
 
-                dayLabels.add(this.mondayDate);
-                dayLabels.add(tuesdayDate);
-                dayLabels.add(wednesdayDate);
-                dayLabels.add(thursdayDate);
-                dayLabels.add(fridayDate);
-                dayLabels.add(saturdayDate);
-                dayLabels.add(sundayDate);
+        dayLabels.add(this.mondayDate);
+        dayLabels.add(tuesdayDate);
+        dayLabels.add(wednesdayDate);
+        dayLabels.add(thursdayDate);
+        dayLabels.add(fridayDate);
+        dayLabels.add(saturdayDate);
+        dayLabels.add(sundayDate);
 
 	}
 
@@ -155,22 +130,17 @@ public class CalendarOverviewController {
     * 
     */
 	@FXML
-	private void handleWeekForward() {	
-		
+	private void handleWeekForward() {		
 		dates.nextWeek();
-		
-		
-
         this.updateView();
 	}
 
     private void updateDateNames() {
-
-            Calendar date = dates.getMonday();
-            for(Label l : dayLabels) {
-                    l.setText(String.valueOf(date.get(Calendar.DAY_OF_MONTH)));
-                    date.add(Calendar.DATE, 1);
-            }
+        Calendar date = dates.getMonday();
+        for(Label l : dayLabels) {
+                l.setText(String.valueOf(date.get(Calendar.DAY_OF_MONTH)));
+                date.add(Calendar.DATE, 1);
+        }
     }
 	
 	/**
@@ -221,6 +191,7 @@ public class CalendarOverviewController {
 	private void handleOpenNoteOverview() {
 		mainApp.handleOpenNoteOverview();
 	}
+	
 	
 
 	//======= Edit view =======

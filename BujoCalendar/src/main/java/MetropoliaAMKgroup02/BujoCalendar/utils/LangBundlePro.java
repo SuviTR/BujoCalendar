@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
-public  class LangBundlePro extends ListResourceBundle{
+public  class LangBundlePro {
 
         private Locale land;
         private ResourceBundle language;
@@ -46,13 +46,13 @@ public  class LangBundlePro extends ListResourceBundle{
         public ResourceFile loadResourceFile()
     */
 
-    LangBundlePro(Locale land) {
+    public LangBundlePro(Locale land) {
      //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
   
    
-      ResourceBundle LoadResourceFile(Locale land) {
+    public  void LoadResourceFile(Locale land) {
             //String url = "C:\\Users\\Vision2\\git\\BujoCalendar\\BujoCalendar\\src\\main\\resources\\";
             String lan = "language_"+ land.getLanguage();
             language = ResourceBundle.getBundle(lan,land);
@@ -73,12 +73,13 @@ public  class LangBundlePro extends ListResourceBundle{
               System.out.println(age);
               System.out.println(ad);
             */
-           return language;
+         
             }
+  
+      public String getString(String key){
+          return language.getString(key);
+      }
 
-    @Override
-    protected Object[][] getContents() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
     }
 

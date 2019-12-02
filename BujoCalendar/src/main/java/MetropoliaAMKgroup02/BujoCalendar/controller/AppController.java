@@ -6,8 +6,10 @@
 package MetropoliaAMKgroup02.BujoCalendar.controller;
 
 import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
+import MetropoliaAMKgroup02.BujoCalendar.utils.LangBundlePro;
 import MetropoliaAMKgroup02.BujoCalendar.view.CalendarOverviewController;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -20,6 +22,8 @@ public class AppController {
         private final Dates dates;
         private final Locale locale;
         private CalendarOverviewController calOverviewController;
+        private LangBundlePro country;
+
         private MainApp mainApp;
 
         private AppController() {
@@ -34,7 +38,17 @@ public class AppController {
 
                 return controller;
         }
-
+        
+        public void SetLangBundlePro (LangBundlePro country){
+           
+            this.country =  country;
+        }
+        
+        public String getTranslation(String key){
+            
+          return country.getString(key);
+       
+        }
         public Dates getDates() {
                 return this.dates;
         }

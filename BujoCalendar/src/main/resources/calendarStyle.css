@@ -1,0 +1,5 @@
+.daysHeaders {
+   -fx-text-shadow: 2px 2px 8px #ff0000;
+   -fx-effect: dropshadow( gaussian, rgba(25,25,112), 4,0.1,0.9,0.9);
+   
+}

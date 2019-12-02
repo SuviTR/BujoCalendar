@@ -57,11 +57,12 @@ public class RootLayoutController {
 	public void handleViewCurrentDate() {
 		boolCurrentDate = true;
 		mainApp.handleCurrentDate(boolCurrentDate);
+		
 	}
 	
 	@FXML
 	public void handleNewNote() {
-		mainApp.showNoteOverview();
+		boolean okClicked = mainApp.showNoteOverview();
 	}
 	
 	public void showAlarmOverview() {

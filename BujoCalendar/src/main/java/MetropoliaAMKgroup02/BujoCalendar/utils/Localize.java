@@ -25,7 +25,7 @@ public class Localize {
     
       
 
-       String lang2 = "en";
+       String lang2 = "dk";
        
        LangBundlePro country = new LangBundlePro(new Locale(lang2));
        country.LoadResourceFile(new Locale(lang2));
@@ -37,8 +37,14 @@ public class Localize {
       System.out.println(country.getString("age"));
       System.out.println(country.getString("ad"));
       
-     
-       
+      System.out.println(country.getString("monday"));
+      System.out.println(country.getString("tuesday"));
+      System.out.println(country.getString("wednesday"));
+      System.out.println(country.getString("thursday"));
+      System.out.println(country.getString("friday"));
+      System.out.println(country.getString("saturday"));
+      System.out.println(country.getString("sunday"));
+      
        
        //g.loadLanguage(lista2.get(2));
                 // L10N -> Localisation

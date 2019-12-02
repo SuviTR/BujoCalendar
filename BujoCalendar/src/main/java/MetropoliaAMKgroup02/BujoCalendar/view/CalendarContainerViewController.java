@@ -5,7 +5,7 @@
  */
 package MetropoliaAMKgroup02.BujoCalendar.view;
 
-import MetropoliaAMKgroup02.BujoCalendar.controller.CalendarController;
+import MetropoliaAMKgroup02.BujoCalendar.fetchers.CalendarFetcher;
 import MetropoliaAMKgroup02.BujoCalendar.model.Dates;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -47,7 +47,7 @@ public class CalendarContainerViewController {
 	private int weekendDayStart = 10;
 	private int weekendDayEnd = 14;
 	private Dates dates;
-	private CalendarController calendarController;
+	private CalendarFetcher calendarFetcher;
 
 	CalendarContainerViewController(GridPane calendarContainer, GridPane weekendContainer) {
 		this.calendarContainer = calendarContainer;
@@ -119,7 +119,7 @@ public class CalendarContainerViewController {
 
 	public void drawEvents() {
 		for(CalendarDayViewController day : dayList) {
-			day.injectEvents(calendarController);
+			day.injectEvents(calendarFetcher);
 			day.drawEvents();
 		}
 	}
@@ -128,7 +128,7 @@ public class CalendarContainerViewController {
 		this.dates = dates;
 	}
 
-	void setCalendarController(CalendarController calendarController) {
-		this.calendarController = calendarController;
+	void setCalendarFetcher(CalendarFetcher calendarFetcher) {
+		this.calendarFetcher = calendarFetcher;
 	}
 }

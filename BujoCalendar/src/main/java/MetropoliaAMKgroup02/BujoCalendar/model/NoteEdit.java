@@ -22,6 +22,7 @@ public class NoteEdit {
         private Calendar startDate;
         private Calendar endDate;
         private boolean allDay;
+        private int id;
 
 	public void newNoteTitle(String title) {
 		//note.setNimi(title.getText());
@@ -47,6 +48,7 @@ public class NoteEdit {
 
     public Merkinta createMerkinta() {
             Merkinta merkinta = new Merkinta();
+            merkinta.setId(id);
             merkinta.setNimi(this.title);
             merkinta.setSisalto(text);
             merkinta.setStartDate(startDate);
@@ -56,6 +58,10 @@ public class NoteEdit {
 
         public void allDayEvent() {
                 this.allDay = true;
+        }
+
+        public void setId(int id) {
+                this.id = id;
         }
 
 }

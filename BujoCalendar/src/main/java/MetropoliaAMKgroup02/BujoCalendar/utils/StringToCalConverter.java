@@ -15,12 +15,14 @@ import java.util.Locale;
  *
  * @author heikki
  */
-public class DateConverter {
+public class StringToCalConverter {
         private String date;
         private String time;
         private Locale locale;
+        private String hour;
+        private String minute;
 
-        public DateConverter() {
+        public StringToCalConverter() {
                 locale = AppController.getInstance().getLocale();
         }
 
@@ -32,6 +34,14 @@ public class DateConverter {
                 this.time = time;
         }
 
+        public void setHour(String hour) {
+                this.hour = hour;
+        }
+
+        public void setMinute(String minute) {
+                this.minute = minute;
+        }
+
         public Calendar getCalendar() {
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm",
@@ -39,11 +49,18 @@ public class DateConverter {
 
                 Calendar date = AppController.getInstance().getDates().getCurrentDate();
                 try {
-                        date.setTime(sdf.parse(this.date + " " + this.time));
+                        date.setTime(sdf.parse(this.date + " " + this.getTime()));
                 } catch (Exception e) {
                         System.out.println("Error: " + e.getMessage());
                 }
 
                 return date;
+        }
+
+        private String getTime() {
+                if(this.time == null) {
+                        this.time = this.hour + ":" + this.minute;
+                }
+                return this.time;
         }
 }

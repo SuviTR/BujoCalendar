@@ -30,11 +30,22 @@ public class MerkintaList {
 		this.events.add(merkinta);
 	}
 
+	public void removeMerkinta(int merkintaId) {
+		for (Merkinta m : events){
+			if (m.getId() == merkintaId){
+				events.remove(m);
+			}
+		}
+	}
+
 	public List<Merkinta> getAll() {
 		return events;
 	}
 
 	public List<Merkinta> getDay(Calendar day) {
+            if (day == null || events.isEmpty()) {
+                    return new ArrayList<Merkinta>();
+            }
 		//Start will be at midnight
 		Calendar start = (Calendar) day.clone();
 		start.set(Calendar.HOUR_OF_DAY, 0);

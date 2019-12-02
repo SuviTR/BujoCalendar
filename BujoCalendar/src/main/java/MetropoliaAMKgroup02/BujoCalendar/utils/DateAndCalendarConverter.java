@@ -38,9 +38,9 @@ public class DateAndCalendarConverter {
                         .getLocale());
 
                 cal.set(date.getYear(),
-                        date.getMonthValue(),
                         // Calendar 0-11, LocalDate 1-12
-                        date.getDayOfMonth() - 1);
+                        date.getMonthValue()- 1,
+                        date.getDayOfMonth());
                 cal.set(Calendar.HOUR_OF_DAY, time.getHour());
                 cal.set(Calendar.MINUTE, time.getMinute());
                 return cal;

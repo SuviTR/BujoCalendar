@@ -88,11 +88,11 @@
                </image>
             </ImageView>
             <Label fx:id="noteAlarm" prefHeight="17.0" prefWidth="187.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <ChoiceBox fx:id="priorityChoiceBox" minHeight="22.0" prefHeight="9.0" prefWidth="115.0" stylesheets="@../choiceBoxOrangeStyle.css" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <ChoiceBox fx:id="priorityChoiceBox" minHeight="23.0" prefHeight="10.0" prefWidth="115.0" stylesheets="@../choiceBoxOrangeStyle.css" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <GridPane.margin>
-                  <Insets top="1.0" />
+                  <Insets top="2.0" />
                </GridPane.margin></ChoiceBox>
-            <TextField fx:id="alarm" maxWidth="168.0" prefHeight="25.0" prefWidth="168.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="alarm" maxHeight="22.0" maxWidth="168.0" minHeight="22.0" prefHeight="24.0" prefWidth="168.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <DatePicker fx:id="startDatePicker" layoutX="29.0" layoutY="61.0" minWidth="0.0" onAction="#handleStartDayPicker" opacity="0.7" prefHeight="25.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <DatePicker fx:id="endDatePicker" minWidth="0.0" onAction="#handleEndDayPicker" opacity="0.7" prefHeight="25.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="startDay" text="10.10.2019" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -107,7 +107,7 @@
             </Label>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <TextField fx:id="startHr" maxHeight="20.0" maxWidth="40.0" minHeight="20.0" prefHeight="25.0" prefWidth="29.0" promptText="12">
+                  <TextField fx:id="startHr" maxHeight="20.0" maxWidth="40.0" minHeight="20.0" onAction="#handleHour" prefHeight="25.0" prefWidth="29.0" promptText="12">
                      <HBox.margin>
                         <Insets top="3.0" />
                      </HBox.margin>
@@ -117,7 +117,7 @@
                         <Insets left="3.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="startMin" maxHeight="20.0" maxWidth="40.0" minHeight="20.0" prefHeight="25.0" prefWidth="29.0">
+                  <TextField fx:id="startMin" maxHeight="20.0" maxWidth="40.0" minHeight="20.0" onAction="#handleMin" prefHeight="25.0" prefWidth="29.0">
                      <HBox.margin>
                         <Insets top="3.0" />
                      </HBox.margin>
@@ -126,7 +126,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <children>
-                  <TextField fx:id="endHr" maxHeight="20.0" maxWidth="40.0" minHeight="20.0" prefHeight="25.0" prefWidth="29.0" promptText="12">
+                  <TextField fx:id="endHr" maxHeight="20.0" maxWidth="40.0" minHeight="20.0" onAction="#handleHour" prefHeight="25.0" prefWidth="29.0" promptText="12">
                      <HBox.margin>
                         <Insets top="3.0" />
                      </HBox.margin>
@@ -136,7 +136,7 @@
                         <Insets left="3.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="endMin" maxHeight="20.0" maxWidth="40.0" minHeight="20.0" prefHeight="25.0" prefWidth="29.0">
+                  <TextField fx:id="endMin" maxHeight="20.0" maxWidth="40.0" minHeight="20.0" onAction="#handleMin" prefHeight="25.0" prefWidth="29.0">
                      <HBox.margin>
                         <Insets top="3.0" />
                      </HBox.margin>

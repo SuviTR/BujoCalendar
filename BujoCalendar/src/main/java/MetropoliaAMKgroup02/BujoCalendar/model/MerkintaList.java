@@ -34,6 +34,7 @@ public class MerkintaList {
 		for (Merkinta m : events){
 			if (m.getId() == merkintaId){
 				events.remove(m);
+				break;
 			}
 		}
 	}

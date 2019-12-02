@@ -268,7 +268,7 @@ public class MainApp extends Application {
 	    launch(args);
     }
 
-        public void updateEvents() {
-                calendarFetcher.fetchAll();
-        }
+    public void updateEvents() {
+            calendarFetcher.fetchAll();
+    }
 }

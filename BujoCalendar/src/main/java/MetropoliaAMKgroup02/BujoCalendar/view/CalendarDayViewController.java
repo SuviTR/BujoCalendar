@@ -5,7 +5,7 @@
  */
 package MetropoliaAMKgroup02.BujoCalendar.view;
 
-import MetropoliaAMKgroup02.BujoCalendar.controller.CalendarController;
+import MetropoliaAMKgroup02.BujoCalendar.fetchers.CalendarFetcher;
 import MetropoliaAMKgroup02.BujoCalendar.view.MerkintaView;
 import MetropoliaAMKgroup02.BujoCalendar.view.MerkintaView;
 import MetropoliaAMKgroup02.Common.model.Merkinta;
@@ -80,9 +80,9 @@ public class CalendarDayViewController {
 		}
 	}
 
-	public void injectEvents(CalendarController calendarController) {
+	public void injectEvents(CalendarFetcher calendarFetcher) {
         events.clear();
-		List<Merkinta> eventList = calendarController.getDay(date);
+		List<Merkinta> eventList = calendarFetcher.getDay(date);
 		for (Merkinta merkinta : eventList) {
 			events.add(new MerkintaView((merkinta)));
 		}

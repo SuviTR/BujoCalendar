@@ -64,11 +64,11 @@ public class CalendarOverviewController {
 	private String selectedDate = "";
     private final ArrayList<Label> dayLabels;
 
-        public CalendarOverviewController() {
-                this.dates = AppController.getInstance().getDates();
-                this.dayLabels = new ArrayList<Label>();
-                AppController.getInstance().setCalendarOverviewController(this);
-        }
+    public CalendarOverviewController() {
+            this.dates = AppController.getInstance().getDates();
+            this.dayLabels = new ArrayList<Label>();
+            AppController.getInstance().setCalendarOverviewController(this);
+    }
 
 	/**
     * Initializes the CalendarOverviewController.

@@ -9,17 +9,20 @@ package MetropoliaAMKgroup02.BujoCalendar.model.settings;
  *
  * @author heikki
  */
-public interface Setting<T> {
+public interface Setting {
 
-        public enum SettingType {
-                DROPDOWN,
-                CHECKBOX,
-                TEXTFIELD
+        public enum Type {
+            LIST,
+            BOOLEAN,
+            STRING
         };
 
-        public SettingType getType();
+        public Type getType();
         public String getName();
         public String getDescription();
-        public T getValue();
+        public String getValueRepresentation();
+        public Object getValue();
+        public void saveSetting();
+        public void loadSetting();
         
 }

@@ -22,6 +22,8 @@ import MetropoliaAMKgroup02.BujoCalendar.view.RootLayoutController;
 import MetropoliaAMKgroup02.Common.model.Merkinta;
 import MetropoliaAMKgroup02.Common.model.TestModel;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
 * @author suvi
@@ -53,6 +55,7 @@ public class MainApp extends Application {
 		this.primaryStage.setTitle("My Bullet Journal Calendar");
 		this.primaryStage.getIcons().add(new Image("https://stickershop.line-scdn.net/stickershop/v1/product/3238751/LINEStorePC/main.png;compress=true"));
 		
+        // The main controller responsible of communication with the backend.
 		calendarFetcher = new CalendarFetcher();
 		initRootLayout();
 		showCalendarOverview();
@@ -232,6 +235,25 @@ public class MainApp extends Application {
     public void handleCurrentDate(boolean boolCurrentDate) {
     	calController.handleCurrentDateOrSelectedDate("", boolCurrentDate);
     }
+
+    /**
+     * Displays a setting window of the application
+     */
+    public void showSettingsWindow() {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("/fxml/SettingsWindow.fxml"));
+        try {
+            AnchorPane page = (AnchorPane) loader.load();
+            Scene scene = new Scene(page);
+            Stage dialogStage = new Stage();
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        } catch (IOException ex) {
+            Logger.getLogger(MainApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
     
     /**
      * Conveys the date from MonthView to CalendarOverview.
@@ -261,6 +283,10 @@ public class MainApp extends Application {
         return primaryStage;
     }
 
+    /**
+     * Simple getter for CalendarFetcher
+     * @return  CalendarFetcher
+     */
     public CalendarFetcher getCalendarFetcher() {
 	    return this.calendarFetcher;
     }
@@ -272,7 +298,10 @@ public class MainApp extends Application {
 	    launch(args);
     }
 
-    public void updateEvents() {
-        calendarFetcher.fetchAll();
-    }
+    /**
+     * Updates Event model with a new data from Backend.
+     */
+        public void updateEvents() {
+                calendarFetcher.fetchAll();
+        }
 }

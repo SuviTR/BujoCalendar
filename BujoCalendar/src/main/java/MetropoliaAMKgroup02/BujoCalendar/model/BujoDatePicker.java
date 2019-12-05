@@ -38,7 +38,7 @@ public class BujoDatePicker extends Application {
                     AppController.getInstance().getCalendarOverviewController().updateView();
         	}
         	else if (whoValue == 2) {
-        		noteController.setAlarmDay(selectedDate);
+        		//noteController.setAlarmDay(selectedDate);
         	}
         	s.close();       	
         });

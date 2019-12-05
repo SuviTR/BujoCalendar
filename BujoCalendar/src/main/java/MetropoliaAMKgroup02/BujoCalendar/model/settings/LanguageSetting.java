@@ -51,6 +51,15 @@ public class LanguageSetting implements Setting {
         return this.value.toString();
     }
 
+    public List<String> getOptionValues() {
+        List<String> list = new ArrayList<>();
+        for (Locale l : options) {
+            list.add(l.getDisplayName());
+        }
+
+        return list;
+    }
+
     @Override
     public void saveSetting() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

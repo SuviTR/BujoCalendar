@@ -74,12 +74,13 @@ public class NoteOverviewController {
 		
 		dates = AppController.getInstance().getDates();
 		clock = new Clock();
-        /*
-		startDay.setText(dates.getCurrentDate().toString()); //tai day clicked
-		endDay.setText(dates.getCurrentDate().toString());		//---/---
-		startTime.setText(clock.currentTime());
-		endTime.setText(clock.currentTimeplus1());
-        */
+		
+		//startDay.setText(dates.getCurrentDateForStartDay()); //tai day clicked
+		//endDay.setText(dates.getCurrentDateForStartDay());		//---/---
+		startHr.setPromptText(clock.currentTimeHour());
+		startMin.setPromptText(clock.currentTimeMinutes());
+		endHr.setPromptText(clock.currentTimeHourplus1());
+		endMin.setPromptText(clock.currentTimeMinutes());
 		
 		picker = new BujoDatePicker();
 		picker.setNoteOverviewController(this);

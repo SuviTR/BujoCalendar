@@ -56,6 +56,13 @@ public class Dates {
 		this.sunday = (Calendar) date.clone();
 
     }
+    
+    public String getCurrentDateForStartDay() {
+    	Calendar date = (Calendar) this.currentDate.clone();
+    	Date date2 =  date.getTime();
+    	SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+    	return format1.format(date2);  
+    }
 
 	public Calendar getCurrentDate() {
 		return currentDate;

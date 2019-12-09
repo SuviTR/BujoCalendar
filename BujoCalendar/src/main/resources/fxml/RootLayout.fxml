@@ -3,10 +3,9 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MetropoliaAMKgroup02.BujoCalendar.view.RootLayoutController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MetropoliaAMKgroup02.BujoCalendar.view.RootLayoutController">
    <top>
       <MenuBar stylesheets="@../menubarStyle.css" BorderPane.alignment="CENTER">
         <menus>
@@ -15,8 +14,6 @@
                   <MenuItem fx:id="rootCurrentDay" mnemonicParsing="false" onAction="#handleViewCurrentDate" text="Hae tämä päivä" />
                   <MenuItem fx:id="rootSelectDay" mnemonicParsing="false" onAction="#handleSelectDay" text="Selaa päiviä" />
                   <MenuItem fx:id="rootUpdateEvents" mnemonicParsing="false" onAction="#updateEvents" text="Päivitä tapahtumat" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#showSettingsWindow" text="Asetukset" />
             </items>
           </Menu>
             <Menu fx:id="rootNotes" mnemonicParsing="false" text="Merkinnät">
@@ -55,18 +52,8 @@
                   <MenuItem fx:id="rootChangeBackgroundImg" mnemonicParsing="false" text="Vaihda taustakuvat" />
             </items>
           </Menu>
-            <Menu fx:id="rootSettings" mnemonicParsing="false" text="Asetukset">
-               <items>
-                  <Menu fx:id="rootChangeLanguage" mnemonicParsing="false" text="Vaihda kieli">
-                     <items>
-                        <MenuItem fx:id="rootFinnish" mnemonicParsing="false" text="Finnish" />
-                        <MenuItem fx:id="rootEnglish" mnemonicParsing="false" text="English" />
-                        <MenuItem fx:id="rootSwedish" mnemonicParsing="false" text="Swedish" />
-                     </items>
-                  </Menu>
-               </items>
-            </Menu>
-          <Menu fx:id="rootHelp" mnemonicParsing="false" text="Help">
+            <Menu fx:id="rootSettings" mnemonicParsing="false" onAction="#showSettingsWindow" text="Asetukset" />
+          <Menu fx:id="rootHelp" mnemonicParsing="false" text="Apua">
             <items>
               <MenuItem fx:id="rootManual" mnemonicParsing="false" text="Käyttöohjeet" />
                   <MenuItem fx:id="rootAboutUs" mnemonicParsing="false" text="Tietoa meistä" />

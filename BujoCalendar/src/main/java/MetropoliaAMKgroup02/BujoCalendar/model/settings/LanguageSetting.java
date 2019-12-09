@@ -17,8 +17,8 @@ import java.util.Locale;
 public class LanguageSetting implements Setting {
 
     private final Type type = LanguageSetting.Type.LIST;
-    private final String name = "LanguageSettingName";
-    private final String description = "LanguageSettingDescription";
+    private final String name = "languageSettingName";
+    private final String description = "languageSettingDescription";
     private List<Locale> options;
     private Locale value;
 
@@ -33,8 +33,8 @@ public class LanguageSetting implements Setting {
 
     @Override
     public String getName() {
-        return this.name;
-        //return AppController.getInstance().getTranslation(this.name);
+        //return this.name;
+        return AppController.getInstance().getTranslation(this.name);
     }
 
     @Override

@@ -48,8 +48,9 @@ public class SettingsViewController {
 
     private void drawComboBox(Setting s) {
 
-        List options = (List) s.getOptionValues();
-        settingPane.add(new Label(s.getName()), 0, 0);
+        //List options = (List) s.getOptionValues();
+        String name = s.getName();
+        settingPane.add(new Label(name), 0, 0);
     }
 
     private void drawCheckBox(Setting s) {

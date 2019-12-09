@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class FontOverviewController {
@@ -37,6 +38,8 @@ public class FontOverviewController {
 	 */
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
+		this.dialogStage.setTitle("Change fontstyle");
+		this.dialogStage.getIcons().add(new Image("https://static.thenounproject.com/png/769675-200.png"));
 	}
 
 	/**

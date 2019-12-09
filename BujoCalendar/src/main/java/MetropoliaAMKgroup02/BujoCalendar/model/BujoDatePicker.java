@@ -14,6 +14,7 @@ import java.util.Locale;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -28,7 +29,8 @@ public class BujoDatePicker extends Application {
 	  
     public void start(Stage s) { 
     	
-        s.setTitle("Valitse päivä"); 
+        s.setTitle("Valitse päivä");
+        s.getIcons().add(new Image("https://static.thenounproject.com/png/769675-200.png"));
         Button ok = new Button("Ok");
         Button cancel = new Button("Cancel");
         

@@ -58,12 +58,12 @@
                   <Image url="@../img/play_circle_outline_grey_108x108.png" />
                </image>
             </ImageView>
-            <Label prefHeight="17.0" prefWidth="79.0" text="Prioriteetti" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label fx:id="notePriority" prefHeight="17.0" prefWidth="79.0" text="Prioriteetti" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <padding>
                   <Insets left="4.0" />
                </padding>
             </Label>
-            <Label prefHeight="15.0" prefWidth="128.0" text="Koko päivä" GridPane.columnIndex="1">
+            <Label fx:id="noteAllDay" prefHeight="15.0" prefWidth="128.0" text="Koko päivä" GridPane.columnIndex="1">
                <padding>
                   <Insets left="4.0" />
                </padding>
@@ -77,7 +77,7 @@
                <GridPane.margin>
                   <Insets />
                </GridPane.margin></CheckBox>
-            <Label onMouseClicked="#handleOpenAlarmView" prefHeight="17.0" prefWidth="95.0" text="Lisää ilmoitus" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="noteAddAlarm" onMouseClicked="#handleOpenAlarmView" prefHeight="17.0" prefWidth="95.0" text="Lisää ilmoitus" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <padding>
                   <Insets left="4.0" />
                </padding>
@@ -156,22 +156,22 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label prefHeight="17.0" prefWidth="79.0" text="Sijainti" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="noteLocation" prefHeight="17.0" prefWidth="79.0" text="Sijainti" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <padding>
                   <Insets left="4.0" />
                </padding>
             </Label>
-            <Label fx:id="addLocation" layoutX="30.0" layoutY="17.0" prefHeight="17.0" prefWidth="108.0" text="Lisää sijainti" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="noteAddLocation" layoutX="30.0" layoutY="17.0" prefHeight="17.0" prefWidth="108.0" text="Lisää sijainti" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <padding>
                   <Insets left="4.0" right="4.0" />
                </padding>
             </Label>
-            <Label prefHeight="17.0" prefWidth="80.0" text="Ihmiset" GridPane.columnIndex="1">
+            <Label fx:id="notePersons" prefHeight="17.0" prefWidth="80.0" text="Ihmiset" GridPane.columnIndex="1">
                <padding>
                   <Insets left="4.0" />
                </padding>
             </Label>
-            <Label fx:id="addPerson" prefHeight="17.0" prefWidth="201.0" text="Lisää ihminen" GridPane.columnIndex="2">
+            <Label fx:id="noteAddPerson" prefHeight="17.0" prefWidth="201.0" text="Lisää ihminen" GridPane.columnIndex="2">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -197,8 +197,8 @@
             </ImageView>
          </children>
       </GridPane>
-      <Button layoutX="168.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="25.0" prefWidth="71.0" stylesheets="@../saveButtonStyle.css" text="Tallenna" />
-      <Button layoutX="244.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #ff1a75; -fx-text-fill: white; -fx-font-weight: bold;" stylesheets="@../saveButtonStyle.css" text="Poista" />
+      <Button fx:id="noteSaveButton" layoutX="168.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="25.0" prefWidth="71.0" stylesheets="@../saveButtonStyle.css" text="Tallenna" />
+      <Button fx:id="noteDeleteButton" layoutX="244.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #ff1a75; -fx-text-fill: white; -fx-font-weight: bold;" stylesheets="@../saveButtonStyle.css" text="Poista" />
    </children>
    <stylesheets>
       <URL value="@../noteStyle.css" />

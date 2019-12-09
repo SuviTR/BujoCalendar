@@ -11,29 +11,34 @@ import javafx.scene.control.Alert.AlertType;
 public class Clock {
 	
 	private NoteOverviewController noteController;
-	private String curTime = "";
+	private String curHour = "";
 
-	public String currentTime() {
-		SimpleDateFormat formatter= new SimpleDateFormat("HH:mm"); //yyyy-MM-dd 'at' HH:mm:ss z
+	public String currentTimeHour() {
+		SimpleDateFormat formatter= new SimpleDateFormat("HH"); //yyyy-MM-dd 'at' HH:mm:ss z
 		Date date = new Date(System.currentTimeMillis());
-		curTime = formatter.format(date);
-		return formatter.format(date); //17:11
+		curHour = formatter.format(date);
+		return formatter.format(date); //17
+	}
+	public String currentTimeMinutes() {
+		SimpleDateFormat formatter= new SimpleDateFormat("mm"); //yyyy-MM-dd 'at' HH:mm:ss z
+		Date date = new Date(System.currentTimeMillis());
+		return formatter.format(date); //02
 	}
 	
-	public String currentTimeplus1() {
-		String parseHour = curTime.substring(0, 2);
-		String parseMin = curTime.substring(curTime.length() - 3);
+	public String currentTimeHourplus1() {
+		//String parseHour = curTime.substring(0, 2);
+		//String parseMin = curTime.substring(curTime.length() - 3);
 		
-		int time = Integer.parseInt(parseHour);
-		if (time == 24) {
+		int time = Integer.parseInt(curHour);
+		if (time == 23) {
 			time = 0;
 		}
 		else {
 			time = time + 1;
 		}
-		parseHour = Integer.toString(time);
+		curHour = Integer.toString(time);
 		
-		String newTime = parseHour + parseMin;
+		String newTime = curHour; //parseHour + parseMin;
 		return newTime;
 	}
 	

@@ -50,16 +50,15 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
         AppController.getInstance().setMainApp(this);
-
         /* Setting language */
-        String lang = "en";
-        LangBundlePro country = new LangBundlePro(new Locale (lang));
+                String lang = "en";
+                LangBundlePro country = new LangBundlePro( new Locale (lang));
         AppController.getInstance().SetLangBundlePro(country);
 
         // Show main window
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("My Bullet Journal Calendar");
-		this.primaryStage.getIcons().add(new Image("https://stickershop.line-scdn.net/stickershop/v1/product/3238751/LINEStorePC/main.png;compress=true"));
+		this.primaryStage.getIcons().add(new Image("https://static.thenounproject.com/png/769675-200.png"));
 		
         // The main controller responsible of communication with the backend.
 		calendarFetcher = new CalendarFetcher();
@@ -246,8 +245,8 @@ public class MainApp extends Application {
      */
     public void showSettingsWindow() {
 
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("/fxml/SettingsWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainApp.class.getResource("/fxml/SettingsWindow.fxml"));
         try {
             AnchorPane page = (AnchorPane) loader.load();
             Scene scene = new Scene(page);
@@ -306,7 +305,7 @@ public class MainApp extends Application {
     /**
      * Updates Event model with a new data from Backend.
      */
-        public void updateEvents() {
-                calendarFetcher.fetchAll();
-        }
+    public void updateEvents() {
+        calendarFetcher.fetchAll();
+    }
 }

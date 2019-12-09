@@ -26,6 +26,10 @@ public class Dates {
 		this.setCurrentDate(Calendar.getInstance(this.locale));
 	}
 	
+	/**
+	 * Sets the current date and calls the updateDays().
+	 * @param date is the current date.
+	 */
 	//======= Get date of today =======
 	public void setCurrentDate(Calendar date) {
 		this.currentDate = (Calendar) date.clone();
@@ -33,6 +37,9 @@ public class Dates {
 
 	}
 
+	/**
+	 * Gets the current date and sets the right dates to every day of week.
+	 */
     private void updateDays() {
 
         Calendar date = (Calendar) this.currentDate.clone();
@@ -68,21 +75,33 @@ public class Dates {
 		return currentDate;
 	}
 
+	/**
+	 * Gets the date of monday.
+	 * @return the date of monday.
+	 */
 	public Calendar getMonday() {
 		return (Calendar) this.monday.clone();
 	}
 	
-	//======= Get week number of current date =======
+	/**
+	 * Get week number based on the current date.
+	 * @return week number
+	 */
 	public int getWeekNumber() {
-            return this.currentDate.get(Calendar.WEEK_OF_YEAR);
+        return this.currentDate.get(Calendar.WEEK_OF_YEAR);
 	}
 	
-
 	//======= Get selected date from datepicker and dates of days of weeks =======
 	public String[] selectedDate(String date) { //date = 20190925 = 25.9.2019 Kuukausi ja vkonro vielä
 		return new String[3];
 	}
 	
+	/**
+	 * Get month name based on the current week's monday and sunday date.
+	 * @return monthString is the current month name based on that 
+	 * the month of the monday and the sunday are in the same month.
+	 * @return monthString is the current months of the monday and sunday dates.
+	 */
 	//======= Get month =======
 	public String getMonth() {	
         String mon = this.monday.getDisplayName(Calendar.MONTH, Calendar.LONG_STANDALONE, this.locale);
@@ -91,6 +110,7 @@ public class Dates {
         String monthString = "";
         String monthString2 = "";
         
+        //if(this.locale == suomi) else currentday
         switch (mon) {
 		case "tammikuu":
 			monthString = "Tammikuu";
@@ -151,6 +171,10 @@ public class Dates {
 		}
 	}
 	
+	/**
+	 * Get the current year based on the monday and sunday date.
+	 * @return one year name or two year names based on if the monday and sunday are from different years.
+	 */
 	//======= Get year number =======
 	public String getYear() {		
         //return this.currentDate.getDisplayName(Calendar.YEAR, Calendar.LONG_STANDALONE, this.locale); //null!!
@@ -165,21 +189,35 @@ public class Dates {
 		}
 	}
 	
+	/**
+	 * Get next week's dates when clicking the right arrow icon from the week view.
+	 */
 	public void nextWeek() {	
         this.currentDate.add(Calendar.DATE, 7);
         this.updateDays();
             
 	}
 	
+	/**
+	 * Get previous week's dates when clicking the left arrow icon from the week view.
+	 */
 	public void previousWeek() {
         this.currentDate.add(Calendar.DATE, -7);
         this.updateDays();
 	}
 
+	/**
+	 * Get the local country and region values.
+	 * @return the local country/region values.
+	 */
     public Locale getLocale() {
         return this.locale;
     }
 
+    /**
+     * Get the week number of the current week.
+     * @return week number.
+     */
     public String getWeekNumberAsString() {
         return String.valueOf(this.getWeekNumber());
     }

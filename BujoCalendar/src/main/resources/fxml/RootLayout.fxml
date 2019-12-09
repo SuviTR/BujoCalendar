@@ -54,7 +54,7 @@
           </Menu>
             <Menu fx:id="rootSettings" mnemonicParsing="false" text="Asetukset">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#showSettingsWindow" text="Asetukset" />
+                  <MenuItem mnemonicParsing="false" onAction="#showSettingsWindow" text="Kieliasetukset" />
                </items></Menu>
           <Menu fx:id="rootHelp" mnemonicParsing="false" text="Apua">
             <items>

@@ -44,13 +44,19 @@ public class MainApp extends Application {
     /**
     * Starts the calendar application.
     * Opens the RootLayout and the Calendar view.
+    * Creates language setting bundle, starts calendarFetcher
     * @param primaryStage is the primary stage of the application.
     */
 	@Override
 	public void start(Stage primaryStage) {
         AppController.getInstance().setMainApp(this);
-                String lang = "en";
-                LangBundlePro country = new LangBundlePro( new Locale (lang));
+
+        /* Setting language */
+        String lang = "en";
+        LangBundlePro country = new LangBundlePro(new Locale (lang));
+        AppController.getInstance().SetLangBundlePro(country);
+
+        // Show main window
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("My Bullet Journal Calendar");
 		this.primaryStage.getIcons().add(new Image("https://stickershop.line-scdn.net/stickershop/v1/product/3238751/LINEStorePC/main.png;compress=true"));
@@ -59,7 +65,6 @@ public class MainApp extends Application {
 		calendarFetcher = new CalendarFetcher();
 		initRootLayout();
 		showCalendarOverview();
-                AppController.getInstance().SetLangBundlePro(country);
                 
 	}
 	

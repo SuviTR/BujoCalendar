@@ -7,7 +7,11 @@ package MetropoliaAMKgroup02.BujoCalendar.view;
 
 import MetropoliaAMKgroup02.BujoCalendar.model.settings.Setting;
 import MetropoliaAMKgroup02.BujoCalendar.model.settings.Settings;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
@@ -30,11 +34,15 @@ public class SettingsViewController {
         drawSettings();
     }
 
+    int position=0;
+
     private void drawSettings() {
+
+
         for (Setting s : settings.getSettings()) {
             switch(s.getType()) {
                 case BOOLEAN:
-                    drawCheckBox(s);
+                    drawCheckBox(s); 
                     break;
                 case LIST:
                     drawComboBox(s);
@@ -48,39 +56,33 @@ public class SettingsViewController {
 
     private void drawComboBox(Setting s) {
 
-        List options = (List) s.getOptionValues();
-        settingPane.add(new Label(s.getName()), 0, 0);
+	ComboBox comboBox= createComboBox(s.getOptionValues());
+        settingPane.add(comboBox, position, 0);
     }
 
     private void drawCheckBox(Setting s) {
+
+    	boolean value = (boolean) s.getValue();
+        settingPane.add(new Label(s.getName()), position, 0);
 
     }
 
     private void drawTextField(Setting s) {
 
+	String value = (String) s.getValue();
+        settingPane.add(new Label(s.getName()), position, 0);
+
     }
 
-    /*
-    private ComboBox<Locale> createComboBox() {
-        ComboBox<Locale> comboBox = new ComboBox<>();
-        ObservableList<Locale> options = FXCollections.observableArrayList(Locale.ENGLISH, Locale.GERMAN);
+   
+    private ComboBox<String> createComboBox(List list) {
+        ComboBox<String> comboBox = new ComboBox<>();
+        ObservableList<String> options = FXCollections.observableArrayList(list);
         comboBox.setItems(options);
-        comboBox.setConverter(new StringConverter<Locale>() {
-            @Override
-            public String toString(Locale object) {
-                return object.getDisplayLanguage();
-            }
-
-            @Override
-            public Locale fromString(String string) {
-                return null;
-            }
-        });
-        comboBox.setCellFactory(p -> new LanguageListCell());
         comboBox.getSelectionModel().selectFirst();
 
-        comboBox.setOnAction(event -> loadView(comboBox.getSelectionModel().getSelectedItem()));
         return comboBox;
     }
-*/
+
+
 }

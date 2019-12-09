@@ -29,6 +29,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -103,6 +104,8 @@ public class NoteOverviewController {
 	
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
+		this.dialogStage.setTitle("Muokkaa merkintöjä");
+		this.dialogStage.getIcons().add(new Image("https://static.thenounproject.com/png/769675-200.png"));
 	}
 	
 	public boolean isOkClicked() {

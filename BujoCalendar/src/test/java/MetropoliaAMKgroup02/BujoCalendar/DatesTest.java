@@ -2,6 +2,7 @@ package MetropoliaAMKgroup02.BujoCalendar;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -37,24 +38,6 @@ public class DatesTest {
     	
         assertEquals(date,dateTest, "Dates are not equal.");
     }
-	
-	/*
-	@Test
-    @DisplayName("Get monday date of the current week.")
-    public void testGetCurrentMonday() {
-    	
-    	Calendar mondayCal = dates.getMonday();
-    	SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
-    	String monday = format1.format(mondayCal);
-    	
-    	LocalDate previousMonday = LocalDate.now(ZoneId.of("Europe/Oslo"))
-    		  .with(TemporalAdjusters.previous(DayOfWeek.MONDAY));
-
-    	SimpleDateFormat format2 = new SimpleDateFormat("dd.MM.yyyy");
-    	String mondayTest = format2.format(previousMonday);
-    	
-        assertEquals(monday,mondayTest, "Dates are not equal.");
-    }*/
 	
 	@Test
     @DisplayName("Get current weeknumber.")

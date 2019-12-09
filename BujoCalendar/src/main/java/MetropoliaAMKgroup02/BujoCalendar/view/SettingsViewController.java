@@ -32,7 +32,55 @@ public class SettingsViewController {
 
     private void drawSettings() {
         for (Setting s : settings.getSettings()) {
-           settingPane.add(new Label(s.getName()), 0, 0);
+            switch(s.getType()) {
+                case BOOLEAN:
+                    drawCheckBox(s);
+                    break;
+                case LIST:
+                    drawComboBox(s);
+                    break;
+                case STRING:
+                    drawTextField(s);
+                    break;
+            }
         }
     }
+
+    private void drawComboBox(Setting s) {
+
+        List options = (List) s.getOptionValues();
+        settingPane.add(new Label(s.getName()), 0, 0);
+    }
+
+    private void drawCheckBox(Setting s) {
+
+    }
+
+    private void drawTextField(Setting s) {
+
+    }
+
+    /*
+    private ComboBox<Locale> createComboBox() {
+        ComboBox<Locale> comboBox = new ComboBox<>();
+        ObservableList<Locale> options = FXCollections.observableArrayList(Locale.ENGLISH, Locale.GERMAN);
+        comboBox.setItems(options);
+        comboBox.setConverter(new StringConverter<Locale>() {
+            @Override
+            public String toString(Locale object) {
+                return object.getDisplayLanguage();
+            }
+
+            @Override
+            public Locale fromString(String string) {
+                return null;
+            }
+        });
+        comboBox.setCellFactory(p -> new LanguageListCell());
+        comboBox.getSelectionModel().selectFirst();
+
+        comboBox.setOnAction(event -> loadView(comboBox.getSelectionModel().getSelectedItem()));
+        return comboBox;
+    }
+*/
 }

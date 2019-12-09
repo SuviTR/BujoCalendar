@@ -33,7 +33,8 @@ public class LanguageSetting implements Setting {
 
     @Override
     public String getName() {
-        return AppController.getInstance().getTranslation(this.name);
+        return this.name;
+        //return AppController.getInstance().getTranslation(this.name);
     }
 
     @Override

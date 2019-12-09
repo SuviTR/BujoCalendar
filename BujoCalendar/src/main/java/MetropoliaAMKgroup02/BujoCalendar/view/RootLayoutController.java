@@ -73,6 +73,7 @@ public class RootLayoutController {
 		this.mainApp = mainApp;
 	}
 	
+	@FXML
     public void showSettingsWindow(){
         System.out.println("Showing settings wind");
         mainApp.showSettingsWindow();

@@ -11,8 +11,10 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -51,6 +53,7 @@ public class SettingsViewController {
                     drawTextField(s);
                     break;
             }
+	position++;
         }
     }
 
@@ -63,14 +66,17 @@ public class SettingsViewController {
     private void drawCheckBox(Setting s) {
 
     	boolean value = (boolean) s.getValue();
-        settingPane.add(new Label(s.getName()), position, 0);
+	CheckBox checkBox = new CheckBox(s.getName());
+	checkBox.setAllowIndeterminate(true);
+        settingPane.add(checkBox, position, 0);
 
     }
 
     private void drawTextField(Setting s) {
 
 	String value = (String) s.getValue();
-        settingPane.add(new Label(s.getName()), position, 0);
+	    TextField textField = new TextField(value);
+        settingPane.add(textField, position, 0);
 
     }
 

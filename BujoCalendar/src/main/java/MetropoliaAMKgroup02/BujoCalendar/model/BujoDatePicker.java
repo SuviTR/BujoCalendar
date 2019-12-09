@@ -38,7 +38,7 @@ public class BujoDatePicker extends Application {
                     AppController.getInstance().getCalendarOverviewController().updateView();
         	}
         	else if (whoValue == 2) {
-        		noteController.setAlarmDay(selectedDate);
+        		//noteController.setAlarmDay(selectedDate);
         	}
         	s.close();       	
         });
@@ -54,12 +54,13 @@ selectedDateForRealz.set(pickerValue.getYear(), pickerValue.getMonthValue()-1, p
             System.out.println("Valittu päivä: " + selectedDate);
         });
   
-        g.getChildren().add(d); 
+        //g.getChildren().add(d); 
         
         g.setHgap(10);
-        g.setVgap(20);
-        g.add(ok, 1, 1);
-        g.add(cancel, 1, 0);
+        g.setVgap(8);
+        g.add(d, 0, 1);
+        g.add(ok, 1, 2);
+        g.add(cancel, 1, 1);
         
         //Closes the BujoDatePicker window
         s.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
@@ -68,7 +69,9 @@ selectedDateForRealz.set(pickerValue.getYear(), pickerValue.getMonthValue()-1, p
             }
         });
   
-        Scene sc = new Scene(g, 235, 200); 
+        Scene sc = new Scene(g, 235, 247); 
+        sc.getStylesheets().add("datePickerStyle.css");
+        
         s.setScene(sc); 
   
         s.show(); 

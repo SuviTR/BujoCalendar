@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MetropoliaAMKgroup02.BujoCalendar.model;
+package MetropoliaAMKgroup02.BujoCalendar.model.settings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,17 +14,31 @@ import java.util.List;
  */
 public class Settings {
         private List<Setting> settings; 
+        private static Settings INSTANCE;
 
-        public Settings() {
+        private Settings() {
                 this.settings = new ArrayList<>();
+                this.createSettings();
+        }
+
+        public static Settings getInstance() {
+            if(Settings.INSTANCE == null) {
+                Settings.INSTANCE = new Settings();
+            }
+
+            return INSTANCE;
         }
 
         public List<Setting> getSettings() {
                 return settings;
         }
 
-        public void setSetting(Setting setting) {
+        public void addSetting(Setting setting) {
                 this.settings.add(setting);
+        }
+
+        private void createSettings() {
+            this.addSetting(new LanguageSetting());
         }
 
 }

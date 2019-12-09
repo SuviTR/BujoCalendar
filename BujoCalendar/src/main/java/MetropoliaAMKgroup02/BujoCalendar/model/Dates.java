@@ -85,12 +85,84 @@ public class Dates {
 	
 	//======= Get month =======
 	public String getMonth() {	
-        return this.currentDate.getDisplayName(Calendar.MONTH, Calendar.LONG_STANDALONE, this.locale);
+        String mon = this.monday.getDisplayName(Calendar.MONTH, Calendar.LONG_STANDALONE, this.locale);
+        String sun = this.sunday.getDisplayName(Calendar.MONTH, Calendar.LONG_STANDALONE, this.locale);
+
+        String monthString = "";
+        String monthString2 = "";
+        
+        switch (mon) {
+		case "tammikuu":
+			monthString = "Tammikuu";
+			monthString2 = "Tammikuu/Helmikuu";
+			break;
+		case "helmikuu":
+			monthString = "Helmikuu";
+			monthString2 = "Helmikuu/Maaliskuu";
+			break;
+		case "maaliskuu":
+			monthString = "Maaliskuu";
+			monthString2 = "Maaliskuu/Huhtikuu";
+			break;
+		case "huhtikuu":
+			monthString = "Huhtikuu";
+			monthString2 = "Huhtikuu/Toukokuu";
+			break;
+		case "toukokuu":
+			monthString = "Toukokuu";
+			monthString2 = "Toukokuu/Kesäkuu";
+			break;
+		case "kesäkuu":
+			monthString = "Kesäkuu";
+			monthString2 = "Kesäkuu/Heinäkuu";
+			break;
+		case "heinäkuu":
+			monthString = "Heinäkuu";
+			monthString2 = "Heinäkuu/Elokuu";
+			break;
+		case "elokuu":
+			monthString = "Elokuu";
+			monthString2 = "Elokuu/Syyskuu";
+			break;
+		case "syyskuu":
+			monthString = "Syyskuu";
+			monthString2 = "Syyskuu/Lokakuu";
+			break;
+		case "lokakuu":
+			monthString = "Lokakuu";
+			monthString2 = "Lokakuu/Marraskuu";
+			break;
+		case "marraskuu":
+			monthString = "Marraskuu";
+			monthString2 = "Marraskuu/Joulukuu";
+			break;
+		case "joulukuu":
+			monthString = "Joulukuu";
+			monthString2 = "Joulukuu/Tammikuu";
+			break;
+		}
+        
+        if (mon.equals(sun)) {
+			return monthString;
+		}
+		
+		else {
+			return monthString2;
+		}
 	}
 	
 	//======= Get year number =======
 	public String getYear() {		
-        return this.currentDate.getDisplayName(Calendar.YEAR, Calendar.LONG_STANDALONE, this.locale);
+        //return this.currentDate.getDisplayName(Calendar.YEAR, Calendar.LONG_STANDALONE, this.locale); //null!!
+		int yMon = this.monday.get(Calendar.YEAR);
+		int ySun = this.sunday.get(Calendar.YEAR);
+		
+		if (yMon == ySun) {
+			return Integer.toString(yMon);
+		}
+		else {
+			return Integer.toString(yMon) + "/" + Integer.toString(ySun);
+		}
 	}
 	
 	public void nextWeek() {	

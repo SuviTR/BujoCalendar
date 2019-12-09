@@ -79,10 +79,10 @@ public class DatesTest {
     	LocalDateTime now = LocalDateTime.now();  
     	int monthInt = Integer.parseInt(dtf.format(now));  
     	
-    	String[] monthName = {"tammikuu", "helmikuu",
-                "maaliskuu", "huhtikuu", "toukokuu", "kesäkuu", "heinäkuu",
-                "elokuu", "syyskuu", "lokakuu", "marraskuu",
-                "joulukuu"};
+    	String[] monthName = {"Tammikuu", "Helmikuu",
+                "Maaliskuu", "Huhtikuu", "Toukokuu", "Kesäkuu", "Heinäkuu",
+                "Elokuu", "Syyskuu", "Lokakuu", "Marraskuu",
+                "Joulukuu"};
         String monthTest = monthName[monthInt-1];
         
         assertEquals(month,monthTest, "Months are not equal.");
@@ -92,8 +92,7 @@ public class DatesTest {
     @DisplayName("Get current year.")
     public void testGetCurrentYear() {
     	
-		dates.getCurrentDate(); //Mitä tähän tulee?? 
-    	String year = dates.getYear(); //null
+    	String year = dates.getYear();
     	
     	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy");  
     	LocalDateTime now = LocalDateTime.now();  

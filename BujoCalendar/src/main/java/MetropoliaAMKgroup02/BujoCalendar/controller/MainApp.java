@@ -234,7 +234,8 @@ public class MainApp extends Application {
      * Sets the window
      */   
     public void handleCurrentDate(boolean boolCurrentDate) {
-    	calController.handleCurrentDateOrSelectedDate("", boolCurrentDate);
+    	//calController.handleCurrentDateOrSelectedDate("", boolCurrentDate);
+    	calController.getCurrentDate();
     }
 
     /**

@@ -59,6 +59,7 @@ public class MainApp extends Application {
 		calendarFetcher = new CalendarFetcher();
 		initRootLayout();
 		showCalendarOverview();
+                AppController.getInstance();
                 AppController.getInstance().SetLangBundlePro(country);
                 
 	}

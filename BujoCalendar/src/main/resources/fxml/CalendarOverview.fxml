@@ -369,7 +369,7 @@
       </GridPane>
       <MenuBar layoutX="54.0" layoutY="135.0" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: transparent;">
          <menus>
-            <Menu mnemonicParsing="false" text="Miten menee?">
+            <Menu disable="true" mnemonicParsing="false" text="Miten menee?">
                <items>
                   <CheckMenuItem mnemonicParsing="false" text="Niin onnellinen" />
                   <CheckMenuItem mnemonicParsing="false" text="Olen iloinen">
@@ -405,7 +405,7 @@
       </MenuBar>
       <MenuBar layoutX="171.0" layoutY="135.0" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: transparent;">
          <menus>
-            <Menu mnemonicParsing="false" text="Miten menee?" />
+            <Menu disable="true" mnemonicParsing="false" text="Miten menee?" />
          </menus>
       </MenuBar>
       <MenuBar disable="true" layoutX="291.0" layoutY="135.0" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: transparent;">

@@ -5,10 +5,83 @@
  */
 package MetropoliaAMKgroup02.BujoCalendar.view;
 
+import MetropoliaAMKgroup02.BujoCalendar.model.settings.Setting;
+import MetropoliaAMKgroup02.BujoCalendar.model.settings.Settings;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+
 /**
  *
  * @author heikki
  */
 public class SettingsViewController {
+
+    private Settings settings;
+
+    @FXML
+    private GridPane settingPane;
     
+    @FXML
+    private void initialize() {
+
+        this.settings = Settings.getInstance();
+
+        drawSettings();
+    }
+
+    private void drawSettings() {
+        for (Setting s : settings.getSettings()) {
+            switch(s.getType()) {
+                case BOOLEAN:
+                    drawCheckBox(s);
+                    break;
+                case LIST:
+                    drawComboBox(s);
+                    break;
+                case STRING:
+                    drawTextField(s);
+                    break;
+            }
+        }
+    }
+
+    private void drawComboBox(Setting s) {
+
+        //List options = (List) s.getOptionValues();
+        String name = s.getName();
+        settingPane.add(new Label(name), 0, 0);
+    }
+
+    private void drawCheckBox(Setting s) {
+
+    }
+
+    private void drawTextField(Setting s) {
+
+    }
+
+    /*
+    private ComboBox<Locale> createComboBox() {
+        ComboBox<Locale> comboBox = new ComboBox<>();
+        ObservableList<Locale> options = FXCollections.observableArrayList(Locale.ENGLISH, Locale.GERMAN);
+        comboBox.setItems(options);
+        comboBox.setConverter(new StringConverter<Locale>() {
+            @Override
+            public String toString(Locale object) {
+                return object.getDisplayLanguage();
+            }
+
+            @Override
+            public Locale fromString(String string) {
+                return null;
+            }
+        });
+        comboBox.setCellFactory(p -> new LanguageListCell());
+        comboBox.getSelectionModel().selectFirst();
+
+        comboBox.setOnAction(event -> loadView(comboBox.getSelectionModel().getSelectedItem()));
+        return comboBox;
+    }
+*/
 }

@@ -26,6 +26,9 @@ public class DatesTest {
 
 	private Dates dates = new Dates();
 	
+	/**
+	 * Get current date.
+	 */
 	@Test
     @DisplayName("Get current date.")
     public void testGetCurrentDate() {
@@ -39,8 +42,11 @@ public class DatesTest {
         assertEquals(date,dateTest, "Dates are not equal.");
     }
 	
+	/**
+	 * Get current week of year.
+	 */
 	@Test
-    @DisplayName("Get current weeknumber.")
+    @DisplayName("Get current week number.")
     public void testGetCurrentWeeknumber() {
     	
     	int week = dates.getWeekNumber();
@@ -52,6 +58,9 @@ public class DatesTest {
         assertEquals(week,weekTest, "Weeknumbers are not equal.");
     }
 	
+	/**
+	 * Get current month.
+	 */
 	@Test
     @DisplayName("Get current month.")
     public void testGetCurrentMonth() {
@@ -71,6 +80,9 @@ public class DatesTest {
         assertEquals(month,monthTest, "Months are not equal.");
     }
 	
+	/**
+	 * Get current year.
+	 */
 	@Test
     @DisplayName("Get current year.")
     public void testGetCurrentYear() {

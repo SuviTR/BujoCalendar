@@ -13,6 +13,9 @@ class FontMenuTest {
 
 	private FontMenu menu = new FontMenu();
 
+	/**
+	 * Get all font family names installed on the user's system.
+	 */
     @Test
     @DisplayName("Get all font families installed on the user's system")
     public void testGetFontList() {

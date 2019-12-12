@@ -5,6 +5,8 @@
  */
 package MetropoliaAMKgroup02.BujoCalendar.model.settings;
 
+import java.util.List;
+
 /**
  *
  * @author heikki
@@ -22,6 +24,7 @@ public interface Setting {
         public String getDescription();
         public String getValueRepresentation();
         public Object getValue();
+        public List getOptionValues();
         public void saveSetting();
         public void loadSetting();
         

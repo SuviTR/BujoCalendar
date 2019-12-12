@@ -14,12 +14,20 @@ public class FontMenu {
 	private MenuItem menuItem;
 	private String newFont;
 
+	/**
+	 * Get the font style names installed on the user's system.
+	 * @return fonts list.
+	 */
 	//======= Getting available fonts ======
 	private String[] FontList() {
 		String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 		return fonts;
 	}
 	
+	/**
+	 * All font styles are converted to menuitems.
+	 * @return calendarFonts menuitem list.
+	 */
 	//======= Making MenuItem list of fonts ======= 
 	//------- Adding id and action to every MenuItem ------- 
 	public ObservableList<MenuItem> getFontList() {
@@ -38,6 +46,10 @@ public class FontMenu {
 		return calendarFonts;
 	}
 	
+	/**
+	 * Every menuitem gets an action.
+	 * @return action events of the menuitems.
+	 */
 	//======= Adding EventHandlers to MenuItems ======= 
 	//======= Letting CalendarOverviewController know the new font =======
 	private EventHandler<ActionEvent> changeFont() {	

@@ -13,18 +13,31 @@ public class Clock {
 	private NoteOverviewController noteController;
 	private String curHour = "";
 
+	/**
+	 * Get current hour
+	 * @return current hour.
+	 */
 	public String currentTimeHour() {
 		SimpleDateFormat formatter= new SimpleDateFormat("HH"); //yyyy-MM-dd 'at' HH:mm:ss z
 		Date date = new Date(System.currentTimeMillis());
 		curHour = formatter.format(date);
 		return formatter.format(date); //17
 	}
+	
+	/**
+	 * Get current time's minutes.
+	 * @return current minutes.
+	 */
 	public String currentTimeMinutes() {
 		SimpleDateFormat formatter= new SimpleDateFormat("mm"); //yyyy-MM-dd 'at' HH:mm:ss z
 		Date date = new Date(System.currentTimeMillis());
 		return formatter.format(date); //02
 	}
 	
+	/**
+	 * Add one hour to current hour value.
+	 * @return new hour.
+	 */
 	public String currentTimeHourplus1() {
 		//String parseHour = curTime.substring(0, 2);
 		//String parseMin = curTime.substring(curTime.length() - 3);
@@ -42,14 +55,26 @@ public class Clock {
 		return newTime;
 	}
 	
+	/**
+	 * @param time that user has wrote to start time textfield.
+	 * @return the written time.
+	 */
 	public String handleStartTime(TextField time) {
 		return time.getText();
 	}
 
+	/**
+	 * @param time that user has wrote to end time textfield.
+	 * @return the written time.
+	 */
 	public String handleEndTime(TextField time) {
 		return time.getText();
 	}
 	
+	/**
+	 * @param hour that user has wrote to textfield.
+	 * @return the written time or the alert text.
+	 */
 	public String checkHour(TextField hour) {
 		
 		if (Integer.parseInt(hour.getText()) < 0 || Integer.parseInt(hour.getText()) > 23) {
@@ -95,6 +120,10 @@ public class Clock {
 		return msg;*/
 	}
 	
+	/**
+	 * @param min that user has wrote to textfield.
+	 * @return the written time or the alert text.
+	 */
 	public String checkMin(TextField min) {
 	
 		if (Integer.parseInt(min.getText()) < 0 || Integer.parseInt(min.getText()) > 59) {

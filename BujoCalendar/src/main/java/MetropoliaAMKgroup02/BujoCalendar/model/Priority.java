@@ -18,6 +18,10 @@ public class Priority  {
 	
 	private ObservableList<String> priorities;
 	
+	/**
+	 * Creates a priority list with priorities.
+	 * @return priorities list.
+	 */
 	public ObservableList<String> getPriorityList() {
 		
 		priorities = FXCollections.observableArrayList();
@@ -25,6 +29,10 @@ public class Priority  {
 	    return priorities; 
 	}
 	
+	/**
+	 * @param value tells which priority has chosen.
+	 * @return selectedPriority name.
+	 */
 	public String selectedPriority(int value) {
 		
 		String selectedPriority = "";

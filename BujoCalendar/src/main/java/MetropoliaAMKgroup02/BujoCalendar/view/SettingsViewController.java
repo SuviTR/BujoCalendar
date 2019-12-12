@@ -7,6 +7,7 @@ package MetropoliaAMKgroup02.BujoCalendar.view;
 
 import MetropoliaAMKgroup02.BujoCalendar.model.settings.Setting;
 import MetropoliaAMKgroup02.BujoCalendar.model.settings.Settings;
+import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -49,8 +50,11 @@ public class SettingsViewController {
     private void drawComboBox(Setting s) {
 
         //List options = (List) s.getOptionValues();
-        String name = s.getName();
-        settingPane.add(new Label(name), 0, 0);
+        int i = 0;
+        for(String v : (List<String>) s.getOptionValues()) {
+            settingPane.add(new Label(v), i, 0);
+            i++;
+        }
     }
 
     private void drawCheckBox(Setting s) {

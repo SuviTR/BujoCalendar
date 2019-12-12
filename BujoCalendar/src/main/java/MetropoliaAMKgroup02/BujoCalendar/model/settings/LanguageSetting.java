@@ -24,6 +24,10 @@ public class LanguageSetting implements Setting {
 
     public LanguageSetting() {
         this.options = new ArrayList<>();
+        options.add(new Locale("en"));
+        options.add(new Locale("fi"));
+        options.add(new Locale("sv"));
+        options.add(new Locale("da"));
     }
 
     @Override
@@ -48,8 +52,14 @@ public class LanguageSetting implements Setting {
     }
 
     @Override
+    public void setValue(int index) {
+        this.value = this.options.get(index);
+    }
+    
+
+    @Override
     public String getValueRepresentation() {
-        return this.value.toString();
+        return this.value.getDisplayName();
     }
 
     public List<String> getOptionValues() {
@@ -70,5 +80,5 @@ public class LanguageSetting implements Setting {
     public void loadSetting() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

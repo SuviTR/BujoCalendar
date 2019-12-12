@@ -24,6 +24,7 @@ public interface Setting {
         public String getDescription();
         public String getValueRepresentation();
         public Object getValue();
+        public void setValue(int index);
         public List getOptionValues();
         public void saveSetting();
         public void loadSetting();

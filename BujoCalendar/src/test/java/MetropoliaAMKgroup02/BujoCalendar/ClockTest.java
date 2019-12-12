@@ -18,6 +18,9 @@ public class ClockTest {
 
 	private Clock clock = new Clock();
 
+	/**
+	 * Get current hour.
+	 */
     @Test
     @DisplayName("Get current hour.")
     public void testGetCurrentTimeHour() {
@@ -31,6 +34,9 @@ public class ClockTest {
         assertEquals(hr,hrTest, "Hours are not equal.");
     }
     
+    /**
+     * Get current hour and add one hour to it.
+     */
     @Test
     @DisplayName("Current hour + 1.")
     public void testCurrentTimeHourplus1() {
@@ -46,6 +52,9 @@ public class ClockTest {
         assertEquals(hr,hrTest, "Hours after adding 1 hour are not equal.");
     }
     
+    /**
+     * Get current minutes.
+     */
     @Test
     @DisplayName("Get current minutes.")
     public void testGetCurrentMinutes() {

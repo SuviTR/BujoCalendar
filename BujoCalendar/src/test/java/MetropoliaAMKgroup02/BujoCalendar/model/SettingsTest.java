@@ -28,7 +28,7 @@ public class SettingsTest {
         
         @BeforeAll
         public static void setUpClass() {
-                SettingsTest.instance = new Settings();
+                SettingsTest.instance = Settings.getInstance(); 
         }
         
         @AfterAll
@@ -55,7 +55,7 @@ public class SettingsTest {
         public void testSetSetting() {
                 System.out.println("setSetting");
                 Setting setting = null;
-                instance.setSetting(setting);
+                instance.addSetting(setting);
                 // TODO review the generated test code and remove the default call to fail.
                 fail("The test case is a prototype.");
         }
@@ -66,7 +66,6 @@ public class SettingsTest {
         @Test
         public void testGetSettings() {
                 System.out.println("getSettings");
-                Settings instance = new Settings();
                 List<Setting> expResult = null;
                 List<Setting> result = instance.getSettings();
                 assertEquals(expResult, result);

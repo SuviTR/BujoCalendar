@@ -28,7 +28,7 @@ public class Localize {
        String lang2 = "dk";
        
        LangBundlePro country = new LangBundlePro(new Locale(lang2));
-       country.LoadResourceFile(new Locale(lang2));
+       //country.LoadResourceFile(new Locale(lang2));
        
    
       

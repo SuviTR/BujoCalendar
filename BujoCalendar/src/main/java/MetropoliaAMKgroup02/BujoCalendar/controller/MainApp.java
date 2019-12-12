@@ -51,8 +51,8 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) {
         AppController.getInstance().setMainApp(this);
         /* Setting language */
-                String lang = "en";
-                LangBundlePro country = new LangBundlePro( new Locale (lang));
+        String lang = "en";
+        LangBundlePro country = new LangBundlePro(new Locale (lang));
         AppController.getInstance().SetLangBundlePro(country);
 
         // Show main window

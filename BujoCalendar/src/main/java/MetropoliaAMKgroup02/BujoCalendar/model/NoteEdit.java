@@ -69,6 +69,7 @@ public class NoteEdit {
 	/**
 	 * Pulls together all information from the note editing window
 	 * and makes them a Merkinta.
+	 * @return merkinta is the new note that user has created.
 	 */
     public Merkinta createMerkinta() { //Alarm is missing!!!!!!
         Merkinta merkinta = new Merkinta();
@@ -87,6 +88,7 @@ public class NoteEdit {
     /**
      * Alerts the user of removing a note.
      * Asks confirmation of removing a note.
+     * @return b if the ok button is clikced.
      */
     public boolean removeNoteWarning() {
  
